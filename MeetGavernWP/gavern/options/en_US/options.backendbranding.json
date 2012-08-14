@@ -1,0 +1,52 @@
+[
+	{
+		"groupname": "Back-end branding",
+		"groupdesc": "Configure options associated with back-end styling.",
+		"fields": [
+			{
+				"name": "branding_login_page_image",
+				"type": "Media",
+				"label": "Login Page Logo",
+				"tooltip": "Select a logo image for the login page.",
+				"default": "",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "branding_login_page_image_width_height",
+				"type": "WidthHeight",
+				"label": "Logo Size (optional)",
+				"tooltip": "Specify dimensions for the login page logo.",
+				"default": "",
+				"class": "",
+				"visibility": "",
+				"other": {
+					"size": "2",
+					"unit": "px"
+				}
+			},
+			{
+				"name": "branding_admin_page_image",
+				"type": "Media",
+				"label": "Admin Panel Logo (16x16px).",
+				"tooltip": "Select a logo image for the admin panel (ideally 16x16 pixels).",
+				"default": "",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "branding_admin_page_image_width_height",
+				"type": "WidthHeight",
+				"label": "Logo Size (optional)",
+				"tooltip": "Specify dimensions of the admin panel logo.",
+				"default": "",
+				"class": "",
+				"visibility": "",
+				"other": {
+					"size": "2",
+					"unit": "px"
+				}
+			}
+		]
+	}
+]

@@ -1,0 +1,35 @@
+[
+	{
+		"groupname": "Shortcodes settings",
+		"groupdesc": "Configure the groups of shortcodes which will be active.",
+		"fields": [
+			{
+				"name": "shortcodes1_state",
+				"type": "Switcher",
+				"label": "Typography elements",
+				"tooltip": "This group of shortcodes contains such typography elements as lists, icons, and floated blocks.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "shortcodes2_state",
+				"type": "Switcher",
+				"label": "Interactive elements",
+				"tooltip": "This group of shortcodes contains all elements connected with user interactions.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "shortcodes3_state",
+				"type": "Switcher",
+				"label": "Theme-specific elements",
+				"tooltip": "This group of shortcodes contains elements custom-prepared for a specific theme.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
+			}
+		]
+	}
+]

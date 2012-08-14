@@ -1,0 +1,8 @@
+{
+	"name": "Fonts",
+	"description": "Fonts manager",
+	"js": "fonts.js",
+	"css": false,
+	"php": "fonts.php",
+	"class": "GKFormInputFonts"
+}

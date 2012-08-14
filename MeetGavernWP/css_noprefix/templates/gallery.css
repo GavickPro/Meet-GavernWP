@@ -1,0 +1,100 @@
+/**
+ *
+ * -------------------------------------------
+ * Stylesheet for the template.gallery.php page style
+ * -------------------------------------------
+ * 
+ **/
+ 
+#gallery {
+	margin: 10px 0;
+	overflow: hidden;
+	position: relative;
+}
+
+#gallery figure {
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+#gallery figure.active {
+	opacity: 1;
+	position: relative;
+	z-index: 3;
+}
+
+#gallery img {
+	display: block;
+	height: auto;
+	position: relative;
+	width: 100%;
+}
+
+#gallery figcaption {
+	background: rgba(0, 0, 0, 0.5);
+	bottom: -100%;
+	box-sizing: border-box;
+	left: 0;
+	padding: 14px 20px 6px 20px;
+	position: absolute;
+	transition: bottom 0.5s ease-out;
+	width: 100%;
+	z-index: 2;
+}
+
+#gallery figure.active figcaption {
+	bottom: 0%;
+	z-index: 4;
+}
+
+#gallery figcaption h3 {
+	color: #fff;
+	font-size: 16px;
+	margin: 0;
+}
+
+#gallery figcaption p {
+	color: #ddd;
+	font-size: 12px;
+	margin: 0;
+}
+
+#gallery figcaption small {
+	color: #aaa;
+	display: block;
+	font-size: 9px;
+	margin: 0;
+	text-align: right;
+	text-transform: uppercase;
+}
+
+#gallery ol {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	text-align: center;
+	top: 10px;
+	width: 100%;
+	z-index: 10;
+}
+
+#gallery ol li {
+	background: #fff;
+	border: 2px solid #eee;
+	border-radius: 50%;
+	cursor: pointer;
+	display: inline-block;
+	height: 12px;
+	text-indent: -999px;
+	width: 12px;
+}
+
+#gallery ol li:hover,
+#gallery ol li.active {
+	background: #5990de;
+	border: 2px solid #fff;
+}

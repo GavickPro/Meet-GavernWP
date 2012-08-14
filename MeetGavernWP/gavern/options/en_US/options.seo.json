@@ -1,0 +1,127 @@
+[
+	{
+		"groupname": "SEO settings",
+		"groupdesc": "Configure theme parameters associated with Search Engine Optimization.",
+		"fields": [
+			{
+				"name": "seo_use_gk_seo_settings",
+				"type": "Switcher",
+				"label": "Use Gavern SEO Settings",
+				"tooltip": "Enable use of Gavern SEO settings instead of standard WordPress settings.",
+				"default": "Y"
+			},
+			{
+				"name": "seo_use_blogname_in_title",
+				"type": "Switcher",
+				"label": "Display blogname in title",
+				"tooltip": "Enable display of blogname in page title.",
+				"default": "Y",
+				"visibility": "seo_use_gk_seo_settings=Y"
+			},
+			{
+				"name": "seo_separator_in_title",
+				"type": "Select",
+				"label": "Specify page title separator",
+				"tooltip": "Specify separator to be used in page title.",
+				"default": "Y",
+				"visibility": "seo_use_gk_seo_settings=Y",
+				"other": {
+					"options": {
+						"&raquo;": "&raquo;",
+						"&rsaquo;": "&rsaquo;",
+						"|": "|",
+						"-": "-",
+						"&mdash;": "&mdash;",
+						",": ",",
+						" ": " ",
+						"&bull;": "&bull;"
+					}
+				}
+			},
+			{
+				"name": "seo_description",
+				"type": "Text",
+				"label": "Set title description",
+				"tooltip": "Set the phrase to be used in the title as description.",
+				"visibility": "seo_use_gk_seo_settings=Y"
+			},
+			{
+				"name": "seo_blogname",
+				"type": "Text",
+				"label": "Set title blogname",
+				"tooltip": "Set the phrase to be used in the title as blogname.",
+				"visibility": "seo_use_gk_seo_settings=Y"
+			},
+			{
+				"name": "seo_homepage_desc",
+				"type": "Select",
+				"label": "Homepage description",
+				"tooltip": "Enable the page description metatag on the homepage.",
+				"default": "custom",
+				"visibility": "seo_use_gk_seo_settings=Y",
+				"other": {
+					"options": {
+						"custom": "Enabled",
+						"off": "Disabled"
+					}
+				}
+			},
+			{
+				"name": "seo_homepage_desc_value",
+				"type": "Text",
+				"label": "Homepage description text",
+				"tooltip": "Specify the content of the homepage description metatag.",
+				"visibility": "seo_use_gk_seo_settings=Y,seo_homepage_desc=custom"
+			},
+			{
+				"name": "seo_post_desc",
+				"type": "Select",
+				"label": "Blog post descriptions",
+				"tooltip": "Enable custom post descriptions (to be populated with content specified in the post editor custom field).",
+				"default": "custom",
+				"visibility": "seo_use_gk_seo_settings=Y",
+				"other": {
+					"options": {
+						"custom": "Enabled (Custom field in post editor)",
+						"off": "Disabled"
+					}
+				}
+			},
+			{
+				"name": "seo_homepage_keywords",
+				"type": "Select",
+				"label": "Homepage keywords",
+				"tooltip": "Enable the page keywords metatag on the homepage.",
+				"default": "custom",
+				"visibility": "seo_use_gk_seo_settings=Y",
+				"other": {
+					"options": {
+						"custom": "Enabled",
+						"off": "Disabled"
+					}
+				}
+			},
+			{
+				"name": "seo_homepage_keywords_value",
+				"type": "Text",
+				"label": "Homepage keywords text",
+				"tooltip": "Specify content for the homepage keywords metatag.",
+				"visibility": "seo_use_gk_seo_settings=Y,seo_homepage_keywords=custom"
+			},
+			{
+				"name": "seo_post_keywords",
+				"type": "Select",
+				"label": "Blog post keywords",
+				"tooltip": "Enable custom post keywords (to be populated with content specified in the post editor custom field).",
+				"default": "custom",
+				"visibility": "seo_use_gk_seo_settings=Y",
+				"other": {
+					"options": {
+						"custom": "Enabled (Custom field in post editor)",
+						"off": "Disabled"
+					}
+				}
+			}
+		]
+	}
+]

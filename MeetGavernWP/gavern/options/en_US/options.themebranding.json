@@ -1,0 +1,98 @@
+[
+	{
+		"groupname": "Theme branding",
+		"groupdesc": "You can configure here options connected with theme branding.",
+		"fields": [
+			{
+				"name": "template_footer_content",
+				"type": "Textarea",
+				"label": "Footer content",
+				"tooltip": "Specify the content of the theme footer.",
+				"default": "",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "template_footer_logo",
+				"type": "Switcher",
+				"label": "GavernWP Logo in the footer",
+				"tooltip": "Enable display of the GavernWP logo in the theme footer.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "branding_logo_type",
+				"type": "Select",
+				"label": "Theme logo type",
+				"tooltip": "Select the type of theme logo.",
+				"default": "css",
+				"class": "",
+				"visibility": "",
+				"other": {
+					"options": {
+						"css": "Defined in the CSS code",
+						"image": "Image logo",
+						"text": "Text logo",
+						"none": "None"
+					}
+				}
+			},
+			{
+				"name": "branding_logo_image",
+				"type": "Media",
+				"label": "Theme logo image",
+				"tooltip": "Select the image for the theme logo.",
+				"default": "",
+				"class": "",
+				"visibility": "branding_logo_type=image"
+			},
+			{
+				"name": "branding_logo_image_width_height",
+				"type": "WidthHeight",
+				"label": "Theme logo size",
+				"tooltip": "Specify the theme logo dimensions.",
+				"default": "",
+				"class": "",
+				"visibility": "branding_logo_type=image",
+				"other": {
+					"size": "2",
+					"unit": "px"
+				}
+			},
+			{
+				"name": "branding_logo_text_type",
+				"type": "Select",
+				"label": "Theme logo text",
+				"tooltip": "Specify whether the logo text is custom (your own) or if it is derived from the WP settings.",
+				"default": "wp",
+				"class": "",
+				"visibility": "branding_logo_type=text",
+				"other": {
+					"options": {
+						"own": "Own",
+						"wp": "from WordPress settings"
+					}
+				}
+			},
+			{
+				"name": "branding_logo_text_value",
+				"type": "Text",
+				"label": "Your own logo text",
+				"tooltip": "Specify text of the main logo.",
+				"default": "",
+				"class": "",
+				"visibility": "branding_logo_text_type=own,branding_logo_type=text"
+			},
+			{
+				"name": "branding_logo_slogan_value",
+				"type": "Text",
+				"label": "Your own logo slogan",
+				"tooltip": "Specify text of the secondary logo.",
+				"default": "",
+				"class": "",
+				"visibility": "branding_logo_text_type=own,branding_logo_type=text"
+			}
+		]
+	}
+]

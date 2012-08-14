@@ -1,0 +1,8 @@
+{
+	"name": "ThemeStyle",
+	"description": "Theme styles switcher",
+	"js": false,
+	"css": false,
+	"php": "themestyle.php",
+	"class": "GKFormInputThemeStyle"
+}

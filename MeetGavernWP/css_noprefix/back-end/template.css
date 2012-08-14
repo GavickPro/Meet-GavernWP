@@ -1,0 +1,339 @@
+/**
+ *
+ * Styles for the template options page
+ *
+ **/
+textarea,
+input,
+.wp-admin select {
+	-moz-border-radius: 2px!important;
+	-ms-border-radius: 2px!important;
+	-webkit-border-radius: 2px!important;
+	background: #fff;
+	border-color: #BCBCBC #DADADA #E4E4E4!important;
+	border-radius: 2px!important;
+	border-style: solid;
+	border-width: 1px;
+	color: #555;
+	font-size: 12px;
+	min-width: 200px;
+	padding: 7px!important
+}
+.wp-admin select {
+	border-color: #DADADA!important;
+	height: inherit;
+	line-height: inherit;
+	padding: 5px 7px!important
+}
+textarea:focus,
+input:focus,
+.wp-admin select:focus {
+	background: #FFFEF4
+}
+textarea {
+	min-height: 125px;
+	min-width: 300px;
+}
+.gkWidthHeight {
+	min-width: 50px!important;
+	width: 50px!important;
+}
+
+.gkWrap {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	border: 1px solid #e5e5e5;
+	border-radius: 3px;
+	box-sizing: border-box;
+	margin: 40px auto 0;
+	padding: 20px;
+	position: relative;
+	width: 95%
+}
+.gkWrap > h1:first-child {
+	background: #85B9DE;
+	border-radius: 3px 3px 0 0;
+	color: #fff;
+	font: normal 25px/48px Arial, Helvetica, sans-serif;
+	height: 48px;
+	margin: -21px -21px 0;
+	padding: 16px 20px 4px
+}
+.gkWrap > h1:first-child big {
+	float: left;
+	line-height: 32px
+}
+.gkWrap > h1:first-child small {
+	border-left: 1px solid #fff;
+	float: left;
+	font-size: 10px;
+	font-weight: 400;
+	line-height: 26px;
+	margin: 4px 0 0 24px;
+	padding-left: 16px
+}
+.gkWrap > h1:first-child a {
+	background: url(../../images/back-end/icons.png) no-repeat 0 -640px;
+	display: block;
+	float: right;
+	height: 26px;
+	margin-top: 5px;
+	text-indent: -9999em;
+	width: 27px
+}
+.gkWrap > h1:first-child a:active,
+.gkWrap > h1:first-child a:focus,
+.gkWrap > h1:first-child a:hover {
+	text-decoration: underline
+}
+.gkWrap > div {
+	display: table;
+	margin: 0 -20px -20px;
+	position: relative;
+	width: 100%
+}
+#gkTabs {
+	background: #f7f7f7;
+	border-right: 1px solid #e3e3e3;
+	display: table-cell;
+	padding: 20px 0;
+	vertical-align: top;
+	width: 190px
+}
+#gkTabs li {
+	-moz-transition: background-color .3s linear;
+	-ms-transition: background-color .3s linear;
+	-webkit-transition: background-color .3s linear;
+	background: url(../../images/back-end/icons.png) no-repeat 20px 14px;
+	border-bottom: 1px solid #e3e3e3;
+	color: #575b5c;
+	font: bold 12px/32px Arial, Helvetica, sans-serif;
+	height: 32px;
+	margin: 0;
+	padding: 6px 15px 6px 54px;
+	text-shadow: 0 0 0 1px #fff;
+	transition: background-color .3s linear
+}
+#gkTabs li:first-child {
+	border-top: 1px solid #e3e3e3
+}
+#gkTabs li.active,
+#gkTabs li:hover {
+	color: #222;
+	cursor: pointer;
+}
+#gkTabs li:hover {
+	background-color: #fff;
+}
+#gkTabs li.active {
+	background-color: #fff;
+	border-right: 1px solid #fff;
+	margin-right: -1px;
+}
+#gkTabs li.layout {
+	background-position: 20px -49px
+}
+#gkTabs li.fonts {
+	background-position: 20px -112px
+}
+#gkTabs li.navigation {
+	background-position: 20px -173px
+}
+#gkTabs li.advanced {
+	background-position: 20px -238px
+}
+#gkTabs li.shortcodes {
+	background-position: 20px -299px
+}
+#gkTabs li.socialapi {
+	background-position: 20px -360px
+}
+#gkTabs li.templatebranding {
+	background-position: 20px -422px
+}
+#gkTabs li.back-endbranding {
+	background-position: 20px -485px
+}
+#gkTabs li.seo {
+	background-position: 20px -549px
+}
+#gkTabs li:hover.basic,
+#gkTabs li.basic.active {
+	background-position: -291px 14px
+}
+#gkTabs li:hover.layout,
+#gkTabs li.layout.active {
+	background-position: -291px -49px
+}
+#gkTabs li:hover.fonts,
+#gkTabs li.fonts.active {
+	background-position: -291px -112px
+}
+#gkTabs li:hover.navigation,
+#gkTabs li.navigation.active {
+	background-position: -291px -173px
+}
+#gkTabs li:hover.advanced,
+#gkTabs li.advanced.active {
+	background-position: -291px -238px
+}
+#gkTabs li:hover.shortcodes,
+#gkTabs li.shortcodes.active {
+	background-position: -291px -299px
+}
+#gkTabs li:hover.socialapi,
+#gkTabs li.socialapi.active {
+	background-position: -291px -360px
+}
+#gkTabs li:hover.templatebranding,
+#gkTabs li.templatebranding.active {
+	background-position: -291px -422px
+}
+#gkTabs li:hover.back-endbranding,
+#gkTabs li.back-endbranding.active {
+	background-position: -291px -485px
+}
+#gkTabs li:hover.seo,
+#gkTabs li.seo.active {
+	background-position: -291px -549px
+}
+#gkTabsContent {
+	display: table-cell;
+	padding: 10px 10px 32px 24px;
+	vertical-align: top
+}
+#gkTabsContent > div.active {
+	display: block
+}
+#gkTabsContent .gkAjaxLoading {
+	display: block;
+	float: left;
+	height: 16px;
+	margin: 10px 8px 0 0px;
+	opacity: 0;
+	width: 16px
+}
+#gkTabsContent legend {
+	color: #222;
+	font: normal 22px/26px Arial, Helvetica, sans-serif;
+	padding: 20px 24px 0 6px
+}
+#gkTabsContent legend + p {
+	margin-top: 4px;
+	padding-bottom: 24px
+}
+#gkTabsContent legend + p small {
+	font-size: 11px
+}
+#gkTabsContent p {
+	border-bottom: 1px solid #eee;
+	color: #999;
+	font-size: 11px;
+	margin: 10px 0;
+	padding: 0 0 12px 6px
+}
+#gkTabsContent p label {
+	color: #555;
+	display: block;
+	float: left;
+	font-size: 12px;
+	font-weight: 700;
+	margin-right: 10px;
+	width: 290px;
+}
+.gkSaveSettings {
+	padding: 20px 0 0;
+	width: 100%
+}
+#gkTabs li.wrong {
+	color: #a00;
+	font-weight: 700
+}
+#gkTabs li.wrong:before {
+	background: #a00;
+	border-radius: 100%;
+	color: #fff;
+	content: '!';
+	float: left;
+	font-weight: 700;
+	height: 16px;
+	line-height: 16px;
+	margin: 7px 5px 0 0;
+	text-align: center;
+	width: 16px
+}
+.wrong-required {
+	border: 1px solid #fb0000!important
+}
+.wrong-format {
+	border: 1px solid #fe7d04!important
+}
+.wrong-required.wrong-format {
+	border: 1px solid #a4019e!important
+}
+.gkMedia,
+.gkSave {
+	-moz-border-radius: 2px;
+	-moz-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+	-ms-border-radius: 2px;
+	-ms-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+	-webkit-border-radius: 2px;
+	-webkit-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+	background: #85b9e0!important;
+	border: none!important;
+	border-radius: 2px;
+	color: #fff;
+	display: inline-block;
+	font: 600 12px/31px Arial, Helvetica, sans-serif;
+	height: 31px;
+	min-width: inherit;
+	padding: 0 6px;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.2)
+}
+.gkSave {
+	padding: 3px 9px
+}
+.gkMedia:hover,
+.gkSave:hover {
+	background: #444!important;
+	color: #fff;
+	cursor: pointer
+}
+.gkMedia {
+	color: #fff!important;
+	line-height: 1.2;
+}
+.gkMedia + small {
+	display: block;
+	margin-left: 300px;
+}
+.gkMediaInput {
+	display: block;
+	float: left;
+	margin-right: 4px;
+}
+#gkTabsContent > div,
+p[data-visible="false"] {
+	display: none
+}
+
+/* width <= 720px */ 
+@media only screen and (max-width: 900px), only screen and (max-device-width: 900px) and (-moz-max-device-pixel-ratio: 1.5), only screen and (max-device-width: 900px) and (-o-max-device-pixel-ratio: 1.5/1), only screen and (max-device-width: 900px) and (-webkit-max-device-pixel-ratio: 1.5), only screen and (max-device-width: 900px) and (max-device-pixel-ratio: 1.5), only screen and (max-device-width: 1800px) and (-moz-min-device-pixel-ratio: 2), only screen and (max-device-width: 1800px) and (-o-min-device-pixel-ratio: 2/1), only screen and (max-device-width: 1800px) and (-webkit-min-device-pixel-ratio: 2), only screen and (max-device-width: 1800px) and (min-device-pixel-ratio: 2) {
+	#gkTabs {
+		width: 54px;
+	}
+	#gkTabs li {
+		padding: 6px 0;
+		text-indent: -9999em;
+		width: 54px;
+	}
+	#gkTabsContent p label {
+		padding-bottom: 6px;
+		max-width: 100%!important;
+		width: 100%!important;
+	}
+	.gkMedia + small {
+		clear: both;
+		margin-left: 0px!important;
+	}
+}

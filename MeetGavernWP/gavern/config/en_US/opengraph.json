@@ -1,0 +1,32 @@
+[
+	{
+		"label": "Title",
+		"desc": "Title of the page. Leave it empty to use the default page title",
+		"id": "gavern_opengraph_title",
+		"type": "text"
+	},
+	{
+		"label": "Type",
+		"desc": "Type of the content i.e. book, game",
+		"id": "gavern_opengraph_type",
+		"type": "text"
+	},
+	{
+		"label": "Image",
+		"desc": "Image for the content. At least 50x50 pixels and with maximal ratio 3:1.",
+		"id": "gavern_opengraph_image",
+		"type": "image"
+	},
+	{
+		"label": "Description",
+		"desc": "Description of the page.",
+		"id": "gavern_opengraph_desc",
+		"type": "textarea"
+	},
+	{
+		"label": "Other",
+		"desc": "Here you can put other Open Graph metatags using following format: <strong>PROPERTY=CONTENT</strong> i.e. og:country-name=USA",
+		"id": "gavern_opengraph_other",
+		"type": "textarea"
+	}
+]

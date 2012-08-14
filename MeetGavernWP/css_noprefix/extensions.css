@@ -1,0 +1,113 @@
+/**
+ *
+ * -------------------------------------------
+ * Template 3rd party extensions CSS file
+ * -------------------------------------------
+ * 
+ **/
+ 
+/*
+ *
+ * 9. Template additional 3rd party extensions style
+ *
+ *
+------------------------------------ */
+
+/* 9.1. GK Comments
+==================================== */
+
+.widget_gk_comments li {
+	border: none!important;
+	overflow: hidden;
+	margin-bottom: 12px
+}
+
+.widget_gk_comments li > p {
+	background: url('../images/lc_comment.png') no-repeat 14px 100%;
+	line-height: 1.5;
+	padding-bottom: 10px;	
+}
+.widget_gk_comments li > p a { 
+    background: #F5F5F5;
+	border-radius: 5px;
+	color: #888;
+    display: block;   
+	padding: 10px 15px;	
+}
+.widget_gk_comments li > img,
+.widget_gk_comments li > strong,
+.widget_gk_comments li > small {
+	float: left;
+}
+
+.widget_gk_comments li > img {
+	border-radius: 3px;
+	margin-right: 10px;
+}
+
+.widget_gk_comments li > strong,
+.widget_gk_comments li > small {
+	line-height: 18px;
+	width: 65%;
+}
+
+/* 9.2. GK Social
+==================================== */
+
+.gk-facebook-icon,
+.gk-twitter-icon,
+.gk-gplus-icon,
+.gk-rss-icon {
+	border-radius: 50%;
+	display: inline-block;
+	float: none!important;
+	height: 22px;
+	margin: 2px 5px;
+	text-indent: -9999px;
+	transition: all 0.3s ease-out;
+	width: 22px;
+}
+
+.gk-facebook-icon:hover,
+.gk-twitter-icon:hover,
+.gk-gplus-icon:hover,
+.gk-rss-icon:hover {
+	background-color: #fff;
+	height: 30px;
+	margin: 8px 5px;
+	width: 30px;
+}
+
+.gk-facebook-icon {
+	background: #727272 url('../images/fb_icon.png') no-repeat center center;
+}
+
+.gk-twitter-icon {
+	background: #727272 url('../images/twitter_icon.png') no-repeat center center;
+}
+
+.gk-gplus-icon {
+	background: #727272 url('../images/gplus_icon.png') no-repeat center center;
+}
+
+.gk-rss-icon {
+	background: #727272 url('../images/rss_icon.png') no-repeat center center;
+}
+
+#gk-social-icons {
+	background: #333;
+	border-radius: 0 3px 3px 0;
+	box-shadow: 0 0 6px #939393;
+	left: 0;
+	padding: 10px 0;
+	position: fixed;
+	text-align: center;
+	top: 40%;
+	width: 48px;
+	z-index: 1001;
+}
+
+#gk-social-icons.right {
+	left: auto;
+	right: 0;
+}

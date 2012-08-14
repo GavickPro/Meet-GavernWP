@@ -1,0 +1,8 @@
+{
+	"name": "Menu",
+	"description": "Menu manager",
+	"js": false,
+	"css": false,
+	"php": "menu.php",
+	"class": "GKFormInputMenu"
+}

@@ -1,0 +1,82 @@
+[
+	{
+		"groupname": "Basic theme settings",
+		"groupdesc": "Basic theme parameters are configured here.",
+		"fields": [
+			{
+				"name": "template_style",
+				"type": "ThemeStyle",
+				"label": "Theme Style",
+				"tooltip": "Select a default theme style from the list provided.",
+				"default": "style1"
+			},
+			{
+				"name": "styleswitcher_state",
+				"type": "Switcher",
+				"label": "Style Switcher Display",
+				"tooltip": "Enable display of the styleswitcher in the theme.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "breadcrumbs_state",
+				"type": "Select",
+				"label": "Conditional Breadcrumbs Display",
+				"tooltip": "Enable display of breadcrumbs in the theme.",
+				"default": "Y",
+				"class": "",
+				"visibility": "",
+				"other": {
+					"options": {
+						"Y": "Enabled",
+						"N": "Disabled",
+						"rule": "Conditional rule"
+					}
+				}
+			},
+			{
+				"name": "breadcrumbs_staterule",
+				"type": "Text",
+				"label": "Breadcrumbs Display",
+				"tooltip": "Enable display of breadcrumbs on specific pages.",
+				"default": "",
+				"class": "",
+				"visibility": "breadcrumbs_state=rule"
+			},
+			{
+				"name": "social_icons_position",
+				"type": "Select",
+				"label": "Social icons position",
+				"tooltip": "You can specify the position of the social icons block.",
+				"default": "right",
+				"class": "",
+				"visibility": "",
+				"other": {
+					"options": {
+						"right": "Right",
+						"left": "Left"
+					}
+				}
+			},
+			{
+				"name": "template_homepage_mainbody",
+				"type": "Switcher",
+				"label": "Widgets Display on Homepage",
+				"tooltip": "Enable the display of widgets in mainbody widget positions instead of standard blog posts on the homepage.",
+				"default": "N",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "template_show_author_info",
+				"type": "Switcher",
+				"label": "Display Author Info",
+				"tooltip": "Enable the display of the author information block for each content item.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
+			}
+		]
+	}
+]

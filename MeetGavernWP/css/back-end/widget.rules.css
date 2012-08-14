@@ -1,0 +1,106 @@
+/**
+ *
+ * Styles for the widget's page
+ *
+ **/
+
+.gk_widget_rules_select {
+	width: 150px;	
+}
+
+.gk_widget_rules_form_select {
+	width: 100%;
+}
+
+.gk_widget_rules_form_select + p {
+	margin: 10px 0!important;
+}
+
+.gk_widget_rules_btn {
+	float: right;
+}
+
+.gk_widget_rules_form input {
+	margin-left: 10px;
+	width: 110px;
+}
+
+.gk_widget_rules_form,
+.gk_widget_rules_pages {
+	background: #fff;
+	border: 1px solid #eee;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin: 0 0 10px 0;
+	padding: 10px;
+}
+
+.gk_widget_rules_pages {
+	border: none;
+	border-top: 1px solid #eee;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	padding: 10px 0;
+	margin: 10px 0 0 0;
+	clear: both;
+	width: 100%;
+}
+
+.gk_widget_rules_form legend,
+.gk_widget_rules_pages legend { 
+	margin: 0 0 0 -5px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.gk_widget_rules_form label,
+.gk_widget_rules_nopages {
+	display: none;
+}
+
+.gk_widget_rules_pages div span {
+	display: block;
+	float: left;
+	margin: 0 5px 5px 0;
+	height: 18px;
+	line-height: 17px;
+	font-size: 11px;
+	color: #fff;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding: 0 5px;
+}
+
+.gk_widget_rules_pages div span strong {
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 14px;
+	padding: 0 0 0 3px;
+}
+
+.gk_widget_rules_pages div span.homepage {
+	background: #fa0;
+}
+
+.gk_widget_rules_pages div span.page {
+	background: #5a0;	
+}
+
+.gk_widget_rules_pages div span.post {
+	background: #05a;
+}
+
+.gk_widget_rules_pages div span.category {
+	background: #55a;
+}
+
+.gk_widget_rules_pages div span.tag {
+	background: #d33;
+}
+
+.gk_widget_rules_output {
+	display: none;
+}

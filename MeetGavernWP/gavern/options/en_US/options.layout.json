@@ -1,0 +1,52 @@
+[
+	{
+		"groupname": "Layout Theme Settings",
+		"groupdesc": "Configure theme layout parameters.",
+		"fields": [
+			{
+				"name": "page_layout",
+				"type": "Select",
+				"label": "Page Layout",
+				"tooltip": "Specify the page layout.",
+				"default": "right",
+				"class": "",
+				"visibility": "",
+				"other": {
+					"options": {
+						"left": "Sidebar on the left",
+						"right": "Sidebar on the right",
+						"none": "Sidebar disabled"
+					}
+				}
+			},
+			{
+				"name": "template_width",
+				"type": "Text",
+				"label": "Theme Width",
+				"tooltip": "Specify the maximum base width for the theme to be visible on desktop computers.",
+				"default": "980"
+			},
+			{
+				"name": "sidebar_width",
+				"type": "Text",
+				"label": "Sidebar Width",
+				"tooltip": "Specify the width of the theme sidebar as a percentage",
+				"default": "30"
+			},
+			{
+				"name": "tablet_width",
+				"type": "Text",
+				"label": "Tablet Width",
+				"tooltip": "Specify the browser width when tablet.css is loaded. We recommend 800 pixels.",
+				"default": "800"
+			},
+			{
+				"name": "mobile_width",
+				"type": "Text",
+				"label": "Mobile Width",
+				"tooltip": "Specify the browser width when mobile.css is loaded. We recommend 480 pixels",
+				"default": "480"
+			}
+		]
+	}
+]

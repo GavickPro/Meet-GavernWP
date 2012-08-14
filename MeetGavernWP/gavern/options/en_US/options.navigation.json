@@ -1,0 +1,12 @@
+[
+	{
+		"groupname": "Navigation Settings",
+		"groupdesc": "Configure theme navigation parameters.",
+		"fields": [
+			{
+				"name": "menu",
+				"type": "Menu"
+			}
+		]
+	}
+]

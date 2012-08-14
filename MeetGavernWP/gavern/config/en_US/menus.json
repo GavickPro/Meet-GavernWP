@@ -1,0 +1,14 @@
+[
+	{
+		"main": true,
+		"location": "mainmenu",
+		"name": "Main menu",
+		"description": "Main menu of the theme"
+	},
+	{
+		"main": false,
+		"location": "footermenu",
+		"name": "Footer menu",
+		"description": "Menu used in the footer of the theme"
+	}
+]

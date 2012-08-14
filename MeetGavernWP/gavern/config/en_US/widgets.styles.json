@@ -1,0 +1,67 @@
+[
+	{
+		"name": "Blue",
+		"css_class": "blue"
+	},
+	{
+		"name": "Red",
+		"css_class": "red"
+	},
+	{
+		"name": "Green",
+		"css_class": "green"
+	},
+	{
+		"name": "Yellow",
+		"css_class": "yellow"
+	},
+	{
+		"name": "Blue Header",
+		"css_class": "blue-header"
+	},
+	{
+		"name": "Red Header",
+		"css_class": "red-header"
+	},
+	{
+		"name": "Green Header",
+		"css_class": "green-header"
+	},
+	{
+		"name": "Yellow Header",
+		"css_class": "yellow-header"
+	},
+	{
+		"name": "Border I",
+		"css_class": "border1"
+	},
+	{
+		"name": "Border II",
+		"css_class": "border2"
+	},
+	{
+		"name": "Border III",
+		"css_class": "border3"
+	},
+	{
+		"name": "Blue Border",
+		"css_class": "blue-border"
+	},
+	{
+		"name": "Red Border",
+		"css_class": "red-border"
+	},
+	{
+		"name": "Green Border",
+		"css_class": "green-border"
+	},
+	{
+		"name": "Yellow Border",
+		"css_class": "yellow-border"
+	},
+	{
+		"name": "Unified style",
+		"css_class": "tags",
+		"for_only": "tag_cloud"
+	}
+]

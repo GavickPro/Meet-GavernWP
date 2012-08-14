@@ -1,0 +1,43 @@
+body {
+	color: #777;
+	font-family: Arial, Verdana, sans-serif; /* ToDo */
+	font-size: 13px;
+	font-weight: 400;
+	padding: 0 20px;
+	text-align: center;
+}
+a {
+	color: #5990de;
+	outline: none!important;
+	text-decoration: none;
+}
+a:active,
+a:focus,
+a:hover {
+	color: #7ae;
+	text-decoration: none;
+}
+h1 {
+	color: #5990de;
+	font-family: 'Colaborate', sans-serif;
+	font-size: 42px;
+	font-weight: 500;
+	margin: 50px 0 0 0;
+}
+a.cssLogo {
+	background: transparent url('../images/logo.png') no-repeat 0 0;
+	display: block;
+	height: 67px;
+	margin: 0 auto;
+	width: 219px;
+	text-indent: -9999px;
+}
+p {
+	margin: 10px 0 24px 0;
+}
+p.errorinfo {
+	width: 300px;
+	margin: 0 auto;
+	padding: 9px 0;
+	border-top: 1px solid #e5e5e5;
+}

@@ -1,0 +1,308 @@
+[
+	{
+		"groupname": "Social API settings",
+		"groupdesc": "Configure social network parameters.",
+		"fields": [
+			{
+				"name": "fb_explained",
+				"type": "TextBlock",
+				"label": "Apply settings for the 'Like' button."
+			},
+			{
+				"name": "fb_api_id",
+				"type": "Text",
+				"label": "Facebook App ID",
+				"tooltip": "Specify the App ID key to enable the 'Like' button."
+			},
+			{
+				"name": "fb_lang",
+				"type": "Text",
+				"label": "Facebook language",
+				"tooltip": "Specify a language for scripts in xx_YY format (example: en_US).",
+				"default": "en_US"
+			},
+			{
+				"name": "fb_like",
+				"type": "Switcher",
+				"label": "Facebook 'Like' button",
+				"tooltip": "Enable/disable the 'Like' button.",
+				"default": "Y"
+			},
+			{
+				"name": "fb_like_send",
+				"type": "Switcher",
+				"label": "Facebook 'Send' button",
+				"tooltip": "Enable/disable the 'Send' button.",
+				"default": "Y"
+			},
+			{
+				"name": "fb_like_layout",
+				"type": "Select",
+				"label": "'Like' button layout",
+				"tooltip": "Specify layout of the 'Like' button.",
+				"default": "standard",
+				"visibility": "fb_like=Y",
+				"other": {
+					"options": {
+						"standard": "Standard",
+						"button_count": "Button counter",
+						"box_count": "Box counter"
+					}
+				}
+			},
+			{
+				"name": "fb_like_show_faces",
+				"type": "Select",
+				"label": "Show faces under the 'Like' button",
+				"tooltip": "Enable/disable the display of faces under the 'Like' button.",
+				"default": "true",
+				"visibility": "fb_like=Y",
+				"other": {
+					"options": {
+						"true": "true",
+						"false": "false"
+					}
+				}
+			},
+			{
+				"name": "fb_like_width",
+				"type": "Text",
+				"label": "Button width",
+				"tooltip": "Specify the width of the 'Like' button area.",
+				"default": "500",
+				"visibility": "fb_like=Y"
+			},
+			{
+				"name": "fb_like_action",
+				"type": "Select",
+				"label": "Button action",
+				"tooltip": "Specify the action triggered by the 'Like' button.",
+				"default": "like",
+				"visibility": "fb_like=Y",
+				"other": {
+					"options": {
+						"like": "like",
+						"recommend": "recommend"
+					}
+				}
+			},
+			{
+				"name": "fb_like_font",
+				"type": "Select",
+				"label": "Button font",
+				"tooltip": "Specify the font used on the 'Like' button.",
+				"default": "arial",
+				"visibility": "fb_like=Y",
+				"other": {
+					"options": {
+						"arial": "arial",
+						"lucida grande": "lucida grande",
+						"segoe ui": "segoe ui",
+						"tahoma": "tahoma",
+						"trebuchet ms": "trebuchet ms",
+						"verdana": "verdana"
+					}
+				}
+			},
+			{
+				"name": "fb_like_colorscheme",
+				"type": "Select",
+				"label": "Button color scheme",
+				"tooltip": "Specify the color scheme to be applied to the 'Like' button.",
+				"default": "light",
+				"visibility": "fb_like=Y",
+				"other": {
+					"options": {
+						"light": "light",
+						"dark": "dark"
+					}
+				}
+			},
+			{
+				"name": "gplus_explained",
+				"type": "TextBlock",
+				"label": "'+1' button settings"
+			},
+			{
+				"name": "google_plus",
+				"type": "Switcher",
+				"label": "'+1' button",
+				"tooltip": "Enable/disable the '+1' button.",
+				"default": "Y"
+			},
+			{
+				"name": "google_plus_count",
+				"type": "Select",
+				"label": "'+1' Annotations",
+				"tooltip": "Specify annotations for the '+1' button.",
+				"default": "none",
+				"visibility": "google_plus=Y",
+				"other": {
+					"options": {
+						"none": "none",
+						"bubble": "bubble",
+						"inline": "inline"
+					}
+				}
+			},
+			{
+				"name": "google_plus_width",
+				"type": "Text",
+				"label": "'+1' button width",
+				"tooltip": "Specify width of the '+1' button.",
+				"default": "300"
+			},
+			{
+				"name": "google_plus_size",
+				"type": "Select",
+				"label": "'+1' Button size",
+				"tooltip": "Specify the size of the '+1' button.",
+				"default": "standard",
+				"visibility": "google_plus=Y",
+				"other": {
+					"options": {
+						"tall": "tall",
+						"standard": "standard",
+						"medium": "medium",
+						"small": "small"
+					}
+				}
+			},
+			{
+				"name": "google_plus_lang",
+				"type": "Text",
+				"label": "'+1' Button language",
+				"tooltip": "Specify the language of the '+1' button in format xx-YY (for example: en-GB).",
+				"default": "en-GB",
+				"visibility": "google_plus=Y"
+			},
+			{
+				"name": "twitter_explained",
+				"type": "TextBlock",
+				"label": "'Tweet' button settings"
+			},
+			{
+				"name": "tweet_btn",
+				"type": "Switcher",
+				"label": "'Tweet' button",
+				"tooltip": "Enable/disable the 'Tweet' button.",
+				"default": "Y"
+			},
+			{
+				"name": "tweet_btn_data_count",
+				"type": "Select",
+				"label": "'Tweet' Button counter",
+				"tooltip": "Specify the position of the 'Tweet' button counter.",
+				"default": "vertical",
+				"visibility": "tweet_btn=Y",
+				"other": {
+					"options": {
+						"vertical": "vertical",
+						"horizontal": "horizontal",
+						"none": "none"
+					}
+				}
+			},
+			{
+				"name": "tweet_btn_data_via",
+				"type": "Text",
+				"label": "'Tweet' button 'via' param",
+				"tooltip": "Specify the 'via' parameter.",
+				"default": "",
+				"visibility": "tweet_btn=Y"
+			},
+			{
+				"name": "tweet_btn_data_lang",
+				"type": "Select",
+				"label": "'Tweet' Button language",
+				"tooltip": "Specify the language of the 'Tweet' button in format xx-YY (for example: en-GB).",
+				"default": "en",
+				"visibility": "tweet_btn=Y",
+				"other": {
+					"options": {
+						"en": "English",
+						"fr": "French",
+						"de": "German",
+						"es": "Spanish",
+						"ja": "Japanese",
+						"nl": "Dutch",
+						"id": "Indonesian",
+						"it": "Italian",
+						"ko": "Korean",
+						"pt": "Portuguese",
+						"ru": "Russian",
+						"tr": "Turkish"
+					}
+				}
+			},
+			{
+				"name": "pinterest_explained",
+				"type": "TextBlock",
+				"label": "'Pin it' button settings"
+			},
+			{
+				"name": "pinterest_btn",
+				"type": "Switcher",
+				"label": "'Pin it' button",
+				"tooltip": "Enable/disable the 'Pin it' button.",
+				"default": "Y"
+			},
+			{
+				"name": "pinterest_btn_style",
+				"type": "Select",
+				"label": "'Pin it' Button layout",
+				"tooltip": "Specify the layout of the 'Pin it' button.",
+				"default": "horizontal",
+				"visibility": "pinterest_btn=Y",
+				"other": {
+					"options": {
+						"horizontal": "horizontal",
+						"vertical": "vertical",
+						"none": "none"
+					}
+				}
+			},
+			{
+				"name": "excluding_explained",
+				"type": "TextBlock",
+				"label": "Include/Exclude specific pages or categories from Social API"
+			},
+			{
+				"name": "social_api_exclude_include",
+				"type": "Select",
+				"label": "Include/Exclude specified articles from Social API",
+				"tooltip": "Specify if the specified articles will be included or excluded.",
+				"default": "exclude",
+				"visibility": "",
+				"other": {
+					"options": {
+						"none": "Disable on all pages",
+						"include": "Include only specified articles/categories",
+						"exclude": "Exclude specified articles/categories"
+					}
+				}
+			},
+			{
+				"name": "social_api_articles",
+				"type": "Text",
+				"label": "Included/Excluded articles",
+				"tooltip": "Specify the list of comma-separated article IDs/titles/slugs (i.e. 2,5,34,200 or post-title1,post-title2)",
+				"default": ""
+			},
+			{
+				"name": "social_api_pages",
+				"type": "Text",
+				"label": "Included/Excluded pages",
+				"tooltip": "Specify the list of comma-separated page IDs/titles/slugs (i.e. 2,5,34,200 or page-title1,page-title2)",
+				"default": ""
+			},
+			{
+				"name": "social_api_categories",
+				"type": "Text",
+				"label": "Included/Excluded categories",
+				"tooltip": "Specify the list of comma-separated category IDs/titles/slugs (i.e. 2,5,34,200 or category-title1,category-title2)",
+				"default": ""
+			}
+		]
+	}
+]

@@ -1,0 +1,17 @@
+/**
+ *
+ * Styles for the template import/export settings page
+ *
+ **/
+ 
+ .gkWrap dl,
+ .gkWrap dd,
+ .gkWrap dt {
+ 	margin: 0;
+ 	padding: 0;
+ }
+ 
+ .gkWrap textarea {
+ 	height: 150px;
+ 	width: 98%;
+ }

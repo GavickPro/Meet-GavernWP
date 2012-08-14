@@ -1,0 +1,17 @@
+[
+	{
+		"full_name": "Body",
+		"short_name": "body",
+		"description": "Main font used in the theme"
+	},
+	{
+		"full_name": "Headers",
+		"short_name": "headers",
+		"description": "Font used for the headers"
+	},
+	{
+		"full_name": "Others",
+		"short_name": "others",
+		"description": "Font used in the other theme elements"
+	}
+]

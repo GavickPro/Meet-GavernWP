@@ -1,0 +1,11 @@
+1. go to the template directory and run this command:
+
+find . -iname "*.php" > files.tmp
+
+
+2. After that run following command:
+
+xgettext --language=PHP --indent --keyword=__ --keyword=_e --keyword=_ngettext:1,2 -s -n --from-code=UTF8 -f files.tmp
+
+
+3. You should get an *.po file which can be translated and changed to the *.mo file used in Wordpress
