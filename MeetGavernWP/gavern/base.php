@@ -375,24 +375,29 @@ class GavernWP {
 		if(file_exists($path)) {
 			// decode data from the JSON file
 			$json_data = json_decode(file_get_contents($path));
-			// get the errors
-			switch(json_last_error()) {
-				case JSON_ERROR_DEPTH:
-				    array_push($this->problems, 'JSON ERROR: Maximum stack depth exceeded in ' . $path);
-				    return array();
-				break;
-				case JSON_ERROR_CTRL_CHAR:
-				    array_push($this->problems, 'JSON ERROR: Unexpected control character found in ' . $path);
-				    return array();
-				break;
-				case JSON_ERROR_SYNTAX:
-				    array_push($this->problems, 'JSON ERROR: Syntax error, malformed JSON in ' . $path);
-				    return array();
-				break;
-				case JSON_ERROR_NONE:
-				    // No errors
-				    return json_decode(file_get_contents($path));
-				break;
+			// check for the older PHP versions
+			if(function_exists('json_last_error')) {
+				// get the errors
+				switch(json_last_error()) {
+					case JSON_ERROR_DEPTH:
+					    array_push($this->problems, 'JSON ERROR: Maximum stack depth exceeded in ' . $path);
+					    return array();
+					break;
+					case JSON_ERROR_CTRL_CHAR:
+					    array_push($this->problems, 'JSON ERROR: Unexpected control character found in ' . $path);
+					    return array();
+					break;
+					case JSON_ERROR_SYNTAX:
+					    array_push($this->problems, 'JSON ERROR: Syntax error, malformed JSON in ' . $path);
+					    return array();
+					break;
+					case JSON_ERROR_NONE:
+					    // No errors
+					    return json_decode(file_get_contents($path));
+					break;
+				}
+			} else {
+				return json_decode(file_get_contents($path));
 			}
 		} else {
 			// if the file doesn't exist - push the error
