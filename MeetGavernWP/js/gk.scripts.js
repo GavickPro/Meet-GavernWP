@@ -48,6 +48,13 @@ jQuery.cookie = function (key, value, options) {
 
 // onDOMLoadedContent event
 jQuery(document).ready(function() {	
+	// Back to Top Scroll
+    jQuery('#gk-top-link').click(function () {
+        jQuery('body,html').animate({
+            scrollTop: 0
+        }, 800);
+        return false;
+    });
 	// Thickbox use
 	jQuery(document).ready(function(){
 		if(typeof tb_init != "undefined") {
