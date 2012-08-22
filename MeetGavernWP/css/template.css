@@ -494,6 +494,15 @@ section.intro {
 	padding: 0;
 }
 
+.box::after,
+#respond::after,
+#gk-mainbody::after,
+#gk-mainbody-columns::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
 /* 3.4. Sidebar
 ==================================== */
 
