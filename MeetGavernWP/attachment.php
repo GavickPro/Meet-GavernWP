@@ -74,12 +74,7 @@ gk_load('before');
 		</section>
 		<?php endif; ?>
 		
-		<?php if(is_singular()) : ?>
-		<footer>
-			<?php gk_post_footer(); ?>
-			<?php gk_social_api(get_the_title(), get_the_ID()); ?>
-		</footer>
-		<?php endif; ?>
+		<?php include('layouts/content.post.footer.php'); ?>
 	</article>
 	
 	<?php comments_template('', true); ?>
