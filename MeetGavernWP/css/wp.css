@@ -70,7 +70,9 @@
 
 #main-menu > li.active > a,
 #main-menu > li.current-menu-item > a,
-#main-menu > li.current_page_item > a {
+#main-menu > li.current_page_item > a,
+#main-menu > li.current-menu-ancestor > a, 
+#main-menu > li.current-menu-parent > a  {
 	background: transparent;
 	color: #5990de;
 }
