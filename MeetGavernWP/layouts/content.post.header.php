@@ -13,7 +13,7 @@ global $tpl;
 
 ?>
 
-<?php if('post' == get_post_type() || 'page' == get_post_type()) : ?>
+<?php if(!is_page_template('template.fullwidth.php') && ('post' == get_post_type() || 'page' == get_post_type())) : ?>
 <?php gk_post_meta(); ?>
 <?php endif; ?>
 
