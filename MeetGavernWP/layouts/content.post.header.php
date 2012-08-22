@@ -18,7 +18,7 @@ global $tpl;
 <?php endif; ?>
 
 <hgroup>
-	<h1>
+	<h<?php echo (is_single()) ? '1' : '2'; ?>>
 		<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', GKTPLNAME ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
 		
 		<?php if(is_sticky()) : ?>
@@ -26,5 +26,5 @@ global $tpl;
 			<?php _e( 'Featured', GKTPLNAME ); ?>
 		</sup>
 		<?php endif; ?>
-	</h1>
+	</h<?php echo (is_single()) ? '1' : '2'; ?>>
 </hgroup>
