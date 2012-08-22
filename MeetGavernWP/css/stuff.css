@@ -136,27 +136,39 @@
 ==================================== */
 
 .archivepage .widget {
-	float: left;
-	margin: 0 2%;
-	width: 29%;
+    float: left;
+    margin: 0 2%;
+    width: 29%;
 }
 
 .archivepage .widget.first {
-	margin-left: 0;
-	width: 31%;
+    margin-left: 0;
+    width: 31%;
 }
 
 .archivepage .widget.last {
-	margin-right: 0;
-	width: 31%;
+    margin-right: 0;
+    width: 31%;
 }
 
 .archivepage .widget li:before {
-	display: none;
+    display: none;
+}
+
+.archivepage .widget.first li {
+    position: relative;
+}
+
+.archivepage .widget.first li a {
+    display: block;
+    padding-left: 54px;
 }
 
 .archivepage .widget li small {
-	color: #aaa;
+    color: #aaa;
+    left: 0;
+    position: absolute;
+    top: 7px;
 }
 
 /* 7.5. Tag cloud template
