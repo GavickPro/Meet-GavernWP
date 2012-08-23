@@ -530,15 +530,15 @@ function gk_condition($mode, $input, $users) {
 			}
 			
 			if(stripos($input[$i], 'homepage') !== FALSE) {
-				$output .= ' is_home() ';
+			    $output .= ' is_home() ';
 			} else if(stripos($input[$i], 'page:') !== FALSE) {
-				$output .= ' is_page(\'' . substr($input[$i], 5) . '\') ';
+			    $output .= ' is_page(\'' . substr($input[$i], 5) . '\') ';
 			} else if(stripos($input[$i], 'post:') !== FALSE) {
-				$output .= ' is_single(\'' . substr($input[$i], 5) . '\') ';
+			    $output .= ' is_single(\'' . substr($input[$i], 5) . '\') ';
 			} else if(stripos($input[$i], 'category:') !== FALSE) {
-				$output .= ' (is_category(\'' . substr($input[$i], 9) . '\') || in_category(\'' . substr($input[$i], 9) . '\')) ';	
+			    $output .= ' (is_category(\'' . substr($input[$i], 9) . '\') || (in_category(\'' . substr($input[$i], 9) . '\') && is_single())) ';
 			} else if(stripos($input[$i], 'tag:') !== FALSE) {
-				$output .= ' (is_tag(\'' . substr($input[$i], 4) . '\') || has_tag(\'' . substr($input[$i], 4) . '\')) ';
+			    $output .= ' (is_tag(\'' . substr($input[$i], 4) . '\') || (has_tag(\'' . substr($input[$i], 4) . '\') && is_single())) ';
 			}
 		}
 		
