@@ -451,6 +451,38 @@ function gk_head_fonts() {
 			$font_family = "";
 			
 			if($type == 'normal') {
+				$normal = str_replace(
+				                    array(
+				                        "Times New Roman",
+				                        "Trebuchet MS",
+				                        "Arial Black",
+				                        "Palatino Linotype",
+				                        "Book Antiqua",
+				                        "Lucida Sans Unicode",
+				                        "Lucida Grande",
+				                        "MS Serif",
+				                        "New York",
+				                        "Comic Sans MS",
+				                        "Courier New",
+				                        "Lucida Console",
+				                    ),
+				                    array(
+				                        "'Times New Roman'",
+				                        "'Trebuchet MS'",
+				                        "'Arial Black'",
+				                        "'Palatino Linotype'",
+				                        "'Book Antiqua'",
+				                        "'Lucida Sans Unicode'",
+				                        "'Lucida Grande'",
+				                        "'MS Serif'",
+				                        "'New York'",
+				                        "'Comic Sans MS'",
+				                        "'Courier New'",
+				                        "'Lucida Console'",
+				                    ),
+				                    $normal
+				                );
+			
 				$font_family = str_replace('\&#039;', "'", $normal);
 			} else if($type == 'squirrel') {				
 				wp_enqueue_style('font_' . $i . '_css', get_template_directory_uri() . '/fonts/' . $squirrel . "/stylesheet.css", array(), false);
