@@ -75,10 +75,13 @@
 .widget-area .box.last4 { width: 50%; }
 .widget-area .box.last5 { width: 33.3%; }
 
-.widget-area .nth1,
-.widget-area .col4.nth3,
-.widget-area .col6.nth4 {
+.widget-area .nth1 {
 	clear: both;
+}
+
+.widget-area .col6.last5.nth4,
+.widget-area .col6.last5.nth5 {
+	width: 50%;
 }
 
 /* 10.2. Header elements
