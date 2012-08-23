@@ -396,7 +396,7 @@ function gk_head_style_css() {
 			$url = esc_attr(isset($_COOKIE[$tpl->name.'_style']) ? $_COOKIE[$tpl->name.'_style'] : $url);
 		}
 		// output the LINK element
-		wp_enqueue_style($tpl->name . '_css', get_template_directory_uri()."/css/".$url, array(), false);
+		echo '<link href="'. get_template_directory_uri()."/css/".$url . '" rel="stylesheet" type="text/css" />';
 	}
 }
 
@@ -413,17 +413,17 @@ function gk_head_shortcodes() {
 	// check if shortcodes group are enabled
 	// typography
 	if(get_option($tpl->name . "_shortcodes1_state", 'Y') == 'Y') {
-		wp_enqueue_style('shortcodes_typography_css', get_template_directory_uri()."/css/shortcodes.typography.css", array(), false);
+		echo '<link href="'. get_template_directory_uri().'/css/shortcodes.typography.css" rel="stylesheet" type="text/css" />';
 		wp_enqueue_script('shortcodes_typography_js', get_template_directory_uri()."/js/shortcodes.typography.js", array(), false, false);
 	}
 	// interactive
 	if(get_option($tpl->name . "_shortcodes2_state", 'Y') == 'Y') {
-		wp_enqueue_style('shortcodes_elements_css', get_template_directory_uri()."/css/shortcodes.elements.css", array(), false);
+		echo '<link href="'. get_template_directory_uri().'/css/shortcodes.elements.css" rel="stylesheet" type="text/css" />';
 		wp_enqueue_script('shortcodes_elements_js', get_template_directory_uri()."/js/shortcodes.elements.js", array(), false, false);
 	}
 	// template
 	if(get_option($tpl->name . "_shortcodes3_state", 'Y') == 'Y') {
-		wp_enqueue_style('shortcodes_template_css', get_template_directory_uri()."/css/shortcodes.template.css", array(), false);
+		echo '<link href="'. get_template_directory_uri().'/css/shortcodes.template.css" rel="stylesheet" type="text/css" />';
 		wp_enqueue_script('shortcodes_template_js', get_template_directory_uri()."/js/shortcodes.template.js", array(), false, false);	
 	}
 }
@@ -485,8 +485,7 @@ function gk_head_fonts() {
 			
 				$font_family = str_replace('\&#039;', "'", $normal);
 			} else if($type == 'squirrel') {				
-				wp_enqueue_style('font_' . $i . '_css', get_template_directory_uri() . '/fonts/' . $squirrel . "/stylesheet.css", array(), false);
-				
+				echo '<link href="' . get_template_directory_uri() . '/fonts/' . $squirrel . '/stylesheet.css' . '" rel="stylesheet" type="text/css" />';
 				$font_family = "'" . $squirrel . "'";
 			} else {
 				$fname = array();
@@ -501,7 +500,7 @@ function gk_head_fonts() {
 				
 				$font_family = "'" . str_replace('+', ' ', preg_replace('@:.+@', '', $fname[1])) . "'";
 				
-				wp_enqueue_style('font_' . $i . '_css', $google, array(), false);
+				echo '<link href="'.$google.'" rel="stylesheet" type="text/css" />';
 			}
 			
 			$output .= str_replace(array('\\', '&quot;', '&apos;'), array('', '"', '\''), $selectors) . " { font-family: " . $font_family . "; }\n\n";
