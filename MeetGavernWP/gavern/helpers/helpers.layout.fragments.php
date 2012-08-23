@@ -330,29 +330,40 @@ function gk_social_api($title, $postID) {
  * @return null
  *
  **/
-function gk_author() {
-	global $tpl;
-	
-	if(
-		get_the_author_meta( 'description' ) && 
-		get_option($tpl->name . '_template_show_author_info') == 'Y'
-	): 
-	?>
-	<section class="author-info">
-		<aside class="author-avatar">
-			<?php echo get_avatar( get_the_author_meta( 'user_email' ), 48 ); ?>
-		</aside>
-		<div class="author-desc">
-			<h2>
-				<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
-					<?php printf( __( 'Author: %s', GKTPLNAME ), get_the_author() ); ?>	
-				</a>
-			</h2>
-			<?php the_author_meta( 'description' ); ?>
-		</div>
-	</section>
-	<?php 
-	endif;
-}
  
+function gk_author() {
+    global $tpl;
+
+    if(
+        get_the_author_meta( 'description' ) && 
+        get_option($tpl->name . '_template_show_author_info') == 'Y'
+    ): 
+    ?>
+    <section class="author-info">
+        <aside class="author-avatar">
+            <?php echo get_avatar( get_the_author_meta( 'user_email' ), 64 ); ?>
+        </aside>
+        <div class="author-desc">
+            <h2>
+                <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
+                    <?php printf( __( 'Author: %s %s', GKTPLNAME ), get_the_author_meta('first_name', get_the_author_meta( 'ID' )), get_the_author_meta('last_name', get_the_author_meta( 'ID' )) ); ?> 
+                </a>
+            </h2>
+            <p>
+                <?php the_author_meta( 'description' ); ?>
+            </p>
+
+            <?php 
+                $www = get_the_author_meta('user_url', get_the_author_meta( 'ID' ));
+                if($www != '') : 
+            ?>
+            <p class="author-www">
+                <?php _e('Website: ', GKTPLNAME); ?><a href="<?php echo $www; ?>"><?php echo $www; ?></a>
+            </p>
+            <?php endif; ?>
+        </div>
+    </section>
+    <?php 
+    endif;
+} 
 // EOF
