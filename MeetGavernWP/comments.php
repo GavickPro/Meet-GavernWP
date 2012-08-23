@@ -45,7 +45,7 @@
 	<?php endif; ?>
 	
 	<ol>
-		<?php wp_list_comments(array( 'callback' => 'gavern_comment_template' )); ?>	
+		<?php wp_list_comments(array( 'callback' => 'gavern_comment_template', 'style' => 'ol')); ?>	
 	</ol>
 
 	<?php if ( get_comment_pages_count() > 1 && get_option('page_comments' )) : ?>

@@ -198,7 +198,7 @@
 	padding: 0;
 }
 
-#comments ul.children {
+#comments ol.children {
 	list-style-type: none;
 	margin-left: 5%;
 	padding: 0;
