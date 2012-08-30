@@ -10,7 +10,7 @@ global $tpl;
  
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(is_page_template('template.fullwidth.php') ? ' page-fullwidth' : null); ?>>
 	<header>
 		<?php include('layouts/content.post.header.php'); ?>
 	</header>

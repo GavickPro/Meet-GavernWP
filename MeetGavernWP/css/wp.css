@@ -392,8 +392,18 @@ article.page {
 	padding-left: 120px;
 }
 
+article.no-title,
+article.page-fullwidth {
+	padding-left: 0;
+}
+
 section#comments {
 	margin-left: 120px;
+}
+
+article.no-title + section#comments,
+article.page-fullwidth + section#comments {
+	margin-left: 0;
 }
 
 article > footer {
