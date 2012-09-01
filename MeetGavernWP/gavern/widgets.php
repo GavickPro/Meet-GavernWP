@@ -205,25 +205,28 @@ class GK_Comments_Widget extends WP_Widget {
 	 *
 	 **/
 	function widget($args, $instance) {
-		$cache = wp_cache_get('widget_gk_comments', 'widget');
-
-		if(!is_array($cache)) {
-			$cache = array();
-		}
-
-		if(!isset($args['widget_id'])) {
-			$args['widget_id'] = null;
-		}
-
-		if(isset($cache[$args['widget_id']])) {
-			echo $cache[$args['widget_id']];
+		$cache = get_transient(md5($this->id));
+		
+		// the part with the title and widget wrappers cannot be cached! 
+		// in order to avoid problems with the calculating columns
+		//
+		extract($args, EXTR_SKIP);
+		
+		$title = apply_filters('widget_title', empty($instance['title']) ? __( 'Latest Comments', GKTPLNAME ) : $instance['title'], $instance, $this->id_base);
+		
+		echo $before_widget;
+		echo $before_title;
+		echo $title;
+		echo $after_title;
+		
+		if($cache) {
+			echo $cache;
+			echo $after_widget;
 			return;
 		}
 
 		ob_start();
-		extract($args, EXTR_SKIP);
 		//
-		$title = apply_filters('widget_title', empty($instance['title']) ? __( 'Latest Comments', GKTPLNAME ) : $instance['title'], $instance, $this->id_base);
 		$avatar_size = empty($instance['avatar_size']) ? 64 : $instance['avatar_size'];
 		$word_count = empty($instance['word_count']) ? 20 : $instance['word_count'];
 		$number = empty($instance['number']) ? 5 : $instance['number'];
@@ -235,12 +238,7 @@ class GK_Comments_Widget extends WP_Widget {
 		);
 		$comments = get_comments($comments_args);
 		//
-		if (count($comments)) {
-			echo $before_widget;
-			echo $before_title;
-			echo $title;
-			echo $after_title;
-			
+		if (count($comments)) {			
 			if(count($comments) > 0) {
 				echo '<ol>';
 				
@@ -256,13 +254,12 @@ class GK_Comments_Widget extends WP_Widget {
 				
 				echo '</ol>';
 			}
-			
-			// 
-			echo $after_widget;
 		}
 		// save the cache results
-		$cache[$args['widget_id']] = ob_get_flush();
-		wp_cache_set('widget_gk_comments', $cache, 'widget');
+		$cache_output = ob_get_flush();
+		set_transient(md5($this->id) , $cache_output, 3 * 60 * 60);
+		// 
+		echo $after_widget;
 	}
 
 	/**
@@ -299,7 +296,7 @@ class GK_Comments_Widget extends WP_Widget {
 	 **/
 
 	function refresh_cache() {
-		wp_cache_delete( 'widget_gk_comments', 'widget' );
+		delete_transient(md5($this->id));
 	}
 	
 	/**
