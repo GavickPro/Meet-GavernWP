@@ -361,6 +361,15 @@ function gk_author() {
                 <?php _e('Website: ', GKTPLNAME); ?><a href="<?php echo $www; ?>"><?php echo $www; ?></a>
             </p>
             <?php endif; ?>
+            
+            <?php
+            	$google_profile = get_the_author_meta( 'google_profile' );
+            	if ($google_profile != '') :
+            ?>
+            <p class="author-google">
+            	<a href="<?php echo esc_url($google_profile); ?>" rel="me"><?php _e('Google Profile', GKTPLNAME); ?></a>
+            </p>
+            <?php endif; ?>
         </div>
     </section>
     <?php 
