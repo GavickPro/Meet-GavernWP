@@ -5,6 +5,26 @@ defined('GAVERN_WP') or die('Access denied');
 
 /**
  *
+ * Function used to add the Google Profile URL in the user profile
+ *
+ * @param methods - array of the contact methods
+ *
+ * @return the updated arra of the contact methods
+ *
+ **/
+
+function gavern_google_profile( $methods ) {
+  // Add the Google Profile URL field
+  $methods['google_profile'] = __('Google Profile URL', GKTPLNAME);
+  // return the updated contact methods
+  return $methods;
+}
+
+add_filter( 'user_contactmethods', 'gavern_google_profile', 10, 1);
+
+
+/**
+ *
  * Function used as a die handler
  *
  * @return the proper die handler function name
