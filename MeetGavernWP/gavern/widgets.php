@@ -77,7 +77,7 @@ class GK_Social_Widget extends WP_Widget {
 		}
 		// save the cache results
 		$cache[$args['widget_id']] = ob_get_flush();
-		wp_cache_set('widget_gk_comments', $cache, 'widget');
+		wp_cache_set('widget_gk_social_icons', $cache, 'widget');
 	}
 
 	/**
