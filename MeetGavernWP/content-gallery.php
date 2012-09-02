@@ -59,6 +59,8 @@ global $tpl;
 			<?php endif; ?>
 			
 		<?php endif; ?>
+		
+		<?php gk_post_fields(); ?>
 		<?php gk_post_links(); ?>
 	</div>
 	<?php endif; ?>

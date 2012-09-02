@@ -24,6 +24,8 @@ global $tpl;
 		<?php else : ?>
 		<section class="content">
 			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', GKTPLNAME ) ); ?>
+			
+			<?php gk_post_fields(); ?>
 			<?php gk_post_links(); ?>
 		</section>
 		<?php endif; ?>

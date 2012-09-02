@@ -27,6 +27,8 @@ if ((is_page_template('template.fullwidth.php') && ('post' == get_post_type() ||
 
 	<section class="content">
 		<?php the_content(); ?>
+		
+		<?php gk_post_fields(); ?>
 		<?php gk_post_links(); ?>
 	</section>
 	

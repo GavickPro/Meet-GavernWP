@@ -29,6 +29,7 @@ global $tpl;
 				<?php the_content( __( 'Continue reading &rarr;', GKTPLNAME ) ); ?>
 			<?php endif; ?>
 			
+			<?php gk_post_fields(); ?>
 			<?php gk_post_links(); ?>
 		</section>
 		<?php endif; ?>

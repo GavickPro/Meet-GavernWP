@@ -19,6 +19,8 @@ global $tpl;
 
 	<section class="content">
 		<?php the_content(); ?>
+		
+		<?php gk_post_fields(); ?>
 		<?php gk_post_links(); ?>
 	</section>
 

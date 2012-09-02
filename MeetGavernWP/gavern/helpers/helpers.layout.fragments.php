@@ -95,6 +95,36 @@ function gavern_comment_template( $comment, $args, $depth ) {
 	endswitch;
 }
 
+/**
+ *
+ * Function used to generate post fields
+ *
+ * @return null
+ *
+ **/
+function gk_post_fields() {
+	global $tpl;
+	// get the post custom fields
+	if ($keys = get_post_custom_keys()) {
+		// output the list
+		echo '<dl class="post-fields">' . "\n";
+			foreach ((array) $keys as $key) {
+				// trim the key name
+				$key_trimmed = trim($key);
+				// skip the protected meta data and "gavern-" values
+				if(is_protected_meta($key_trimmed, 'post') || stripos($key_trimmed, 'gavern-') !== FALSE) {
+					continue;
+				}
+				// map the values
+				$values = array_map('trim', get_post_custom_values($key));
+				// extract the value
+				$value = implode($values,', ');
+				// generate the item
+				echo apply_filters('the_meta_key', '<dt>'.$key.':</dt>'."\n".'<dd>'.$value.'</dd>'."\n", $key, $value);
+			}
+		echo '</dl>' . "\n";
+	}
+}
 
 /**
  *
