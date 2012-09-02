@@ -14,10 +14,16 @@ $tabs = $tpl->get_json('options','tabs');
 // iterators
 $tabsIterator = 0;
 $contentIterator = 0;
+// active tab
+$activeTab = 0;
+
+if(isset($_COOKIE[GKTPLNAME . '_active_tab']) && is_numeric($_COOKIE[GKTPLNAME . '_active_tab'])) {
+	$activeTab = floor($_COOKIE[GKTPLNAME . '_active_tab']);
+}
 
 ?>
 
-<div class="gkWrap">
+<div class="gkWrap" id="gkMainWrap" data-theme="<?php echo GKTPLNAME; ?>">
 	<h1>
 		<big><?php echo $tpl->full_name; ?></big><small><?php _e('Based on the Gavern WP framework', GKTPLNAME); ?></small>
 	
@@ -27,7 +33,7 @@ $contentIterator = 0;
 		<ul id="gkTabs">
 		<?php foreach($tabs as $tab) : ?>
 			<?php if($tab[2] == 'enabled') : ?>
-			<li<?php echo ($tabsIterator == 0) ? ' class="'.str_replace(' ', '', strtolower($tab[0])).' active"' : ' class="'.str_replace(' ', '', strtolower($tab[0])).'"'; ?> title="<?php echo $tab[0]; ?>"><?php echo $tab[0]; ?></li>
+			<li<?php echo ($tabsIterator == $activeTab) ? ' class="'.str_replace(' ', '', strtolower($tab[0])).' active"' : ' class="'.str_replace(' ', '', strtolower($tab[0])).'"'; ?> title="<?php echo $tab[0]; ?>"><?php echo $tab[0]; ?></li>
 			<?php 
 				$tabsIterator++;
 				endif; 
@@ -38,7 +44,7 @@ $contentIterator = 0;
 		<div id="gkTabsContent">
 		<?php foreach($tabs as $tab) : ?>
 			<?php if($tab[2] == 'enabled') : ?>
-			<div<?php if($contentIterator == 0) echo ' class="active"'; ?>>
+			<div<?php if($contentIterator == $activeTab) echo ' class="active"'; ?>>
 				<?php echo $parser->generateForm($tab[1]); ?>
 				
 				<div class="gkSaveSettings">
