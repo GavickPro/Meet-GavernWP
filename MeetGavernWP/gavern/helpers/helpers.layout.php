@@ -570,6 +570,14 @@ function gk_condition($mode, $input, $users) {
 			    $output .= ' (is_category(\'' . substr($input[$i], 9) . '\') || (in_category(\'' . substr($input[$i], 9) . '\') && is_single())) ';
 			} else if(stripos($input[$i], 'tag:') !== FALSE) {
 			    $output .= ' (is_tag(\'' . substr($input[$i], 4) . '\') || (has_tag(\'' . substr($input[$i], 4) . '\') && is_single())) ';
+			} else if(stripos($input[$i], 'archive') !== FALSE) {
+			    $output .= ' is_archive() ';
+			} else if(stripos($input[$i], 'author:') !== FALSE) {
+			    $output .= ' (is_author(\'' . substr($input[$i], 7) . '\') && is_single()) ';
+			} else if(stripos($input[$i], 'search') !== FALSE) {
+			    $output .= ' is_search() ';
+			} else if(stripos($input[$i], 'page404') !== FALSE) {
+			    $output .= ' is_404() ';
 			}
 		}
 		

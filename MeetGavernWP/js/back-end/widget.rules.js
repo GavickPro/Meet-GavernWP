@@ -63,6 +63,7 @@ function gk_widget_control_init_events(id, inner) {
 		var post = form.find('.gk_widget_rules_form_input_post').parent();
 		var category = form.find('.gk_widget_rules_form_input_category').parent();
 		var tag = form.find('.gk_widget_rules_form_input_tag').parent();
+		var author = form.find('.gk_widget_rules_form_input_author').parent();
 		var btn = form.find('.gk_widget_rules_btn');
 		// hide unnecesary form
 		if(firstSelect.children('option:selected').val() == 'all') {
@@ -84,31 +85,42 @@ function gk_widget_control_init_events(id, inner) {
 		select.change(function() {
 			var value = select.children('option:selected').val()
 			
-			if(value == 'homepage') {
+			if(value == 'homepage' || value == 'page404' || value == 'search' || value == 'archive') {
 				page.css('display', 'none');
 				post.css('display', 'none');
 				category.css('display', 'none');
 				tag.css('display', 'none');
+				author.css('display', 'none');
 			} else if(value == 'page:') {
 				page.css('display', 'block');
 				post.css('display', 'none');
 				category.css('display', 'none');
 				tag.css('display', 'none');
+				author.css('display', 'none');
 			} else if(value == 'post:') {
 				page.css('display', 'none');
 				post.css('display', 'block');
 				category.css('display', 'none');
 				tag.css('display', 'none');
+				author.css('display', 'none');
 			} else if(value == 'category:') {
 				page.css('display', 'none');
 				post.css('display', 'none');
 				category.css('display', 'block');
 				tag.css('display', 'none');
+				author.css('display', 'none');
 			} else if(value == 'tag:') {
 				page.css('display', 'none');
 				post.css('display', 'none');
 				category.css('display', 'none');
 				tag.css('display', 'block');
+				author.css('display', 'none');
+			} else if(value == 'author:') {
+				page.css('display', 'none');
+				post.css('display', 'none');
+				category.css('display', 'none');
+				tag.css('display', 'none');
+				author.css('display', 'block');
 			}
 		});
 		// add the onClick event to the button
@@ -120,6 +132,12 @@ function gk_widget_control_init_events(id, inner) {
 			
 			if(value == 'homepage') {
 				output.val(output.val() + ',homepage');
+			} else if(value == 'search') {
+				output.val(output.val() + ',search');
+			} else if(value == 'archive') {
+				output.val(output.val() + ',archive');
+			} else if(value == 'page404') {
+				output.val(output.val() + ',page404');
 			} else if(value == 'page:') {
 				output.val(output.val() + ',page:' + form.find('.gk_widget_rules_form_input_page').val());
 			} else if(value == 'post:') {
@@ -128,6 +146,8 @@ function gk_widget_control_init_events(id, inner) {
 				output.val(output.val() + ',category:' + form.find('.gk_widget_rules_form_input_category').val());
 			} else if(value == 'tag:') {
 				output.val(output.val() + ',tag:' + form.find('.gk_widget_rules_form_input_tag').val());
+			} else if(value == 'author:') {
+				output.val(output.val() + ',author:' + form.find('.gk_widget_rules_form_input_author').val());
 			}
 			
 			gk_widget_control_refresh(form);
@@ -164,6 +184,10 @@ function gk_widget_control_refresh(form) {
 				else if(pages[i].substr(0,5) == 'post:') type = 'post';
 				else if(pages[i].substr(0,9) == 'category:') type = 'category';
 				else if(pages[i].substr(0,4) == 'tag:') type = 'tag';
+				else if(pages[i].substr(0,7) == 'archive') type = 'archive';
+				else if(pages[i].substr(0,7) == 'author:') type = 'author';
+				else if(pages[i].substr(0,7) == 'page404') type = 'page404';
+				else if(pages[i].substr(0,6) == 'search') type = 'search';
 				
 				list.html(list.html() + "<span class="+type+">"+pages[i]+"<strong>&times;</strong></span>");
 			}

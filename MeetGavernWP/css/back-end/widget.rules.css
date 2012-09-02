@@ -101,6 +101,22 @@
 	background: #d33;
 }
 
+.gk_widget_rules_pages div span.archive {
+	background: #999;
+}
+
+.gk_widget_rules_pages div span.author {
+	background: #535;
+}
+
+.gk_widget_rules_pages div span.search {
+	background: #d36;
+}
+
+.gk_widget_rules_pages div span.page404 {
+	background: #222;
+}
+
 .gk_widget_rules_output {
 	display: none;
 }

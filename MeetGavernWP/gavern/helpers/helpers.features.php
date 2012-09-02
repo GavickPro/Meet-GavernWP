@@ -230,11 +230,16 @@ function gavern_widget_control() {
 				 	<option value="post:">'.__('Post', GKTPLNAME).'</option>
 				 	<option value="category:">'.__('Category', GKTPLNAME).'</option>
 				 	<option value="tag:">'.__('Tag', GKTPLNAME).'</option>
+				 	<option value="archive">'.__('Archive', GKTPLNAME).'</option>
+				 	<option value="author:">'.__('Author', GKTPLNAME).'</option>
+				 	<option value="search">'.__('Search page', GKTPLNAME).'</option>
+				 	<option value="page404">'.__('404 page', GKTPLNAME).'</option>
 				 </select>
 				 <p><label>'.__('Page ID/Title/slug:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_page" /></label></p>
 				 <p><label>'.__('Post ID/Title/slug:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_post" /></label></p>
 				 <p><label>'.__('Category ID/Name/slug:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_category" /></label></p>
 				 <p><label>'.__('Tag ID/Name:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_tag" /></label></p>
+				 <p><label>'.__('Author:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_author" /></label></p>
 				 <p><button class="gk_widget_rules_btn button-secondary">'.__('Add page', GKTPLNAME).'</button></p>
 				 <input type="text" name="' . $tpl->name . '_widget_rules_'.$id.'"  id="' . $tpl->name . '_widget_rules_'.$id.'" value="'.$value.'" class="gk_widget_rules_output" />
 				 <fieldset class="gk_widget_rules_pages">
