@@ -72,11 +72,6 @@ if(!function_exists('gavern_admin_menu')) {
 				'manage_options', 
 				'importexport_options',
 				'gavern_importexport_options' );
-			// save callback
-			add_action( "admin_head-" . $plugin_page, 'gavern_importexport_save_js' );
-			// adding scripts and stylesheets
-			add_action('admin_print_scripts', 'gavern_importexport_options_js');
-			add_action('admin_print_styles', 'gavern_importexport_options_css'); 
 		}
 		
 		// checking if showing Update options is enabled
