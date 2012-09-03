@@ -459,6 +459,11 @@ article {
 	line-height: 12px;
 }
 
+#gk-head a.imageLogo,
+#gk-head a.imageLogo img {
+	display: block;
+}
+
 #main-menu-mobile {
 	border: 1px solid #000;
 	height: 48px;
