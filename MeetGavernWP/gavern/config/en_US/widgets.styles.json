@@ -1,19 +1,23 @@
 [
 	{
 		"name": "Blue",
-		"css_class": "blue"
+		"css_class": "blue",
+		"exclude": "widget_gk_comments"
 	},
 	{
 		"name": "Red",
-		"css_class": "red"
+		"css_class": "red",
+		"exclude": "widget_gk_comments"
 	},
 	{
 		"name": "Green",
-		"css_class": "green"
+		"css_class": "green",
+		"exclude": "widget_gk_comments"
 	},
 	{
 		"name": "Yellow",
-		"css_class": "yellow"
+		"css_class": "yellow",
+		"exclude": "widget_gk_comments"
 	},
 	{
 		"name": "Blue Header",
