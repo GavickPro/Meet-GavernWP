@@ -243,7 +243,7 @@ class GKFormInputMedia extends GKFormInput {
 				'.($this->visibility).'
 				data-name="'.($this->name).'"
 			/>
-			<input id="'.($this->tpl->name).'_'.($this->name).'_button" class="gkMedia" type="button" value="Upload Image" />
+			<input id="'.($this->tpl->name).'_'.($this->name).'_button" class="gkMedia" type="button" value="'.__('Upload Image', GKTPLNAME).'" />
 			<small>'.__('Enter an URL or upload an image.', GKTPLNAME).'</small></p>
 		';
 		

@@ -542,7 +542,7 @@ if(get_option($tpl->name . '_shortcodes2_state', 'Y') == 'Y') {
 		// [members_content]Content for the members only[/members_content]
 		function gavern_ies_members_content( $atts, $content = null ) {
 			if (is_user_logged_in() && !is_null( $content ) && !is_feed()) {
-				return '<div class="gk-members">' . $content . '</div>';
+				return '<div class="gk-members"><strong>' . __('Members only', GKTPLNAME) . '</strong>' . $content . '</div>';
 			} else {
 				return '';
 			}

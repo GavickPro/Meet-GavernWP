@@ -41,7 +41,7 @@
 }
 
 .gk-note:before,
-.gk-members:before {
+.gk-members > strong:first-child {
 	background: #dd514c;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
@@ -58,12 +58,11 @@
 	width: 20px;
 }
 
-.gk-members:before {
+.gk-members > strong:first-child {
 	background: #5eb95e;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	content: "MEMBERS ONLY";
 	font-size: 12px;
 	padding: 0 10px;
 	width: auto!important;
