@@ -160,7 +160,7 @@ function gk_post_meta($attachment = false) {
 	 		</dd>
 	 		<?php endif; ?>
 	 		
-	 		<?php if(!(is_tag() || is_archive() || is_search())) : ?>
+	 		<?php if(!(is_tag() || is_archive() || is_home() || is_search())) : ?>
 		 		<?php if(!is_page()) : ?>
 		 		<dt class="category">
 		 			<?php _e('Category:', GKTPLNAME); ?>
