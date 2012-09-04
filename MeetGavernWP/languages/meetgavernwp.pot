@@ -16,7 +16,7 @@ msgstr  ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e;_n\n"
-        "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
 
 #: gavern/helpers/helpers.layout.fragments.php:68
 #, php-format
@@ -146,6 +146,54 @@ msgstr  ""
 #: gavern/options.importexport.php:29 gavern/layouts/template.php:28
 msgid   "Based on the Gavern WP framework"
 msgstr  ""
+
+#: gavern/options.importexport.php:31
+msgid "Import Template Settings"
+msgstr ""
+
+#: gavern/options.importexport.php:35
+msgid "No file selected, please make sure to select a file."
+msgstr ""
+
+#: gavern/options.importexport.php:48
+msgid "All template options are restored successfully."
+msgstr ""
+
+#: gavern/options.importexport.php:51
+msgid "Invalid file or file size too big."
+msgstr ""
+
+#: gavern/options.importexport.php:55
+msgid "1. Click &#147Browse&#148 button and choose a backup file that you backup before."
+msgstr ""
+
+#: gavern/options.importexport.php:56
+msgid "2. Click &#147Restore Template Settings&#148 button to restore your template settings."
+msgstr ""
+
+#: gavern/options.importexport.php:61
+msgid "Restore Template Settings"
+msgstr ""
+
+#: gavern/options.importexport.php:70
+msgid "Export Template Settings"
+msgstr ""
+
+#: gavern/options.importexport.php:71
+msgid "When you click &#147Backup Template Settings&#148 button, system will generate a template backup file for you to save on your computer."
+msgstr ""
+
+#: gavern/options.importexport.php:72
+msgid "This backup file contains your Gavern template configuration and setting options."
+msgstr ""
+
+#: gavern/options.importexport.php:73
+msgid "After exporting, you can either use the backup file to restore your template settings on this site again or another Wordpress site when using same Gavern template."
+msgstr ""
+
+#: gavern/options.importexport.php:77
+msgid "Backup Template Settings"
+msgstr ""
 
 #: archive.php:25
 msgid   "Blog Archives"
@@ -828,10 +876,6 @@ msgstr  ""
 #: template.contact.php:30
 msgid   "please enter your name"
 msgstr  ""
-
-#: gavern.helpers.helpers.layout.fragments.php:349
-msgid "Author: %s %s"
-msgstr ""
 
 #: comments.php:26
 msgid "One thought on “%2$s”"
