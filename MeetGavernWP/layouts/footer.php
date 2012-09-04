@@ -36,13 +36,13 @@
 			}
 		?>
 		
-		<?php if(get_option($tpl->name . '_template_footer_content', '') != '') : ?>
+		
 		<div class="gk-copyrights">
 			<?php echo str_replace('\\', '', htmlspecialchars_decode(get_option($tpl->name . '_template_footer_content', ''))); ?>
-			
+				
 			<a href="#top" id="gk-top-link"><?php _e('Back to top', GKTPLNAME); ?></a>
 		</div>
-		<?php endif; ?>
+		
 		
 		<?php if(get_option($tpl->name . '_styleswitcher_state', 'Y') == 'Y') : ?>
 		<div id="gk-style-area">
