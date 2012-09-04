@@ -11,6 +11,28 @@ defined('GAVERN_WP') or die('Access denied');
  *
  **/
  
+
+/**
+ *
+ * Function used to create custom login page elements
+ *
+ **/ 
+
+if(!function_exists('gavern_loginpage_url')) {
+	function gavern_loginpage_url() {
+	 	return get_bloginfo('url');
+	}
+}
+
+add_filter('login_headerurl', 'gavern_loginpage_url');
+
+if(!function_exists('gavern_loginpage_title')) {
+	function gavern_loginpage_title() {
+		return esc_attr(get_bloginfo('name'));
+	}
+} 
+
+add_filter('login_headertitle', 'gavern_loginpage_title');
  
 /**
  *
@@ -31,6 +53,7 @@ if(!function_exists('gavern_branding_custom_login_logo')) {
 		        h1 a { 
 		        	background-image: url(' . $logo_path . ')!important;
 		        	height: ' . get_option($tpl->name . "_branding_login_page_image_height") . 'px!important;
+		        	margin: 0 auto 10px auto!important;
 		        	width: ' . get_option($tpl->name . "_branding_login_page_image_width") . 'px!important; 
 		        }
 		    </style>';
