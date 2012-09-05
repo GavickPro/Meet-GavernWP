@@ -52,6 +52,7 @@ if(!function_exists('gavern_branding_custom_login_logo')) {
 		    echo '<style type="text/css">
 		        h1 a { 
 		        	background-image: url(' . $logo_path . ')!important;
+		        	background-size: auto!important;
 		        	height: ' . get_option($tpl->name . "_branding_login_page_image_height") . 'px!important;
 		        	margin: 0 auto 10px auto!important;
 		        	width: ' . get_option($tpl->name . "_branding_login_page_image_width") . 'px!important; 
