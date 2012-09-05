@@ -46,9 +46,7 @@ gk_load('before');
 		</section>
 		<?php endif; ?>
 	
-	<?php else : ?>		
-		<?php get_search_form(); ?>
-		
+	<?php else : ?>				
 		<h1 class="page-title">
 			<?php _e( 'Nothing Found', GKTPLNAME ); ?>
 		</h1>
@@ -56,7 +54,7 @@ gk_load('before');
 		<?php get_search_form(); ?>
 		
 		<section class="intro">
-			<?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', GKTPLNAME ); ?>
+			<p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', GKTPLNAME ); ?></p>
 		</section>
 	<?php endif; ?>
 </section>
