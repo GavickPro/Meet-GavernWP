@@ -16,7 +16,6 @@ msgstr  ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e;_n\n"
-        "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
 
 #: gavern/helpers/helpers.layout.fragments.php:68
 #, php-format
@@ -829,8 +828,14 @@ msgstr  ""
 msgid   "please enter your name"
 msgstr  ""
 
+#: comments.php:24
+msgid "One thought on &ldquo;%1$s&rdquo;"
+msgstr ""
+
 #: comments.php:26
-msgid "One thought on “%2$s”"
-msgid_plural "%1$s thoughts on “%2$s”"
-msgstr[0] ""
-msgstr[1] ""
+msgid "Two thoughts on &ldquo;%1$s&rdquo;"
+msgstr ""
+
+#: comments.php:28
+msgid "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr ""

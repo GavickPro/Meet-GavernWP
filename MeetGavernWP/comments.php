@@ -20,17 +20,13 @@
 <?php if ( have_comments() ) : ?>
 <section id="comments">
 	<h2>
-		<?php
-			printf( 
-				_n( 
-					'One thought on &ldquo;%2$s&rdquo;', 
-					'%1$s thoughts on &ldquo;%2$s&rdquo;', 
-					get_comments_number(), 
-					GKTPLNAME
-				),
-				number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' 
-			);
-		?>
+		<?php if(get_comments_number() == 1) : ?>
+		<?php printf(__( 'One thought on &ldquo;%1$s&rdquo;', GKTPLNAME), '<span>' . get_the_title() . '</span>'); ?>
+		<?php elseif(get_comments_number() == 2) : ?>
+		<?php printf(__( 'Two thoughts on &ldquo;%1$s&rdquo;', GKTPLNAME), '<span>' . get_the_title() . '</span>'); ?>
+		<?php elseif(get_comments_number() > 2) : ?>
+		<?php printf(__( '%1$s thoughts on &ldquo;%2$s&rdquo;', GKTPLNAME), number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>'); ?>
+		<?php endif; ?>
 	</h2>
 
 	<?php if ( get_comment_pages_count() > 1 && get_option('page_comments' )) : ?>
