@@ -98,7 +98,7 @@ gk_load('before');
 					</dd>
 		
 					<dt>
-						<label for="email"><?php _e('Email', GKTPLNAME); ?></label>
+						<label for="email"><?php _e('Email:', GKTPLNAME); ?></label>
 						<?php if($errors['email'] != '') : ?>
 						<span class="error"><?php echo $errors['email'];?></span>
 						<?php endif; ?>

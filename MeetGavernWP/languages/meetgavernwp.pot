@@ -231,7 +231,7 @@ msgid   "Edit"
 msgstr  ""
 
 #: template.contact.php:101
-msgid   "Email"
+msgid   "Email:"
 msgstr  ""
 
 #: gavern/form_elements/Menu/menu.php:52
