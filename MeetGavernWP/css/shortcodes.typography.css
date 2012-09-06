@@ -19,7 +19,8 @@
 .gk-warning,
 .gk-notice,
 .gk-info,
-.gk-error { /* Common rules for all these types */
+.gk-error,
+.gk-thanks { /* Common rules for all these types */
 	background-color: #FCF8E3;
 	border: 1px solid #FBEED5;
 	-webkit-border-radius: 4px;
