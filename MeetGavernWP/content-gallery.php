@@ -18,9 +18,9 @@ global $tpl;
 	<?php include('layouts/content.post.featured.php'); ?>
 
 	<?php if ( is_search() || is_archive() || is_tag() ) : ?>
-	<div class="entry-summary">
+	<section class="summary">
 		<?php the_excerpt(); ?>
-	</div>
+	</section>
 	<?php else : ?>
 		<section class="content">
 			<?php if ( post_password_required() ) : ?>
