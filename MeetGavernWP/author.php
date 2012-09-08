@@ -19,22 +19,12 @@ gk_load('before');
 		<?php the_post(); ?>
 	
 		<h1 class="page-title author">
-			<?php printf( __( 'Author Archives: %s', GKTPLNAME ), '<span class="vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( "ID" ) ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . get_the_author() . '</a></span>' ); ?>
+			<?php printf( __( 'Author archives: %s %s', GKTPLNAME ), get_the_author_meta('first_name', get_the_author_meta( 'ID' )), get_the_author_meta('last_name', get_the_author_meta( 'ID' )) ); ?>
 		</h1>
 	
 		<?php rewind_posts(); ?>
 	
-		<?php if ( get_the_author_meta( 'description' ) ) : ?>
-		<section class="author-info">
-			<aside class="author-avatar">
-				<?php echo get_avatar( get_the_author_meta( 'user_email' ), 48 ); ?>
-			</aside>
-			<div class="author-desc">
-				<h2><?php printf( __( 'About %s', GKTPLNAME ), get_the_author() ); ?></h2>
-				<?php the_author_meta( 'description' ); ?>
-			</div>
-		</section>
-		<?php endif; ?>
+		<?php gk_author(true); ?>
 	
 		<?php gk_content_nav(); ?>
 	

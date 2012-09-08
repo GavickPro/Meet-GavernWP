@@ -367,12 +367,15 @@ function gk_social_api($title, $postID) {
  *
  **/
  
-function gk_author() {
+function gk_author($author_page = false) {
     global $tpl;
 
     if(
         get_the_author_meta( 'description' ) && 
-        get_option($tpl->name . '_template_show_author_info') == 'Y'
+        (
+        	$author_page ||
+        	get_option($tpl->name . '_template_show_author_info') == 'Y'
+        )
     ): 
     ?>
     <section class="author-info">
