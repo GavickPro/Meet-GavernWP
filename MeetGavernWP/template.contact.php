@@ -57,6 +57,11 @@ if(isset($_POST['message-send'])) {
 		$headers = 'From: '.$output['name'].' <'.$output['email'].'>' . "\r\n" . 'Reply-To: ' . $output['email'];
 
 		mail($email, $subject, $body, $headers);
+		
+		if(isset($_POST['send_copy'])) {
+			mail($output['email'], $subject, $body, $headers);
+		}
+		
 		$messageSent = true;
 	}
 
@@ -117,6 +122,12 @@ gk_load('before');
 						<textarea name="comment-text" id="comment-text" rows="6" cols="30"><?php echo $output['message']; ?></textarea>
 					</dd>
 				</dl>
+				<p>
+					<label>
+						<input type="checkbox" name="send_copy" /> 
+						<?php _e('Send copy of the message to yourself', GKTPLNAME); ?>
+					</label>
+				</p>
 				<p>
 					<input type="submit" value="<?php _e('Send message', GKTPLNAME); ?>" />
 				</p>

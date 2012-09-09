@@ -597,6 +597,10 @@ msgstr  ""
 msgid   "Send message"
 msgstr  ""
 
+#: template.contact.php:128
+msgid   "Send copy of the message to yourself"
+msgstr  ""
+
 #: gavern/options.template.php:173
 msgid   "Settings saved"
 msgstr  ""
