@@ -86,7 +86,7 @@
 				<?php
 					wp_nav_menu(array(
 				  		  'theme_location'  => 'mainmenu',
-						  'container'       => 'menu', 
+						  'container'       => false, 
 						  'container_class' => 'menu-{menu slug}-container', 
 						  'container_id'    => 'gk-main-menu',
 						  'menu_class'      => 'menu ' . $tpl->menu['mainmenu']['style'], 

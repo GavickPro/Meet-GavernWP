@@ -19,7 +19,7 @@
 			if(gk_show_menu('footermenu')) {
 				wp_nav_menu(array(
 				      'theme_location'  => 'footermenu',
-					  'container'       => 'menu', 
+					  'container'       => false, 
 					  'container_class' => 'menu-{menu slug}-container', 
 					  'container_id'    => 'gkFooterMenu',
 					  'menu_class'      => 'menu ' . $tpl->menu['footermenu']['style'], 
