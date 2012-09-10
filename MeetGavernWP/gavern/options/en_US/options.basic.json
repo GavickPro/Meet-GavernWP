@@ -76,6 +76,15 @@
 				"default": "Y",
 				"class": "",
 				"visibility": ""
+			},
+			{
+				"name": "template_show_author_info_on_pages",
+				"type": "Switcher",
+				"label": "Display Author Info on pages",
+				"tooltip": "Enable the display of the author information block for each page content item.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
 			}
 		]
 	}
