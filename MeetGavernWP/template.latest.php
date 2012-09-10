@@ -5,12 +5,10 @@ Template Name: Latest Posts
 
 global $tpl;
 
-$wp_query = new WP_Query();
-$wp_query->query(array('posts_per_page' => get_option('posts_per_page'), 'paged' => $paged));
-$more = 0;
-
 gk_load('header');
 gk_load('before');
+
+query_posts('posts_per_page=' . get_option('posts_per_page'));
 
 ?>
 
@@ -21,6 +19,8 @@ gk_load('before');
 		<?php while ( have_posts() ) : the_post(); ?>
 			<?php get_template_part( 'content', get_post_format() ); ?>
 		<?php endwhile; ?>
+		
+		<?php wp_reset_query(); ?>
 		
 		<?php gk_content_nav(); ?>
 	</section>
