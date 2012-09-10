@@ -408,8 +408,13 @@ article.page-fullwidth + section#comments {
 
 article > footer {
 	border-top: 1px solid #e5e5e5;
-	overflow: hidden;
 	padding: 16px 0;
+}
+
+article > footer::after {
+    clear: both;
+    content: "";
+    display: table;
 }
 
 article > .content,
