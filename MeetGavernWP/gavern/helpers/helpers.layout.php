@@ -503,7 +503,7 @@ function gk_head_fonts() {
 				echo '<link href="'.$google.'" rel="stylesheet" type="text/css" />';
 			}
 			
-			$output .= str_replace(array('\\', '&quot;', '&apos;'), array('', '"', '\''), $selectors) . " { font-family: " . $font_family . "; }\n\n";
+			$output .= str_replace(array('\\', '&quot;', '&apos;', '&gt;'), array('', '"', '\'', '>'), $selectors) . " { font-family: " . $font_family . "; }\n\n";
 		}
 	}
 	
