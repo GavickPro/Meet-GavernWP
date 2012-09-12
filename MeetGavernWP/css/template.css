@@ -508,6 +508,12 @@ section.intro {
     display: table;
 }
 
+section.content::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
 /* 3.4. Sidebar
 ==================================== */
 
