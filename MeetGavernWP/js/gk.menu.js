@@ -118,6 +118,8 @@ jQuery(document).ready(function() {
 									}
 								}
 								//
+								content.stop(false, false, false);
+								
 								content.animate(
 									fxEnd, 
 									duration, 
