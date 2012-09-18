@@ -6,6 +6,8 @@ Template Name: Contact Form
 
 global $tpl;
 
+//
+require_once('gavern/classes/class.recaptchalib.php');
 // flag used to detect if the page is validated
 $validated = true;
 // flag to detect if e-mail was sent
@@ -14,7 +16,8 @@ $messageSent = false;
 $errors = array(
 	"name" => '',
 	"email" => '',
-	"message" => ''
+	"message" => '',
+	"recaptcha" => ''
 );
 // variable for the input fields output
 $output = array(
@@ -44,6 +47,24 @@ if(isset($_POST['message-send'])) {
 		$errors['message'] = __('please enter a text of the message.', GKTPLNAME);
 	} else {
 		$output['message'] = stripslashes(trim($_POST['comment-text']));
+	}
+	// reCAPTCHA validation
+	if(
+		get_option($tpl->name . '_recaptcha_state', 'N') == 'Y' && 
+		get_option($tpl->name . '_recaptcha_public_key', '') != '' &&
+		get_option($tpl->name . '_recaptcha_private_key', '') != ''
+	) {
+		$privatekey = get_option($tpl->name . '_recaptcha_private_key', '');
+		$resp = recaptcha_check_answer ($privatekey,
+		                            $_SERVER["REMOTE_ADDR"],
+		                            $_POST["recaptcha_challenge_field"],
+		                            $_POST["recaptcha_response_field"]);
+		
+		if (!$resp->is_valid) {
+			// What happens when the CAPTCHA was entered incorrectly
+			$validated = false;
+			$errors['recaptcha'] = __("The reCAPTCHA wasn't entered correctly. Go back and try it again.", GKTPLNAME);
+		}
 	}
 	// if the all fields was correct
 	if($validated) {
@@ -128,6 +149,25 @@ gk_load('before');
 						<?php _e('Send copy of the message to yourself', GKTPLNAME); ?>
 					</label>
 				</p>
+				
+				<?php 
+					if(
+						get_option($tpl->name . '_recaptcha_state', 'N') == 'Y' && 
+						get_option($tpl->name . '_recaptcha_public_key', '') != '' &&
+						get_option($tpl->name . '_recaptcha_private_key', '') != ''
+					) : ?>
+				<p>
+					<script type="text/javascript">var RecaptchaOptions = { theme : 'clean' };</script>
+					<?php if($errors['recaptcha'] != '') : ?>
+					<span class="error"><?php echo $errors['recaptcha'];?></span>
+					<?php endif; ?>
+					<?php 
+						$publickey = get_option($tpl->name . '_recaptcha_public_key', ''); // you got this from the signup page
+						echo recaptcha_get_html($publickey); 
+					?>				
+				</p>
+				<?php endif; ?>
+				
 				<p>
 					<input type="submit" value="<?php _e('Send message', GKTPLNAME); ?>" />
 				</p>

@@ -679,6 +679,10 @@ msgstr  ""
 msgid   "Template version: "
 msgstr  ""
 
+#: template.contact.php:66
+msgid   "The reCAPTCHA wasn't entered correctly. Go back and try it again."
+msgstr  ""
+
 #: gavern/helpers/helpers.customizer.php:118
 msgid   "Theme width"
 msgstr  ""
