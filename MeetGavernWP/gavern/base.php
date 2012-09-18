@@ -265,9 +265,6 @@ class GavernWP {
 	 	$this->register_styles();
 	 	// register fonts
 	 	$this->register_fonts();
-	 	// add metaboxes
-	 	add_action('add_meta_boxes', 'add_gavern_metaboxes' );
-	 	add_action('save_post', 'gavern_metaboxes_save' ); 
 	 	// add Gavern Shortcode button to the TinyMCE editor
 	 	add_action('admin_init', 'add_gavern_shortcode_button');
 	 	// register template built-in widgets

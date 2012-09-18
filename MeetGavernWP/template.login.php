@@ -7,13 +7,15 @@ global $tpl;
 
 gk_load('header');
 gk_load('before');
-
+$show_title = get_post_meta($post->ID, 'gavern-meta-show-title', true);
 ?>
 
 <section id="gk-mainbody" class="loginpage">
 	<?php the_post(); ?>
 	
-	<h2 class="page-title"><?php the_title(); ?></h2>
+	<?php if ( empty( $show_title) ||  $show_title == 'Y') : ?>
+		<h2 class="page-title"><?php the_title(); ?></h2>
+	<?php endif; ?> 
 	
 	<article>
 		<section class="intro">

@@ -143,58 +143,78 @@ function gk_post_fields() {
  **/
 function gk_post_meta($attachment = false) {
  	global $tpl;
+	global $post;
+	$show_post_format = get_post_meta($post->ID, 'gavern-meta-show-post-format', true);
+	$show_date = get_post_meta($post->ID, 'gavern-meta-show-date', true);
+	$show_category = get_post_meta($post->ID, 'gavern-meta-show-category', true);
+	$show_author = get_post_meta($post->ID, 'gavern-meta-show-author', true);
+	$show_comment_link = get_post_meta($post->ID, 'gavern-meta-show-comment-link', true);
+	$show_edit_link = get_post_meta($post->ID, 'gavern-meta-show-edit-link', true);
  	$tag_list = get_the_tag_list( '', __( ', ', GKTPLNAME ) );
  	?>
+	<?php if (( empty( $show_post_format) || $show_post_format == 'Y') || ( empty( $show_date) || $show_date == 'Y') || ( empty( $show_category) ||  $show_category == 'Y') || ( empty( $show_author) ||  $show_author == 'Y') || ( empty( $show_comment_link) ||  $show_comment_link == 'Y') || ( empty( $show_edit_link) ||  $show_edit_link == 'Y')) : ?>
  	<aside class="meta">
 	 	<dl>
-	 		<dt class="date">
-	 			<?php _e('Post date:', GKTPLNAME); ?>
-	 		</dt>
-	 		
-	 		<dd>
-	 			<a href="<?php echo esc_url(get_permalink()); ?>" title="<?php echo esc_attr(get_the_time()); ?>" rel="bookmark">
-	 				<time class="entry-date" datetime="<?php echo esc_attr(get_the_date('c')); ?>">
-	 					<?php echo esc_html(get_the_date('d')); ?>	
-	 					<span><?php echo esc_html(get_the_date('M')); ?></span>
-	 				</time>
-	 			</a>
-	 		</dd>
-	 		
-	 		<?php if(get_post_format() != '') : ?>
-	 		<dd class="format gk-format-<?php echo get_post_format(); ?>">
-	 			<?php echo get_post_format(); ?>
-	 		</dd>
+			<?php if ( empty( $show_date) ||  $show_date == 'Y') : ?>
+				<dt class="date">
+					<?php _e('Post date:', GKTPLNAME); ?>
+				</dt>	
+				<dd>
+					<a href="<?php echo esc_url(get_permalink()); ?>" title="<?php echo esc_attr(get_the_time()); ?>" rel="bookmark">
+						<time class="entry-date" datetime="<?php echo esc_attr(get_the_date('c')); ?>">
+							<?php echo esc_html(get_the_date('d')); ?>	
+							<span><?php echo esc_html(get_the_date('M')); ?></span>
+						</time>
+					</a>
+				</dd>
 	 		<?php endif; ?>
-	 		
+			
+			<?php if ( empty( $show_post_format) ||  $show_post_format == 'Y') : ?>
+				<?php if(get_post_format() != '') : ?>
+				<dd class="format gk-format-<?php echo get_post_format(); ?>">
+					<?php echo get_post_format(); ?>
+				</dd>
+				<?php endif; ?>
+	 		<?php endif; ?>
+			
 	 		<?php if(!(is_tag() || is_archive() || is_home() || is_search())) : ?>
-		 		<?php if(!is_page()) : ?>
-		 		<dt class="category">
-		 			<?php _e('Category:', GKTPLNAME); ?>
-		 		</dt>
-		 		<dd>
-		 			<?php echo get_the_category_list( __(', ', GKTPLNAME )); ?>
-		 		</dd>
-		 		<?php endif; ?>
-		 		<dt class="author">
-		 			<?php _e('Author:', GKTPLNAME); ?>
-		 		</dt>
-		 		<dd>
-		 			<a class="url fn n" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(sprintf(__('View all posts by %s', GKTPLNAME), get_the_author())); ?>" rel="author"><?php echo get_the_author(); ?></a>
-		 		</dd>
-		 		<?php if ( comments_open() && ! post_password_required() ) : ?>
-		 		<dt class="comments">
-		 			<?php _e('Comments:', GKTPLNAME); ?>
-		 		</dt>
-		 		<dd>
-		 			<?php 
-		 				comments_popup_link(
-		 					'<span class="leave-reply">' . __( 'Leave a reply', GKTPLNAME ) . '</span>', 
-		 					__( '<b>1</b> Reply', GKTPLNAME ), 
-		 					__( '<b>%</b> Replies', GKTPLNAME )
-		 				);
-		 			?>
-		 		</dd>
-		 		<?php endif; ?> 		
+				<?php if ( empty( $show_category) ||  $show_category == 'Y') : ?>
+					<?php if(!is_page()) : ?>
+						<dt class="category">
+							<?php _e('Category:', GKTPLNAME); ?>
+						</dt>
+						<dd>
+							<?php echo get_the_category_list( __(', ', GKTPLNAME )); ?>
+						</dd>
+					<?php endif; ?>
+				<?php endif; ?>
+				
+				<?php if ( empty( $show_author) ||  $show_author == 'Y') : ?>
+					<dt class="author">
+						<?php _e('Author:', GKTPLNAME); ?>
+					</dt>
+					<dd>
+						<a class="url fn n" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(sprintf(__('View all posts by %s', GKTPLNAME), get_the_author())); ?>" rel="author"><?php echo get_the_author(); ?></a>
+					</dd>
+				<?php endif; ?>
+				
+				<?php if ( empty( $show_comment_link) ||  $show_comment_link == 'Y') : ?>
+					<?php if ( comments_open() && ! post_password_required() ) : ?>
+						<dt class="comments">
+							<?php _e('Comments:', GKTPLNAME); ?>
+						</dt>
+						<dd>
+							<?php 
+								comments_popup_link(
+									'<span class="leave-reply">' . __( 'Leave a reply', GKTPLNAME ) . '</span>', 
+									__( '<b>1</b> Reply', GKTPLNAME ), 
+									__( '<b>%</b> Replies', GKTPLNAME )
+								);
+							?>
+						</dd>
+					<?php endif; ?> 
+				<?php endif; ?> 
+				
 		 		<?php if($tag_list != ''): ?>
 		 		<dt class="tags">
 		 			<?php _e('Tags:', GKTPLNAME); ?>
@@ -224,12 +244,13 @@ function gk_post_meta($attachment = false) {
 		 		<dd class="bookmark">
 		 			<a href="<?php echo esc_url(get_permalink()); ?>" title="<?php printf(__('Permalink to %1$s', GKTPLNAME), the_title_attribute('echo=0')); ?>" rel="bookmark"><?php _e('permalink', GKTPLNAME); ?></a>
 		 		</dd>
-		 		
-		 		<?php echo edit_post_link(__( 'Edit', GKTPLNAME ), '<dd class="edit">', '</dd>'); ?>
+		 		<?php if ( empty( $show_edit_link) ||  $show_edit_link == 'Y') : ?>
+					<?php echo edit_post_link(__( 'Edit', GKTPLNAME ), '<dd class="edit">', '</dd>'); ?>
+				<?php endif; ?>
 	 		<?php endif; ?>
  		</dl>
  	</aside>
- 	
+ 	<?php endif; ?>
  	<?php
 }
 
