@@ -69,13 +69,19 @@ if(isset($_POST['message-send'])) {
 
 gk_load('header');
 gk_load('before');
-
+$show_title = get_post_meta($post->ID, 'gavern-meta-show-title', true);
+$show_name = get_post_meta($post->ID, 'gavern-meta-show-contact-name', true);
+$show_email = get_post_meta($post->ID, 'gavern-meta-show-contact-email', true);
+$show_message = get_post_meta($post->ID, 'gavern-meta-show-contact-message', true);
+$show_send_copy = get_post_meta($post->ID, 'gavern-meta-show-contact-send-copy', true);
 ?>
 
 <section id="gk-mainbody" class="contactpage">
 	<?php the_post(); ?>
 	
-	<h2 class="page-title"><?php the_title(); ?></h2>
+	<?php if ( empty( $show_title) ||  $show_title == 'Y') : ?>
+		<h2 class="page-title"><?php the_title(); ?></h2>
+	<?php endif; ?>
 	
 	<article>
 		<section class="intro">
@@ -92,42 +98,50 @@ gk_load('before');
 		
 			<form action="<?php the_permalink(); ?>" id="gk-contact" method="post">
 				<dl>
-					<dt>
-						<label for="contact-name"><?php _e('Name:', GKTPLNAME); ?></label>
-						<?php if($errors['name'] != '') : ?>
-						<span class="error"><?php echo $errors['name'];?></span>
-						<?php endif; ?>
-					</dt>
-					<dd>	
-						<input type="text" name="contact-name" id="contact-name" value="<?php echo $output['message'];?>" />
-					</dd>
-		
-					<dt>
-						<label for="email"><?php _e('Email:', GKTPLNAME); ?></label>
-						<?php if($errors['email'] != '') : ?>
-						<span class="error"><?php echo $errors['email'];?></span>
-						<?php endif; ?>
-					</dt>
-					<dd>	
-						<input type="text" name="email" id="email" value="<?php echo $output['email'];?>" />
-					</dd>
-		
-					<dt>
-						<label for="comment-text"><?php _e('Message:', GKTPLNAME); ?></label>
-						<?php if($errors['message'] != '') : ?>
-						<span class="error"><?php echo $errors['message'];?></span>
-						<?php endif; ?>
-					</dt>
-					<dd>
-						<textarea name="comment-text" id="comment-text" rows="6" cols="30"><?php echo $output['message']; ?></textarea>
-					</dd>
+					<?php if ( empty( $show_name) ||  $show_name == 'Y') : ?>
+						<dt>
+							<label for="contact-name"><?php _e('Name:', GKTPLNAME); ?></label>
+							<?php if($errors['name'] != '') : ?>
+							<span class="error"><?php echo $errors['name'];?></span>
+							<?php endif; ?>
+						</dt>
+						<dd>	
+							<input type="text" name="contact-name" id="contact-name" value="<?php echo $output['message'];?>" />
+						</dd>
+					<?php endif; ?>
+					
+					<?php if ( empty( $show_email) ||  $show_email == 'Y') : ?>
+						<dt>
+							<label for="email"><?php _e('Email:', GKTPLNAME); ?></label>
+							<?php if($errors['email'] != '') : ?>
+							<span class="error"><?php echo $errors['email'];?></span>
+							<?php endif; ?>
+						</dt>
+						<dd>	
+							<input type="text" name="email" id="email" value="<?php echo $output['email'];?>" />
+						</dd>
+					<?php endif; ?>
+					
+					<?php if ( empty( $show_message) ||  $show_message == 'Y') : ?>
+						<dt>
+							<label for="comment-text"><?php _e('Message:', GKTPLNAME); ?></label>
+							<?php if($errors['message'] != '') : ?>
+							<span class="error"><?php echo $errors['message'];?></span>
+							<?php endif; ?>
+						</dt>
+						<dd>
+							<textarea name="comment-text" id="comment-text" rows="6" cols="30"><?php echo $output['message']; ?></textarea>
+						</dd>
+					<?php endif; ?>
 				</dl>
+				<?php if ( empty( $show_send_copy) ||  $show_send_copy == 'Y') : ?>
 				<p>
 					<label>
 						<input type="checkbox" name="send_copy" /> 
 						<?php _e('Send copy of the message to yourself', GKTPLNAME); ?>
 					</label>
 				</p>
+				<?php endif; ?>
 				<p>
 					<input type="submit" value="<?php _e('Send message', GKTPLNAME); ?>" />
 				</p>

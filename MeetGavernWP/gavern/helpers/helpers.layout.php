@@ -183,16 +183,20 @@ function gk_metatags() {
 			}
 		}
 		
-		if(is_single()) {
+		if(is_single() || is_page()) {
 			global $wp_query;
 			$postID = $wp_query->post->ID;
 		
 			if(get_option($tpl->name . '_seo_post_desc') == 'custom') {
-				echo '<meta name="description" content="'.get_post_meta($postID, 'gavern-post-desc').'" />';
+				if(get_post_meta($postID, 'gavern-meta-desc-value', true)) {
+					echo '<meta name="description" content="'.get_post_meta($postID, 'gavern-meta-desc-value', true).'" />';
+				}
 			}
 			
 			if(get_option($tpl->name . '_seo_post_keywords') == 'custom') {
-				echo '<meta name="keywords" content="'.get_post_meta($postID, 'gavern-post-keywords').'" />';
+				if(get_post_meta($postID, 'gavern-meta-keywords-value', true)) {
+					echo '<meta name="keywords" content="'.get_post_meta($postID, 'gavern-meta-keywords-value', true).'" />';
+				}
 			}
 		}
 	}

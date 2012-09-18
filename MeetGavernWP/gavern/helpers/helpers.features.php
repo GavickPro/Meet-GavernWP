@@ -43,66 +43,391 @@ function add_gavern_tinymce_plugin($plugin_array) {
 
 /**
  *
- * Code to create custom metaboxes with post description and keywords
+ * Gavern Meta Boxes
+ *
  *
  **/
+ 
+global $tpl;
+$prefix = 'gavern-meta-';
 
-function add_gavern_metaboxes() {
-	global $tpl;
-	// post description custom meta box
-	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y' && get_option($tpl->name . '_seo_post_desc') == 'custom') {
-		add_meta_box( 'gavern-post-desc', __('Post description', GKTPLNAME), 'gavern_post_desc_callback', 'post', 'normal', 'high' );
-	}
-	// post keywords custom meta box
-	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y' && get_option($tpl->name . '_seo_post_keywords') == 'custom') {
-		add_meta_box( 'gavern-post-keywords', __('Post keywords', GKTPLNAME), 'gavern_post_keywords_callback', 'post', 'normal', 'high' );
-	}
+// Add meta boxes start
+
+// Post - Page options meta box
+$meta_boxes[] = array(
+	'id' => $prefix.'options',
+	'title' => __('GK Gavern Post/Page Options', GKTPLNAME),
+	'pages' => array('post', 'page'),
+	'context' => 'side',
+	'priority' => 'low',
+	'fields' => array(
+		array(
+			'name' => __('Show Title:', GKTPLNAME),
+			'id' => $prefix . 'show-title',
+			'type' => 'radio',
+			'options' => array(
+				array('name' => __('Yes', GKTPLNAME), 'value' => 'Y'),
+				array('name' => __('No', GKTPLNAME), 'value' => 'N')
+			)
+		),
+		array(
+			'name' => __('Show Post Format:', GKTPLNAME),
+			'id' => $prefix . 'show-post-format',
+			'type' => 'radio',
+			'options' => array(
+				array('name' => __('Yes', GKTPLNAME), 'value' => 'Y'),
+				array('name' => __('No', GKTPLNAME), 'value' => 'N')
+			)
+		),
+		array(
+			'name' => __('Show Date:', GKTPLNAME),
+			'id' => $prefix . 'show-date',
+			'type' => 'radio',
+			'options' => array(
+				array('name' => __('Yes', GKTPLNAME), 'value' => 'Y'),
+				array('name' => __('No', GKTPLNAME), 'value' => 'N')
+			)
+		),
+		array(
+			'name' => __('Show Category:', GKTPLNAME),
+			'id' => $prefix . 'show-category',
+			'type' => 'radio',
+			'options' => array(
+				array('name' => __('Yes', GKTPLNAME), 'value' => 'Y'),
+				array('name' => __('No', GKTPLNAME), 'value' => 'N')
+			)
+		),
+		array(
+			'name' => __('Show Author:', GKTPLNAME),
+			'id' => $prefix . 'show-author',
+			'type' => 'radio',
+			'options' => array(
+				array('name' => __('Yes', GKTPLNAME), 'value' => 'Y'),
+				array('name' => __('No', GKTPLNAME), 'value' => 'N')
+			)
+		),
+		array(
+			'name' => __('Show Comment Link:', GKTPLNAME),
+			'id' => $prefix . 'show-comment-link',
+			'type' => 'radio',
+			'options' => array(
+				array('name' => __('Yes', GKTPLNAME), 'value' => 'Y'),
+				array('name' => __('No', GKTPLNAME), 'value' => 'N')
+			)
+		),
+		array(
+			'name' => __('Show Edit Link:', GKTPLNAME),
+			'id' => $prefix . 'show-edit-link',
+			'type' => 'radio',
+			'options' => array(
+				array('name' => __('Yes', GKTPLNAME), 'value' => 'Y'),
+				array('name' => __('No', GKTPLNAME), 'value' => 'N')
+			)
+		),
+	)
+);
+
+// Post description custom meta box
+if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y' && get_option($tpl->name . '_seo_post_desc') == 'custom') {
+	$meta_boxes[] = array(
+		'id' => $prefix.'desc',
+		'title' => __('Post description', GKTPLNAME),
+		'pages' => array('post', 'page'),
+		'context' => 'normal',
+		'priority' => 'low',
+		'fields' => array(
+			array(
+				'name' => '',
+				'id' => $prefix .'desc-value',
+				'type' => 'textarea',
+				'desc' => __('Entering any description in here will be displayed in post/page title.', GKTPLNAME),
+				'std' => ''
+			),
+		)
+	);
+}
+// Post keywords custom meta box
+if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y' && get_option($tpl->name . '_seo_post_desc') == 'custom') {
+	$meta_boxes[] = array(
+		'id' => $prefix.'keywords',
+		'title' => __('Post keywords', GKTPLNAME),
+		'pages' => array('post', 'page'),
+		'context' => 'normal',
+		'priority' => 'low',
+		'fields' => array(
+			array(
+				'name' => '',
+				'id' => $prefix .'keywords-value',
+				'type' => 'textarea',
+				'desc' => __('Entering any keywords in here will be displayed in post/page title.', GKTPLNAME),
+				'std' => ''
+			),
+		)
+	);
+}
+// Contact page custom meta box
+$meta_boxes[] = array(
+	'id' => $prefix.'contact_options',
+	'title' => __('GK Gavern Contact Page Options', GKTPLNAME),
+	'pages' => array('page'),
+	'context' => 'side',
+	'priority' => 'low',
+	'fields' => array(
+		array(
+			'name' => __('Show Name:', GKTPLNAME),
+			'id' => $prefix . 'show-contact-name',
+			'type' => 'radio',
+			'options' => array(
+				array('name' => __('Yes', GKTPLNAME), 'value' => 'Y'),
+				array('name' => __('No', GKTPLNAME), 'value' => 'N')
+			)
+		),
+		array(
+			'name' => __('Show Email:', GKTPLNAME),
+			'id' => $prefix . 'show-contact-email',
+			'type' => 'radio',
+			'options' => array(
+				array('name' => __('Yes', GKTPLNAME), 'value' => 'Y'),
+				array('name' => __('No', GKTPLNAME), 'value' => 'N')
+			)
+		),
+		array(
+			'name' => __('Show Message:', GKTPLNAME),
+			'id' => $prefix . 'show-contact-message',
+			'type' => 'radio',
+			'options' => array(
+				array('name' => __('Yes', GKTPLNAME), 'value' => 'Y'),
+				array('name' => __('No', GKTPLNAME), 'value' => 'N')
+			)
+		),
+		array(
+			'name' => __('Show Send Copy:', GKTPLNAME),
+			'id' => $prefix . 'show-contact-send-copy',
+			'type' => 'radio',
+			'options' => array(
+				array('name' => __('Yes', GKTPLNAME), 'value' => 'Y'),
+				array('name' => __('No', GKTPLNAME), 'value' => 'N')
+			)
+		),
+	)
+);  
+// Add Meta boxes end
+
+// Creating meta boxes with our class
+foreach ($meta_boxes as $meta_box) {
+    $my_box = new gavern_meta_box($meta_box);
 }
 
-function gavern_post_desc_callback($post) { 
-	$values = get_post_custom( $post->ID );  
-	$value = isset( $values['gavern-post-desc'] ) ? esc_attr( $values['gavern-post-desc'][0] ) : '';    
-	// nonce 
-	wp_nonce_field( 'gavern-post-desc-nonce', 'gavern_meta_box_desc_nonce' ); 
-    // output
-    echo '<textarea name="gavern-post-desc-value" id="gavern-post-desc-value" rows="5" style="width:100%;">'.$value.'</textarea>';   
-} 
+// Add custom validations in here for required fields
+class gavern_meta_box_validate {
+    function check_text($text) {
+        if ($text != 'hello') {
+            return false;
+        }
+        return true;
+    }
+}
 
-function gavern_post_keywords_callback($post) {   
-	$values = get_post_custom( $post->ID );  
-	$value = isset( $values['gavern-post-keywords'] ) ? esc_attr( $values['gavern-post-keywords'][0] ) : '';  
-	// nonce 
-	wp_nonce_field( 'gavern-post-keywords-nonce', 'gavern_meta_box_keywords_nonce' ); 
-	// output
-    echo '<textarea name="gavern-post-keywords-value" id="gavern-post-keywords-value" rows="5" style="width:100%;">'.$value.'</textarea>';   
-} 
+// Gavern Meta Box Class for creating meta boxes
+
+class gavern_meta_box {
+
+    protected $_meta_box;
+
+    // Create meta box based on given data
+    function __construct($meta_box) {
+        if (!is_admin()) return;
+
+        $this->_meta_box = $meta_box;
+        add_action('admin_menu', array(&$this, 'add'));
+        add_action('save_post', array(&$this, 'save'));
+    }
+    // Add meta box for multiple post types
+    function add() {
+        $this->_meta_box['context'] = empty($this->_meta_box['context']) ? 'normal' : $this->_meta_box['context'];
+        $this->_meta_box['priority'] = empty($this->_meta_box['priority']) ? 'high' : $this->_meta_box['priority'];
+        foreach ($this->_meta_box['pages'] as $page) {
+            add_meta_box($this->_meta_box['id'], $this->_meta_box['title'], array(&$this, 'show'), $page, $this->_meta_box['context'], $this->_meta_box['priority']);
+        }
+    }
+
+    // Callback function to show fields in meta box
+    function show() {
+        global $post;
+
+        // Use nonce for verification
+        echo '<input type="hidden" name="gavern_meta_box_nonce" value="', wp_create_nonce(basename(__FILE__)), '" />';
+
+        echo '<table class="form-table gkform">';
+        foreach ($this->_meta_box['fields'] as $field) {
+            // get current post meta data
+            $meta = get_post_meta($post->ID, $field['id'], true);
+            echo '<tr id="gk_', $field['id'], '">';
+				if ($field['name']) {
+					echo '<th style="width:55%"><label for="', $field['id'], '">', $field['name'], '</label></th>';
+				}
+			echo	'<td>';
+            switch ($field['type']) {
+                case 'text':
+                    echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" size="30" style="width:97%" />',
+                        '<br />', $field['desc'];
+                    break;
+                case 'textarea':
+                    echo '<textarea name="', $field['id'], '" id="', $field['id'], '" rows="5" style="width:100%">', $meta ? $meta : $field['std'], '</textarea>',
+                        '<br />', $field['desc'];
+                    break;
+                case 'select':
+                    echo '<select name="', $field['id'], '" id="', $field['id'], '">';
+                    foreach ($field['options'] as $option) {
+                        echo '<option value="', $option['value'], '"', $meta == $option['value'] ? ' selected="selected"' : '', '>', $option['name'], '</option>';
+                    }
+                    echo '</select>';
+                    break;
+                case 'radio':
+                    foreach ($field['options'] as $option) {
+                        echo '<input style="margin-right: 3px; margin-left: 3px;" type="radio" name="', $field['id'], '" value="', $option['value'], '"', $meta == $option['value'] ? ' checked="checked"' : '', ' />', $option['name'];
+                    }
+                    break;
+                case 'checkbox':
+                    echo '<input type="checkbox" name="', $field['id'], '" id="', $field['id'], '"', $meta ? ' checked="checked"' : '', ' />';
+                    break;
+            }
+            echo     '<td>',
+                '</tr>';
+        }
+
+        echo '</table>';
+    }
+
+    // Save data from meta box
+    function save($post_id) {
+        // Verify nonce
+        if (!wp_verify_nonce($_POST['gavern_meta_box_nonce'], basename(__FILE__))) {
+            return $post_id;
+        }
+
+        // Check autosave
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+            return $post_id;
+        }
+
+        // Check permissions
+        if ('page' == $_POST['post_type']) {
+            if (!current_user_can('edit_page', $post_id)) {
+                return $post_id;
+            }
+        } elseif (!current_user_can('edit_post', $post_id)) {
+            return $post_id;
+        }
+
+        foreach ($this->_meta_box['fields'] as $field) {
+            $name = $field['id'];
+
+            $old = get_post_meta($post_id, $name, true);
+            $new = $_POST[$field['id']];
+
+            if ($field['type'] == 'textarea') {
+                $new = htmlspecialchars($new);
+            }
+
+            // Validate meta value
+            if (isset($field['validate_func'])) {
+                $ok = call_user_func(array('gavern_meta_box_validate', $field['validate_func']), $new);
+                if ($ok === false) {
+                    continue;
+                }
+            }
+
+            if ($new && $new != $old) {
+                update_post_meta($post_id, $name, $new);
+            }
+        }
+    }
+}
+/**
+ *
+ * Hide Meta Boxes and fields based on template or page
+ *
+ **/
  
-function gavern_metaboxes_save( $post_id ) {  
-    // check the user permissions  
-    if( !current_user_can( 'edit_post', $post_id ) ) {
-    	return;
-    }
-    // avoid requests on the autosave 
-    if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-    	return; 
-    }
-    // check the nonce
-    if( !isset( $_POST['gavern_meta_box_desc_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_desc_nonce'], 'gavern-post-desc-nonce' ) ) {
-    	return;
-    }
-    
-    if( !isset( $_POST['gavern_meta_box_keywords_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_keywords_nonce'], 'gavern-post-keywords-nonce' ) ) {
-    	return;
-    }
-    // check the existing of the fields and save it
-    if( isset( $_POST['gavern-post-desc-value'] ) ) {
-        update_post_meta( $post_id, 'gavern-post-desc', esc_attr( $_POST['gavern-post-desc-value'] ) );  
-    }
-  	
-    if( isset( $_POST['gavern-post-keywords-value'] ) ) {
-        update_post_meta( $post_id, 'gavern-post-keywords', esc_attr( $_POST['gavern-post-keywords-value'] ) ); 
-    }
-}   
+add_action('admin_head', 'gavern_metaboxhide_script');
+
+function gavern_metaboxhide_script() {
+    global $current_screen;
+    if('page' != $current_screen->id) return;
+
+    echo <<<HTML
+        <script type="text/javascript">
+        jQuery(document).ready( function($) {
+
+            /**
+             * Adjust visibility of the Post - Page options at startup
+            */
+            if(jQuery('#page_template').val() == 'default') {
+				jQuery('#gk_gavern-meta-show-title').show();
+                jQuery('#gk_gavern-meta-show-post-format').show();
+				jQuery('#gk_gavern-meta-show-date').show();
+				jQuery('#gk_gavern-meta-show-category').show();
+				jQuery('#gk_gavern-meta-show-author').show();
+				jQuery('#gk_gavern-meta-show-comment-link').show();
+				jQuery('#gk_gavern-meta-show-edit-link').show();
+            } else {
+                // hide unneccessary fields
+                jQuery('#gk_gavern-meta-show-post-format').hide();
+				jQuery('#gk_gavern-meta-show-date').hide();
+				jQuery('#gk_gavern-meta-show-category').hide();
+				jQuery('#gk_gavern-meta-show-author').hide();
+				jQuery('#gk_gavern-meta-show-comment-link').hide();
+				jQuery('#gk_gavern-meta-show-edit-link').hide();
+            }
+            /**
+             * Live adjustment of the Post - Page options visibility
+            */
+            jQuery('#page_template').live('change', function(){
+                    if(jQuery(this).val() == 'default') {
+					jQuery('#gk_gavern-meta-show-title').show();
+					jQuery('#gk_gavern-meta-show-post-format').show();
+					jQuery('#gk_gavern-meta-show-date').show();
+					jQuery('#gk_gavern-meta-show-category').show();
+					jQuery('#gk_gavern-meta-show-author').show();
+					jQuery('#gk_gavern-meta-show-comment-link').show();
+					jQuery('#gk_gavern-meta-show-edit-link').show();
+                } else {
+                    // hide unneccessary fields
+					jQuery('#gk_gavern-meta-show-post-format').hide();
+					jQuery('#gk_gavern-meta-show-date').hide();
+					jQuery('#gk_gavern-meta-show-category').hide();
+					jQuery('#gk_gavern-meta-show-author').hide();
+					jQuery('#gk_gavern-meta-show-comment-link').hide();
+					jQuery('#gk_gavern-meta-show-edit-link').hide();
+				}
+            });			
+            /**
+             * Adjust visibility of the contact meta box at startup
+            */
+            if(jQuery('#page_template').val() == 'template.contact.php') {
+                // show contact meta box
+                jQuery('#gavern-meta-contact_options').show();
+            } else {
+                // hide contact meta box
+                jQuery('#gavern-meta-contact_options').hide();
+            }
+            /**
+             * Live adjustment of the contact meta box visibility
+            */
+            jQuery('#page_template').live('change', function(){
+                    if(jQuery(this).val() == 'template.contact.php') {
+                    // show contact meta box
+                    jQuery('#gavern-meta-contact_options').show();
+                } else {
+                    // hide contact meta box
+                    jQuery('#gavern-meta-contact_options').hide();
+                }
+            });	
+        });    
+        </script>
+HTML;
+} 
 
 
 /**
