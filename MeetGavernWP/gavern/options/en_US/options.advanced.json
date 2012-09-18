@@ -11,6 +11,13 @@
 				"default": "Y"
 			},
 			{
+				"name": "custom_fields_state",
+				"type": "Switcher",
+				"label": "Custom fields",
+				"tooltip": "Enable custom fields used to display additional information in the post.",
+				"default": "Y"
+			},
+			{
 				"name": "prefixfree_state",
 				"type": "Switcher",
 				"label": "Use Prefixfree script",

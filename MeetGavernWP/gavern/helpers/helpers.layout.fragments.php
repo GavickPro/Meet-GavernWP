@@ -104,30 +104,33 @@ function gavern_comment_template( $comment, $args, $depth ) {
  **/
 function gk_post_fields() {
 	global $tpl;
-	// get the post custom fields
-	if ($keys = get_post_custom_keys()) {
-		// variable for the list items
-		$output = '';
-		// generate the list
-		foreach ((array) $keys as $key) {
-			// trim the key name
-			$key_trimmed = trim($key);
-			// skip the protected meta data and "gavern-" values
-			if(is_protected_meta($key_trimmed, 'post') || stripos($key_trimmed, 'gavern-') !== FALSE) {
-				continue;
+	// check if the custom fields are enabled
+	if(get_option($tpl->name . '_custom_fields_state', 'Y') == 'Y') {
+		// get the post custom fields
+		if ($keys = get_post_custom_keys()) {
+			// variable for the list items
+			$output = '';
+			// generate the list
+			foreach ((array) $keys as $key) {
+				// trim the key name
+				$key_trimmed = trim($key);
+				// skip the protected meta data and "gavern-" values
+				if(is_protected_meta($key_trimmed, 'post') || stripos($key_trimmed, 'gavern-') !== FALSE) {
+					continue;
+				}
+				// map the values
+				$values = array_map('trim', get_post_custom_values($key));
+				// extract the value
+				$value = implode($values,', ');
+				// generate the item
+				$output .= apply_filters('the_meta_key', '<dt>'.$key.':</dt>'."\n".'<dd>'.$value.'</dd>'."\n", $key, $value);
 			}
-			// map the values
-			$values = array_map('trim', get_post_custom_values($key));
-			// extract the value
-			$value = implode($values,', ');
-			// generate the item
-			$output .= apply_filters('the_meta_key', '<dt>'.$key.':</dt>'."\n".'<dd>'.$value.'</dd>'."\n", $key, $value);
-		}
-		// output the list
-		if($output !== '') {
-			echo '<dl class="post-fields">' . "\n";
-			echo $output;
-			echo '</dl>' . "\n";
+			// output the list
+			if($output !== '') {
+				echo '<dl class="post-fields">' . "\n";
+				echo $output;
+				echo '</dl>' . "\n";
+			}
 		}
 	}
 }
