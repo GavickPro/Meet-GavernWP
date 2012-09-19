@@ -317,18 +317,39 @@ if(get_option($tpl->name . '_shortcodes1_state', 'Y') == 'Y') {
 		// [column]Content for the second column[/column]
 		// [column]Content for the third column[/column]
 		// [/columns]
+		//
+		// Variant with column widths attribute
+		//
+		// [columns width="50,25,25"]
+		// [column]Content for the first column[/column]
+		// [column]Content for the second column[/column]
+		// [column]Content for the third column[/column]
+		// [/columns]
 		function gavern_ts_columns($atts, $content) {   
+		    // get the optional width value
+		    extract(shortcode_atts( array('width' => ''), $atts));
 		    // get the columns		    
 		    preg_match_all( '@\[column\](.*?)\[/column\]@mis', $content, $columns);
 		    $output = '';
 		    
 		    if(isset($columns[1])) {
+			    //
+			    if($width != '') $width = explode(',', $width);
 			    // generate output
 			    $output = "<div class=\"gk-columns\" data-column-count=\"" . count($columns[1]) . "\">\n";
 			    // generate the list items
 			    if(count($columns[1])) {
+			    	// iterator
+			    	$iter = 0;
+			    	//
 			    	foreach($columns[1] as $column) {
-			    		$output .= "<div>" . $column . "</div>\n";
+			    		if($width == '') {
+			    			$output .= "<div>" . $column . "</div>\n";
+			    		} else {
+			    			$output .= "<div style=\"width: ".$width[$iter]."%;\">" . $column . "</div>\n";
+			    		}
+			    		//
+			    		$iter++;
 			    	}
 			    }
 			    // close the list
