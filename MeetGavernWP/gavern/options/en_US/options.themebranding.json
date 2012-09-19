@@ -92,6 +92,14 @@
 				"default": "",
 				"class": "",
 				"visibility": "branding_logo_text_type=own,branding_logo_type=text"
+			},
+			{
+				"name": "branding_favicon",
+				"type": "Media",
+				"label": "Page favicon",
+				"tooltip": "Select the favicon for your page (it must be a proper *.ICO file with size 16x16px.",
+				"default": "",
+				"class": ""
 			}
 		]
 	}

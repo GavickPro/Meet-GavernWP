@@ -11,6 +11,22 @@ defined('GAVERN_WP') or die('Access denied');
  *
  **/
  
+ 
+/**
+ *
+ * Function used to create custom page favicon
+ *
+ **/ 
+ 
+function gavern_favicon() {
+	global $tpl;
+	
+	if(get_option($tpl->name . '_branding_favicon', '') != '') {
+		echo '<link rel="shortcut icon" href="' . get_option($tpl->name . '_branding_favicon', '') . '" type="image/x-icon" />' . "\n";
+	}
+} 
+
+add_action('wp_head', 'gavern_favicon');
 
 /**
  *
