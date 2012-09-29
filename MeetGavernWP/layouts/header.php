@@ -67,6 +67,15 @@
 	<?php if(get_option($tpl->name . "_overridecss_state", 'Y') == 'Y') : ?>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/override.css" />
 	<?php endif; ?>
+	
+	<?php do_action('gavernwp_head'); ?>
+	<?php 
+		echo stripslashes(
+			htmlspecialchars_decode(
+				get_option($tpl->name . '_head_code', '')
+			)
+		); 
+	?>
 </head>
 <body <?php body_class(); ?><?php if($tpl->browser->get("tablet") == true) echo ' data-tablet="true"'; ?> data-tablet-width="<?php echo get_option($tpl->name . '_tablet_width', 800); ?>">
 	<section class="gk-page">

@@ -46,6 +46,20 @@
 				"label": "Mobile Width",
 				"tooltip": "Specify the browser width when mobile.css is loaded. We recommend 480 pixels",
 				"default": "480"
+			},
+			{
+				"name": "head_code",
+				"type": "Textarea",
+				"label": "Code for the HEAD section",
+				"tooltip": "You can specify the code which will be added at the end of the HEAD section - it is useful when you need to add some additional metatags, scripts etc.",
+				"default": ""
+			},
+			{
+				"name": "footer_code",
+				"type": "Textarea",
+				"label": "Code for the footer section",
+				"tooltip": "You can specify the code which will be added before closing body tag - it is useful when you need to add some additional scripts, trackers etc.",
+				"default": ""
 			}
 		]
 	}

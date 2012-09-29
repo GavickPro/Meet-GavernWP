@@ -71,6 +71,16 @@
 	<?php endif; ?>
 	
 	<?php gk_load('social'); ?>
+	
+	<?php do_action('gavernwp_footer'); ?>
+	<?php 
+		echo stripslashes(
+			htmlspecialchars_decode(
+				get_option($tpl->name . '_footer_code', '')
+			)
+		); 
+	?>
+	
 	<?php wp_footer(); ?>
 </body>
 </html>

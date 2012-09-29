@@ -30,6 +30,8 @@ define('GKTPLNAME', $tpl_name);
 $tpl = new GavernWP();
 // Including file with helper functions
 require_once($framework_path . 'helpers/helpers.base.php');
+// Including file with template hooks
+require_once($framework_path . 'hooks.php');
 // Including file with template functions
 require_once($framework_path . 'functions.php');
 // Including file with template filters
