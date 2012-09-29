@@ -373,53 +373,75 @@ function gk_social_api($title, $postID) {
 function gk_author($author_page = false) {
     global $tpl;
 
-	if(
-		(is_page() && get_option($tpl->name . '_template_show_author_info_on_pages') == 'Y') ||
-		!is_page()
-	) :
-	    if(
-	        get_the_author_meta( 'description' ) && 
-	        (
-	        	$author_page ||
-	        	get_option($tpl->name . '_template_show_author_info') == 'Y'
-	        )
-	    ): 
-	    ?>
-	    <section class="author-info">
-	        <aside class="author-avatar">
-	            <?php echo get_avatar( get_the_author_meta( 'user_email' ), 64 ); ?>
-	        </aside>
-	        <div class="author-desc">
-	            <h2>
-	                <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
-	                    <?php printf( __( 'Author: %s %s', GKTPLNAME ), get_the_author_meta('first_name', get_the_author_meta( 'ID' )), get_the_author_meta('last_name', get_the_author_meta( 'ID' )) ); ?> 
-	                </a>
-	            </h2>
-	            <p>
-	                <?php the_author_meta( 'description' ); ?>
-	            </p>
-	
-	            <?php 
-	                $www = get_the_author_meta('user_url', get_the_author_meta( 'ID' ));
-	                if($www != '') : 
-	            ?>
-	            <p class="author-www">
-	                <?php _e('Website: ', GKTPLNAME); ?><a href="<?php echo $www; ?>"><?php echo $www; ?></a>
-	            </p>
-	            <?php endif; ?>
-	            
-	            <?php
-	            	$google_profile = get_the_author_meta( 'google_profile' );
-	            	if ($google_profile != '') :
-	            ?>
-	            <p class="author-google">
-	            	<a href="<?php echo esc_url($google_profile); ?>" rel="me"><?php _e('Google Profile', GKTPLNAME); ?></a>
-	            </p>
-	            <?php endif; ?>
-	        </div>
-	    </section>
-	    <?php 
-	    endif;
+	// check if the author info is enabled on the specific page
+	$authorinfo_mode = get_option($tpl->name . '_authorinfo_exclude_include', 'exclude');
+	$authorinfo_articles = explode(',', get_option($tpl->name . '_authorinfo_articles', ''));
+	$authorinfo_pages = explode(',', get_option($tpl->name . '_authorinfo_pages', ''));
+	$authorinfo_categories = explode(',', get_option($tpl->name . '_authorinfo_categories', ''));
+	//
+	$is_excluded = false;
+	//
+	if($authorinfo_mode == 'include' || $authorinfo_mode == 'exclude') {
+		//
+		$is_excluded = 
+			($authorinfo_pages != FALSE ? is_page($authorinfo_pages) : FALSE) || 
+			($authorinfo_articles != FALSE ? is_single($authorinfo_articles) : FALSE) || 
+			($authorinfo_categories != FALSE ? in_category($authorinfo_categories) : FALSE);
+		//
+		if($authorinfo_mode == 'exclude') {
+			$is_excluded = !$is_excluded;
+		}
+	}
+	//
+	if($authorinfo_mode != 'none' && $is_excluded) :
+		if(
+			(is_page() && get_option($tpl->name . '_template_show_author_info_on_pages') == 'Y') ||
+			!is_page()
+		) :
+		    if(
+		        get_the_author_meta( 'description' ) && 
+		        (
+		        	$author_page ||
+		        	get_option($tpl->name . '_template_show_author_info') == 'Y'
+		        )
+		    ): 
+		    ?>
+		    <section class="author-info">
+		        <aside class="author-avatar">
+		            <?php echo get_avatar( get_the_author_meta( 'user_email' ), 64 ); ?>
+		        </aside>
+		        <div class="author-desc">
+		            <h2>
+		                <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
+		                    <?php printf( __( 'Author: %s %s', GKTPLNAME ), get_the_author_meta('first_name', get_the_author_meta( 'ID' )), get_the_author_meta('last_name', get_the_author_meta( 'ID' )) ); ?> 
+		                </a>
+		            </h2>
+		            <p>
+		                <?php the_author_meta( 'description' ); ?>
+		            </p>
+		
+		            <?php 
+		                $www = get_the_author_meta('user_url', get_the_author_meta( 'ID' ));
+		                if($www != '') : 
+		            ?>
+		            <p class="author-www">
+		                <?php _e('Website: ', GKTPLNAME); ?><a href="<?php echo $www; ?>"><?php echo $www; ?></a>
+		            </p>
+		            <?php endif; ?>
+		            
+		            <?php
+		            	$google_profile = get_the_author_meta( 'google_profile' );
+		            	if ($google_profile != '') :
+		            ?>
+		            <p class="author-google">
+		            	<a href="<?php echo esc_url($google_profile); ?>" rel="me"><?php _e('Google Profile', GKTPLNAME); ?></a>
+		            </p>
+		            <?php endif; ?>
+		        </div>
+		    </section>
+		    <?php 
+		    endif;
+		endif;
 	endif;
 } 
 // EOF

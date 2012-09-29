@@ -85,6 +85,47 @@
 				"default": "Y",
 				"class": "",
 				"visibility": ""
+			},
+			{
+				"name": "excluding_explained",
+				"type": "TextBlock",
+				"label": "Include/Exclude specific pages or categories from showing author block"
+			},
+			{
+				"name": "authorinfo_exclude_include",
+				"type": "Select",
+				"label": "Include/Exclude mode",
+				"tooltip": "Specify if the specified articles will be included or excluded.",
+				"default": "exclude",
+				"visibility": "",
+				"other": {
+					"options": {
+						"none": "Disable on all pages",
+						"include": "Include only specified articles/categories",
+						"exclude": "Exclude specified articles/categories"
+					}
+				}
+			},
+			{
+				"name": "authorinfo_articles",
+				"type": "Text",
+				"label": "Included/Excluded articles",
+				"tooltip": "Specify the list of comma-separated article IDs/titles/slugs (i.e. 2,5,34,200 or post-title1,post-title2)",
+				"default": ""
+			},
+			{
+				"name": "authorinfo_pages",
+				"type": "Text",
+				"label": "Included/Excluded pages",
+				"tooltip": "Specify the list of comma-separated page IDs/titles/slugs (i.e. 2,5,34,200 or page-title1,page-title2)",
+				"default": ""
+			},
+			{
+				"name": "authorinfo_categories",
+				"type": "Text",
+				"label": "Included/Excluded categories",
+				"tooltip": "Specify the list of comma-separated category IDs/titles/slugs (i.e. 2,5,34,200 or category-title1,category-title2)",
+				"default": ""
 			}
 		]
 	}
