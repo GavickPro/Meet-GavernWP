@@ -85,6 +85,13 @@
 				"default": "1024"
 			},
 			{
+				"name": "excerpt_len",
+				"type": "Text",
+				"label": "Excerpt length (in words)",
+				"tooltip": "Specify the value of the excerpt length used in the posts (the length is specified in words).",
+				"default": "55"
+			},
+			{
 				"name": "overridecss_state",
 				"type": "Switcher",
 				"label": "Use the override.css file",

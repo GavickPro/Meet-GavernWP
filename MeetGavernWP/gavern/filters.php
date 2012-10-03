@@ -22,6 +22,12 @@ function gavern_google_profile( $methods ) {
 
 add_filter( 'user_contactmethods', 'gavern_google_profile', 10, 1);
 
+function gavern_excerpt_length($length) {
+    global $tpl;
+    return get_option($tpl->name . '_excerpt_len', 55);
+}
+
+add_filter( 'excerpt_length', 'gavern_excerpt_length', 999 );
 
 /**
  *
