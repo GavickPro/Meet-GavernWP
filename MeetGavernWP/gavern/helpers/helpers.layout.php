@@ -186,17 +186,13 @@ function gk_metatags() {
 		if(is_single()) {
 			global $wp_query;
 			$postID = $wp_query->post->ID;
-			
-			if(get_post_meta($postID, 'gavern-post-desc', true) != '') {
-				if(get_option($tpl->name . '_seo_post_desc') == 'custom') {
-					echo '<meta name="description" content="'.get_post_meta($postID, 'gavern-post-desc',true).'" />';
-				}
+		
+			if(get_option($tpl->name . '_seo_post_desc') == 'custom') {
+				echo '<meta name="description" content="'.get_post_meta($postID, 'gavern-post-desc').'" />';
 			}
 			
-			if(get_post_meta($postID, 'gavern-post-keywords', true) != '') {
-				if(get_option($tpl->name . '_seo_post_keywords') == 'custom') {
-					echo '<meta name="keywords" content="'.get_post_meta($postID, 'gavern-post-keywords',true).'" />';
-				}
+			if(get_option($tpl->name . '_seo_post_keywords') == 'custom') {
+				echo '<meta name="keywords" content="'.get_post_meta($postID, 'gavern-post-keywords').'" />';
 			}
 		}
 	}
@@ -503,6 +499,7 @@ function gk_head_fonts() {
 				}
 				
 				$font_family = "'" . str_replace('+', ' ', preg_replace('@:.+@', '', $fname[1])) . "'";
+				$google = ($tpl->isSSL) ? str_replace('http://', 'https://', $google) : $google;
 				
 				echo '<link href="'.$google.'" rel="stylesheet" type="text/css" />';
 			}

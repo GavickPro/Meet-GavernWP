@@ -125,6 +125,14 @@ class GavernWP {
 	
 	/**
 	 *
+	 * Flag to detect SSL
+	 *
+	 **/
+	 
+	public $isSSL; 
+	
+	/**
+	 *
 	 * Class constructor
 	 *
 	 **/
@@ -157,6 +165,8 @@ class GavernWP {
 		// set the browser object
 		$browser = new GKBrowser();
 		$this->browser = $browser->getResult();
+		// set the isSSL flag
+		$this->isSSL = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ? true : false;
 	}
 
 	/**
