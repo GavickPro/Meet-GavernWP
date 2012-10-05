@@ -154,6 +154,7 @@ img {
 /* buttons */
 .btn,
 button,
+a.gk-button,
 input[type="button"],
 input[type="submit"] {
 	display: inline-block;
@@ -201,13 +202,20 @@ input[type="button"]:active,
 input[type="submit"]:active,
 button.disabled,
 input[type="button"].disabled,
-input[type="submit"].disabled {
+input[type="submit"].disabled,
+a.gk-button:hover,
+a.gk-button:active,
+a.gk-button.active,
+a.gk-button.disabled,
+a.gk-button[disabled] {
   background-color: #e6e6e6;
 }
 
 .btn:active,
 .btn.active,
 button:active,
+a.gk-button:active,
+a.gk-button.active
 input[type="button"]:active,
 input[type="submit"]:active {
   background-color: #cccccc;
@@ -215,6 +223,7 @@ input[type="submit"]:active {
 
 .btn:first-child,
 button:first-child,
+a.gk-button:first-child,
 input[type="button"]:first-child,
 input[type="submit"]:first-child {
   margin-left: 0;
@@ -222,6 +231,7 @@ input[type="submit"]:first-child {
 
 .btn:hover,
 button:hover,
+a.gk-button:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover {
   color: #333333;
@@ -237,6 +247,7 @@ input[type="submit"]:hover {
 
 .btn:focus,
 button:focus,
+a.gk-button:focus,
 input[type="button"]:focus,
 input[type="submit"]:focus {
   outline: thin dotted #333;
@@ -247,6 +258,7 @@ input[type="submit"]:focus {
 .btn.active,
 .btn:active,
 button:active,
+a.gk-button:active,
 input[type="button"]:active,
 input[type="submit"]:active {
   background-color: #e6e6e6;
@@ -261,6 +273,8 @@ input[type="submit"]:active {
 .btn.disabled,
 .btn[disabled],
 button.disabled,
+a.gk-button:disabled,
+a.gk-button[disabled],
 input[type="button"].disabled,
 input[type="submit"].disabled {
   cursor: default;

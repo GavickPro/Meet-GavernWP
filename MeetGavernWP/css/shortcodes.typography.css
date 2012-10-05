@@ -332,7 +332,17 @@ article ul[data-style="style4"] li:before {
 }
 
 /* buttons */
-
+a.gk-button[data-style="style1"],
+a.gk-button[data-style="style1"]:active,
+a.gk-button[data-style="style1"]:focus,
+a.gk-button[data-style="style1"]:hover {
+	color: #333!important;	
+}
+a.gk-button:active,
+a.gk-button:focus,
+a.gk-button:hover {
+	color: #fff!important;
+}
 .gk-button[data-style="style2"],
 .gk-button[data-style="style3"],
 .gk-button[data-style="style4"],

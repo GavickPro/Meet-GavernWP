@@ -370,11 +370,18 @@ if(get_option($tpl->name . '_shortcodes1_state', 'Y') == 'Y') {
 		// Usage:
 		// [button]text[/button]
 		// [button style="2"]text[/button]
+		// with URL
+		// [button style="2" url="http://gavick.com"]text[/button]
 		function gavern_ts_button($atts, $content) {   
 			// get the optional style value
-			extract(shortcode_atts( array('style' => '1'), $atts));
-			// return the url
-		    return '<button class="gk-button" data-style="style' . $style . '">'.$content.'</button>';  
+			extract(shortcode_atts( array('style' => '1', 'url' => ''), $atts));
+			// return the button
+			if($url == '') {
+		    	return '<button class="gk-button" data-style="style' . $style . '">'.$content.'</button>'; 
+		    } else {
+		    	return '<a href="' . $url . '" class="gk-button" data-style="style' . $style . '">'.$content.'</a>'; 
+		    	
+		    }
 		} 
 		// add the shortcode to system
 		add_shortcode('button', 'gavern_ts_button');
