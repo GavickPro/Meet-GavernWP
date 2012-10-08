@@ -69,10 +69,8 @@ if(isset($_POST['message-send'])) {
 	// if the all fields was correct
 	if($validated) {
 		// send an e-mail
-		$email = get_option('tz_email');
-		if (!isset($email) || ($email == '') ){
-			$email = get_option('admin_email');
-		}
+		$email = get_option('admin_email');
+		// e-mail structure
 		$subject = 'From ' . $output['name'];
 		$body = "Name: ".$output['name']." \n\nE-mail: ".$output['email']." \n\nMessage: ".$output['message'];
 		$headers = 'From: '.$output['name'].' <'.$output['email'].'>' . "\r\n" . 'Reply-To: ' . $output['email'];
