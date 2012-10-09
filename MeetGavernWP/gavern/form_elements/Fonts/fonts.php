@@ -45,6 +45,7 @@ class GKFormInputFonts extends GKFormInput {
 			$normal = get_option($this->tpl->name . '_fonts_normal_' . ($font_family->short_name), '');
 			$squirrel = get_option($this->tpl->name . '_fonts_squirrel_' . ($font_family->short_name), '');
 			$google = get_option($this->tpl->name . '_fonts_google_' . ($font_family->short_name), '');
+			$edgefonts = get_option($this->tpl->name . '_fonts_edgefonts_' . ($font_family->short_name), '');
 			// generate the text block with description
 			$output .= '<p class="gkTextBlock">'.($font_family->description).'</p>';
 			// generate the label
@@ -56,6 +57,7 @@ class GKFormInputFonts extends GKFormInput {
 				<option value="normal"'.(($type == 'normal') ? ' selected="selected"' : '').'>'.__('Standard fonts', GKTPLNAME).'</option>
 				<option value="squirrel"'.(($type == 'squirrel') ? ' selected="selected"' : '').'>'.__('Fonts Squirrel', GKTPLNAME).'</option>
 				<option value="google"'.(($type == 'google') ? ' selected="selected"' : '').'>'.__('Google Web Fonts', GKTPLNAME).'</option>
+				<option value="edgefonts"'.(($type == 'edgefonts') ? ' selected="selected"' : '').'>'.__('Adobe Edge Fonts', GKTPLNAME).'</option>
 			</select></p>';
 			// normal fonts selector
 			$output .= '<p><label>'.__('Font family: ', GKTPLNAME).'</label><select id="'.($this->tpl->name).'_fonts_normal_'.($font_family->short_name).'" class="gkInput gkSelect" data-name="fonts_normal_'.($font_family->short_name).'" data-family="'.($font_family->short_name).'" data-type="normal"
@@ -103,6 +105,20 @@ class GKFormInputFonts extends GKFormInput {
 			data-name="fonts_google_'.($font_family->short_name).'" 
 			data-family="'.($font_family->short_name).'" 
 			data-type="google" 
+			'.($this->required).' 
+			'.($this->visibility).'/></p>';
+			// Adobe Edge Fonts selector
+			$output .= '<p>
+			<label for="'.($this->tpl->name).'_fonts_edgefonts_'.($font_family->short_name).'">
+				'.__('Adobe Edge Fonts URL: ', GKTPLNAME).'
+			</label>
+			<input 
+			id="'.($this->tpl->name).'_fonts_edgefonts_'.($font_family->short_name).'" 
+			value="'.$edgefonts.'" 
+			class="gkInput" 
+			data-name="fonts_edgefonts_'.($font_family->short_name).'" 
+			data-family="'.($font_family->short_name).'" 
+			data-type="edgefonts" 
 			'.($this->required).' 
 			'.($this->visibility).'/></p>';
 			// selectors

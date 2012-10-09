@@ -450,6 +450,7 @@ function gk_head_fonts() {
 		$normal = get_option($tpl->name . '_fonts_normal_' . $tpl->fonts[$i]['short_name'], '');
 		$squirrel = get_option($tpl->name . '_fonts_squirrel_' . $tpl->fonts[$i]['short_name'], '');
 		$google = get_option($tpl->name . '_fonts_google_' . $tpl->fonts[$i]['short_name'], '');
+		$edgefonts = get_option($tpl->name . '_fonts_edgefonts_' . $tpl->fonts[$i]['short_name'], '');
 		
 		if(trim($selectors) != '') {
 			$font_family = "";
@@ -491,7 +492,7 @@ function gk_head_fonts() {
 			} else if($type == 'squirrel') {				
 				echo '<link href="' . get_template_directory_uri() . '/fonts/' . $squirrel . '/stylesheet.css' . '" rel="stylesheet" type="text/css" />';
 				$font_family = "'" . $squirrel . "'";
-			} else {
+			} else if($type == 'google'){
 				$fname = array();
 				preg_match('@family=(.+)$@is', $google, $fname);
 				if(!count($fname)) {
@@ -503,9 +504,19 @@ function gk_head_fonts() {
 				}
 				
 				$font_family = "'" . str_replace('+', ' ', preg_replace('@:.+@', '', $fname[1])) . "'";
+				// We are providing the protocol to avoid duplicated downloads on IE7/8
 				$google = ($tpl->isSSL) ? str_replace('http://', 'https://', $google) : $google;
 				
 				echo '<link href="'.$google.'" rel="stylesheet" type="text/css" />';
+			} else {
+				$fname = array();
+				preg_match('@use.edgefonts.net/(.+)(\.js|:(.+)\.js)$@is', $edgefonts, $fname);
+				
+				$font_family = $fname[1];
+				// We are providing the protocol to avoid duplicated downloads on IE7/8
+				$edgefonts = ($tpl->isSSL) ? str_replace('http://', 'https://', $edgefonts) : $edgefonts;
+				
+				echo '<script src="'.$edgefonts.'"></script>';
 			}
 			
 			$output .= str_replace(array('\\', '&quot;', '&apos;', '&gt;'), array('', '"', '\'', '>'), $selectors) . " { font-family: " . $font_family . "; }\n\n";

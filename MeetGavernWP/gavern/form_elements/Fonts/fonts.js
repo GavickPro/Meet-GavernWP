@@ -27,4 +27,5 @@ function gkFontsSelector(family, value) {
 	jQuery('select[data-family='+family+']').filter('select[data-type=normal]').parent().css('display', (value == 'normal') ? 'block' : 'none');
 	jQuery('select[data-family='+family+']').filter('select[data-type=squirrel]').parent().css('display', (value == 'squirrel') ? 'block' : 'none');
 	jQuery('input[data-family='+family+']').filter('input[data-type=google]').parent().css('display', (value == 'google') ? 'block' : 'none');
+	jQuery('input[data-family='+family+']').filter('input[data-type=edgefonts]').parent().css('display', (value == 'edgefonts') ? 'block' : 'none');
 }
