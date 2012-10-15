@@ -502,7 +502,9 @@ aside.meta time span {
 ==================================== */
 
 article header h1 sup,
-article.sticky header h1 sup {
+article.sticky header h1 sup,
+article header h2 sup,
+article.sticky header h2 sup {
 	background: #f41;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
