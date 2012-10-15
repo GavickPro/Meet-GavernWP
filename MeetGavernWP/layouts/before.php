@@ -58,6 +58,6 @@
 				<!-- Mainbody, breadcrumbs -->
 				<?php if(gk_show_breadcrumbs()) : ?>
 				<section id="gk-breadcrumb-fontsize">
-					<?php if(gk_show_breadcrumbs()) gk_breadcrumbs_output(); ?>
+					<?php gk_breadcrumbs_output(); ?>
 				</section>
 				<?php endif; ?>
