@@ -45,7 +45,7 @@ jQuery(document).ready(function() {
 			// main menu element handler
 			var base = jQuery('#main-menu');
 			// if the main menu exists
-			if(base) {
+			if(base.length > 0) {
 				// get the menu name...
 				var menuName = base.attr('id').replace('-', '');
 				// ... used to get the menu params
