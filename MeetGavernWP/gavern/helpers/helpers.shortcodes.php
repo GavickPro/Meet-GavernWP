@@ -476,6 +476,21 @@ if(get_option($tpl->name . '_shortcodes1_state', 'Y') == 'Y') {
 		}
 		add_shortcode( 'pageurl', 'gavern_ts_pageurl' );
 	}
+	
+	/**
+	 *
+	 * [themeurl]
+	 *
+	 **/
+	if(!function_exists('gavern_ts_themeurl')) {
+		// Usage:
+		// [themeurl]
+		function gavern_ts_themeurl( $atts ){
+			// return the theme directory url
+			return get_template_directory_uri();
+		}
+		add_shortcode( 'themeurl', 'gavern_ts_themeurl' );
+	}
 }
  
 /**
