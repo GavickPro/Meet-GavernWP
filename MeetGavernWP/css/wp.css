@@ -345,7 +345,7 @@
 	border-top: 1px solid #e5e5e5;
 }
 
-#respond p.comment-notes
+#respond p.comment-notes,
 #respond p.logged-in-as,
 #respond p.form-allowed-tags {
 	font-size: 11px;
