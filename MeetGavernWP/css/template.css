@@ -385,7 +385,7 @@ article {
 }
 
 #gk-mainbody-columns {
-	display: table;
+	display: block;
 	overflow: hidden;
 	width: 100%;
 }
@@ -396,7 +396,8 @@ article {
 	-ms-box-sizing: border-box;
 	-o-box-sizing: border-box;
 	box-sizing: border-box;
-	display: table-cell;
+	display: block;
+	float: left;
 	padding: 0;
 	vertical-align: top;
 }
@@ -408,7 +409,8 @@ article {
 	-ms-box-sizing: border-box;
 	-o-box-sizing: border-box;
 	box-sizing: border-box;
-	display: table-cell;
+	display: block;
+	float: left;
 	padding: 0;
 	vertical-align: top;
 }
