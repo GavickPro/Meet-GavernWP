@@ -42,7 +42,8 @@ gk_load('before');
 				<?php 
 					wp_list_categories(array(
 						'orderby' => 'name',
-						'show_count' => 1
+						'show_count' => 1,
+						'title_li' => ''
 					)); 
 				?>
 			</ul>
