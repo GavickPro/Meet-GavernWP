@@ -88,7 +88,7 @@
 }
 
 .gk-toggle.closed > div {
-	margin-top: -100%;
+	margin-top: -200%;
 	opacity: 0;
 }
 
@@ -125,8 +125,6 @@
 .gk-toggle > div {
 	overflow: hidden;
 	padding-top: 10px;
-	position: relative;
-	top: -50%;
 	-webkit-transition: margin-top .3s ease-out, opacity .5s ease-out;
 	-moz-transition: margin-top .3s ease-out, opacity .5s ease-out;
 	-ms-transition: margin-top .3s ease-out, opacity .5s ease-out;
