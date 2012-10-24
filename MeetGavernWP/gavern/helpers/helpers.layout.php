@@ -97,8 +97,8 @@ function gk_title() {
 function gk_blog_name() {
 	// access to the template object
 	global $tpl;
-	// if user enabled our SEO override
-	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y') {
+	// if user enabled our SEO override and filled in his info
+	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y' && get_option($tpl->name . '_seo_blogname')) {
 		// blog name from template SEO options
 		return get_option($tpl->name . '_seo_blogname');
 	} else { // in other case
@@ -117,8 +117,8 @@ function gk_blog_name() {
 function gk_blog_desc() {
 	// access to the template object
 	global $tpl;
-	// if user enabled our SEO override
-	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y') {
+	// if user enabled our SEO override and filled in his info
+	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y' && get_option($tpl->name . '_seo_description')) {
 		// description from template SEO options
 		return get_option($tpl->name . '_seo_description');
 	} else { // in other case
