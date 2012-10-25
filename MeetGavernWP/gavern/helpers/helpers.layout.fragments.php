@@ -432,6 +432,9 @@ function gk_author($author_page = false) {
 		            <?php
 		            	$google_profile = get_the_author_meta( 'google_profile' );
 		            	if ($google_profile != '') :
+		            		if(stripos($google_profile, '?') === FALSE && stripos($google_profile, 'rel=author') === FALSE) {
+		            			$google_profile .= '?rel=author'; 
+		            		}
 		            ?>
 		            <p class="author-google">
 		            	<a href="<?php echo esc_url($google_profile); ?>" rel="me"><?php _e('Google Profile', GKTPLNAME); ?></a>
