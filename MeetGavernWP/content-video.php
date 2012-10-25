@@ -14,9 +14,9 @@ global $tpl;
 			<?php include('layouts/content.post.header.php'); ?>
 		</header>
 	
-		<?php include('layouts/content.post.featured.php'); ?>
-	
 		<?php if ( is_search() || is_archive() || is_tag() ) : ?>
+		<?php include('layouts/content.post.featured.php'); ?>
+		
 		<section class="summary">
 			<?php the_excerpt(); ?>
 		</section>
