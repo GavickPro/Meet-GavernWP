@@ -93,25 +93,7 @@
 			</a>
 			
 			<div id="gk-mainmenu-collapse" class="menu-hidden" data-btn="gk-mainmenu-toggle">	
-				<?php
-					wp_nav_menu(array(
-				  		  'theme_location'  => 'mainmenu',
-						  'container'       => false, 
-						  'container_class' => 'menu-{menu slug}-container', 
-						  'container_id'    => 'gk-main-menu',
-						  'menu_class'      => 'menu ' . $tpl->menu['mainmenu']['style'], 
-						  'menu_id'         => 'main-menu',
-						  'echo'            => true,
-						  'fallback_cb'     => 'wp_page_menu',
-						  'before'          => '',
-						  'after'           => '',
-						  'link_before'     => '',
-						  'link_after'      => '',
-						  'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-						  'depth'           => $tpl->menu['mainmenu']['depth'],
-						  'walker'			=> new GKMenuWalker()
-					));
-				?>
+				<?php gavern_menu('mainmenu', 'gk-main-menu', array('walker' => new GKMenuWalker())); ?>
 			</div>
 			<?php endif; ?>
 		</header>

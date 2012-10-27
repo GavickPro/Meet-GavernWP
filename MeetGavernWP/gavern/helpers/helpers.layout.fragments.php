@@ -13,6 +13,46 @@ defined('GAVERN_WP') or die('Access denied');
  
 /**
  *
+ * Template for menus
+ *
+ * @param menuname - name of the menu
+ * @param fullname - full name of the menu - ID
+ * @param params - array of the other params (optional)
+ *
+ * @return HTML output
+ *
+ **/ 
+ 
+function gavern_menu($menuname, $fullname, $params = null) {			
+	global $tpl;
+	
+	if(gk_show_menu($menuname)) {
+		if($params !== null) {
+			extract($params);
+		}
+	
+		wp_nav_menu(array(
+		      'theme_location'  => $menuname,
+			  'container'       => isset($container) ? $container : false, 
+			  'container_class' => 'menu-{menu slug}-container', 
+			  'container_id'    => $fullname,
+			  'menu_class'      => 'menu ' . $tpl->menu[$menuname]['style'], 
+			  'menu_id'         => str_replace('menu', '-menu', $menuname),
+			  'echo'            => isset($echo) ? $echo : true,
+			  'fallback_cb'     => isset($fallback_cb) ? $fallback_cb: 'wp_page_menu',
+			  'before'          => isset($before) ? $before : '',
+			  'after'           => isset($after) ? $after : '',
+			  'link_before'     => isset($link_before) ? $link_before : '',
+			  'link_after'      => isset($link_after) ? $link_after : '',
+			  'items_wrap'      => isset($items_wrap) ? $items_wrap : '<ul id="%1$s" class="%2$s">%3$s</ul>',
+			  'depth'           => $tpl->menu[$menuname]['depth'],
+			  'walker'			=> isset($walker) ? $walker : ''
+		));
+	}
+}
+ 
+/**
+ *
  * Template for comments and pingbacks.
  *
  * @param comment - the comment to render

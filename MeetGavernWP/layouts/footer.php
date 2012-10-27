@@ -14,28 +14,8 @@
 	
 ?>
 
-	<footer id="gk-footer" class="gk-page">
-		<?php 			
-			if(gk_show_menu('footermenu')) {
-				wp_nav_menu(array(
-				      'theme_location'  => 'footermenu',
-					  'container'       => false, 
-					  'container_class' => 'menu-{menu slug}-container', 
-					  'container_id'    => 'gkFooterMenu',
-					  'menu_class'      => 'menu ' . $tpl->menu['footermenu']['style'], 
-					  'menu_id'         => 'footer-menu',
-					  'echo'            => true,
-					  'fallback_cb'     => 'wp_page_menu',
-					  'before'          => '',
-					  'after'           => '',
-					  'link_before'     => '',
-					  'link_after'      => '',
-					  'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-					  'depth'           => $tpl->menu['footermenu']['depth']
-				));
-			}
-		?>
-		
+	<footer id="gk-footer" class="gk-page">			
+		<?php gavern_menu('footermenu', 'gk-footer-menu'); ?>
 		
 		<div class="gk-copyrights">
 			<?php echo str_replace('\\', '', htmlspecialchars_decode(get_option($tpl->name . '_template_footer_content', ''))); ?>
