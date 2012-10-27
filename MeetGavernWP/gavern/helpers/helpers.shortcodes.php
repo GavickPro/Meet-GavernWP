@@ -141,7 +141,7 @@ if(get_option($tpl->name . '_shortcodes1_state', 'Y') == 'Y') {
 			// get the optional style value
 			extract(shortcode_atts( array('style' => '1'), $atts));
 			// return the element
-		    return '<pre class="gk-code" data-style="style' . $style . '"><code>'.str_replace(array('<p>','</p>'), '', $content).'</code></pre>';  
+		    return '<pre class="gk-code" data-style="style' . $style . '"><code>'.str_replace(array('<p>','</p>', '<br>', '<br/>', '<br />'), '', $content).'</code></pre>';   
 		} 
 		// add the shortcode to system
 		add_shortcode('code', 'gavern_ts_code');
