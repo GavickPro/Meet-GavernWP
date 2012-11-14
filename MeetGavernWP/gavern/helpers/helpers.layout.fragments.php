@@ -304,8 +304,13 @@ function gk_content_nav($id = '') {
 
 	if($wp_query->max_num_pages > 1) : ?>
 		<nav class="pagenav"<?php if($id != '') : ?> id="<?php echo $id; ?>"<?php endif; ?>>
-			<div class="nav-prev"><?php next_posts_link( __( '&larr; Older posts', GKTPLNAME ) ); ?></div>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts &rarr;', GKTPLNAME ) ); ?></div>
+			<?php if(get_next_posts_link() != '') : ?>
+			<div class="nav-prev nav-btn"><?php next_posts_link( __( '&larr; Older posts', GKTPLNAME ) ); ?></div>
+			<?php endif; ?>
+			
+			<?php if(get_previous_posts_link() != '') : ?>
+			<div class="nav-next nav-btn"><?php previous_posts_link( __( 'Newer posts &rarr;', GKTPLNAME ) ); ?></div>
+			<?php endif; ?>
 		</nav><!-- #nav-above -->
 	<?php endif;
 }
