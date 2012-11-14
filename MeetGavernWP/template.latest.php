@@ -20,9 +20,9 @@ query_posts('posts_per_page=' . get_option('posts_per_page'));
 			<?php get_template_part( 'content', get_post_format() ); ?>
 		<?php endwhile; ?>
 		
-		<?php wp_reset_query(); ?>
-		
 		<?php gk_content_nav(); ?>
+		
+		<?php wp_reset_query(); ?>
 	</section>
 <?php else : ?>
 	<section id="gk-mainbody">
