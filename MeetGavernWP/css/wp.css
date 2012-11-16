@@ -498,6 +498,10 @@ aside.meta time span {
 	margin-right: 5px!important;
 }
 
+#gk-social-api > a {
+	min-height: auto;
+}
+
 /* 5.4. Post additional features
 ==================================== */
 
