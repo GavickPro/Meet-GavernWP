@@ -14,9 +14,19 @@ if ((is_page_template('template.fullwidth.php') && ('post' == get_post_type() ||
 	$show_title = false;
 }
 
+$classname = '';
+
+if(!$show_title) {
+	$classname = 'no-title';
+}
+
+if(is_page() && get_option($tpl->name . '_template_show_details_on_pages', 'Y') == 'N') {
+	$classname .= ' page-fullwidth';
+}
+
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class($show_title ? '' : 'no-title'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class($classname); ?>>
 	<?php if($show_title) : ?>
 	<header>
 		<?php include('layouts/content.post.header.php'); ?>
