@@ -214,7 +214,10 @@ function gavern_widget_control() {
 		$responsiveMode = !empty($responsive[$id]) ? htmlspecialchars(stripslashes($responsive[$id]),ENT_QUOTES) : '';	
 		$usersMode = !empty($users[$id]) ? htmlspecialchars(stripslashes($users[$id]),ENT_QUOTES) : '';	
 		// 
-		echo '<p>
+		echo '
+		<a class="gk_widget_rules_btn button">Widget rules</a>
+		<div class="gk_widget_rules_wrapper'.((isset($_COOKIE['gk_last_opened_widget_rules_wrap']) && $_COOKIE['gk_last_opened_widget_rules_wrap'] == 'gk_widget_rules_form_'.$id) ? ' active' : '').'" data-id="gk_widget_rules_form_'.$id.'">
+		<p>
 				<label for="' . $tpl->name . '_widget_rules_'.$id.'">'.__('Visible at: ', GKTPLNAME).'</label>
 				<select name="' . $tpl->name . '_widget_rules_type_'.$id.'" id="' . $tpl->name . '_widget_rules_type_'.$id.'" class="gk_widget_rules_select">
 					<option value="all"'.(($value_type != "include" && $value_type != 'exclude') ? " selected=\"selected\"":"").'>'.__('All pages', GKTPLNAME).'</option>
@@ -417,7 +420,7 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 		echo $item;
 	}
 	//
-	echo '</select></label></p>';
+	echo '</select></label></p></div><hr />';
 }
  
 // Add the Meta Box

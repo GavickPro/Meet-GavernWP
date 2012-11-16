@@ -5,8 +5,70 @@
  * -------------------------------------------
  *
  **/
- 
- 
+
+/**
+ * jQuery Cookie plugin
+ *
+ * Copyright (c) 2010 Klaus Hartl (stilbuero.de)
+ * Dual licensed under the MIT and GPL licenses:
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.gnu.org/licenses/gpl.html
+ *
+ */
+jQuery.cookie = function (key, value, options) {
+
+    // key and at least value given, set cookie...
+    if (arguments.length > 1 && String(value) !== "[object Object]") {
+        options = jQuery.extend({}, options);
+
+        if (value === null || value === undefined) {
+            options.expires = -1;
+        }
+
+        if (typeof options.expires === 'number') {
+            var days = options.expires, t = options.expires = new Date();
+            t.setDate(t.getDate() + days);
+        }
+
+        value = String(value);
+
+        return (document.cookie = [
+            encodeURIComponent(key), '=',
+            options.raw ? value : encodeURIComponent(value),
+            options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+            options.path ? '; path=' + options.path : '',
+            options.domain ? '; domain=' + options.domain : '',
+            options.secure ? '; secure' : ''
+        ].join(''));
+    }
+
+    // key and possibly options given, get cookie...
+    options = value || {};
+    var result, decode = options.raw ? function (s) { return s; } : decodeURIComponent;
+    return (result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie)) ? decode(result[1]) : null;
+};
+
+// remove active state from any widget rules wrapper on the start to avoid
+// the situation when some wrapper is opened earlier due saved data in the cookie file.
+jQuery(window).on('beforeunload', function() {
+	jQuery.cookie('gk_last_opened_widget_rules_wrap', 0, { expires: 365, path: '/' });
+});
+
+// added event to open the widget rules wrapper (uses id from the back-end wihout the random ID at end).
+jQuery(document).click(function(e) {
+	if(jQuery(e.target).hasClass('gk_widget_rules_btn')) {
+		var wrap = jQuery(e.target).next('.gk_widget_rules_wrapper');
+		
+		if(wrap.hasClass('active')) {
+			wrap.removeClass('active');
+			jQuery.cookie('gk_last_opened_widget_rules_wrap', 0, { expires: 365, path: '/' });
+		} else {
+			wrap.addClass('active');
+			jQuery.cookie('gk_last_opened_widget_rules_wrap', wrap.attr('data-id'), { expires: 365, path: '/' });
+		}
+	}
+});
+
 function gk_widget_control_init(id, inner) {
 	// check if the widget isn't a new widget
 	var allForms = jQuery('.gk_widget_rules_form');

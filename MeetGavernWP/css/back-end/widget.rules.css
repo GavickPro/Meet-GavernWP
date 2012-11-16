@@ -4,6 +4,28 @@
  *
  **/
 
+.gk_widget_rules_btn {
+	float: left;
+	margin: 10px 0;
+}
+
+.gk_widget_rules_btn ~ hr {
+	background: #ddd;
+	border: none;
+	clear: both;
+	display: block;
+	height: 1px;
+}
+
+.gk_widget_rules_wrapper {
+	clear: both;
+	display: none;
+}
+
+.gk_widget_rules_wrapper.active {
+	display: block;
+}
+
 .gk_widget_rules_select {
 	width: 150px;	
 }
@@ -14,10 +36,6 @@
 
 .gk_widget_rules_form_select + p {
 	margin: 10px 0!important;
-}
-
-.gk_widget_rules_btn {
-	float: right;
 }
 
 .gk_widget_rules_form input {
