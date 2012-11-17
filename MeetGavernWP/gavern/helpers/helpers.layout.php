@@ -97,8 +97,8 @@ function gk_title() {
 function gk_blog_name() {
 	// access to the template object
 	global $tpl;
-	// if user enabled our SEO override and filled in his info
-	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y' && get_option($tpl->name . '_seo_blogname')) {
+	// if user enabled our SEO override
+	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y') {
 		// blog name from template SEO options
 		return get_option($tpl->name . '_seo_blogname');
 	} else { // in other case
@@ -117,8 +117,8 @@ function gk_blog_name() {
 function gk_blog_desc() {
 	// access to the template object
 	global $tpl;
-	// if user enabled our SEO override and filled in his info
-	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y' && get_option($tpl->name . '_seo_description')) {
+	// if user enabled our SEO override
+	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y') {
 		// description from template SEO options
 		return get_option($tpl->name . '_seo_description');
 	} else { // in other case
@@ -705,6 +705,7 @@ function gk_dynamic_sidebar($index) {
 	$options_type = get_option($tpl->name . '_widget_rules_type');
 	$options = get_option($tpl->name . '_widget_rules');
 	$styles = get_option($tpl->name . '_widget_style');
+	$styles_css = get_option($tpl->name . '_widget_style_css');
 	$responsive = get_option($tpl->name . '_widget_responsive');
 	// find sidebar with specific name
 	foreach ( (array) $wp_registered_sidebars as $key => $value ) {
@@ -784,7 +785,15 @@ function gk_dynamic_sidebar($index) {
 			$classname_ = ltrim($classname_, '_');
 			// define the code before widget
 			if( (isset($styles[$id]) && $styles[$id] != '') || (isset($responsive[$id]) && $responsive[$id] != '' && $responsive[$id] != 'all')) {
-				$params[0]['before_widget'] = sprintf($params[0]['before_widget'], $id, ' ' . $styles[$id] . ' ' . $responsive[$id] . ' ' . $classname_);
+				$css_class = '';
+				
+				if($styles[$id] == 'gkcustom') {
+					$css_class = $styles_css[$id];
+				} else {
+					$css_class = $styles[$id];
+				}
+			
+				$params[0]['before_widget'] = sprintf($params[0]['before_widget'], $id, ' ' . $css_class . ' ' . $responsive[$id] . ' ' . $classname_);
 			} else {
 				$params[0]['before_widget'] = sprintf($params[0]['before_widget'], $id, ' ' . $classname_);
 			}

@@ -123,6 +123,7 @@ function gavern_widget_update($instance, $new_instance, $old_instance, $widget) 
 		$options_type = get_option($tpl->name . '_widget_rules_type');
 		$options = get_option($tpl->name . '_widget_rules');
 		$styles = get_option($tpl->name . '_widget_style');
+		$styles_css = get_option($tpl->name . '_widget_style_css');
 		$responsive = get_option($tpl->name . '_widget_responsive');
 		$users = get_option($tpl->name . '_widget_users');
 		// if this option is set at first time
@@ -149,12 +150,14 @@ function gavern_widget_update($instance, $new_instance, $old_instance, $widget) 
 		$options_type[$widget->id] = $_POST[$tpl->name . '_widget_rules_type_' . $widget->id];
 		$options[$widget->id] = $_POST[$tpl->name . '_widget_rules_' . $widget->id];
 		$styles[$widget->id] = $_POST[$tpl->name . '_widget_style_' . $widget->id];
+		$styles_css[$widget->id] = $_POST[$tpl->name . '_widget_style_css_' . $widget->id];
 		$responsive[$widget->id] = $_POST[$tpl->name . '_widget_responsive_' . $widget->id];
 		$users[$widget->id] = $_POST[$tpl->name . '_widget_users_' . $widget->id];
 		// update the settings
 		update_option($tpl->name . '_widget_rules_type', $options_type);
 		update_option($tpl->name . '_widget_rules', $options);
 		update_option($tpl->name . '_widget_style', $styles);
+		update_option($tpl->name . '_widget_style_css', $styles_css);
 		update_option($tpl->name . '_widget_responsive', $responsive);
 		update_option($tpl->name . '_widget_users', $users);
 	}	
@@ -179,6 +182,7 @@ function gavern_widget_control() {
 		$options_type = get_option($tpl->name . '_widget_rules_type');
 		$options = get_option($tpl->name . '_widget_rules');
 		$styles = get_option($tpl->name . '_widget_style');
+		$styles_css = get_option($tpl->name . '_widget_style_css');
 		$responsive = get_option($tpl->name . '_widget_responsive');
 		$users = get_option($tpl->name . '_widget_users');
 		// if this option is set at first time
@@ -210,7 +214,8 @@ function gavern_widget_control() {
 		// value of the option
 		$value_type = !empty($options_type[$id]) ? htmlspecialchars(stripslashes($options_type[$id]),ENT_QUOTES) : '';
 		$value = !empty($options[$id]) ? htmlspecialchars(stripslashes($options[$id]),ENT_QUOTES) : '';	
-		$style = !empty($styles[$id]) ? htmlspecialchars(stripslashes($styles[$id]),ENT_QUOTES) : '';	
+		$style = !empty($styles[$id]) ? htmlspecialchars(stripslashes($styles[$id]),ENT_QUOTES) : '';
+		$style_css = !empty($styles_css[$id]) ? htmlspecialchars(stripslashes($styles_css[$id]),ENT_QUOTES) : '';	
 		$responsiveMode = !empty($responsive[$id]) ? htmlspecialchars(stripslashes($responsive[$id]),ENT_QUOTES) : '';	
 		$usersMode = !empty($users[$id]) ? htmlspecialchars(stripslashes($users[$id]),ENT_QUOTES) : '';	
 		// 
@@ -225,7 +230,7 @@ function gavern_widget_control() {
 					<option value="include"'.(($value_type == "include") ? " selected=\"selected\"":"").'>'.__('No pages expecting:', GKTPLNAME).'</option>
 				</select>
 			</p>
-			<fieldset class="gk_widget_rules_form" id="gk_widget_rules_form_'.$unique_id.'">
+			<fieldset class="gk_widget_rules_form" id="gk_widget_rules_form_'.$unique_id.'" data-id="gk_widget_rules_form_'.$id.'">
 				<legend>'.__('Select page to add', GKTPLNAME).'</legend>
 				 <select class="gk_widget_rules_form_select">
 				 	<option value="homepage">'.__('Homepage', GKTPLNAME).'</option>
@@ -253,7 +258,7 @@ function gavern_widget_control() {
 			</fieldset>
 			<script type="text/javascript">gk_widget_control_init(\'#gk_widget_rules_form_'.$unique_id.'\');</script>';
 		// create the list of suffixes
-		gavern_widget_control_styles_list($params[0]['widget_id'], $id, $style, $responsiveMode, $usersMode);
+		gavern_widget_control_styles_list($params[0]['widget_id'], $id, $style, $responsiveMode, $usersMode, $style_css);
 	} else {
 		// get the widget parameters
 		$params = func_get_args();
@@ -278,9 +283,10 @@ function gavern_widget_control() {
 		}
 		//
 		$style = !empty($styles[$id]) ? htmlspecialchars(stripslashes($styles[$id]),ENT_QUOTES) : '';
+		$style_css = !empty($styles[$id]) ? htmlspecialchars(stripslashes($styles_css[$id]),ENT_QUOTES) : '';
 		$responsiveMode = !empty($responsive[$id]) ? htmlspecialchars(stripslashes($responsive[$id]),ENT_QUOTES) : '';	
 		// create the list of suffixes
-		gavern_widget_control_styles_list($params[0]['widget_id'], $id, $style, $responsiveMode, null);
+		gavern_widget_control_styles_list($params[0]['widget_id'], $id, $style, $responsiveMode, null, $style_css);
 	}
 }
 
@@ -294,6 +300,7 @@ function gavern_add_widget_control() {
 	$options_type = get_option($tpl->name . '_widget_rules_type');
 	$options = get_option($tpl->name . '_widget_rules');
 	$styles = get_option($tpl->name . '_widget_style');
+	$styles_css = get_option($tpl->name . '_widget_style_css');
 	$responsive = get_option($tpl->name . '_widget_responsive');
 	$users = get_option($tpl->name . '_widget_users');
 	// if this option is set at first time
@@ -303,6 +310,10 @@ function gavern_add_widget_control() {
 	// if this styles is set at first time
 	if( !is_array($styles) ) {
 		$styles = array();
+	}
+	// if this style CSS is set at first time
+	if( !is_array($styles_css) ) {
+		$styles_css = array();
 	}
 	// if this responsive is set at first time
 	if( !is_array($responsive) ) {
@@ -327,6 +338,10 @@ function gavern_add_widget_control() {
 			if (isset($_POST[$tpl->name . '_widget_style_' . $widget_id])) {
 				$styles[$widget_id] = $_POST[$tpl->name . '_widget_style_' . $widget_id];
 			}
+			// save widget style CSS
+			if (isset($_POST[$tpl->name . '_widget_style_css_' . $widget_id])) {
+				$styles_css[$widget_id] = $_POST[$tpl->name . '_widget_style_css_' . $widget_id];
+			}
 			// save widget responsive
 			if (isset($_POST[$tpl->name . '_widget_responsive_' . $widget_id])) {
 				$responsive[$widget_id] = $_POST[$tpl->name . '_widget_responsive_' . $widget_id];
@@ -347,7 +362,7 @@ function gavern_add_widget_control() {
 	}
 }
 
-function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, $value3) {
+function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, $value3, $value4 = '') {
 	// getting access to the template global object. 
 	global $tpl;
 	// clear the widget name - get the name without number at end
@@ -386,10 +401,14 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 	if(count($items) == 1) {
 		$items = array('<option value="" selected="selected">'.__('No styles available', GKTPLNAME).'</option>');
 	}
+	// add the last option
+	array_push($items, '<option value="gkcustom"'.(($value1 == 'gkcustom') ? ' selected="selected"' : '').'>'.__('Custom CSS class', GKTPLNAME).'</option>');
 	// output the control
-	echo '<p><label for="' . $tpl->name . '_widget_style_'.$id.'">'.__('Widget style: ', GKTPLNAME).'<select name="' . $tpl->name . '_widget_style_'.$id.'"  id="' . $tpl->name . '_widget_style_'.$id.'">';
+	echo '<p><label for="' . $tpl->name . '_widget_style_'.$id.'">'.__('Widget style: ', GKTPLNAME).'<select name="' . $tpl->name . '_widget_style_'.$id.'"  id="' . $tpl->name . '_widget_style_'.$id.'" class="gk_widget_rules_select_styles">';
 	foreach($items as $item) echo $item;
 	echo '</select></label></p>';
+	//
+	echo '<p'.(($value1 != 'gkcustom') ? ' class="gk-unvisible"' : '').'><label for="' . $tpl->name . '_widget_style_css_'.$id.'">'.__('Custom CSS class: ', GKTPLNAME).'<input type="text" name="' . $tpl->name . '_widget_style_css_'.$id.'"  id="' . $tpl->name . '_widget_style_class_'.$id.'" value="'.$value4.'" />';
 	// output the responsive select
 	$items = array(
 		'<option value="all"'.((!$value2 || $value2 == 'all') ? ' selected="selected"' : '').'>'.__('All devices', GKTPLNAME).'</option>',

@@ -4,6 +4,10 @@
  *
  **/
 
+.gk-unvisible {
+	display: none;
+}
+
 .gk_widget_rules_btn {
 	float: left;
 	margin: 10px 0;

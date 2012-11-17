@@ -225,6 +225,30 @@ function gk_widget_control_init_events(id, inner) {
 				gk_widget_control_refresh(form);	
 			}
 		});
+		// event to display the custom CSS class field 
+		var selectStyles = jQuery(document).find('.gk_widget_rules_select_styles');
+		selectStyles.each(function(i, select) {
+			select = jQuery(select);
+			
+			if(!select.hasClass('initialized')) {
+				select.change(function() {
+					var value = select.children('option:selected').val();
+					var field = select.parent().parent().next('p');
+					
+					if(value != 'gkcustom') {
+						if(!field.hasClass('gk-unvisible')) {
+							field.addClass('gk-unvisible');
+						}
+					} else {
+						if(field.hasClass('gk-unvisible')) {
+							field.removeClass('gk-unvisible');
+						}
+					} 
+				});
+				
+				select.addClass('initialized');
+			}
+		});
 	}
 }
 
