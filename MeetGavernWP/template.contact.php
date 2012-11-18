@@ -46,7 +46,7 @@ if(isset($_POST['message-send'])) {
 		$validated = false;
 		$errors['message'] = __('please enter a text of the message.', GKTPLNAME);
 	} else {
-		$output['message'] = stripslashes(trim($_POST['comment-text']));
+		$output['message'] = stripslashes(trim(htmlspecialchars($_POST['comment-text'])));
 	}
 	// reCAPTCHA validation
 	if(
@@ -72,8 +72,8 @@ if(isset($_POST['message-send'])) {
 		$email = get_option('admin_email');
 		// e-mail structure
 		$subject = 'From ' . $output['name'];
-		$body = "Name: ".$output['name']." \n\nE-mail: ".$output['email']." \n\nMessage: ".$output['message'];
-		$headers = 'From: '.$output['name'].' <'.$output['email'].'>' . "\r\n" . 'Reply-To: ' . $output['email'];
+		$body = "<html><body><h1 style=\"font-size: 24px; border-bottom: 4px solid #EEE; margin: 10px 0; padding: 10px 0; font-weight: normal; font-style: italic;\">".__('Message from', GKTPLNAME)." <strong>".get_bloginfo('name')."</strong></h1><div><h2 style=\"font-size: 16px; font-weight: normal; border-bottom: 1px solid #EEE; padding: 5px 0; margin: 10px 0;\">".__('Name:', GKTPLNAME)."</h2><p>".$output['name']."</p></div><div><h2 style=\"font-size: 16px; font-weight: normal; border-bottom: 1px solid #EEE; padding: 5px 0; margin: 10px 0;\">".__('E-mail:', GKTPLNAME)."</h2><p>".$output['email']."</p></div><div><h2 style=\"font-size: 16px; font-weight: normal; border-bottom: 1px solid #EEE; padding: 5px 0; margin: 10px 0;\">".__('Message:', GKTPLNAME)."</h2> ".$output['message']."</div></body></html>";
+		$headers = 'From: '.$output['name'].' <'.$output['email'].'>' . "\r\n" . 'Reply-To: ' . $output['email'] . "\r\n" . 'Content-type: text/html' . "\r\n";
 
 		mail($email, $subject, $body, $headers);
 		
@@ -103,6 +103,7 @@ gk_load('before');
 	
 		<?php if($messageSent == true) : ?>
 		<p class="gk-thanks"><?php _e('Your message was sent to us successfully.', GKTPLNAME); ?></p>
+		<p><a href="<?php echo home_url(); ?>"><?php _e('Back to the homepage', GKTPLNAME); ?></a></p>
 		<?php else : ?>
 		
 			<?php if(!$validated) : ?>
