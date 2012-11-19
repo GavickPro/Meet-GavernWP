@@ -10,17 +10,11 @@
 	global $tpl;
 
 ?>
-<!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<?php do_action('gavernwp_doctype'); ?>
+<html <?php do_action('gavernwp_html_attributes'); ?>>
 <head>
-	<title><?php gk_title(); ?></title>
-	<meta charset="<?php bloginfo( 'charset' ); ?>" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-	<?php if(get_option($tpl->name . '_chromeframe_state', 'Y') == 'Y') : ?>
-	<meta http-equiv="X-UA-Compatible" content="chrome=1"/>
-	<?php endif; ?>
-	<?php gk_metatags(); ?>
-	<?php gk_opengraph_metatags(); ?>
+	<title><?php do_action('gavernwp_title'); ?></title>
+	<?php do_action('gavernwp_metatags'); ?>
 	
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="shortcut icon" href="<?php get_stylesheet_directory_uri(); ?>/favicon.ico" />
@@ -31,21 +25,17 @@
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/stuff.css" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/wp.extensions.css" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/extensions.css" />
-	
 	<!--[if lt IE 9]>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ie8.css" />
 	<![endif]-->
 	
-	<?php gk_head_fonts(); ?>
+	<?php do_action('gavernwp_fonts'); ?>
 	<?php gk_head_config(); ?>
 	<?php wp_enqueue_script("jquery"); ?>
 	
 	<?php if(is_singular() && get_option('thread_comments' )) wp_enqueue_script( 'comment-reply' ); ?>
 	
-	<!--[if lt IE 9]>
-	<script src="<?php echo get_template_directory_uri(); ?>/js/html5shiv.js"></script>
-	<script src="<?php echo get_template_directory_uri(); ?>/js/respond.js"></script>
-	<![endif]-->
+	<?php do_action('gavernwp_ie_scripts'); ?>
 	
 	<?php wp_head(); ?>
 	<?php gk_head_shortcodes(); ?>
@@ -78,7 +68,7 @@
 		); 
 	?>
 </head>
-<body <?php body_class(); ?><?php if($tpl->browser->get("tablet") == true) echo ' data-tablet="true"'; ?> data-tablet-width="<?php echo get_option($tpl->name . '_tablet_width', 800); ?>">
+<body <?php do_action('gavernwp_body_attributes'); ?>>
 	<section class="gk-page">
 		<header id="gk-head">
 			<?php if(get_option($tpl->name . "_branding_logo_type", 'css') != 'none') : ?>
