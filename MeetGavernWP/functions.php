@@ -37,7 +37,8 @@ require_once($framework_path . 'functions.php');
 // Including file with template filters
 require_once($framework_path . 'filters.php');
 // Including file with template widgets
-require_once($framework_path . 'widgets.php');
+require_once($framework_path . 'widgets.comments.php');
+require_once($framework_path . 'widgets.social.php');
 // Including file with template admin features
 require_once($framework_path . 'helpers/helpers.features.php');
 // Including file with template shortcodes
