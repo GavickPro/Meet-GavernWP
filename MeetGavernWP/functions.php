@@ -38,6 +38,7 @@ require_once($framework_path . 'functions.php');
 require_once($framework_path . 'filters.php');
 // Including file with template widgets
 require_once($framework_path . 'widgets.comments.php');
+require_once($framework_path . 'widgets.nsp.php');
 require_once($framework_path . 'widgets.social.php');
 // Including file with template admin features
 require_once($framework_path . 'helpers/helpers.features.php');
@@ -108,6 +109,9 @@ function gavern_enqueue_admin_js_and_css() {
 	// widget rules CSS
 	wp_register_style('widget-rules-css', get_template_directory_uri().'/css/back-end/widget.rules.css');
 	wp_enqueue_style('widget-rules-css');
+	// GK News Show Pro Widget back-end CSS
+	wp_register_style('nsp-admin-css', get_template_directory_uri().'/css/back-end/nsp.css');
+	wp_enqueue_style('nsp-admin-css');
 	// shortcodes database
 	if(
 		get_locale() != '' && 

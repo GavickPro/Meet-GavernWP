@@ -2,22 +2,22 @@
 	{
 		"name": "Blue",
 		"css_class": "blue",
-		"exclude": "widget_gk_comments"
+		"exclude": "widget_gk_comments,widget_gk_nsp"
 	},
 	{
 		"name": "Red",
 		"css_class": "red",
-		"exclude": "widget_gk_comments"
+		"exclude": "widget_gk_comments,widget_gk_nsp"
 	},
 	{
 		"name": "Green",
 		"css_class": "green",
-		"exclude": "widget_gk_comments"
+		"exclude": "widget_gk_comments,widget_gk_nsp"
 	},
 	{
 		"name": "Yellow",
 		"css_class": "yellow",
-		"exclude": "widget_gk_comments"
+		"exclude": "widget_gk_comments,widget_gk_nsp"
 	},
 	{
 		"name": "Blue Header",

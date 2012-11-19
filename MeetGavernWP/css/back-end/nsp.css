@@ -1,0 +1,69 @@
+.gk-nsp-col {
+	border-right: 1px solid #ddd;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	    -ms-box-sizing: border-box;
+	     -o-box-sizing: border-box;
+	        box-sizing: border-box;
+	float: left;
+	padding: 0 10px 0 0;
+	width: 40%;
+}
+
+.gk-nsp-col + .gk-nsp-col {
+	border-right: none;
+	padding: 0 0 0 10px;
+	width: 60%;
+}
+
+hr.clear {
+	border: none;
+	border-top: 3px solid #ddd;
+	clear: both;
+	display: block;
+}
+
+.gk-nsp-col input.short {
+	width: 32px;
+}
+
+.gk-nsp-col input.medium {
+	width: 72px;
+}
+
+.gk-nsp-col input.long {
+	width: 120px;
+}
+
+.gk-nsp-col .gk-indent {
+	padding-left: 72px!important;
+}
+
+.gk-nsp-col + .gk-nsp-col p > label:first-child {
+	display: inline-block;
+	min-width: 72px;
+	text-align: right;
+}
+
+.gk-nsp-col + .gk-nsp-col p.gk-indent > label:first-child {
+	text-align: left;
+}
+
+.gk-nsp-col .gk-right {
+	float: right;
+}
+
+.gk-nsp-col textarea {
+	width: 100%;
+}
+
+.gk-nsp-col h3 {
+	border-top: 1px solid #ddd;
+	margin: 0;
+	padding: 10px 0;
+}
+
+.gk-nsp-col h3:first-child {
+	border-top: none;
+	padding: 0 0 10px 0;
+}

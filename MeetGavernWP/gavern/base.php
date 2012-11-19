@@ -283,6 +283,7 @@ class GavernWP {
 	 	// register template built-in widgets
 	 	register_widget('GK_Comments_Widget');
 	 	register_widget('GK_Social_Widget');
+	 	register_widget('GK_NSP_Widget');
 	 }	
 	 
 	 /**

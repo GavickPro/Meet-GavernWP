@@ -155,6 +155,7 @@ img {
 /* buttons */
 .btn,
 button,
+.readon,
 a.gk-button,
 input[type="button"],
 input[type="submit"] {
@@ -208,7 +209,10 @@ a.gk-button:hover,
 a.gk-button:active,
 a.gk-button.active,
 a.gk-button.disabled,
-a.gk-button[disabled] {
+a.gk-button[disabled],
+.readon:hover,
+.readon:active,
+.readon:focus {
   background-color: #e6e6e6;
 }
 
