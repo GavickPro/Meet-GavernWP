@@ -61,7 +61,7 @@ if(!function_exists('get_current_page_url')) {
 			$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 		}
 		// return the result URL
-		return $pageURL;
+		return preg_replace('@%[0-9A-Fa-f]{1,2}@mi', '', htmlspecialchars($pageURL, ENT_QUOTES, 'UTF-8'));
 	}
 
 }
