@@ -419,3 +419,97 @@ img.gk-responsive {
 .gk-nsp-links-scroll {
 	overflow: hidden;
 }
+
+/* 9.4. GK Tabs
+==================================== */
+
+.gk-tabs {
+	position: relative;
+	overflow: hidden;
+}
+.gk-tabs-wrap {
+	border: 1px solid #e5e5e5;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	    -ms-box-sizing: border-box;
+	     -o-box-sizing: border-box;
+	        box-sizing: border-box;
+	margin: 0;
+}
+.gk-tabs-wrap > ol {
+	background: transparent url('../images/header_bg.png') repeat 0 0;
+	border-bottom: 1px solid #e5e5e5;
+	margin: 0!important;
+	min-height: 38px;
+}
+.gk-tabs-wrap > ol li {
+	background: transparent;
+	border: none;
+	color: #858585;
+	cursor: pointer;
+	float: left;
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 39px;
+	list-style-type: none;
+	margin: 0 0 0 -1px;
+	height: 38px;
+	padding: 0 15px;
+	text-align: center;
+	text-transform: uppercase;
+}
+.gk-tabs-wrap > ol li.active,
+.gk-tabs-wrap > ol li.active:hover{
+	background: #fff;
+	border-left: 1px solid #e5e5e5;
+	border-right: 1px solid #e5e5e5;
+	color: #2f3336;
+	padding: 0 14px;
+	position: relative;
+}
+
+.gk-tabs-wrap > ol li.active::after {
+	background: #fff;
+	content: "";
+	clear: both;
+	display: block;
+	float: left;
+	height: 2px;
+	margin-left: -14px;
+	position: absolute;
+	top: 38px;
+	width: 100%;
+	z-index: 2;
+}
+.gk-tabs-wrap > ol li:hover {
+	color: #2f3336;
+}
+.gk-tabs-container {
+	background: #fff;
+	clear: both;
+	overflow: hidden;
+	position: relative;
+}
+.gk-tabs-item {
+	background: #fff;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	    -ms-box-sizing: border-box;
+	     -o-box-sizing: border-box;
+	        box-sizing: border-box;
+	left: -9999px;
+	overflow: hidden;
+	padding: 30px 20px;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+.gk-tabs-item .box {
+	margin-bottom: 0!important;
+}
+.gk-tabs-item.active {
+	left: 0;
+	position: relative;
+	z-index: 2;
+}

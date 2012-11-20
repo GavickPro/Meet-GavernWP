@@ -40,6 +40,7 @@ require_once($framework_path . 'filters.php');
 require_once($framework_path . 'widgets.comments.php');
 require_once($framework_path . 'widgets.nsp.php');
 require_once($framework_path . 'widgets.social.php');
+require_once($framework_path . 'widgets.tabs.php');
 // Including file with template admin features
 require_once($framework_path . 'helpers/helpers.features.php');
 // Including file with template shortcodes

@@ -72,5 +72,32 @@
 		"after_widget": "",
 		"before_title": "",
 		"after_title": ""
+	},
+	{
+		"name": "Tab I",
+		"id": "tab1",
+		"description": "Widgets area for use in the GK Tabs widget",
+		"before_widget": "",
+		"after_widget": "",
+		"before_title": "",
+		"after_title": ""
+	},
+	{
+		"name": "Tab II",
+		"id": "tab2",
+		"description": "Widgets area for use in the GK Tabs widget",
+		"before_widget": "",
+		"after_widget": "",
+		"before_title": "",
+		"after_title": ""
+	},
+	{
+		"name": "Tab III",
+		"id": "tab3",
+		"description": "Widgets area for use in the GK Tabs widget",
+		"before_widget": "",
+		"after_widget": "",
+		"before_title": "",
+		"after_title": ""
 	}
 ]

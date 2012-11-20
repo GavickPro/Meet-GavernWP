@@ -2,66 +2,77 @@
 	{
 		"name": "Blue",
 		"css_class": "blue",
-		"exclude": "widget_gk_comments,widget_gk_nsp"
+		"exclude": "widget_gk_comments,widget_gk_nsp,widget_gk_tabs"
 	},
 	{
 		"name": "Red",
 		"css_class": "red",
-		"exclude": "widget_gk_comments,widget_gk_nsp"
+		"exclude": "widget_gk_comments,widget_gk_nsp,widget_gk_tabs"
 	},
 	{
 		"name": "Green",
 		"css_class": "green",
-		"exclude": "widget_gk_comments,widget_gk_nsp"
+		"exclude": "widget_gk_comments,widget_gk_nsp,widget_gk_tabs"
 	},
 	{
 		"name": "Yellow",
 		"css_class": "yellow",
-		"exclude": "widget_gk_comments,widget_gk_nsp"
+		"exclude": "widget_gk_comments,widget_gk_nsp,widget_gk_tabs"
 	},
 	{
 		"name": "Blue Header",
-		"css_class": "blue-header"
+		"css_class": "blue-header",
+		"exclude": "widget_gk_tabs"
 	},
 	{
 		"name": "Red Header",
-		"css_class": "red-header"
+		"css_class": "red-header",
+		"exclude": "widget_gk_tabs"
 	},
 	{
 		"name": "Green Header",
-		"css_class": "green-header"
+		"css_class": "green-header",
+		"exclude": "widget_gk_tabs"
 	},
 	{
 		"name": "Yellow Header",
-		"css_class": "yellow-header"
+		"css_class": "yellow-header",
+		"exclude": "widget_gk_tabs"
 	},
 	{
 		"name": "Border I",
-		"css_class": "border1"
+		"css_class": "border1",
+		"exclude": "widget_gk_tabs"
 	},
 	{
 		"name": "Border II",
-		"css_class": "border2"
+		"css_class": "border2",
+		"exclude": "widget_gk_tabs"
 	},
 	{
 		"name": "Border III",
-		"css_class": "border3"
+		"css_class": "border3",
+		"exclude": "widget_gk_tabs"
 	},
 	{
 		"name": "Blue Border",
-		"css_class": "blue-border"
+		"css_class": "blue-border",
+		"exclude": "widget_gk_tabs"
 	},
 	{
 		"name": "Red Border",
-		"css_class": "red-border"
+		"css_class": "red-border",
+		"exclude": "widget_gk_tabs"
 	},
 	{
 		"name": "Green Border",
-		"css_class": "green-border"
+		"css_class": "green-border",
+		"exclude": "widget_gk_tabs"
 	},
 	{
 		"name": "Yellow Border",
-		"css_class": "yellow-border"
+		"css_class": "yellow-border",
+		"exclude": "widget_gk_tabs"
 	},
 	{
 		"name": "Unified style",
