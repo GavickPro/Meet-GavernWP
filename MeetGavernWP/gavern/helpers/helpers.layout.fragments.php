@@ -154,8 +154,12 @@ function gk_post_fields() {
 			foreach ((array) $keys as $key) {
 				// trim the key name
 				$key_trimmed = trim($key);
-				// skip the protected meta data and "gavern-" values
-				if(is_protected_meta($key_trimmed, 'post') || stripos($key_trimmed, 'gavern-') !== FALSE) {
+				// skip the protected meta data and "gavern-" or "gavern_" values
+				if(
+					is_protected_meta($key_trimmed, 'post') || 
+					stripos($key_trimmed, 'gavern-') !== FALSE ||
+					stripos($key_trimmed, 'gavern_') !== FALSE
+					) {
 					continue;
 				}
 				// map the values
