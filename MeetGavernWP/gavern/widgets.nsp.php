@@ -119,7 +119,7 @@ class GK_NSP_Widget extends WP_Widget {
 		} else if($config['data_source_type'] == 'custom') {
 			$post_type = explode(',', $config['data_source']);
 			foreach($post_type as $type) {
-				array_push($results, get_posts(array('post_type' => $type)));
+				array_push($results, get_posts(array('post_type' => $type, 'numberposts' => $amount_of_posts)));
 			}
 		}
 		// restore the global $post variable
@@ -160,7 +160,7 @@ class GK_NSP_Widget extends WP_Widget {
 			echo '<div class="gk-nsp-arts-page gk-nsp-cols-'.$amount_of_art_pages.'">';
 			
 			for($r = 0; $r < $config['article_cols'] * $config['article_rows']; $r++) {
-				if(isset($results[$i])) {
+				if(isset($results[$i]) || isset($results[0][$i])) {
 					$art_title = '';
 					$art_text = '';
 					$art_image = '';
@@ -828,8 +828,8 @@ class GK_NSP_Widget extends WP_Widget {
 	 	$art_url = '';
 	 	
 	 	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
-	 		$art_title = $this->wdgt_results[$i][0]->post_title;
-	 		$art_ID = $this->wdgt_results[$i][0]->ID;
+	 		$art_title = $this->wdgt_results[0][$i]->post_title;
+	 		$art_ID = $this->wdgt_results[0][$i]->ID;
 	 	} else {
 	 		$art_title = $this->wdgt_results[$i]->post_title;
 	 		$art_ID = $this->wdgt_results[$i]->ID;
@@ -847,7 +847,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	$art_text = '';
 	 	
 	 	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
-	 		$art_text = $this->wdgt_results[$i][0]->post_content;
+	 		$art_text = $this->wdgt_results[0][$i]->post_content;
 	 	} else {
 	 		$art_text = $this->wdgt_results[$i]->post_content;
 	 	}
@@ -863,7 +863,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	$art_ID = '';
 	 	
 	 	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
-	 		$art_ID = $this->wdgt_results[$i][0]->ID;
+	 		$art_ID = $this->wdgt_results[0][$i]->ID;
 	 	} else {
 	 		$art_ID = $this->wdgt_results[$i]->ID;
 	 	}
@@ -910,7 +910,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	if(stripos($this->wdgt_config['article_info_format'], '%CATEGORY') !== FALSE) {
 	 	
 	 		if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
-	 			$art_ID = $this->wdgt_results[$i][0]->ID;
+	 			$art_ID = $this->wdgt_results[0][$i]->ID;
 	 		} else {
 	 			$art_ID = $this->wdgt_results[$i]->ID;
 	 		}
@@ -926,7 +926,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	// check if there is a author in format
 	 	if(stripos($this->wdgt_config['article_info_format'], '%AUTHOR') !== FALSE) {	 		
 	 		if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
-	 			$author_ID = $this->wdgt_results[$i][0]->post_author;
+	 			$author_ID = $this->wdgt_results[0][$i]->post_author;
 	 		} else {
 	 			$author_ID = $this->wdgt_results[$i]->post_author;
 	 		}
@@ -938,7 +938,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	if(stripos($this->wdgt_config['article_info_format'], '%DATE') !== FALSE) {
 	 		// post_date
 	 		if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
-	 			$article_date = $this->wdgt_results[$i][0]->post_date;
+	 			$article_date = $this->wdgt_results[0][$i]->post_date;
 	 		} else {
 	 			$article_date = $this->wdgt_results[$i]->post_date;
 	 		}
@@ -950,8 +950,8 @@ class GK_NSP_Widget extends WP_Widget {
 	 		// comment_count
 	 		// post_date
 	 		if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
-	 			$comment_count = $this->wdgt_results[$i][0]->comment_count;
-	 			$art_ID = $this->wdgt_results[$i][0]->ID;
+	 			$comment_count = $this->wdgt_results[0][$i]->comment_count;
+	 			$art_ID = $this->wdgt_results[0][$i]->ID;
 	 		} else {
 	 			$comment_count = $this->wdgt_results[$i]->comment_count;
 	 			$art_ID = $this->wdgt_results[$i]->ID;
@@ -982,7 +982,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	$art_url = '';
 	 	
 	 	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
-	 		$art_ID = $this->wdgt_results[$i][0]->ID;
+	 		$art_ID = $this->wdgt_results[0][$i]->ID;
 	 	} else {
 	 		$art_ID = $this->wdgt_results[$i]->ID;
 	 	}
@@ -1006,8 +1006,8 @@ class GK_NSP_Widget extends WP_Widget {
 	  	$art_url = '';
 	  	
 	  	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
-	  		$art_title = $this->wdgt_results[$i][0]->post_title;
-	  		$art_ID = $this->wdgt_results[$i][0]->ID;
+	  		$art_title = $this->wdgt_results[0][$i]->post_title;
+	  		$art_ID = $this->wdgt_results[0][$i]->ID;
 	  	} else {
 	  		$art_title = $this->wdgt_results[$i]->post_title;
 	  		$art_ID = $this->wdgt_results[$i]->ID;
@@ -1025,7 +1025,7 @@ class GK_NSP_Widget extends WP_Widget {
 	  	$art_text = '';
 	  	
 	  	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
-	  		$art_text = $this->wdgt_results[$i][0]->post_content;
+	  		$art_text = $this->wdgt_results[0][$i]->post_content;
 	  	} else {
 	  		$art_text = $this->wdgt_results[$i]->post_content;
 	  	}
