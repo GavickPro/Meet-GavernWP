@@ -26,6 +26,8 @@ gk_load('before');
 	
 		<?php gk_author(true); ?>
 	
+		<?php do_action('gavernwp_before_loop'); ?>
+	
 		<?php gk_content_nav(); ?>
 	
 		<?php while ( have_posts() ) : the_post(); ?>
@@ -33,6 +35,8 @@ gk_load('before');
 		<?php endwhile; ?>
 		
 		<?php gk_content_nav(); ?>
+		
+		<?php do_action('gavernwp_after_loop'); ?>
 	
 	<?php else : ?>
 		<h1 class="page-title">

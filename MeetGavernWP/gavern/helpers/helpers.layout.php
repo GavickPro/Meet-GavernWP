@@ -731,6 +731,8 @@ function gk_dynamic_sidebar($index) {
 	$sidebar = $wp_registered_sidebars[$index];
 	// widget counter
 	$counter = 0;
+	// run hook
+	do_action('gavernwp_before_sidebar');
 	// iterate through specified sidebar widget
 	foreach ( (array) $sidebars_widgets[$index] as $id ) {
 		// if widget doesn't exists - skip this iteration
@@ -809,6 +811,8 @@ function gk_dynamic_sidebar($index) {
 			}
 		}
 	}
+	// run hook
+	do_action('gavernwp_after_sidebar');
 }
 
 /**

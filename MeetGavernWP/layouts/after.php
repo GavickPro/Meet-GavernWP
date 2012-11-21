@@ -30,9 +30,11 @@
 					($args != null && $args['sidebar'] == true)
 				)
 			) : ?>
+			<?php do_action('gavernwp_before_column'); ?>
 			<aside id="gk-sidebar">
 				<?php gk_dynamic_sidebar('sidebar'); ?>
 			</aside>
+			<?php do_action('gavernwp_after_column'); ?>
 			<?php endif; ?>
 		</section><!-- end of the #gk-mainbody-columns -->
 	</section><!-- end of the .gk-page section -->

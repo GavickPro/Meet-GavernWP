@@ -66,7 +66,9 @@ function gavern_comment_template( $comment, $args, $depth ) {
 	global $tpl;
 	
 	$GLOBALS['comment'] = $comment;
-	
+
+	do_action('gavernwp_before_comment');
+
 	switch ( $comment->comment_type ) :
 		case 'pingback' :
 		case 'trackback' :
@@ -133,6 +135,8 @@ function gavern_comment_template( $comment, $args, $depth ) {
 	<?php
 			break;
 	endswitch;
+	
+	do_action('gavernwp_after_comment');
 }
 
 /**
@@ -307,6 +311,7 @@ function gk_content_nav($id = '') {
 	global $wp_query;
 
 	if($wp_query->max_num_pages > 1) : ?>
+		<?php do_action('gavernwp_before_nav'); ?>
 		<nav class="pagenav"<?php if($id != '') : ?> id="<?php echo $id; ?>"<?php endif; ?>>
 			<?php if(get_next_posts_link() != '') : ?>
 			<div class="nav-prev nav-btn"><?php next_posts_link( __( '&larr; Older posts', GKTPLNAME ) ); ?></div>
@@ -316,6 +321,7 @@ function gk_content_nav($id = '') {
 			<div class="nav-next nav-btn"><?php previous_posts_link( __( 'Newer posts &rarr;', GKTPLNAME ) ); ?></div>
 			<?php endif; ?>
 		</nav><!-- #nav-above -->
+		<?php do_action('gavernwp_after_nav'); ?>
 	<?php endif;
 }
 

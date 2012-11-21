@@ -32,3 +32,5 @@ global $tpl;
 	</h<?php echo (is_single()) ? '1' : '2'; ?>>
 </hgroup>
 <?php endif; ?>
+
+<?php do_action('gavernwp_before_post_content'); ?>

@@ -27,6 +27,8 @@ gk_load('before');
 			if ( ! empty( $category_description ) )
 				echo apply_filters( 'category_archive_meta', '<section class="intro">' . $category_description . '</section>' );
 		?>
+		
+		<?php do_action('gavernwp_before_loop'); ?>
 	
 		<?php gk_content_nav(); ?>
 	
@@ -35,6 +37,8 @@ gk_load('before');
 		<?php endwhile; ?>
 	
 		<?php gk_content_nav(); ?>
+		
+		<?php do_action('gavernwp_after_loop'); ?>
 	
 	<?php else : ?>
 	

@@ -7,6 +7,8 @@ defined('GAVERN_WP') or die('Access denied');
  *
  * Full hooks reference:
  * 
+ * Hooks connected with the document:
+ *
  * gavernwp_doctype
  * gavernwp_html_attributes
  * gavernwp_title
@@ -16,6 +18,32 @@ defined('GAVERN_WP') or die('Access denied');
  * gavernwp_head
  * gavernwp_body_attributes
  * gavernwp_footer
+ *
+ * Hooks connected with the content:
+ *
+ * gavernwp_before_mainbody
+ * gavernwp_after_mainbody
+ * gavernwp_before_loop
+ * gavernwp_after_loop
+ * gavernwp_before_nav
+ * gavernwp_after_nav
+ * gavernwp_before_post_content
+ * gavernwp_after_post_content
+ * gavernwp_before_column
+ * gavernwp_after_column
+ * gavernwp_before_sidebar
+ * gavernwp_after_sidebar
+ *
+ * Hooks connected with comments:
+ * 
+ * gavernwp_before_comments_count
+ * gavernwp_after_comments_count
+ * gavernwp_before_comments_list
+ * gavernwp_after_comments_list
+ * gavernwp_before_comment
+ * gavernwp_after_comment
+ * gavernwp_before_comments_form
+ * gavernwp_after_comments_form
  *
  **/
 

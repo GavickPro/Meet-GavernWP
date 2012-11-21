@@ -13,6 +13,8 @@ global $tpl;
 
 ?>
 
+<?php do_action('gavernwp_after_post_content'); ?>
+
 <?php if(is_singular()) : ?>
 	<?php 
 		// variable for the social API HTML output

@@ -19,6 +19,7 @@
 
 <?php if ( have_comments() ) : ?>
 <section id="comments">
+	<?php do_action('gavernwp_before_comments_count'); ?>
 	<h2>
 		<?php if(get_comments_number() == 1) : ?>
 		<?php printf(__( 'One thought on &ldquo;%1$s&rdquo;', GKTPLNAME), '<span>' . get_the_title() . '</span>'); ?>
@@ -28,6 +29,7 @@
 		<?php printf(__( '%1$s thoughts on &ldquo;%2$s&rdquo;', GKTPLNAME), number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>'); ?>
 		<?php endif; ?>
 	</h2>
+	<?php do_action('gavernwp_after_comments_count'); ?>
 
 	<?php if ( get_comment_pages_count() > 1 && get_option('page_comments' )) : ?>
 	<nav>
@@ -40,9 +42,11 @@
 	</nav>
 	<?php endif; ?>
 	
+	<?php do_action('gavernwp_before_comments_list'); ?>
 	<ol>
 		<?php wp_list_comments(array( 'callback' => 'gavern_comment_template', 'style' => 'ol')); ?>	
 	</ol>
+	<?php do_action('gavernwp_after_comments_list'); ?>
 
 	<?php if ( get_comment_pages_count() > 1 && get_option('page_comments' )) : ?>
 	<nav>
@@ -54,8 +58,9 @@
 		</div>
 	</nav>
 	<?php endif; ?>
-	
+	<?php do_action('gavernwp_before_comments_form'); ?>
 	<?php comment_form(); ?>
+	<?php do_action('gavernwp_after_comments_form'); ?>
 </section>
 <?php elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 <section id="comments" class="nocomments">	
@@ -63,6 +68,8 @@
 </section>
 <?php else : ?>
 <section id="comments" class="nocomments">
+	<?php do_action('gavernwp_before_comments_form'); ?>
 	<?php comment_form(); ?>
+	<?php do_action('gavernwp_after_comments_form'); ?>
 </section>
 <?php endif; ?>
