@@ -221,7 +221,7 @@ function gk_opengraph_metatags() {
 			//
 			$title = get_post_meta($postID, 'gavern_opengraph_title', true);
 			$type = get_post_meta($postID, 'gavern_opengraph_type', true);
-			$image = get_post_meta($postID, 'gavern_opengraph_image', true);
+			$image = wp_get_attachment_url(get_post_meta($postID, 'gavern_opengraph_image', true));
 			$desc = get_post_meta($postID, 'gavern_opengraph_desc', true);
 			$other = get_post_meta($postID, 'gavern_opengraph_other', true);
 			//
