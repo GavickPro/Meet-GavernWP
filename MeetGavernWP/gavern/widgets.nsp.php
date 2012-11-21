@@ -118,9 +118,7 @@ class GK_NSP_Widget extends WP_Widget {
 			}
 		} else if($config['data_source_type'] == 'custom') {
 			$post_type = explode(',', $config['data_source']);
-			foreach($post_type as $type) {
-				array_push($results, get_posts(array('post_type' => $type, 'numberposts' => $amount_of_posts)));
-			}
+			array_push($results, get_posts(array('post_type' => $post_type, 'numberposts' => $amount_of_posts)));
 		}
 		// restore the global $post variable
 		$post = $tmp_post;
