@@ -437,7 +437,6 @@ img.gk-responsive {
 	margin: 0;
 }
 .gk-tabs-wrap > ol {
-	background: transparent url('../images/header_bg.png') repeat 0 0;
 	border-bottom: 1px solid #e5e5e5;
 	margin: 0!important;
 	min-height: 38px;
