@@ -63,7 +63,7 @@ class GK_NSP_Widget extends WP_Widget {
 		
 		$title = apply_filters('widget_title', empty($instance['title']) ? '' : $instance['title'], $instance, $this->id_base);
 		
-		$ops = array('data_source_type', 'data_source', 'orderby', 'order', 'offset', 'article_pages', 'article_cols', 'article_rows', 'links_pages', 'links_rows', 'article_pagination', 'links_pagination', 'article_title_state', 'article_title_len', 'article_title_len_type', 'article_title_order', 'article_text_state', 'article_text_len', 'article_text_len_type', 'article_text_order', 'article_image_state', 'article_image_w', 'article_image_h', 'article_image_pos', 'article_image_order', 'article_info_state', 'article_info_format', 'article_info_date_format', 'article_info_order', 'article_readmore_state', 'article_readmore_order', 'links_title_state', 'links_title_len', 'links_title_len_type', 'links_text_state', 'links_text_len', 'links_text_len_type', 'article_block_padding', 'image_block_padding', 'cache_time');
+		$ops = array('data_source_type', 'data_source', 'orderby', 'order', 'offset', 'article_pages', 'article_cols', 'article_rows', 'links_pages', 'links_rows', 'article_pagination', 'links_pagination', 'article_title_state', 'article_title_len', 'article_title_len_type', 'article_title_order', 'article_text_state', 'article_text_len', 'article_text_len_type', 'article_text_order', 'article_image_state', 'article_image_w', 'article_image_h', 'article_image_pos', 'article_image_order', 'article_info_state', 'article_info_format', 'article_info_date_format', 'article_info_order', 'article_readmore_state', 'article_readmore_order', 'links_title_state', 'links_title_len', 'links_title_len_type', 'links_text_state', 'links_text_len', 'links_text_len_type', 'article_block_padding', 'image_block_padding', 'cache_time', 'autoanim', 'autoanim_interval', 'autoanim_hover');
 		
 		foreach($ops as $option) {
 			$config[$option] =  empty($instance[$option]) ? null : $instance[$option];
@@ -139,7 +139,7 @@ class GK_NSP_Widget extends WP_Widget {
 		}
 		
 		// generate the widget wrapper
-		echo '<div class="'.$wdgt_class.'" data-cols="'.$config['article_cols'].'" data-rows="'.$config['article_rows'].'" data-links="'.$config['links_rows'].'">';
+		echo '<div class="'.$wdgt_class.'" data-cols="'.$config['article_cols'].'" data-rows="'.$config['article_rows'].'" data-links="'.$config['links_rows'].'" data-autoanim="'.$config['autoanim'].'" data-autoanimint="'.$config['autoanim_interval'].'" data-autoanimhover="'.$config['autoanim_hover'].'">';
 		// generate the articles
 		$amount_of_articles = $config['article_pages'] * $config['article_cols'] * $config['article_rows'];
 		$amount_of_articles = $amount_of_articles > count($results) ? count($results) : $amount_of_articles; 
@@ -320,7 +320,7 @@ class GK_NSP_Widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
-		$ops = array('data_source_type', 'data_source', 'orderby', 'order', 'offset', 'article_pages', 'article_cols', 'article_rows', 'links_pages', 'links_rows', 'article_pagination', 'links_pagination', 'article_title_state', 'article_title_len', 'article_title_len_type', 'article_title_order', 'article_text_state', 'article_text_len', 'article_text_len_type', 'article_text_order', 'article_image_state', 'article_image_w', 'article_image_h', 'article_image_pos', 'article_image_order', 'article_info_state', 'article_info_format', 'article_info_date_format', 'article_info_order', 'article_readmore_state', 'article_readmore_order', 'links_title_state', 'links_title_len', 'links_title_len_type', 'links_text_state', 'links_text_len', 'links_text_len_type', 'article_block_padding', 'image_block_padding', 'cache_time');
+		$ops = array('data_source_type', 'data_source', 'orderby', 'order', 'offset', 'article_pages', 'article_cols', 'article_rows', 'links_pages', 'links_rows', 'article_pagination', 'links_pagination', 'article_title_state', 'article_title_len', 'article_title_len_type', 'article_title_order', 'article_text_state', 'article_text_len', 'article_text_len_type', 'article_text_order', 'article_image_state', 'article_image_w', 'article_image_h', 'article_image_pos', 'article_image_order', 'article_info_state', 'article_info_format', 'article_info_date_format', 'article_info_order', 'article_readmore_state', 'article_readmore_order', 'links_title_state', 'links_title_len', 'links_title_len_type', 'links_text_state', 'links_text_len', 'links_text_len_type', 'article_block_padding', 'image_block_padding', 'cache_time', 'autoanim', 'autoanim_interval', 'autoanim_hover');
 		
 		foreach($ops as $option) {
 			$instance[$option] = strip_tags( $new_instance[$option] );	
@@ -423,6 +423,11 @@ class GK_NSP_Widget extends WP_Widget {
 		
 		// cache time
 		$cache_time = isset($instance['cache_time']) ? esc_attr($instance['cache_time']) : '60';
+		
+		// Autoanimation
+		$autoanim = isset($instance['autoanim']) ? esc_attr($instance['autoanim']) : 'off';
+		$autoanim_interval = isset($instance['autoanim_interval']) ? esc_attr($instance['autoanim_interval']) : '5000';
+		$autoanim_hover = isset($instance['autoanim_hover']) ? esc_attr($instance['autoanim_hover']) : 'on';
 		
 	?>	
 		<div class="gk-nsp-col">
@@ -549,11 +554,35 @@ class GK_NSP_Widget extends WP_Widget {
 				</select>
 			</p>
 			
-			<h3><?php _e('Cache settings', GKTPLNAME); ?></h3>
+			<h3><?php _e('Autoanimation settings', GKTPLNAME); ?></h3>
 			
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'cache_time' ) ); ?>"><?php _e( 'Cache time (min):', GKTPLNAME ); ?></label>
-				<input class="medium" id="<?php echo esc_attr( $this->get_field_id( 'cache_time' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cache_time' ) ); ?>" type="text" value="<?php echo esc_attr( $cache_time ); ?>" />
+				<label for="<?php echo esc_attr( $this->get_field_id( 'autoanim' ) ); ?>"><?php _e( 'Auto-animation:', GKTPLNAME ); ?></label>
+				<select id="<?php echo esc_attr( $this->get_field_id('autoanim')); ?>" name="<?php echo esc_attr( $this->get_field_name('autoanim')); ?>">
+					<option value="on"<?php echo (esc_attr($autoanim) == 'on') ? ' selected="selected"' : ''; ?>>
+						<?php _e('On', GKTPLNAME); ?>
+					</option>
+					<option value="off"<?php echo (esc_attr($autoanim) == 'off') ? ' selected="selected"' : ''; ?>>
+						<?php _e('Off', GKTPLNAME); ?>
+					</option>
+				</select>			
+			</p>
+			
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'autoanim_interval' ) ); ?>"><?php _e( 'Interval (ms):', GKTPLNAME ); ?></label>
+				<input class="medium" id="<?php echo esc_attr( $this->get_field_id( 'autoanim_interval' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'autoanim_interval' ) ); ?>" type="text" value="<?php echo esc_attr( $autoanim_interval ); ?>" />
+			</p>
+			
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'autoanim_hover' ) ); ?>"><?php _e( 'Auto-animation stops on hover:', GKTPLNAME ); ?></label>
+				<select id="<?php echo esc_attr( $this->get_field_id('autoanim_hover')); ?>" name="<?php echo esc_attr( $this->get_field_name('autoanim_hover')); ?>">
+					<option value="on"<?php echo (esc_attr($autoanim_hover) == 'on') ? ' selected="selected"' : ''; ?>>
+						<?php _e('On', GKTPLNAME); ?>
+					</option>
+					<option value="off"<?php echo (esc_attr($autoanim_hover) == 'off') ? ' selected="selected"' : ''; ?>>
+						<?php _e('Off', GKTPLNAME); ?>
+					</option>
+				</select>			
 			</p>
 		</div>
 		
@@ -806,6 +835,13 @@ class GK_NSP_Widget extends WP_Widget {
 						<?php _e('Words', GKTPLNAME); ?>
 					</option>
 				</select>
+			</p>
+			
+			<h3><?php _e('Cache settings', GKTPLNAME); ?></h3>
+			
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'cache_time' ) ); ?>"><?php _e( 'Cache time (min):', GKTPLNAME ); ?></label>
+				<input class="medium" id="<?php echo esc_attr( $this->get_field_id( 'cache_time' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cache_time' ) ); ?>" type="text" value="<?php echo esc_attr( $cache_time ); ?>" />
 			</p>
 		</div>
 		

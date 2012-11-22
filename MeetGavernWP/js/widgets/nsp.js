@@ -26,6 +26,7 @@ GK_NSP.prototype = {
 	arts_pages: null,
 	arts_per_page: null,
 	config: null,
+	hover: false,
 	links: null,
 	links_block_width: 0,
 	links_pages: null,
@@ -42,7 +43,9 @@ GK_NSP.prototype = {
 		this.config = [];
 		
 		this.config["animation_speed"] = 400;
-		this.config["animation_interval"] = 5000;
+		this.config['autoanim'] = this.module.attr('data-autoanim') == 'on' ? true : false;
+		this.config["autoanim_interval"] = this.module.attr('data-autoanimint') != '' ? this.module.attr('data-autoanimint') : 5000;
+		this.config['autoanim_hover'] = this.module.attr('data-autoanimhover') == 'on' ? true : false;
 		this.config['news_column'] = this.module.attr('data-cols');
 		this.config['news_rows'] = this.module.attr('data-rows');
 		this.config['links_amount'] = this.module.attr('data-links');
@@ -116,6 +119,22 @@ GK_NSP.prototype = {
 				$this.lists_anim('next');
 			});
 		}
+		
+		if(this.config['autoanim']) {
+			setTimeout(function() {
+				$this.autoanim();
+			}, this.config['autoanim_interval']);
+			
+			if(this.config['autoanim_hover']) {
+				this.module.mouseenter(function() {
+					$this.hover = true;
+				});
+				
+				this.module.mouseleave(function() {
+					$this.hover = false;
+				});
+			}
+		}
 	},
 	//
 	nsp_art_list: function(i, pos){
@@ -183,5 +202,17 @@ GK_NSP.prototype = {
 		}, $this.config['animation_speed']);
 
 		this.nsp_art_list(null, 'bottom');
+	},
+	//
+	autoanim: function() {
+		var $this = this;
+		
+		if(!this.hover) {
+			this.arts_anim('next');
+		}
+		
+		setTimeout(function() {
+			$this.autoanim();
+		}, this.config['autoanim_interval']);
 	}
 };
