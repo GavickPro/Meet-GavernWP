@@ -404,6 +404,7 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 	// add the last option
 	array_push($items, '<option value="gkcustom"'.(($value1 == 'gkcustom') ? ' selected="selected"' : '').'>'.__('Custom CSS class', GKTPLNAME).'</option>');
 	// output the control
+	echo '<div>';
 	echo '<p><label for="' . $tpl->name . '_widget_style_'.$id.'">'.__('Widget style: ', GKTPLNAME).'<select name="' . $tpl->name . '_widget_style_'.$id.'"  id="' . $tpl->name . '_widget_style_'.$id.'" class="gk_widget_rules_select_styles">';
 	foreach($items as $item) echo $item;
 	echo '</select></label></p>';
