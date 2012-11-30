@@ -8,4 +8,6 @@ find . -iname "*.php" > files.tmp
 xgettext --language=PHP --indent --keyword=__ --keyword=_e --keyword=_ngettext:1,2 -s -n --from-code=UTF8 -f files.tmp
 
 
-3. You should get an *.po file which can be translated and changed to the *.mo file used in Wordpress
+3. Remember to replace all special chars to entities!
+
+4. You should get an *.po file which can be translated and changed to the *.mo file used in Wordpress

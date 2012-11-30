@@ -18,8 +18,12 @@ gk_load('before');
 ?>		
 		
 	<?php if(get_option($tpl->name . '_template_homepage_mainbody', 'N') == 'N') : ?>
-		<?php if ( have_posts() ) : ?>
+		<?php do_action('gavernwp_before_mainbody'); ?>
+		
+		<?php if ( have_posts() ) : ?>		
 			<section id="gk-mainbody">
+				<?php do_action('gavernwp_before_loop'); ?>
+			
 				<?php gk_content_nav(); ?>
 				
 				<?php while ( have_posts() ) : the_post(); ?>
@@ -27,6 +31,8 @@ gk_load('before');
 				<?php endwhile; ?>
 				
 				<?php gk_content_nav(); ?>
+				
+				<?php do_action('gavernwp_after_loop'); ?>
 			</section>
 		<?php else : ?>
 			<section id="gk-mainbody">
@@ -42,6 +48,8 @@ gk_load('before');
 				</article>
 			</section>
 		<?php endif; ?>
+		
+		<?php do_action('gavernwp_after_mainbody'); ?>
 	<?php else: ?>
 		<?php if(gk_is_active_sidebar('mainbody')) : ?>
 		<section id="gk-mainbody">
