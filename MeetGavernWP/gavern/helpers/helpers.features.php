@@ -222,7 +222,7 @@ function gavern_widget_control() {
 		echo '
 		<a class="gk_widget_rules_btn button">Widget rules</a>
 		<div class="gk_widget_rules_wrapper'.((isset($_COOKIE['gk_last_opened_widget_rules_wrap']) && $_COOKIE['gk_last_opened_widget_rules_wrap'] == 'gk_widget_rules_form_'.$id) ? ' active' : '').'" data-id="gk_widget_rules_form_'.$id.'">
-		<p>
+			<p>
 				<label for="' . $tpl->name . '_widget_rules_'.$id.'">'.__('Visible at: ', GKTPLNAME).'</label>
 				<select name="' . $tpl->name . '_widget_rules_type_'.$id.'" id="' . $tpl->name . '_widget_rules_type_'.$id.'" class="gk_widget_rules_select">
 					<option value="all"'.(($value_type != "include" && $value_type != 'exclude') ? " selected=\"selected\"":"").'>'.__('All pages', GKTPLNAME).'</option>
@@ -440,7 +440,13 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 		echo $item;
 	}
 	//
-	echo '</select></label></p></div><hr />';
+	echo '</select></label></p></div>';
+	//
+	if(get_option($tpl->name . '_widget_rules_state') == 'Y') {
+		echo '</div>';
+	}
+	//
+	echo '<hr />';
 }
  
 // Add the Meta Box
