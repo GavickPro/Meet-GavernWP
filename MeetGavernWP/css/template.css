@@ -403,7 +403,6 @@ article {
 	display: block;
 	float: left;
 	padding: 0;
-	vertical-align: top;
 }
 
 #gk-mainbody-columns > aside {
@@ -416,7 +415,6 @@ article {
 	display: block;
 	float: left;
 	padding: 0;
-	vertical-align: top;
 }
 
 #gk-mainbody-columns > section + aside,
