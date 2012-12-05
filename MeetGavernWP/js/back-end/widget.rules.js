@@ -112,7 +112,7 @@ function gk_widget_control_init_events(id, inner) {
 		form.parent().find('select:last-child').css('opacity', '0.5');
 		
 		setTimeout(function() {
-			var btn = form.parent().parent().find('*[name="savewidget"]');
+			var btn = form.parent().parent().parent().find('*[name="savewidget"]');
 			btn.click();
 		}, 1000);
 	}
