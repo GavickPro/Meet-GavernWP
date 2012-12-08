@@ -22,7 +22,13 @@ global $tpl;
 <?php if(get_the_title() != '') : ?>
 <hgroup>
 	<h<?php echo (is_single()) ? '1' : '2'; ?>>
-		<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', GKTPLNAME ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
+		<?php if(!is_singular()) : ?>
+		<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', GKTPLNAME ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">
+		<?php endif; ?>
+			<?php the_title(); ?>
+		<?php if(!is_singular()) : ?>
+		</a>
+		<?php endif; ?>
 		
 		<?php if(is_sticky()) : ?>
 		<sup>
