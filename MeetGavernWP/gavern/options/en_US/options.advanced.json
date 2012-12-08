@@ -18,6 +18,14 @@
 				"default": "Y"
 			},
 			{
+				"name": "hidden_post_fields",
+				"type": "Textarea",
+				"label": "Hidden Custom Post Fields",
+				"tooltip": "You can specify a list of the Custom Post Fields which will be always hidden. The fields names should be separated by comma i.e. hidden1,hidden2,hidden3",
+				"default": "",
+				"visibility": "custom_fields_state=Y"
+			},
+			{
 				"name": "prefixfree_state",
 				"type": "Switcher",
 				"label": "Use Prefixfree script",

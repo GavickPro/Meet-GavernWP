@@ -152,6 +152,8 @@ function gk_post_fields() {
 	if(get_option($tpl->name . '_custom_fields_state', 'Y') == 'Y') {
 		// get the post custom fields
 		if ($keys = get_post_custom_keys()) {
+			// get the hidden fields array
+			$hiddenfields = explode(',', get_option($tpl->name . '_hidden_post_fields', ''));
 			// variable for the list items
 			$output = '';
 			// generate the list
@@ -162,7 +164,8 @@ function gk_post_fields() {
 				if(
 					is_protected_meta($key_trimmed, 'post') || 
 					stripos($key_trimmed, 'gavern-') !== FALSE ||
-					stripos($key_trimmed, 'gavern_') !== FALSE
+					stripos($key_trimmed, 'gavern_') !== FALSE ||
+					in_array($key_trimmed, $hiddenfields)
 					) {
 					continue;
 				}
