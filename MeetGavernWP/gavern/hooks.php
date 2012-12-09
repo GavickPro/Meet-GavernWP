@@ -101,12 +101,9 @@ add_action('gavernwp_title', 'gavernwp_title_hook');
 function gavernwp_metatags_hook() {
 	global $tpl; 
 	
+	echo '<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />' . "\n";
 	echo '<meta charset="'.get_bloginfo('charset').'" />' . "\n";
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />' . "\n";
-	
-	if(get_option($tpl->name . '_chromeframe_state', 'Y') == 'Y') {
-		echo '<meta http-equiv="X-UA-Compatible" content="chrome=1"/>' . "\n";
-	}
 	
 	// generates Gavern SEO metatags
 	gk_metatags();

@@ -33,13 +33,6 @@
 				"default": "N"
 			},
 			{
-				"name": "chromeframe_state",
-				"type": "Switcher",
-				"label": "Support for Google Chrome Frame",
-				"tooltip": "Enable use of the metatag which activates Google Chrome Frame in IE browsers.",
-				"default": "Y"
-			},
-			{
 				"name": "emoticons_widget_state",
 				"type": "Switcher",
 				"label": "Parse emoticons within text widgets",
