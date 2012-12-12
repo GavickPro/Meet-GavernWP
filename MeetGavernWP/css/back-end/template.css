@@ -285,10 +285,11 @@ textarea {
 	color: #fff;
 	display: inline-block;
 	font: 600 12px/31px Arial, Helvetica, sans-serif;
-	height: 31px;
+	height: 38px!important;
+	line-height: 39px!important;
 	min-width: inherit;
 	padding: 0 6px;
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.2)
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
 }
 .gkSave {
 	padding: 3px 9px

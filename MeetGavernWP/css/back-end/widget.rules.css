@@ -10,7 +10,7 @@
 
 .gk_widget_rules_btn {
 	float: left;
-	margin: 10px 0;
+	margin: 10px 0!important;
 }
 
 .gk_widget_rules_btn ~ hr {
