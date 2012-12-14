@@ -253,7 +253,7 @@ class GK_NSP_Widget extends WP_Widget {
 		if($amount_of_articles <= count($results)) {
 			// calculate amount of links
 			$amount_of_links = count($results) - $amount_of_articles;
-			$start = $amount_of_articles - 1;
+			$start = $amount_of_articles;
 			// generate the links
 			if($amount_of_links > 0) {
 				echo '<div class="gk-nsp-links">';
