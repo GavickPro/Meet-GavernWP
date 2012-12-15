@@ -972,12 +972,12 @@ class GK_NSP_Widget extends WP_Widget {
 	 	if(stripos($this->wdgt_config['article_info_format'], '%DATE') !== FALSE) {
 	 		// post_date
 	 		if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
-	 			$article_date = $this->wdgt_results[0][$i]->post_date;
+	 			$art_ID = $this->wdgt_results[0][$i]->ID;
 	 		} else {
-	 			$article_date = $this->wdgt_results[$i]->post_date;
+	 			$art_ID = $this->wdgt_results[$i]->ID;
 	 		}
 	 		
-	 		$date = '<span class="gk-nsp-date">' . date($this->wdgt_config['article_info_date_format'], strtotime($article_date)) . '</span>';
+	 		$date = '<span class="gk-nsp-date">' . get_the_time($this->wdgt_config['article_info_date_format'], $art_ID) . '</span>';
 	 	}
 	 	// check if there is a comments in format
 	 	if(stripos($this->wdgt_config['article_info_format'], '%COMMENTS') !== FALSE) {
