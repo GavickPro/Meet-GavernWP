@@ -35,7 +35,10 @@ class GK_NSP_Widget extends WP_Widget {
 		
 		$this->alt_option_name = 'widget_gk_nsp';
 		//
-		add_action('comment_post', array(&$this, 'refresh_cache'));
+		add_action('edit_post', array(&$this, 'refresh_cache'));
+		add_action('delete_post', array(&$this, 'refresh_cache'));
+		add_action('trashed_post', array(&$this, 'refresh_cache'));
+		add_action('save_post', array(&$this, 'refresh_cache'));
 		//
 		add_action('wp_enqueue_scripts', array('GK_NSP_Widget', 'add_scripts'));
 	}
