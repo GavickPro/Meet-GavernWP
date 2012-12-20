@@ -411,9 +411,17 @@ function gk_social_api($title, $postID) {
 		}
 		// Pinterest
 		if(get_option($tpl->name . '_pinterest_btn', 'Y') == 'Y') {
+		      $image = get_post_meta($postID, 'gavern_opengraph_image', true);
+		      
+		      if($image == '') {
+		      	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $postID ), 'single-post-thumbnail' );
+		      	$image = $image[0];
+		      }
+		      
+		      
 		      // configure Pinterest buttons               
 		      $pinterest_btn_attributes = get_option($tpl->name . '_pinterest_btn_style', 'horizontal');
-		      $pinterest_output = '<a href="http://pinterest.com/pin/create/button/?url='.get_current_page_url().'&amp;media='.get_post_meta($postID, 'gavern_opengraph_image', true).'&amp;description='.$title.'" class="pin-it-button" count-layout="'.$pinterest_btn_attributes.'"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="'.__('Pin it', GKTPLNAME).'" /></a>';
+		      $pinterest_output = '<a href="http://pinterest.com/pin/create/button/?url='.get_current_page_url().'&amp;media='.$image.'&amp;description='.$title.'" class="pin-it-button" count-layout="'.$pinterest_btn_attributes.'"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="'.__('Pin it', GKTPLNAME).'" /></a>';
 		}
 		
 		return '<section id="gk-social-api">' . $fb_like_output . $gplus_output . $twitter_output . $pinterest_output . '</section>';

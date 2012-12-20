@@ -222,6 +222,12 @@ function gk_opengraph_metatags() {
 			$title = get_post_meta($postID, 'gavern_opengraph_title', true);
 			$type = get_post_meta($postID, 'gavern_opengraph_type', true);
 			$image = wp_get_attachment_url(get_post_meta($postID, 'gavern_opengraph_image', true));
+			
+			if($image == '') {
+				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $postID ), 'single-post-thumbnail' );
+				$image = $image[0];
+			}
+			
 			$desc = get_post_meta($postID, 'gavern_opengraph_desc', true);
 			$other = get_post_meta($postID, 'gavern_opengraph_other', true);
 			//
