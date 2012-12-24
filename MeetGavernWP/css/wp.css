@@ -551,6 +551,10 @@ article figure.featured-image img {
 	margin: 0 auto;
 }
 
+div.wp-caption {
+	max-width: 100%!important;
+}
+
 .wp-caption-text {
 	font-size: 11px;
 	font-style: italic;
