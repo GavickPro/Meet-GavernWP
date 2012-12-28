@@ -161,7 +161,7 @@ class GK_NSP_Widget extends WP_Widget {
 			echo '<div class="gk-nsp-arts-page gk-nsp-cols-'.$amount_of_art_pages.'">';
 			
 			for($r = 0; $r < $config['article_cols'] * $config['article_rows']; $r++) {
-				if(isset($results[$i]) || isset($results[0][$i])) {
+				if(isset($results[$i]) || (is_array($results[0]) && isset($results[0][$i]))) {
 					$art_title = '';
 					$art_text = '';
 					$art_image = '';
