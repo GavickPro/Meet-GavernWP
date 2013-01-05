@@ -80,7 +80,7 @@ function gavern_theme_setup(){
 				wp_redirect("http://www.gavick.com");
 				break;
 			case 'wiki':
-				wp_redirect("http://wiki.gavick.com");
+				wp_redirect("http://www.gavick.com/documentation");
 				break;
 			// or use default redirect
 			default:
