@@ -52,10 +52,12 @@ function add_gavern_metaboxes() {
 	// post description custom meta box
 	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y' && get_option($tpl->name . '_seo_post_desc') == 'custom') {
 		add_meta_box( 'gavern-post-desc', __('Post description', GKTPLNAME), 'gavern_post_desc_callback', 'post', 'normal', 'high' );
+		add_meta_box( 'gavern-post-desc', __('Page description', GKTPLNAME), 'gavern_post_desc_callback', 'page', 'normal', 'high' );
 	}
 	// post keywords custom meta box
 	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y' && get_option($tpl->name . '_seo_post_keywords') == 'custom') {
 		add_meta_box( 'gavern-post-keywords', __('Post keywords', GKTPLNAME), 'gavern_post_keywords_callback', 'post', 'normal', 'high' );
+		add_meta_box( 'gavern-post-keywords', __('Page keywords', GKTPLNAME), 'gavern_post_keywords_callback', 'page', 'normal', 'high' );
 	}
 }
 
