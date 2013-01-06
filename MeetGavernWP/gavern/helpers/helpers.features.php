@@ -459,6 +459,15 @@ function gavern_add_og_meta_box() {
 		'normal',
 		'high'
 	);
+	
+	add_meta_box(
+		'gavern_og_meta_box',
+		'Open Graph metatags',
+		'gavern_show_og_meta_box',
+		'page',
+		'normal',
+		'high'
+	);
 }
 add_action('add_meta_boxes', 'gavern_add_og_meta_box');
 
