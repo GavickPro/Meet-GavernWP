@@ -27,6 +27,10 @@
 	line-height: 1.5;
 	padding-bottom: 10px;	
 }
+.widget_gk_comments li.gk-admin-comment > p {
+	background: url('../images/lc_comment_admin.png') no-repeat 14px 100%;
+}
+
 .widget_gk_comments li > p a { 
     background: #F5F5F5;
 	-webkit-border-radius: 5px;
@@ -36,6 +40,11 @@
     display: block;   
 	padding: 10px 15px;	
 }
+.widget_gk_comments li.gk-admin-comment > p a {
+	background: #FCF8E3;
+	color: #C09853;
+}
+
 .widget_gk_comments li > img,
 .widget_gk_comments li > strong,
 .widget_gk_comments li > small {

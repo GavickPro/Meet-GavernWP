@@ -76,11 +76,11 @@ class GK_Comments_Widget extends WP_Widget {
 		$comments = get_comments($comments_args);
 		//
 		if (count($comments)) {			
-			if(count($comments) > 0) {
+			if(count($comments) > 0) {				
 				echo '<ol>';
 				
 				for($i = 0; $i < count($comments); $i++) {
-					echo '<li>';
+					echo '<li'.(user_can($comments[$i]->user_id, 'delete_users') ? ' class="gk-admin-comment"' : '').'>';
 						echo '<p><a href="'.get_comment_link($comments[$i]->comment_ID).'">' . $this->comment_text($comments[$i]->comment_content, $word_count) . '</a></p>';
 						
 						echo get_avatar($comments[$i]->comment_author_email, $avatar_size);
