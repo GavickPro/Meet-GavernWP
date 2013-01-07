@@ -411,7 +411,7 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 	foreach($items as $item) echo $item;
 	echo '</select></label></p>';
 	//
-	echo '<p'.(($value1 != 'gkcustom') ? ' class="gk-unvisible"' : '').'><label for="' . $tpl->name . '_widget_style_css_'.$id.'">'.__('Custom CSS class: ', GKTPLNAME).'<input type="text" name="' . $tpl->name . '_widget_style_css_'.$id.'"  id="' . $tpl->name . '_widget_style_class_'.$id.'" value="'.$value4.'" />';
+	echo '<p'.(($value1 != 'gkcustom') ? ' class="gk-unvisible"' : '').'><label for="' . $tpl->name . '_widget_style_css_'.$id.'">'.__('Custom CSS class: ', GKTPLNAME).'<input type="text" name="' . $tpl->name . '_widget_style_css_'.$id.'"  id="' . $tpl->name . '_widget_style_class_'.$id.'" value="'.$value4.'" /></label></p>';
 	// output the responsive select
 	$items = array(
 		'<option value="all"'.((!$value2 || $value2 == 'all') ? ' selected="selected"' : '').'>'.__('All devices', GKTPLNAME).'</option>',
