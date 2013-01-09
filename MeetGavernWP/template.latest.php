@@ -11,7 +11,7 @@ gk_load('before');
 global $more;
 $more = 0;
 
-query_posts('posts_per_page=' . get_option('posts_per_page'));
+query_posts('posts_per_page=' . get_option('posts_per_page') . '&paged=' . $paged );
 
 ?>
 
