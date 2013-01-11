@@ -350,6 +350,10 @@ label {
 	padding: 0 0 4px 0;
 }
 
+select {
+	max-width: 100%;
+}
+
 /* 1.4. Base other elements
 ==================================== */
 
