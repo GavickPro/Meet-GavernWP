@@ -3,7 +3,7 @@
 		"name": "Header",
 		"id": "header",
 		"description": "Widgets area on the header of website",
-		"before_widget": "<div id=\"%1$s\" class=\"box%2$s\"><div>",
+		"before_widget": "<div id=\"%1$s\" class=\"box %2$s\"><div>",
 		"after_widget": "</div></div>",
 		"before_title": "",
 		"after_title": ""
@@ -12,7 +12,7 @@
 		"name": "Top widgets",
 		"id": "top",
 		"description": "Widgets area on under the header of website",
-		"before_widget": "<div id=\"%1$s\" class=\"box%2$s\"><div>",
+		"before_widget": "<div id=\"%1$s\" class=\"box %2$s\"><div>",
 		"after_widget": "</div></div>",
 		"before_title": "<h3 class=\"box-title\">",
 		"after_title": "</h3>",
@@ -22,7 +22,7 @@
 		"name": "Sidebar",
 		"id": "sidebar",
 		"description": "Sidebar column",
-		"before_widget": "<div id=\"%1$s\" class=\"box%2$s\"><div>",
+		"before_widget": "<div id=\"%1$s\" class=\"box %2$s\"><div>",
 		"after_widget": "</div></div>",
 		"before_title": "<h3 class=\"box-title\">",
 		"after_title": "</h3>"
@@ -31,7 +31,7 @@
 		"name": "Mainbody Top",
 		"id": "mainbody_top",
 		"description": "Block directly over mainbody",
-		"before_widget": "<div id=\"%1$s\" class=\"box%2$s\"><div>",
+		"before_widget": "<div id=\"%1$s\" class=\"box %2$s\"><div>",
 		"after_widget": "</div></div>",
 		"before_title": "<h3 class=\"box-title\">",
 		"after_title": "</h3>"
@@ -40,7 +40,7 @@
 		"name": "Mainbody",
 		"id": "mainbody",
 		"description": "Widgets area used only if is enabled in the theme options instead of showing posts",
-		"before_widget": "<div id=\"%1$s\" class=\"box%2$s\"><div>",
+		"before_widget": "<div id=\"%1$s\" class=\"box %2$s\"><div>",
 		"after_widget": "</div></div>",
 		"before_title": "<h3 class=\"box-title\">",
 		"after_title": "</h3>"
@@ -49,7 +49,7 @@
 		"name": "Mainbody Bottom",
 		"id": "mainbody_bottom",
 		"description": "Block directly under mainbody",
-		"before_widget": "<div id=\"%1$s\" class=\"box%2$s\"><div>",
+		"before_widget": "<div id=\"%1$s\" class=\"box %2$s\"><div>",
 		"after_widget": "</div></div>",
 		"before_title": "<h3 class=\"box-title\">",
 		"after_title": "</h3>"
@@ -58,7 +58,7 @@
 		"name": "Bottom widgets",
 		"id": "bottom",
 		"description": "Widgets area over the footer area",
-		"before_widget": "<div id=\"%1$s\" class=\"box%2$s\"><div>",
+		"before_widget": "<div id=\"%1$s\" class=\"box %2$s\"><div>",
 		"after_widget": "</div></div>",
 		"before_title": "<h3 class=\"box-title\">",
 		"after_title": "</h3>",
