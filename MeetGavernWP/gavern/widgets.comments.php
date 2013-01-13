@@ -152,7 +152,13 @@ class GK_Comments_Widget extends WP_Widget {
 		$input = explode(' ', $input);
 		
 		for($i = 0; $i < $amount; $i++) {
-			$output .= $input[$i] . ' ';
+			if(isset($input[$i])) {
+				$output .= $input[$i] . ' ';
+			}
+		}
+	
+		if(count($input) > $amount) {
+			$output .= '&hellip;';
 		}
 	
 		return $output;
