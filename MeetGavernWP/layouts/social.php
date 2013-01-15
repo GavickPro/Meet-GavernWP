@@ -14,7 +14,7 @@ if($social_api_mode == 'include' || $social_api_mode == 'exclude') {
 	$is_excluded = 
 		($social_api_pages != FALSE ? is_page($social_api_pages) : FALSE) || 
 		($social_api_articles != FALSE ? is_single($social_api_articles) : FALSE) || 
-		($social_api_categories != FALSE ? is_category($social_api_categories) : FALSE);
+		($social_api_categories != FALSE ? in_category($social_api_categories) : FALSE);
 	//
 	if($social_api_mode == 'exclude') {
 		$is_excluded = !$is_excluded;
