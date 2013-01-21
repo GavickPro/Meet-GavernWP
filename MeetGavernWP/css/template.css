@@ -22,6 +22,7 @@
 
 html {
 	border-bottom: 1px solid transparent; /* with min-height cause showing always the scrollbar */
+	-webkit-font-smoothing: antialiased; /* Fixes Webkit GPU rendering */
 	min-height: 100%;
 }
 
