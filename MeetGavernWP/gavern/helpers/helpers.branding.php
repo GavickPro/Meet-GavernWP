@@ -36,7 +36,7 @@ add_action('wp_head', 'gavern_favicon');
 
 if(!function_exists('gavern_loginpage_url')) {
 	function gavern_loginpage_url() {
-	 	return get_bloginfo('url');
+	 	return home_url();
 	}
 }
 
