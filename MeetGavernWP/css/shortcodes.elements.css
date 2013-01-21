@@ -148,6 +148,7 @@
 	position: absolute;
 	bottom: 24px;
 	width: 200px;
+	word-break: break-word;
 }
 
 .gk-tooltip:hover dfn {
