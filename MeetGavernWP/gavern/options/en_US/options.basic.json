@@ -82,7 +82,7 @@
 				"type": "Switcher",
 				"label": "Display details on pages",
 				"tooltip": "Enable the display of the page information block for each page content item.",
-				"default": "Y",
+				"default": "N",
 				"class": "",
 				"visibility": ""
 			},
