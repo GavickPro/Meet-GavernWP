@@ -106,7 +106,7 @@ function gavern_comment_template( $comment, $args, $depth ) {
 							sprintf( 
 								'<a href="%1$s"><time pubdate datetime="%2$s">%3$s</time></a>',
 								esc_url( get_comment_link( $comment->comment_ID ) ),
-								get_comment_time( 'c' ),
+								get_comment_time(DATE_W3C),
 								sprintf( __( '%1$s at %2$s', GKTPLNAME ), 
 								get_comment_date(), 
 								get_comment_time() )
@@ -207,7 +207,7 @@ function gk_post_meta($attachment = false) {
 	 		
 	 		<dd>
 	 			<a href="<?php echo esc_url(get_permalink()); ?>" title="<?php echo esc_attr(get_the_time()); ?>" rel="bookmark">
-	 				<time class="entry-date" datetime="<?php echo esc_attr(get_the_date('c')); ?>">
+	 				<time class="entry-date" datetime="<?php echo esc_attr(get_the_date(DATE_W3C)); ?>">
 	 					<?php echo esc_html(get_the_date('d')); ?>	
 	 					<span><?php echo esc_html(get_the_date('M')); ?></span>
 	 				</time>
