@@ -11,7 +11,7 @@ gk_load('before');
 global $more;
 $more = 0;
 
-$paged = is_numeric($_GET['paged']) ? $_GET['paged'] : 1;
+$paged = isset($_GET['paged']) ? (is_numeric($_GET['paged']) ? $_GET['paged'] : 1) : $paged;
 
 query_posts('posts_per_page=' . get_option('posts_per_page') . '&paged=' . $paged );
 
