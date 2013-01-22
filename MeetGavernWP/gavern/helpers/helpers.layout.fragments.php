@@ -421,7 +421,7 @@ function gk_social_api($title, $postID) {
 		      
 		      // configure Pinterest buttons               
 		      $pinterest_btn_attributes = get_option($tpl->name . '_pinterest_btn_style', 'horizontal');
-		      $pinterest_output = '<a href="http://pinterest.com/pin/create/button/?url='.get_current_page_url().'&amp;media='.$image.'&amp;description='.$title.'" class="pin-it-button" count-layout="'.$pinterest_btn_attributes.'"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="'.__('Pin it', GKTPLNAME).'" /></a>';
+		      $pinterest_output = '<a href="http://pinterest.com/pin/create/button/?url='.get_current_page_url().'&amp;media='.$image.'&amp;description='.urlencode($title).'" class="pin-it-button" count-layout="'.$pinterest_btn_attributes.'"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="'.__('Pin it', GKTPLNAME).'" alt="'.__('Pin it', GKTPLNAME).'" /></a>';
 		}
 		
 		return '<section id="gk-social-api">' . $fb_like_output . $gplus_output . $twitter_output . $pinterest_output . '</section>';
