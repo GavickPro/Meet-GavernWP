@@ -37,38 +37,43 @@ jQuery(window).load(function(){
 					previous_tab = current_tab;
 					current_tab = i;
 					
+					if(typeof gk_tab_event_trigger != 'undefined') {
+						gk_tab_event_trigger(current_tab, previous_tab, el.parent().parent().attr('id'));
+					}
+					
 					tabs_wrapper.css('height', tabs_wrapper.outerHeight() + 'px');
 					
 					var previous_tab_animation = { 'opacity': 0 };
 					var current_tab_animation = { 'opacity': 1 };
 					//
-					jQuery(tabs[previous_tab]).animate(previous_tab_animation, animation_speed);
-					jQuery(tabs[previous_tab]).css('z-index', '1');
-					//
-					jQuery(tabs[previous_tab]).removeClass('active');
-					jQuery(tabs[current_tab]).addClass('active');
-					//
-					tabs_wrapper.animate({ 
-						"height": tabs_h[i]
-					}, 
-					animation_speed, 
-					function() { 
-						tabs_wrapper.css('height', 'auto');
+					jQuery(tabs[previous_tab]).animate(previous_tab_animation, animation_speed / 2, function() {
 						jQuery(tabs[previous_tab]).css({
 							'position': 'absolute',
-							'top': '0'
-						});	 
-					});
-					//
-					setTimeout(function(){
-						// anim
-						jQuery(tabs[current_tab]).animate(current_tab_animation, animation_speed);
+							'top': '0',
+							'z-index': '1'
+						});	
 						
 						jQuery(tabs[current_tab]).css({
 							'position': 'relative',
 							'z-index': '2'
 						});
-					}, animation_speed);
+						
+						jQuery(tabs[previous_tab]).removeClass('active');
+						jQuery(tabs[current_tab]).addClass('active');
+						
+						tabs_wrapper.animate({ 
+							"height": tabs_h[i]
+						}, 
+						animation_speed / 2, 
+						function() { 
+							tabs_wrapper.css('height', 'auto'); 
+						});
+						//
+						setTimeout(function(){
+							// anim
+							jQuery(tabs[current_tab]).animate(current_tab_animation, animation_speed);
+						}, animation_speed / 2);
+					});
 					// common operations for both types of animation
 					if(!falsy_click) blank = true;
 					else falsy_click = false;
