@@ -1,0 +1,26 @@
+[
+	{
+		"groupname": "Pages settings",
+		"groupdesc": "Parameters for theme pages are configured here.",
+		"fields": [
+			{
+				"name": "template_show_details_on_pages",
+				"type": "Switcher",
+				"label": "Display details on pages",
+				"tooltip": "Enable the display of the page information block for each page content item.",
+				"default": "N",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "template_show_author_info_on_pages",
+				"type": "Switcher",
+				"label": "Display Author Info on pages",
+				"tooltip": "Enable the display of the author information block for each page content item.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
+			}
+		]
+	}
+]

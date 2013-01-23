@@ -1,6 +1,7 @@
 [
 	["Basic", 				"options.basic",					"enabled"],
 	["Layout",	 			"options.layout",					"enabled"],
+	["Pages",	 			"options.pages",					"enabled"],
 	["Fonts", 				"options.fonts",					"enabled"],
 	["Navigation", 			"options.navigation",				"enabled"],
 	["Advanced", 			"options.advanced",					"enabled"],
