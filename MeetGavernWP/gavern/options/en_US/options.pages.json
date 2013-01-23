@@ -20,6 +20,15 @@
 				"default": "Y",
 				"class": "",
 				"visibility": ""
+			},
+			{
+				"name": "pages_show_comments_on_pages",
+				"type": "Switcher",
+				"label": "Display comments on pages",
+				"tooltip": "Enable the display of the comments block for each page content item.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
 			}
 		]
 	}

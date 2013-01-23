@@ -18,7 +18,9 @@ gk_load('before');
 	
 	<?php get_template_part( 'content', 'page' ); ?>
 	
+	<?php if(get_option($tpl->name . '_pages_show_comments_on_pages', 'Y') == 'Y') : ?>
 	<?php comments_template( '', true ); ?>
+	<?php endif; ?>
 </section>
 
 <?php
