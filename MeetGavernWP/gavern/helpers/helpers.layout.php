@@ -829,18 +829,22 @@ function gk_dynamic_sidebar($index) {
  * 
  **/
 function gk_title_icons($title) {
-	$icons = array();	
-	preg_match('(icon([\-a-zA-Z0-9]){1,})', $title, $icons);
-	// icon text (if exists)
-	$icon = '';
-	//
-	if(count($icons) > 0) {
-		$icon = '<i class="'.$icons[0].'"></i>';
+	if($title == '&nbsp;' || trim($title) == '' || strlen($title) == 0) {
+		return false;
+	} else {
+		$icons = array();	
+		preg_match('(icon([\-a-zA-Z0-9]){1,})', $title, $icons);
+		// icon text (if exists)
+		$icon = '';
+		//
+		if(count($icons) > 0) {
+			$icon = '<i class="'.$icons[0].'"></i>';
+		}
+		//
+		$title = preg_replace('@(\[icon([\-a-zA-Z0-9]){1,}\])@', '', $title);
+		//
+		return $icon.' '.$title;
 	}
-	//
-	$title = preg_replace('@(\[icon([\-a-zA-Z0-9]){1,}\])@', '', $title);
-	//
-	return $icon.' '.$title;
 }
 
 add_filter('widget_title', 'gk_title_icons');
