@@ -15,14 +15,14 @@ gk_load('before');
 
 <section id="gk-mainbody">
 <?php while ( have_posts() ) : the_post(); ?>
-	<article>
-		<header class="aside">
-			<hgroup>
-				<h2><?php the_title(); ?></h2>
-			</hgroup>
-
-			<?php gk_post_meta(true); ?>
+	<article class="attachment-page">
+		<header>
+			<h2><?php the_title(); ?></h2>
 		</header>
+		
+		<?php if(get_option($tpl->name . '_details_on_attachment_page', 'Y') == 'Y') : ?>
+		<?php gk_post_meta(true); ?>
+		<?php endif; ?>
 		
 		<section class="intro">
 			<a href="<?php echo get_permalink( $post->post_parent ); ?>" title="<?php esc_attr(printf(__('Return to %s', GKTPLNAME), get_the_title($post->post_parent))); ?>" rel="gallery">

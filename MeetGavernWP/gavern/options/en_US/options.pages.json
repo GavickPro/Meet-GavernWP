@@ -29,6 +29,15 @@
 				"default": "Y",
 				"class": "",
 				"visibility": ""
+			},
+			{
+				"name": "details_on_attachment_page",
+				"type": "Switcher",
+				"label": "Display sidebar information on the attachment page",
+				"tooltip": "You can disable showing the sidebar with additional information on the attachment page.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
 			}
 		]
 	}
