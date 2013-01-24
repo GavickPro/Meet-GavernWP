@@ -133,7 +133,12 @@ class GK_Comments_Widget extends WP_Widget {
 	 **/
 
 	function refresh_cache() {
-		delete_transient(md5($this->id));
+	    $ids = array_keys(get_option('widget_widget_gk_comments'));
+	    for($i = 0; $i < count($ids); $i++) {
+	        if(is_numeric($ids[$i])) {
+	            delete_transient(md5('widget_gk_comments-' . $ids[$i]));
+	        }
+	    }
 	}
 	
 	/**

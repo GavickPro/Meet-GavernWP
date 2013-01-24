@@ -346,9 +346,14 @@ class GK_NSP_Widget extends WP_Widget {
 	 * @return void
 	 *
 	 **/
-
+	
 	function refresh_cache() {
-		delete_transient(md5($this->id));
+	    $ids = array_keys(get_option('widget_widget_gk_nsp'));
+	    for($i = 0; $i < count($ids); $i++) {
+	        if(is_numeric($ids[$i])) {
+	            delete_transient(md5('widget_gk_nsp-' . $ids[$i]));
+	        }
+	    }
 	}
 
 	/**
