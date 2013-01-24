@@ -63,5 +63,7 @@
 	?>
 	
 	<?php wp_footer(); ?>
+	
+	<?php do_action('gavernwp_ga_code'); ?>
 </body>
 </html>

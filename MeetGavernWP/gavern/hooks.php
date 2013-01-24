@@ -18,6 +18,7 @@ defined('GAVERN_WP') or die('Access denied');
  * gavernwp_head
  * gavernwp_body_attributes
  * gavernwp_footer
+ * gavernwp_ga_code
  *
  * Hooks connected with the content:
  *
@@ -193,5 +194,33 @@ function gavernwp_footer_hook() {
 }
   
 add_action('gavernwp_footer', 'gavernwp_footer_hook');
+
+/**
+ *
+ * Function used to generate the Google Analytics before the closing <body> tag
+ *
+ **/
+
+function gavernwp_ga_code_hook() {
+	global $tpl;
+	// check if the Tracking ID is specified
+	if(get_option($tpl->name . '_ga_ua_id', '') != '') {
+		?>
+		<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', '<?php echo get_option($tpl->name . '_ga_ua_id', ''); ?>']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+		<?php
+	}
+}
+  
+add_action('gavernwp_ga_code', 'gavernwp_ga_code_hook');
  
 // EOF

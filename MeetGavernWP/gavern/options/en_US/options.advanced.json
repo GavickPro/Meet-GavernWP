@@ -26,6 +26,13 @@
 				"visibility": "custom_fields_state=Y"
 			},
 			{
+				"name": "ga_ua_id",
+				"type": "Text",
+				"label": "Google Analytics tracking ID",
+				"tooltip": "Please specify the UA ID i.e. UA-XXXXXX-Y",
+				"default": ""
+			},
+			{
 				"name": "prefixfree_state",
 				"type": "Switcher",
 				"label": "Use Prefixfree script",
