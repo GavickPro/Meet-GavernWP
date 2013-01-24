@@ -1,343 +1,696 @@
 /**
  *
- * Styles for the template options page
+ * -------------------------------------------
+ * Basic template CSS file
+ * -------------------------------------------
  *
  **/
-textarea,
-input,
-.wp-admin select {
-	-moz-border-radius: 2px!important;
-	-ms-border-radius: 2px!important;
-	-webkit-border-radius: 2px!important;
-	background: #fff;
-	border-color: #BCBCBC #DADADA #E4E4E4!important;
-	border-radius: 2px!important;
-	border-style: solid;
-	border-width: 1px;
-	color: #555;
-	font-size: 12px;
-	min-width: 200px;
-	padding: 7px!important
-}
-.wp-admin select {
-	border-color: #DADADA!important;
-	height: inherit;
-	line-height: inherit;
-	padding: 5px 7px!important
-}
-textarea:focus,
-input:focus,
-.wp-admin select:focus {
-	background: #FFFEF4
-}
-textarea {
-	min-height: 125px;
-	min-width: 300px;
-}
-.gkWidthHeight {
-	min-width: 50px!important;
-	width: 50px!important;
+ 
+/*
+ *
+ * 1. Global elements
+ *
+ *
+------------------------------------ */
+ 
+/* 1.1. Base document elements
+==================================== */
+
+* {
+	outline: none!important;
 }
 
-.gkWrap {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	border: 1px solid #e5e5e5;
-	border-radius: 3px;
-	box-sizing: border-box;
-	margin: 40px auto 0;
-	padding: 20px;
-	position: relative;
-	width: 95%
+html {
+	border-bottom: 1px solid transparent; /* with min-height cause showing always the scrollbar */
+	-webkit-font-smoothing: antialiased; /* Fixes Webkit GPU rendering */
+	min-height: 100%;
 }
-.gkWrap > h1:first-child {
-	background: #85B9DE;
-	border-radius: 3px 3px 0 0;
-	color: #fff;
-	font: normal 25px/48px Arial, Helvetica, sans-serif;
-	height: 48px;
-	margin: -21px -21px 0;
-	padding: 16px 20px 4px
+
+body { 
+	background: #fff;
+	color: #555;
+	font-size: 13px;
+	line-height: 1.7;
+	min-height: 100%;
+	padding: 0 10px 20px 10px;
 }
-.gkWrap > h1:first-child big {
-	float: left;
-	line-height: 32px
+
+.gk-page + #gk-top,
+.gk-page + .gk-page-wrap {
+	margin-left: -10px!important;
+	margin-right: -10px!important;
+	padding-left: 10px!important;
+	padding-right: 10px!important;
 }
-.gkWrap > h1:first-child small {
-	border-left: 1px solid #fff;
-	float: left;
-	font-size: 10px;
-	font-weight: 400;
-	line-height: 26px;
-	margin: 4px 0 0 24px;
-	padding-left: 16px
+
+/* 1.2. Base typography elements
+==================================== */
+
+a {
+	color: #333;
+	text-decoration: none;
+	-webkit-transition: color 0.3s ease-out;
+	-moz-transition: color 0.3s ease-out;
+	-ms-transition: color 0.3s ease-out;
+	-o-transition: color 0.3s ease-out;
+	transition: color 0.3s ease-out;
 }
-.gkWrap > h1:first-child a {
-	background: url(../../images/back-end/icons.png) no-repeat 0 -640px;
-	display: block;
-	float: right;
-	height: 26px;
-	margin-top: 5px;
-	text-indent: -9999em;
-	width: 27px
+
+article section.content a,
+article section.intro a {
+	color: #5990de;
 }
-.gkWrap > h1:first-child a:active,
-.gkWrap > h1:first-child a:focus,
-.gkWrap > h1:first-child a:hover {
-	text-decoration: underline
+
+article section.content a:active,
+article section.content a:focus,
+article section.content a:hover,
+article section.intro a:active,
+article section.intro a:focus,
+article section.intro a:hover {
+	color: #111;
 }
-.gkWrap > div {
-	display: table;
-	margin: 0 -20px -20px;
-	position: relative;
-	width: 100%
-}
-#gkTabs {
-	background: #f7f7f7;
-	border-right: 1px solid #e3e3e3;
-	display: table-cell;
-	padding: 20px 0;
-	vertical-align: top;
-	width: 190px
-}
-#gkTabs li {
-	-moz-transition: background-color .3s linear;
-	-ms-transition: background-color .3s linear;
-	-webkit-transition: background-color .3s linear;
-	background: url(../../images/back-end/icons.png) no-repeat 20px 14px;
-	border-bottom: 1px solid #e3e3e3;
-	color: #575b5c;
-	font: bold 12px/32px Arial, Helvetica, sans-serif;
-	height: 32px;
-	margin: 0;
-	padding: 6px 15px 6px 54px;
-	text-shadow: 0 0 0 1px #fff;
-	transition: background-color .3s linear
-}
-#gkTabs li:first-child {
-	border-top: 1px solid #e3e3e3
-}
-#gkTabs li.active,
-#gkTabs li:hover {
-	color: #222;
+
+a:active,
+a:focus,
+a:hover {
+	color: #5990de;
 	cursor: pointer;
 }
-#gkTabs li:hover {
-	background-color: #fff;
-}
-#gkTabs li.active {
-	background-color: #fff;
-	border-right: 1px solid #fff;
-	margin-right: -1px;
-}
-#gkTabs li.layout {
-	background-position: 20px -49px
-}
-#gkTabs li.fonts {
-	background-position: 20px -112px
-}
-#gkTabs li.navigation {
-	background-position: 20px -173px
-}
-#gkTabs li.advanced {
-	background-position: 20px -238px
-}
-#gkTabs li.shortcodes,
-#gkTabs li.pages {
-	background-position: 20px -299px
-}
-#gkTabs li.socialapi {
-	background-position: 20px -360px
-}
-#gkTabs li.templatebranding {
-	background-position: 20px -422px
-}
-#gkTabs li.back-endbranding {
-	background-position: 20px -485px
-}
-#gkTabs li.seo {
-	background-position: 20px -549px
-}
-#gkTabs li:hover.basic,
-#gkTabs li.basic.active {
-	background-position: -291px 14px
-}
-#gkTabs li:hover.layout,
-#gkTabs li.layout.active {
-	background-position: -291px -49px
-}
-#gkTabs li:hover.fonts,
-#gkTabs li.fonts.active {
-	background-position: -291px -112px
-}
-#gkTabs li:hover.navigation,
-#gkTabs li.navigation.active {
-	background-position: -291px -173px
-}
-#gkTabs li:hover.advanced,
-#gkTabs li.advanced.active {
-	background-position: -291px -238px
-}
-#gkTabs li:hover.shortcodes,
-#gkTabs li.shortcodes.active,
-#gkTabs li:hover.pages,
-#gkTabs li.pages.active {
-	background-position: -291px -299px
-}
-#gkTabs li:hover.socialapi,
-#gkTabs li.socialapi.active {
-	background-position: -291px -360px
-}
-#gkTabs li:hover.templatebranding,
-#gkTabs li.templatebranding.active {
-	background-position: -291px -422px
-}
-#gkTabs li:hover.back-endbranding,
-#gkTabs li.back-endbranding.active {
-	background-position: -291px -485px
-}
-#gkTabs li:hover.seo,
-#gkTabs li.seo.active {
-	background-position: -291px -549px
-}
-#gkTabsContent {
-	display: table-cell;
-	padding: 10px 10px 32px 24px;
-	vertical-align: top
-}
-#gkTabsContent > div.active {
-	display: block
-}
-#gkTabsContent .gkAjaxLoading {
-	display: block;
-	float: left;
-	height: 16px;
-	margin: 10px 8px 0 0px;
-	opacity: 0;
-	width: 16px
-}
-#gkTabsContent legend {
-	color: #222;
-	font: normal 22px/26px Arial, Helvetica, sans-serif;
-	padding: 20px 24px 0 6px
-}
-#gkTabsContent legend + p {
-	margin-top: 4px;
-	padding-bottom: 24px
-}
-#gkTabsContent legend + p small {
-	font-size: 11px
-}
-#gkTabsContent p {
-	border-bottom: 1px solid #eee;
-	color: #999;
-	font-size: 11px;
-	margin: 10px 0;
-	padding: 0 0 12px 6px
-}
-#gkTabsContent p label {
-	color: #555;
-	display: block;
-	float: left;
-	font-size: 12px;
-	font-weight: 700;
-	margin-right: 10px;
-	width: 290px;
-}
-.gkSaveSettings {
-	padding: 20px 0 0;
-	width: 100%
-}
-#gkTabs li.wrong {
-	color: #a00;
-	font-weight: 700
-}
-#gkTabs li.wrong:before {
-	background: #a00;
-	border-radius: 100%;
-	color: #fff;
-	content: '!';
-	float: left;
-	font-weight: 700;
-	height: 16px;
-	line-height: 16px;
-	margin: 7px 5px 0 0;
-	text-align: center;
-	width: 16px
-}
-.wrong-required {
-	border: 1px solid #fb0000!important
-}
-.wrong-format {
-	border: 1px solid #fe7d04!important
-}
-.wrong-required.wrong-format {
-	border: 1px solid #a4019e!important
-}
-.gkMedia,
-.gkSave {
-	-moz-border-radius: 2px;
-	-moz-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
-	-ms-border-radius: 2px;
-	-ms-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
-	-webkit-border-radius: 2px;
-	-webkit-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
-	background: #85b9e0!important;
-	border: none!important;
-	border-radius: 2px;
-	color: #fff;
-	display: inline-block;
-	font: 600 12px/31px Arial, Helvetica, sans-serif;
-	height: 38px!important;
-	line-height: 39px!important;
-	min-width: inherit;
-	padding: 0 6px;
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
-}
-.gkSave {
-	padding: 3px 9px
-}
-.gkMedia:hover,
-.gkSave:hover {
-	background: #444!important;
-	color: #fff;
-	cursor: pointer
-}
-.gkMedia {
-	color: #fff!important;
-	line-height: 1.2;
-}
-.gkMedia + small {
-	display: block;
-	margin-left: 300px;
-}
-.gkMediaInput {
-	display: block;
-	float: left;
-	margin-right: 4px;
-}
-#gkTabsContent > div,
-p[data-visible="false"] {
-	display: none
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #444;
+	font-weight: normal;
+	margin: 20px 0;
 }
 
-/* width <= 720px */ 
-@media only screen and (max-width: 900px), only screen and (max-device-width: 900px) and (-moz-max-device-pixel-ratio: 1.5), only screen and (max-device-width: 900px) and (-o-max-device-pixel-ratio: 1.5/1), only screen and (max-device-width: 900px) and (-webkit-max-device-pixel-ratio: 1.5), only screen and (max-device-width: 900px) and (max-device-pixel-ratio: 1.5), only screen and (max-device-width: 1800px) and (-moz-min-device-pixel-ratio: 2), only screen and (max-device-width: 1800px) and (-o-min-device-pixel-ratio: 2/1), only screen and (max-device-width: 1800px) and (-webkit-min-device-pixel-ratio: 2), only screen and (max-device-width: 1800px) and (min-device-pixel-ratio: 2) {
-	#gkTabs {
-		width: 54px;
-	}
-	#gkTabs li {
-		padding: 6px 0;
-		text-indent: -9999em;
-		width: 54px;
-	}
-	#gkTabsContent p label {
-		padding-bottom: 6px;
-		max-width: 100%!important;
-		width: 100%!important;
-	}
-	.gkMedia + small {
-		clear: both;
-		margin-left: 0px!important;
-	}
+h1 {
+	font-size: 40px;
+}
+
+h2 {
+	font-size: 32px;
+}
+
+h3 {
+	font-size: 24px;
+}
+
+h4 {
+	font-size: 20px;
+}
+
+h5 {
+	font-size: 16px;
+}
+
+h6 {
+	font-size: 14px;
+}
+
+.page-title {
+	font-size: 32px;
+}
+
+ul, 
+ol {
+	list-style-type: none;
+	margin: 10px 0;
+	padding: 0;
+}
+
+ul li,
+ol li {
+	line-height: 2.8;
+}
+
+img {
+	height: auto;
+	max-width: 100%;
+}
+
+.box ul li,
+.box ol li {
+	border-top: 1px solid #eee;
+}
+
+.box ul li:first-child,
+.box ol li:first-child {
+	border-top: none;
+}
+
+.box ul ul,
+.box ol ol {
+	border-top: 1px solid #eee;
+	margin: 0;
+	padding: 0 0 0 20px;
+}
+
+/* 1.3. Base form elements
+==================================== */
+
+/* buttons */
+.btn,
+button,
+.readon,
+a.gk-button,
+input[type="button"],
+input[type="submit"] {
+	display: inline-block;
+	padding: 4px 10px 4px;
+	margin-bottom: 0;
+	font-size: 13px;
+	line-height: 18px;
+	color: #333333;
+	text-align: center;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: #f5f5f5;
+	background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+	background-repeat: repeat-x;
+	border: 1px solid #cccccc;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+	border-bottom-color: #b3b3b3;
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	        border-radius: 4px;
+	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
+	filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn:hover,
+.btn:active,
+.btn.active,
+.btn.disabled,
+.btn[disabled],
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active,
+button.disabled,
+input[type="button"].disabled,
+input[type="submit"].disabled,
+a.gk-button:hover,
+a.gk-button:active,
+a.gk-button.active,
+a.gk-button.disabled,
+a.gk-button[disabled],
+.readon:hover,
+.readon:active,
+.readon:focus {
+  background-color: #e6e6e6;
+}
+
+.btn:active,
+.btn.active,
+button:active,
+a.gk-button:active,
+a.gk-button.active
+input[type="button"]:active,
+input[type="submit"]:active {
+  background-color: #cccccc;
+}
+
+.btn:first-child,
+button:first-child,
+a.gk-button:first-child,
+input[type="button"]:first-child,
+input[type="submit"]:first-child {
+  margin-left: 0;
+}
+
+.btn:hover,
+button:hover,
+a.gk-button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  color: #333333;
+  text-decoration: none;
+  background-color: #e6e6e6;
+  background-position: 0 -15px;
+  -webkit-transition: background-position 0.1s linear;
+     -moz-transition: background-position 0.1s linear;
+      -ms-transition: background-position 0.1s linear;
+       -o-transition: background-position 0.1s linear;
+          transition: background-position 0.1s linear;
+}
+
+.btn:focus,
+button:focus,
+a.gk-button:focus,
+input[type="button"]:focus,
+input[type="submit"]:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.btn.active,
+.btn:active,
+button:active,
+a.gk-button:active,
+input[type="button"]:active,
+input[type="submit"]:active {
+  background-color: #e6e6e6;
+  background-color: #d9d9d9;
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn.disabled,
+.btn[disabled],
+button.disabled,
+a.gk-button:disabled,
+a.gk-button[disabled],
+input[type="button"].disabled,
+input[type="submit"].disabled {
+  cursor: default;
+  background-color: #e6e6e6;
+  background-image: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+
+.btn-large {
+  padding: 9px 14px;
+  font-size: 15px;
+  line-height: normal;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+/* input fields */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="www"],
+input[type="tel"]  {
+	background: #fff;
+	border: 1px solid #e5e5e5;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	color: #333;
+	font: normal 12px Arial, Helvetica, sans-serif;
+	height: 32px;
+	line-height: 32px;
+	padding: 7px 9px;
+}
+
+textarea {
+	background: #fff;
+	border: 1px solid #e5e5e5;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	color: #333;
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 14px;
+	line-height: 23px;
+	padding: 10px;
+	text-transform: none;
+}
+
+label {
+	display: inline-block;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 0 0 4px 0;
+}
+
+select {
+	max-width: 100%;
+}
+
+/* 1.4. Base other elements
+==================================== */
+
+article {
+	margin: 20px 0;
+}
+
+.tag-page article,
+.category-page article,
+.search-page article {
+	margin: 20px 0 60px 0;
+}
+
+/* 1.5. Base CSS classes
+==================================== */
+
+/*
+ *
+ * 2. Template containers
+ *
+ *
+------------------------------------ */
+
+.gk-page + .gk-page-wrap,
+.gk-page + #gk-top {
+	border-top: 1px solid #e5e5e5;
+	padding-top: 45px;
+}
+
+#gk-header + .gk-page-wrap {
+	padding-top: 20px;
+}
+
+.gk-page {
+	margin: 0 auto;
+	width: 100%; 
+}
+
+#gk-mainbody-columns {
+	display: block;
+	overflow: hidden;
+	width: 100%;
+}
+
+#gk-mainbody-columns > section {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	display: block;
+	float: left;
+	padding: 0;
+}
+
+#gk-mainbody-columns > aside {
+	background: #fff;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	display: block;
+	float: left;
+	padding: 0;
+}
+
+#gk-mainbody-columns > section + aside,
+#gk-mainbody-columns > aside + section {
+	padding-left: 20px;
+}
+
+/*
+ *
+ * 3. Template structure
+ *
+ *
+------------------------------------ */
+ 
+/* 3.1. Top
+==================================== */
+
+#gk-top {
+	overflow: hidden;
+	padding: 24px 14px;
+}
+
+/* 3.2. Header
+==================================== */
+
+#gk-head {
+	position: relative;
+}
+
+#gk-head:after {
+	clear: both;
+	content: "";
+	display: table;
+}
+
+#gk-head h1 {
+	float: left;
+	margin: 0;
+}
+
+#gk-head a.cssLogo {
+	background: transparent url('../images/logo.png') no-repeat 0 0;
+	display: block;
+	height: 67px;
+	width: 219px;
+	text-indent: -9999px;
+}
+
+#gk-head a.textLogo {
+	color: #5990de;
+	display: block;
+	font-size: 18px;
+	line-height: 22px;
+	padding: 7px 0 0 10px;
+}
+
+#gk-head a.textLogo small {
+	color: #333;
+	display: block;
+	font-size: 12px;
+	line-height: 12px;
+}
+
+#gk-head a.imageLogo,
+#gk-head a.imageLogo img {
+	display: block;
+}
+
+#main-menu-mobile {
+	border: 1px solid #000;
+	height: 48px;
+	left: -9999px;
+	position: absolute;
+	top: 0px;
+	width: 160px;
+}
+
+#gk-header {
+	background: #f5f5f5;
+	margin: 0 -10px;
+	padding: 30px 0;
+}
+
+#gk-header .header img {
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+#gk-header .header {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* 3.3. Content
+==================================== */
+
+section.intro {
+	font-size: 110%;
+	padding: 0;
+}
+
+.box::after,
+#respond::after,
+#gk-mainbody::after,
+#gk-mainbody-columns::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+section.content::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+/* 3.4. Sidebar
+==================================== */
+
+/* 3.5. Bottom
+==================================== */
+
+#gk-bottom {
+	border-top: 1px solid #e5e5e5;
+	margin: 30px auto;
+	overflow: hidden;
+	padding: 45px 0 0 0;
+}
+
+#gk-bottom ul li,
+#gk-bottom ol li {
+	line-height: 2.0;
+}
+
+#gk-bottom .box ul li,
+#gk-bottom .box ol li {
+	border-top: none;
+}
+
+/* 3.6. Footer
+==================================== */
+
+#gk-footer {
+	border-top: 1px solid #e5e5e5;
+	clear: both;
+	color: #777;
+	font-size: 11px;
+	margin: 20px auto 20px auto;
+	padding: 10px 0;
+}
+
+#gk-footer a {
+	color: #aaa;
+}
+
+#gk-footer a:active,
+#gk-footer a:focus,
+#gk-footer a:hover {
+	color: #5990DE;
+}
+
+#footer-menu {
+	float: left;
+	line-height: 32px;
+	margin: 0;
+}
+
+#footer-menu li {
+	float: left;
+	margin-right: 10px;
+}
+
+#footer-menu ul {
+	display: none;
+}
+
+#gk-footer .gk-copyrights {
+	float: right;
+	line-height: 32px;
+}
+
+#gk-style-area {
+	clear: both;
+	margin: 20px 0;
+	text-align: center;
+}
+
+#gk-footer .gk-framework-logo {
+	clear: both;
+	display: block;
+	margin: 0 auto!important;
+	padding: 96px 0 16px 0!important;
+}
+
+#gk-top-link {
+	margin-left: 20px;
+}
+
+.gk-disclaimer {
+	clear: both;
+	margin: 0;
+	text-align: center;
+}
+
+/*
+ *
+ * 4. Widget styles
+ *
+ *
+------------------------------------ */
+ 
+/* 4.1. Base style
+==================================== */
+
+.box {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0 10px;
+}
+
+.box-title {
+	font-size: 20px;
+	font-weight: 300;
+	margin: 0 0 12px 0;
+}
+
+/* 4.2. Base style for other areas
+==================================== */
+
+#gk-top .box,
+#gk-bottom .box {
+	float: left;
+}
+
+.widget-area .col1 { width: 100%; }
+.widget-area .col2 { width: 50%; }
+.widget-area .col3 { width: 33.3%; }
+.widget-area .col4 { width: 25%; }
+.widget-area .col5 { width: 20%; }
+.widget-area .col6 { width: 16.6%; }
+
+.widget-area .box.last1 { width: 100%; }
+.widget-area .box.last2 { width: 50%; }
+.widget-area .box.last3 { width: 33.3%; }
+.widget-area .box.last4 { width: 25%; }
+.widget-area .box.last5 { width: 20%; }
+
+.widget-area .nth1 {
+	clear: both;
+}
+
+/* 4.3. Device classes
+==================================== */
+
+.onlyDesktop {
+	display: block!important;
+}
+
+.onlyTablets {
+	display: none!important;
+}
+
+.onlySmartphones {
+	display: none!important;
+}
+
+.onlyTabltetsAndSmartphones {
+	display: none!important;
 }
