@@ -275,7 +275,15 @@ function gk_widget_control_refresh(form) {
 				else if(pages[i].substr(0,7) == 'page404') type = 'page404';
 				else if(pages[i].substr(0,6) == 'search') type = 'search';
 				
-				list.html(list.html() + "<span class="+type+">"+pages[i]+"<strong>&times;</strong></span>");
+				var out = pages[i];
+				
+				if(out == 'page:') out = 'All pages';
+				else if(out == 'post:') out = 'All posts pages';
+				else if(out == 'category:') out = 'All category pages';
+				else if(out == 'tag:') out = 'All tag pages';
+				else if(out == 'author:') out = 'All author pages';
+				
+				list.html(list.html() + "<span class="+type+">"+out+"<strong>&times;</strong></span>");
 			}
 		}
 		
