@@ -596,6 +596,18 @@ function gk_condition($mode, $input, $users) {
 			    $output .= ' is_archive() ';
 			} else if(stripos($input[$i], 'author:') !== FALSE) {
 			    $output .= ' (is_author(\'' . substr($input[$i], 7) . '\') && is_single()) ';
+		    } else if(stripos($input[$i], 'template:') !== FALSE) {
+		        if(substr($input[$i], 9) != '') {
+		       		$output .= ' (is_page_template(\'' . substr($input[$i], 9) . '.php\') && is_singular()) ';
+		       	} else {
+		       		$output .= ' (is_page_template() && is_singular()) ';
+		       	}
+	        } else if(stripos($input[$i], 'format:') !== FALSE) {
+	        	if(substr($input[$i], 7 != '')) {
+	            	$output .= ' (has_term( \'post_format\', \'post-format-' . substr($input[$i], 7) . '\') && is_single()) ';
+	            } else {
+	            	$output .= ' (has_term( \'post_format\') && is_single()) ';
+	            }
 			} else if(stripos($input[$i], 'search') !== FALSE) {
 			    $output .= ' is_search() ';
 			} else if(stripos($input[$i], 'page404') !== FALSE) {

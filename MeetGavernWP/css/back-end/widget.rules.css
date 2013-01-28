@@ -139,6 +139,14 @@
 	background: #222;
 }
 
+.gk_widget_rules_pages div span.template {
+	background-color:#953;
+}
+
+/*.gk_widget_rules_pages div span.format {
+	background: #22aacc;
+}*/
+
 .gk_widget_rules_output {
 	display: none;
 }

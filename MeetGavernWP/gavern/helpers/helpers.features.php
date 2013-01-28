@@ -242,6 +242,7 @@ function gavern_widget_control() {
 				 	<option value="tag:">'.__('Tag', GKTPLNAME).'</option>
 				 	<option value="archive">'.__('Archive', GKTPLNAME).'</option>
 				 	<option value="author:">'.__('Author', GKTPLNAME).'</option>
+				 	<option value="template:">'.__('Page Template', GKTPLNAME).'</option>
 				 	<option value="search">'.__('Search page', GKTPLNAME).'</option>
 				 	<option value="page404">'.__('404 page', GKTPLNAME).'</option>
 				 </select>
@@ -250,6 +251,7 @@ function gavern_widget_control() {
 				 <p><label>'.__('Category ID/Name/slug:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_category" /></label></p>
 				 <p><label>'.__('Tag ID/Name:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_tag" /></label></p>
 				 <p><label>'.__('Author:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_author" /></label></p>
+				 <p><label>'.__('Template:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_template" /></label></p>
 				 <p><button class="gk_widget_rules_btn button-secondary">'.__('Add page', GKTPLNAME).'</button></p>
 				 <input type="text" name="' . $tpl->name . '_widget_rules_'.$id.'"  id="' . $tpl->name . '_widget_rules_'.$id.'" value="'.$value.'" class="gk_widget_rules_output" />
 				 <fieldset class="gk_widget_rules_pages">

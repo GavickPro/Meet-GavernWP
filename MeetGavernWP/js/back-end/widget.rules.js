@@ -125,6 +125,8 @@ function gk_widget_control_init_events(id, inner) {
 		var post = form.find('.gk_widget_rules_form_input_post').parent();
 		var category = form.find('.gk_widget_rules_form_input_category').parent();
 		var tag = form.find('.gk_widget_rules_form_input_tag').parent();
+		var template = form.find('.gk_widget_rules_form_input_template').parent();
+		//var format = form.find('.gk_widget_rules_form_input_format').parent();
 		var author = form.find('.gk_widget_rules_form_input_author').parent();
 		var btn = form.find('.gk_widget_rules_btn');
 		// hide unnecesary form
@@ -153,37 +155,65 @@ function gk_widget_control_init_events(id, inner) {
 				category.css('display', 'none');
 				tag.css('display', 'none');
 				author.css('display', 'none');
+				//format.css('display', 'none');
+				template.css('display', 'none');
 			} else if(value == 'page:') {
 				page.css('display', 'block');
 				post.css('display', 'none');
 				category.css('display', 'none');
 				tag.css('display', 'none');
 				author.css('display', 'none');
+				//format.css('display', 'none');
+				template.css('display', 'none');
 			} else if(value == 'post:') {
 				page.css('display', 'none');
 				post.css('display', 'block');
 				category.css('display', 'none');
 				tag.css('display', 'none');
 				author.css('display', 'none');
+				//format.css('display', 'none');
+				template.css('display', 'none');
 			} else if(value == 'category:') {
 				page.css('display', 'none');
 				post.css('display', 'none');
 				category.css('display', 'block');
 				tag.css('display', 'none');
 				author.css('display', 'none');
+				//format.css('display', 'none');
+				template.css('display', 'none');
 			} else if(value == 'tag:') {
 				page.css('display', 'none');
 				post.css('display', 'none');
 				category.css('display', 'none');
 				tag.css('display', 'block');
 				author.css('display', 'none');
+				//format.css('display', 'none');
+				template.css('display', 'none');
 			} else if(value == 'author:') {
 				page.css('display', 'none');
 				post.css('display', 'none');
 				category.css('display', 'none');
 				tag.css('display', 'none');
 				author.css('display', 'block');
-			}
+				//format.css('display', 'none');
+				template.css('display', 'none');
+			} else if(value == 'template:') {
+				page.css('display', 'none');
+				post.css('display', 'none');
+				category.css('display', 'none');
+				tag.css('display', 'none');
+				author.css('display', 'none');
+				//format.css('display', 'none');
+				template.css('display', 'block');
+			} /*else if(value == 'format:') {
+				page.css('display', 'none');
+				post.css('display', 'none');
+				category.css('display', 'none');
+				tag.css('display', 'none');
+				author.css('display', 'none');
+				format.css('display', 'block');
+				template.css('display', 'none');
+			}*/
 		});
 		// add the onClick event to the button
 		btn.click(function(event) {
@@ -204,6 +234,10 @@ function gk_widget_control_init_events(id, inner) {
 				output.val(output.val() + ',page:' + form.find('.gk_widget_rules_form_input_page').val());
 			} else if(value == 'post:') {
 				output.val(output.val() + ',post:' + form.find('.gk_widget_rules_form_input_post').val());
+			} else if(value == 'format:') {
+				output.val(output.val() + ',format:' + form.find('.gk_widget_rules_form_input_format').val());
+			} else if(value == 'template:') {
+				output.val(output.val() + ',template:' + form.find('.gk_widget_rules_form_input_template').val());
 			} else if(value == 'category:') {
 				output.val(output.val() + ',category:' + form.find('.gk_widget_rules_form_input_category').val());
 			} else if(value == 'tag:') {
@@ -221,6 +255,15 @@ function gk_widget_control_init_events(id, inner) {
 				var parent = jQuery(event.target).parent();
 				parent.find('strong').remove();
 				var text = parent.text();
+				
+				if(text == 'All pages') text = 'page:';
+				else if(text == 'All posts pages') text = 'post';
+				else if(text== 'All category pages') text = 'category:';
+				else if(text == 'All tag pages') text = 'tag:';
+				else if(text == 'All author pages') text = 'author:';
+				//else if(text == 'All post format pages') text = 'format:';
+				else if(text == 'All page template pages') text = 'template:';
+				
 				output.val(output.val().replace("," + text, ""));
 				gk_widget_control_refresh(form);	
 			}
@@ -272,6 +315,8 @@ function gk_widget_control_refresh(form) {
 				else if(pages[i].substr(0,4) == 'tag:') type = 'tag';
 				else if(pages[i].substr(0,7) == 'archive') type = 'archive';
 				else if(pages[i].substr(0,7) == 'author:') type = 'author';
+				//else if(pages[i].substr(0,7) == 'format:') type = 'format';
+				else if(pages[i].substr(0,9) == 'template:') type = 'template';
 				else if(pages[i].substr(0,7) == 'page404') type = 'page404';
 				else if(pages[i].substr(0,6) == 'search') type = 'search';
 				
@@ -282,6 +327,8 @@ function gk_widget_control_refresh(form) {
 				else if(out == 'category:') out = 'All category pages';
 				else if(out == 'tag:') out = 'All tag pages';
 				else if(out == 'author:') out = 'All author pages';
+				//else if(out == 'format:') out = 'All post format pages';
+				else if(out == 'template:') out = 'All page template pages';
 				
 				list.html(list.html() + "<span class="+type+">"+out+"<strong>&times;</strong></span>");
 			}
