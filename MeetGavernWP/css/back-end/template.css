@@ -300,9 +300,10 @@ textarea {
 	color: #fff;
 	cursor: pointer
 }
-.gkMedia {
+body input.gkMedia {
 	color: #fff!important;
-	line-height: 1.2;
+	height: 30px!important;
+	line-height: 19px!important;
 }
 .gkMedia + small {
 	display: block;
