@@ -115,7 +115,11 @@ jQuery(document).ready(function() {
 				jQuery(event.target).html(jQuery(event.target).attr('data-loading'));
 				// make a request
 				jQuery.post(ajaxurl, data, function(response) {
-					jQuery(event.target).html(response);
+					if(response == '0') {
+						jQuery(event.target).html('You\'re not logged in. Settings wasn\'t saved');
+					} else {
+						jQuery(event.target).html(response);
+					}
 					jQuery('#gkTabsContent').find('.active').find('.gkAjaxLoading').css('opacity', 0);
 					setTimeout(function() { 
 						jQuery(event.target).html(jQuery(event.target).attr('data-loaded')); 
