@@ -436,7 +436,7 @@ function gk_social_api($title, $postID) {
  *
  **/
  
-function gk_author($author_page = false) {
+function gk_author($author_page = false, $return_value = false) {
     global $tpl;
 
 	// check if the author info is enabled on the specific page
@@ -472,45 +472,54 @@ function gk_author($author_page = false) {
 		        )
 		    ): 
 		    ?>
-		    <section class="author-info">
-		        <aside class="author-avatar">
-		            <?php echo get_avatar( get_the_author_meta( 'user_email' ), 64 ); ?>
-		        </aside>
-		        <div class="author-desc">
-		            <h2>
-		                <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
-		                    <?php printf( __( 'Author: %s %s', GKTPLNAME ), get_the_author_meta('first_name', get_the_author_meta( 'ID' )), get_the_author_meta('last_name', get_the_author_meta( 'ID' )) ); ?> 
-		                </a>
-		            </h2>
-		            <p>
-		                <?php the_author_meta( 'description' ); ?>
-		            </p>
-		
-		            <?php 
-		                $www = get_the_author_meta('user_url', get_the_author_meta( 'ID' ));
-		                if($www != '') : 
-		            ?>
-		            <p class="author-www">
-		                <?php _e('Website: ', GKTPLNAME); ?><a href="<?php echo $www; ?>"><?php echo $www; ?></a>
-		            </p>
-		            <?php endif; ?>
-		            
-		            <?php
-		            	$google_profile = get_the_author_meta( 'google_profile' );
-		            	if ($google_profile != '') :
-		            		if(stripos($google_profile, '?') === FALSE && stripos($google_profile, 'rel=author') === FALSE) {
-		            			$google_profile .= '?rel=author'; 
-		            		}
-		            ?>
-		            <p class="author-google">
-		            	<a href="<?php echo esc_url($google_profile); ?>" rel="me"><?php _e('Google Profile', GKTPLNAME); ?></a>
-		            </p>
-		            <?php endif; ?>
-		        </div>
-		    </section>
-		    <?php 
+		    <?php if($return_value == true) : ?>
+		    	<?php return true; ?>
+		    <?php else : ?>
+			    <section class="author-info">
+			        <aside class="author-avatar">
+			            <?php echo get_avatar( get_the_author_meta( 'user_email' ), 64 ); ?>
+			        </aside>
+			        <div class="author-desc">
+			            <h2>
+			                <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
+			                    <?php printf( __( 'Author: %s %s', GKTPLNAME ), get_the_author_meta('first_name', get_the_author_meta( 'ID' )), get_the_author_meta('last_name', get_the_author_meta( 'ID' )) ); ?> 
+			                </a>
+			            </h2>
+			            <p>
+			                <?php the_author_meta( 'description' ); ?>
+			            </p>
+			
+			            <?php 
+			                $www = get_the_author_meta('user_url', get_the_author_meta( 'ID' ));
+			                if($www != '') : 
+			            ?>
+			            <p class="author-www">
+			                <?php _e('Website: ', GKTPLNAME); ?><a href="<?php echo $www; ?>"><?php echo $www; ?></a>
+			            </p>
+			            <?php endif; ?>
+			            
+			            <?php
+			            	$google_profile = get_the_author_meta( 'google_profile' );
+			            	if ($google_profile != '') :
+			            		if(stripos($google_profile, '?') === FALSE && stripos($google_profile, 'rel=author') === FALSE) {
+			            			$google_profile .= '?rel=author'; 
+			            		}
+			            ?>
+			            <p class="author-google">
+			            	<a href="<?php echo esc_url($google_profile); ?>" rel="me"><?php _e('Google Profile', GKTPLNAME); ?></a>
+			            </p>
+			            <?php endif; ?>
+			        </div>
+			    </section>
+		    	<?php 
+		    	endif;
 		    endif;
 		endif;
 	endif;
+	
+	if($return_value == true) {
+		return false;
+	}
 } 
+
 // EOF
