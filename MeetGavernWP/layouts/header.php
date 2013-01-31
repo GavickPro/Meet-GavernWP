@@ -25,6 +25,9 @@
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/stuff.css" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/wp.extensions.css" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/extensions.css" />
+	<!--[if IE 9]>
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ie9.css" />
+	<![endif]-->
 	<!--[if lt IE 9]>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ie8.css" />
 	<![endif]-->
