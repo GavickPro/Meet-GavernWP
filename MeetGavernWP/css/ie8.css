@@ -35,4 +35,6 @@ input[type="email"],
 input[type="www"],
 input[type="tel"] {
 	line-height: 1.2!important;
+	padding-top: 8px!important;
+	padding-bottom: 8px!important;
 }
