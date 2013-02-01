@@ -66,7 +66,7 @@
 	<?php 
 		echo stripslashes(
 			htmlspecialchars_decode(
-				str_replace( '&039;', "'", get_option($tpl->name . '_head_code', ''))
+				str_replace( '&#039;', "'", get_option($tpl->name . '_head_code', ''))
 			)
 		); 
 	?>
