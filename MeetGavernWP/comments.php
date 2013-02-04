@@ -63,9 +63,11 @@
 	<?php do_action('gavernwp_after_comments_form'); ?>
 </section>
 <?php elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
-<section id="comments" class="nocomments">	
-	<p class="no-comments"><?php _e( 'Comments are closed.', GKTPLNAME ); ?></p>
-</section>
+	<?php if( get_comment_pages_count() > 0) : ?>
+	<section id="comments" class="nocomments">	
+		<p class="no-comments"><?php _e( 'Comments are closed.', GKTPLNAME ); ?></p>
+	</section>
+	<?php endif; ?>
 <?php else : ?>
 <section id="comments" class="nocomments">
 	<?php do_action('gavernwp_before_comments_form'); ?>
