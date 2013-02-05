@@ -69,7 +69,11 @@ if(isset($_POST['message-send'])) {
 	// if the all fields was correct
 	if($validated) {
 		// send an e-mail
-		$email = get_option('admin_email');
+		$email = get_option($tpl->name . '_contact_template_email', '');
+		// if the user specified blank e-mail or not specified it
+		if(trim($email) == '') {
+			$email = get_option('admin_email');
+		}
 		// e-mail structure
 		$subject = 'From ' . $output['name'];
 		$body = "<html><body><h1 style=\"font-size: 24px; border-bottom: 4px solid #EEE; margin: 10px 0; padding: 10px 0; font-weight: normal; font-style: italic;\">".__('Message from', GKTPLNAME)." <strong>".get_bloginfo('name')."</strong></h1><div><h2 style=\"font-size: 16px; font-weight: normal; border-bottom: 1px solid #EEE; padding: 5px 0; margin: 10px 0;\">".__('Name:', GKTPLNAME)."</h2><p>".$output['name']."</p></div><div><h2 style=\"font-size: 16px; font-weight: normal; border-bottom: 1px solid #EEE; padding: 5px 0; margin: 10px 0;\">".__('E-mail:', GKTPLNAME)."</h2><p>".$output['email']."</p></div><div><h2 style=\"font-size: 16px; font-weight: normal; border-bottom: 1px solid #EEE; padding: 5px 0; margin: 10px 0;\">".__('Message:', GKTPLNAME)."</h2> ".$output['message']."</div></body></html>";

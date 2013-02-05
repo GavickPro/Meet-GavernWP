@@ -38,6 +38,15 @@
 				"default": "Y",
 				"class": "",
 				"visibility": ""
+			},
+			{
+				"name": "contact_template_email",
+				"type": "Text",
+				"label": "Contact e-mail",
+				"tooltip": "Specifies e-mail used on the Contact page template",
+				"default": "",
+				"class": "",
+				"visibility": ""
 			}
 		]
 	}
