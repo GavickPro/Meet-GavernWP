@@ -62,7 +62,7 @@ global $tpl;
 		
 		<?php gk_post_fields(); ?>
 		<?php gk_post_links(); ?>
-	</div>
+	</section>
 	<?php endif; ?>
 
 	<?php include('layouts/content.post.footer.php'); ?>
