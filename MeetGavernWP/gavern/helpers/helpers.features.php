@@ -420,7 +420,7 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 		'<option value="onlyDesktop"'.(($value2 == 'onlyDesktop') ? ' selected="selected"' : '').'>'.__('Desktop', GKTPLNAME).'</option>',
 		'<option value="onlyTablets"'.(($value2 == 'onlyTablets') ? ' selected="selected"' : '').'>'.__('Tablets', GKTPLNAME).'</option>',
 		'<option value="onlySmartphones"'.(($value2 == 'onlySmartphones') ? ' selected="selected"' : '').'>'.__('Smartphones', GKTPLNAME).'</option>',
-		'<option value="onlyTabltetsAndSmartphones"'.(($value2 == 'onlyTabletsAndSmartphones') ? ' selected="selected"' : '').'>'.__('Tablet/Smartphones', GKTPLNAME).'</option>'
+		'<option value="onlyTabltetsAndSmartphones"'.(($value2 == 'onlyTabltetsAndSmartphones') ? ' selected="selected"' : '').'>'.__('Tablet/Smartphones', GKTPLNAME).'</option>'
 	);
 	//
 	echo '<p><label for="' . $tpl->name . '_widget_responsive_'.$id.'">'.__('Visible on: ', GKTPLNAME).'<select name="' . $tpl->name . '_widget_responsive_'.$id.'"  id="' . $tpl->name . '_widget_responsive_'.$id.'">';
