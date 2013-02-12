@@ -51,32 +51,26 @@ function add_gavern_metaboxes() {
 	global $tpl;
 	// post description custom meta box
 	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y' && get_option($tpl->name . '_seo_post_desc') == 'custom') {
-		add_meta_box( 'gavern-post-desc', __('Post description', GKTPLNAME), 'gavern_post_desc_callback', 'post', 'normal', 'high' );
-		add_meta_box( 'gavern-post-desc', __('Page description', GKTPLNAME), 'gavern_post_desc_callback', 'page', 'normal', 'high' );
+		add_meta_box( 'gavern-post-desc', __('Post keywords and description', GKTPLNAME), 'gavern_post_seo_callback', 'post', 'normal', 'high' );
+		add_meta_box( 'gavern-post-desc', __('Page keywords and description', GKTPLNAME), 'gavern_post_seo_callback', 'page', 'normal', 'high' );
 	}
 	// post keywords custom meta box
 	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y' && get_option($tpl->name . '_seo_post_keywords') == 'custom') {
-		add_meta_box( 'gavern-post-keywords', __('Post keywords', GKTPLNAME), 'gavern_post_keywords_callback', 'post', 'normal', 'high' );
-		add_meta_box( 'gavern-post-keywords', __('Page keywords', GKTPLNAME), 'gavern_post_keywords_callback', 'page', 'normal', 'high' );
 	}
 }
 
-function gavern_post_desc_callback($post) { 
+function gavern_post_seo_callback($post) { 
 	$values = get_post_custom( $post->ID );  
-	$value = isset( $values['gavern-post-desc'] ) ? esc_attr( $values['gavern-post-desc'][0] ) : '';    
+	$value_desc = isset( $values['gavern-post-desc'] ) ? esc_attr( $values['gavern-post-desc'][0] ) : '';    
+	$value_keywords = isset( $values['gavern-post-keywords'] ) ? esc_attr( $values['gavern-post-keywords'][0] ) : ''; 
 	// nonce 
-	wp_nonce_field( 'gavern-post-desc-nonce', 'gavern_meta_box_desc_nonce' ); 
+	wp_nonce_field( 'gavern-post-seo-nonce', 'gavern_meta_box_seo_nonce' ); 
     // output
-    echo '<textarea name="gavern-post-desc-value" id="gavern-post-desc-value" rows="5" style="width:100%;">'.$value.'</textarea>';   
-} 
-
-function gavern_post_keywords_callback($post) {   
-	$values = get_post_custom( $post->ID );  
-	$value = isset( $values['gavern-post-keywords'] ) ? esc_attr( $values['gavern-post-keywords'][0] ) : '';  
-	// nonce 
-	wp_nonce_field( 'gavern-post-keywords-nonce', 'gavern_meta_box_keywords_nonce' ); 
-	// output
-    echo '<textarea name="gavern-post-keywords-value" id="gavern-post-keywords-value" rows="5" style="width:100%;">'.$value.'</textarea>';   
+    echo '<label for="gavern-post-desc-value">'.__('Description:', GKTPLNAME).'</label>';
+    echo '<textarea name="gavern-post-desc-value" id="gavern-post-desc-value" rows="5" style="width:100%;">'.$value_desc.'</textarea>'; 
+    // output
+    echo '<label for="gavern-post-desc-value">'.__('Keywords:', GKTPLNAME).'</label>';
+    echo '<textarea name="gavern-post-keywords-value" id="gavern-post-keywords-value" rows="5" style="width:100%;">'.$value_keywords.'</textarea>';    
 } 
  
 function gavern_metaboxes_save( $post_id ) {  
@@ -89,11 +83,11 @@ function gavern_metaboxes_save( $post_id ) {
     	return; 
     }
     // check the nonce
-    if( !isset( $_POST['gavern_meta_box_desc_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_desc_nonce'], 'gavern-post-desc-nonce' ) ) {
+    if( !isset( $_POST['gavern_meta_box_seo_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_seo_nonce'], 'gavern-post-seo-nonce' ) ) {
     	return;
     }
     
-    if( !isset( $_POST['gavern_meta_box_keywords_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_keywords_nonce'], 'gavern-post-keywords-nonce' ) ) {
+    if( !isset( $_POST['gavern_meta_box_seo_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_seo_nonce'], 'gavern-post-seo-nonce' ) ) {
     	return;
     }
     // check the existing of the fields and save it
@@ -104,8 +98,7 @@ function gavern_metaboxes_save( $post_id ) {
     if( isset( $_POST['gavern-post-keywords-value'] ) ) {
         update_post_meta( $post_id, 'gavern-post-keywords', esc_attr( $_POST['gavern-post-keywords-value'] ) ); 
     }
-}   
-
+}  
 
 /**
  *
