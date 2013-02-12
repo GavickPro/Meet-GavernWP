@@ -419,12 +419,16 @@ article {
 	box-sizing: border-box;
 	display: block;
 	float: left;
-	padding: 0;
+	padding: 0 0 0 20px;
 }
 
-#gk-mainbody-columns > section + aside,
-#gk-mainbody-columns > aside + section {
-	padding-left: 20px;
+#gk-mainbody-columns.gk-column-left > section {
+	float: right;
+}
+
+#gk-mainbody-columns.gk-column-left > aside {
+	float: left;
+	padding: 0 20px 0 0;
 }
 
 /*

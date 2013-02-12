@@ -33,23 +33,7 @@
 
 <section class="gk-page-wrap">
 	<section class="gk-page">
-		<section id="gk-mainbody-columns">
-			<?php 
-			if(
-				get_option($tpl->name . '_page_layout', 'right') == 'left' && 
-				gk_is_active_sidebar('sidebar') && 
-				(
-					$args == null || 
-					($args != null && $args['sidebar'] == true)
-				)
-			) : ?>
-			<?php do_action('gavernwp_before_column'); ?>
-			<aside id="gk-sidebar">
-				<?php gk_dynamic_sidebar('sidebar'); ?>
-			</aside>
-			<?php do_action('gavernwp_after_column'); ?>
-			<?php endif; ?>
-			
+		<section id="gk-mainbody-columns" <?php if(get_option($tpl->name . '_page_layout', 'right') == 'left') : ?> class="gk-column-left"<?php endif; ?>>
 			<section>
 				<?php if(gk_is_active_sidebar('mainbody_top')) : ?>
 				<section id="gk-mainbody-top">

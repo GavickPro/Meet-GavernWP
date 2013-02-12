@@ -23,7 +23,7 @@
 		
 			<?php 
 			if(
-				get_option($tpl->name . '_page_layout', 'right') == 'right' && 
+				get_option($tpl->name . '_page_layout', 'right') != 'none' && 
 				gk_is_active_sidebar('sidebar') && 
 				(
 					$args == null || 
