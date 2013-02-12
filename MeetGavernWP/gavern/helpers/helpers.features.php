@@ -43,7 +43,7 @@ function add_gavern_tinymce_plugin($plugin_array) {
 
 /**
  *
- * Code to create custom metaboxes with post description and keywords
+ * Code to create custom metaboxes with post additional features (description, keywords, title params)
  *
  **/
 
@@ -54,9 +54,9 @@ function add_gavern_metaboxes() {
 		add_meta_box( 'gavern-post-desc', __('Post keywords and description', GKTPLNAME), 'gavern_post_seo_callback', 'post', 'normal', 'high' );
 		add_meta_box( 'gavern-post-desc', __('Page keywords and description', GKTPLNAME), 'gavern_post_seo_callback', 'page', 'normal', 'high' );
 	}
-	// post keywords custom meta box
-	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y' && get_option($tpl->name . '_seo_post_keywords') == 'custom') {
-	}
+	// post title
+	add_meta_box( 'gavern-post-params', __('Post additional params', GKTPLNAME), 'gavern_post_params_callback', 'post', 'side', 'default' );
+	add_meta_box( 'gavern-post-params', __('Page additional params', GKTPLNAME), 'gavern_post_params_callback', 'page', 'side', 'default' );
 }
 
 function gavern_post_seo_callback($post) { 
@@ -72,6 +72,19 @@ function gavern_post_seo_callback($post) {
     echo '<label for="gavern-post-desc-value">'.__('Keywords:', GKTPLNAME).'</label>';
     echo '<textarea name="gavern-post-keywords-value" id="gavern-post-keywords-value" rows="5" style="width:100%;">'.$value_keywords.'</textarea>';    
 } 
+
+function gavern_post_params_callback($post) { 
+	$values = get_post_custom( $post->ID );  
+	$value_title = isset( $values['gavern-post-params-title'] ) ? esc_attr( $values['gavern-post-params-title'][0] ) : 'Y';     
+	// nonce 
+	wp_nonce_field( 'gavern-post-params-nonce', 'gavern_meta_box_params_nonce' ); 
+    // output
+    echo '<label for="gavern-post-params-title-value">'.__('Show title:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-title-value" id="gavern-post-params-title-value">';
+    echo '<option value="Y"'.(($value_title == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_title == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';     
+} 
  
 function gavern_metaboxes_save( $post_id ) {  
     // check the user permissions  
@@ -81,22 +94,33 @@ function gavern_metaboxes_save( $post_id ) {
     // avoid requests on the autosave 
     if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
     	return; 
-    }
-    // check the nonce
-    if( !isset( $_POST['gavern_meta_box_seo_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_seo_nonce'], 'gavern-post-seo-nonce' ) ) {
-    	return;
-    }
-    
-    if( !isset( $_POST['gavern_meta_box_seo_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_seo_nonce'], 'gavern-post-seo-nonce' ) ) {
-    	return;
-    }
+    }  
     // check the existing of the fields and save it
     if( isset( $_POST['gavern-post-desc-value'] ) ) {
+        // check the nonce
+        if( !isset( $_POST['gavern_meta_box_seo_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_seo_nonce'], 'gavern-post-seo-nonce' ) ) {
+        	return;
+        }
+        // update post meta
         update_post_meta( $post_id, 'gavern-post-desc', esc_attr( $_POST['gavern-post-desc-value'] ) );  
     }
-  	
+  	//
     if( isset( $_POST['gavern-post-keywords-value'] ) ) {
+    	// check the nonce
+    	if( !isset( $_POST['gavern_meta_box_seo_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_seo_nonce'], 'gavern-post-seo-nonce' ) ) {
+    		return;
+    	}
+    	// update post meta
         update_post_meta( $post_id, 'gavern-post-keywords', esc_attr( $_POST['gavern-post-keywords-value'] ) ); 
+    }
+    //
+    if( isset( $_POST['gavern-post-params-title-value'] ) ) {
+    	// check the nonce
+    	if( !isset( $_POST['gavern_meta_box_params_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_params_nonce'], 'gavern-post-params-nonce' ) ) {
+    		return;
+    	}
+    	// update post meta
+        update_post_meta( $post_id, 'gavern-post-params-title', esc_attr( $_POST['gavern-post-params-title-value'] ) ); 
     }
 }  
 
