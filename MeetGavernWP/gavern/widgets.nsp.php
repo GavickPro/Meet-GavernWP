@@ -914,12 +914,11 @@ class GK_NSP_Widget extends WP_Widget {
 	 
 	 	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $art_ID ), 'single-post-thumbnail' );
 	 	$image_path = $image[0];
-	 	$real_image_path = stripos($image_path, 'wp-content/uploads/');
-	 	$image_path = substr($image_path, $real_image_path);
-	 	$image_path = str_replace('wp-content/uploads/', '/uploads/', $image_path);
-	 
+	 	$upload_dir = wp_upload_dir();
+	 	$image_path = str_replace($upload_dir['baseurl'] . DIRECTORY_SEPARATOR, '', $image_path);
+	 	
 	 	if($image_path != '') {
-	 		$new_path = image_resize(WP_CONTENT_DIR . $image_path, $this->wdgt_config['article_image_w'], $this->wdgt_config['article_image_h'], true, $this->id, dirname(__FILE__) . '/cache_nsp' );
+	 	    $new_path = image_resize($upload_dir['basedir'] . DIRECTORY_SEPARATOR . $image_path, $this->wdgt_config['article_image_w'], $this->wdgt_config['article_image_h'], true, $this->id, dirname(__FILE__) . '/cache_nsp' );	
 	 		
 	 		if(is_string($new_path)) {
 		 		$new_path_pos = stripos($new_path, '/gavern/cache_nsp');
