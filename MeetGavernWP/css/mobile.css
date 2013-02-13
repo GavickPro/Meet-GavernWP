@@ -164,27 +164,35 @@ aside.meta dd.bookmark {
 
 .tag-page article aside.meta,
 .category-page article aside.meta,
-.search-page article aside.meta {
+.search-page article aside.meta,
+.home article aside.meta,
+.archive article aside.meta {
 	max-height: 32px!important;
 	min-height: 32px!important;
 }
 
 .tag-page article aside.meta dl,
 .category-page article aside.meta dl,
-.search-page article aside.meta dl {
+.search-page article aside.meta dl,
+.home article aside.meta dl,
+.archive article aside.meta dl {
 	margin: 0!important;
 }
 
 .tag-page aside.meta dt.date + dd,
 .category-page aside.meta dt.date + dd,
-.search-page aside.meta dt.date + dd {
+.search-page aside.meta dt.date + dd,
+.home aside.meta dt.date + dd,
+.archive aside.meta dt.date + dd {
 	padding: 0!important;
 	position: static;
 }
 
 .tag-page article aside.meta time,
 .category-page article aside.meta time,
-.search-page article aside.meta time {
+.search-page article aside.meta time,
+.home article aside.meta time,
+.archive article aside.meta time {
 	display: block;
 	float: left!important;
 	width: auto!important;
@@ -197,7 +205,9 @@ aside.meta dd.bookmark {
 
 .tag-page article aside.meta time span,
 .category-page article aside.meta time span,
-.search-page article aside.meta time span {
+.search-page article aside.meta time span,
+.home article aside.meta time span,
+.archive article aside.meta time span {
 	display: inline!important;
 	font-size: 14px!important;
 	line-height: 29px!important;
@@ -205,7 +215,9 @@ aside.meta dd.bookmark {
 
 .tag-page article aside.meta dd.format,
 .category-page article aside.meta dd.format,
-.search-page article aside.meta dd.format {
+.search-page article aside.meta dd.format,
+.home article aside.meta dd.format,
+.archive article aside.meta dd.format {
 	border: none!important;
 	float: left!important;
 	position: static!important;
@@ -213,7 +225,9 @@ aside.meta dd.bookmark {
 
 .tag-page article hgroup h1,
 .category-page article hgroup h1,
-.search-page article hgroup h1 {
+.search-page article hgroup h1,
+.home article hgroup h1,
+.archive article hgroup h1 {
 	margin-top: 0!important;
 }
 
