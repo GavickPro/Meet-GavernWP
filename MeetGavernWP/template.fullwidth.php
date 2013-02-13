@@ -13,15 +13,17 @@ gk_load('before', null, array('sidebar' => false));
 
 ?>
 
-<section id="gk-mainbody">
+<div id="gk-mainbody">
 	<?php while ( have_posts() ) : the_post(); ?>
 		<?php gk_content_nav(); ?>
 		
 		<?php get_template_part( 'content', 'single' ); ?>
 	
+		<?php if(get_option($tpl->name . '_pages_show_comments_on_pages', 'Y') == 'Y') : ?>
 		<?php comments_template( '', true ); ?>
+		<?php endif; ?>
 	<?php endwhile; ?>
-</section>
+</div>
 
 <?php
 
