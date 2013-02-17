@@ -44,7 +44,7 @@ class GK_NSP_Widget extends WP_Widget {
 	}
 	
 	static function add_scripts() {
-		wp_register_script( 'gk-nsp', get_template_directory_uri() . '/js/widgets/nsp.js', array('jquery'));
+		wp_register_script( 'gk-nsp', gavern_file_uri('js/widgets/nsp.js'), array('jquery'));
 		wp_enqueue_script('gk-nsp');
 	}
 

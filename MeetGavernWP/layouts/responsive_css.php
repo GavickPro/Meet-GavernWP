@@ -29,6 +29,6 @@
 	<?php endif; ?>
 </style>
 
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/tablet.css" media="(max-width: <?php echo get_option($tpl->name . '_tablet_width', '800'); ?>px)" />
+<link rel="stylesheet" href="<?php echo gavern_file_uri('css/tablet.css'); ?>" media="(max-width: <?php echo get_option($tpl->name . '_tablet_width', '800'); ?>px)" />
 
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/mobile.css" media="(max-width: <?php echo get_option($tpl->name . '_mobile_width', '800'); ?>px)" />
+<link rel="stylesheet" href="<?php echo gavern_file_uri('css/mobile.css'); ?>" media="(max-width: <?php echo get_option($tpl->name . '_mobile_width', '800'); ?>px)" />

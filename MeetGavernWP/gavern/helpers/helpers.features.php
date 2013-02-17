@@ -37,7 +37,7 @@ function register_gavern_shortcode_button($buttons) {
 // Load the plugin script
 function add_gavern_tinymce_plugin($plugin_array) {
 	// add the shortcode button script to the list
-   	$plugin_array['GavernWPShortcodes'] = get_template_directory_uri() . '/js/back-end/gavern.shortcode.button.js';
+   	$plugin_array['GavernWPShortcodes'] = gavern_file_uri('js/back-end/gavern.shortcode.button.js');
    	return $plugin_array;
 }
 
@@ -612,7 +612,7 @@ function gavern_opensearch() {
 		echo "\t<ShortName>".get_bloginfo('name')."</ShortName>\n";
 		echo "\t<LongName>".get_bloginfo('name')."</LongName>\n";
 		echo "\t<Description>Search &quot;".get_bloginfo('name')."&quot;</Description>\n";
-		echo "\t<Image width=\"16\" height=\"16\" type=\"image/x-icon\">".get_template_directory_uri()."/favicon.ico</Image>\n";
+		echo "\t<Image width=\"16\" height=\"16\" type=\"image/x-icon\">".gavern_file_uri('favicon.ico')."</Image>\n";
 		echo "\t<Contact>".get_bloginfo('admin_email')."</Contact>\n";
 		echo "\t<Url type=\"text/html\" template=\"".get_bloginfo('url')."/?s={searchTerms}\"/>\n";
 		echo "\t<Url type=\"application/atom+xml\" template=\"".get_bloginfo('url')."/?feed=atom&amp;s={searchTerms}\"/>\n";

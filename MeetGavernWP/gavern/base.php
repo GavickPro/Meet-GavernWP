@@ -9,13 +9,13 @@
 define('GAVERN_WP', 1);
 
 // Including file with template object class
-require_once($framework_path . 'classes/class.gkobject.php');
+require_once(gavern_file('gavern/classes/class.gkobject.php'));
 // Including file with template browser class
-require_once($framework_path . 'classes/class.gkbrowser.php');
+require_once(gavern_file('gavern/classes/class.gkbrowser.php'));
 // Including file with menu walker class
-require_once($framework_path . 'classes/class.menu.walker.php');
+require_once(gavern_file('gavern/classes/class.menu.walker.php'));
 // Including file with mobile menu walker class
-require_once($framework_path . 'classes/class.menu.walker.mobile.php');
+require_once(gavern_file('gavern/classes/class.menu.walker.mobile.php'));
 
 class GavernWP {
 	

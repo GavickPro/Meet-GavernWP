@@ -487,7 +487,7 @@ if(get_option($tpl->name . '_shortcodes1_state', 'Y') == 'Y') {
 		// [themeurl]
 		function gavern_ts_themeurl( $atts ){
 			// return the theme directory url
-			return get_template_directory_uri();
+			return gavern_file_uri(false);
 		}
 		add_shortcode( 'themeurl', 'gavern_ts_themeurl' );
 	}

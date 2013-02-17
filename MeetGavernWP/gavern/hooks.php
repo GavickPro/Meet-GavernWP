@@ -139,8 +139,8 @@ add_action('gavernwp_fonts', 'gavernwp_fonts_hook');
 function gavernwp_ie_scripts_hook() {
 	// generate scripts connected with IE9
 	echo '<!--[if lt IE 9]>' . "\n";
-	echo '<script src="'.get_template_directory_uri().'/js/html5shiv.js"></script>' . "\n";
-	echo '<script src="'.get_template_directory_uri().'/js/respond.js"></script>' . "\n";
+	echo '<script src="'.gavern_file_uri('js/html5shiv.js').'"></script>' . "\n";
+	echo '<script src="'.gavern_file_uri('js/respond.js').'"></script>' . "\n";
 	echo '<![endif]-->' . "\n";
 	
  	// YOUR HOOK CODE HERE

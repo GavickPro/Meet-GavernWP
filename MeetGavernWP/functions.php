@@ -11,11 +11,67 @@
  * @since GavernWP 1.0
  **/
 
-$framework_path = get_template_directory() . '/gavern/';
+if(!function_exists('gavern_file')) {
+	/**
+	 *
+	 * Function used to get the file absolute path - useful when child theme is used
+	 *
+	 * @return file absolute path (in the original theme or in the child theme if file exists)
+	 *
+	 **/
+	function gavern_file($path) {
+		if(is_child_theme()) {
+			if($path == false) {
+				return get_stylesheet_directory();
+			} else {
+				if(is_file(get_stylesheet_directory() . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $path))) {
+					return get_stylesheet_directory() . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $path);
+				} else {
+					return get_template_directory() . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $path);
+				}
+			}
+		} else {
+			if($path == false) {
+				return get_template_directory();
+			} else {
+				return get_template_directory() . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $path);
+			}
+		}
+	}
+}
 
+if(!function_exists('gavern_file_uri')) {
+	/**
+	 *
+	 * Function used to get the file URI - useful when child theme is used
+	 *
+	 * @return file URI (in the original theme or in the child theme if file exists)
+	 *
+	 **/
+	function gavern_file_uri($path) {
+		if(is_child_theme()) {
+			if($path == false) {
+				return get_stylesheet_directory_uri();
+			} else {
+				if(is_file(get_stylesheet_directory() . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $path))) {
+					return get_stylesheet_directory_uri() . '/' . $path;
+				} else {
+					return get_template_directory_uri() . '/' . $path;
+				}
+			}
+		} else {
+			if($path == false) {
+				return get_template_directory_uri();
+			} else {
+				return get_template_directory_uri() . '/' . $path;
+			}
+		}
+	}
+}
+//
 if(!class_exists('GavernWP')) {
 	// include the framework base class
-	require($framework_path . 'base.php');
+	require(gavern_file('gavern/base.php'));
 }
 // load and parse template JSON file.
 $config_language = 'en_US';
@@ -29,30 +85,30 @@ define('GKTPLNAME', $tpl_name);
 // create the framework object
 $tpl = new GavernWP();
 // Including file with helper functions
-require_once($framework_path . 'helpers/helpers.base.php');
+require_once(gavern_file('gavern/helpers/helpers.base.php'));
 // Including file with template hooks
-require_once($framework_path . 'hooks.php');
+require_once(gavern_file('gavern/hooks.php'));
 // Including file with template functions
-require_once($framework_path . 'functions.php');
+require_once(gavern_file('gavern/functions.php'));
 // Including file with template filters
-require_once($framework_path . 'filters.php');
+require_once(gavern_file('gavern/filters.php'));
 // Including file with template widgets
-require_once($framework_path . 'widgets.comments.php');
-require_once($framework_path . 'widgets.nsp.php');
-require_once($framework_path . 'widgets.social.php');
-require_once($framework_path . 'widgets.tabs.php');
+require_once(gavern_file('gavern/widgets.comments.php'));
+require_once(gavern_file('gavern/widgets.nsp.php'));
+require_once(gavern_file('gavern/widgets.social.php'));
+require_once(gavern_file('gavern/widgets.tabs.php'));
 // Including file with template admin features
-require_once($framework_path . 'helpers/helpers.features.php');
+require_once(gavern_file('gavern/helpers/helpers.features.php'));
 // Including file with template shortcodes
-require_once($framework_path . 'helpers/helpers.shortcodes.php');
+require_once(gavern_file('gavern/helpers/helpers.shortcodes.php'));
 // Including file with template layout functions
-require_once($framework_path . 'helpers/helpers.layout.php');
+require_once(gavern_file('gavern/helpers/helpers.layout.php'));
 // Including file with template layout functions - connected with template fragments
-require_once($framework_path . 'helpers/helpers.layout.fragments.php');
+require_once(gavern_file('gavern/helpers/helpers.layout.fragments.php'));
 // Including file with template branding functions
-require_once($framework_path . 'helpers/helpers.branding.php');
+require_once(gavern_file('gavern/helpers/helpers.branding.php'));
 // Including file with template customize functions
-require_once($framework_path . 'helpers/helpers.customizer.php');
+require_once(gavern_file('gavern/helpers/helpers.customizer.php'));
 // initialize the framework
 $tpl->init();
 // add theme setup function
@@ -103,15 +159,15 @@ function gavern_theme_setup(){
 // scripts enqueue function
 function gavern_enqueue_admin_js_and_css() {
 	// opengraph scripts
-	wp_enqueue_script('gavern.opengraph.js', get_template_directory_uri().'/js/back-end/gavern.opengraph.js');
+	wp_enqueue_script('gavern.opengraph.js', gavern_file_uri('js/back-end/gavern.opengraph.js'));
 	// widget rules JS
-	wp_register_script('widget-rules-js', get_template_directory_uri().'/js/back-end/widget.rules.js', array('jquery'));
+	wp_register_script('widget-rules-js', gavern_file_uri('js/back-end/widget.rules.js'), array('jquery'));
 	wp_enqueue_script('widget-rules-js');
 	// widget rules CSS
-	wp_register_style('widget-rules-css', get_template_directory_uri().'/css/back-end/widget.rules.css');
+	wp_register_style('widget-rules-css', gavern_file_uri('css/back-end/widget.rules.css'));
 	wp_enqueue_style('widget-rules-css');
 	// GK News Show Pro Widget back-end CSS
-	wp_register_style('nsp-admin-css', get_template_directory_uri().'/css/back-end/nsp.css');
+	wp_register_style('nsp-admin-css', gavern_file_uri('css/back-end/nsp.css'));
 	wp_enqueue_style('nsp-admin-css');
 	// shortcodes database
 	if(
@@ -124,7 +180,7 @@ function gavern_enqueue_admin_js_and_css() {
 		$language = 'en_US';
 	}
 	
-	wp_enqueue_script('shortcodes.js', get_template_directory_uri().'/gavern/config/'.($language).'/shortcodes.js');
+	wp_enqueue_script('shortcodes.js', gavern_file_uri('gavern/config/'.$language.'/shortcodes.js'));
 }
 // this action enqueues scripts and styles: 
 // http://wpdevel.wordpress.com/2011/12/12/use-wp_enqueue_scripts-not-wp_print_styles-to-enqueue-scripts-and-styles-for-the-frontend/

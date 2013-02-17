@@ -12,11 +12,11 @@ defined('GAVERN_WP') or die('Access denied');
  **/
 
 // load file with Template Options page
-require_once( $framework_path . 'options.template.php' );
+require_once(gavern_file('gavern/options.template.php'));
 // load file with Updates Options page
-require_once( $framework_path . 'options.updates.php' );
+require_once(gavern_file('gavern/options.updates.php'));
 // load file with Import/Export settings page
-require_once( $framework_path . 'options.importexport.php' );
+require_once(gavern_file('gavern/options.importexport.php'));
 
 /**
  *
@@ -31,7 +31,7 @@ if(!function_exists('gavern_admin_menu')) {
 		// getting access to the template global object. 
 		global $tpl;
 		// set the default icon path
-		$icon_path = get_template_directory_uri() . '/images/back-end/small_logo.png';
+		$icon_path = gavern_file_uri('images/back-end/small_logo.png');
 		// check if user set his own icon and then replace the default path
 		if(get_option($tpl->name . "_branding_admin_page_image") != '') {
 			$icon_path = get_option($tpl->name . "_branding_admin_page_image");

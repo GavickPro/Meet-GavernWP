@@ -33,7 +33,6 @@
 ./gavern/base.php
 ./gavern/options.importexport.php
 ./gavern/layouts/updates.php
-./gavern/layouts/importexport.php
 ./gavern/layouts/template.php
 ./gavern/form_elements/Fonts/fonts.php
 ./gavern/form_elements/standard.php

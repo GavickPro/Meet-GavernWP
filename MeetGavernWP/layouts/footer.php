@@ -37,7 +37,7 @@
 		<?php endif; ?>
 		
 		<?php if(get_option($tpl->name . '_template_footer_logo', 'Y') == 'Y') : ?>
-		<img src="<?php echo get_template_directory_uri(); ?>/images/gavernwp.png" class="gk-framework-logo" alt="GavernWP" />
+		<img src="<?php echo gavern_file_uri('images/gavernwp.png'); ?>" class="gk-framework-logo" alt="GavernWP" />
 		<?php endif; ?>
 		
 		<p class="gk-disclaimer">Copyright &copy; 2012. Designed by <a href="http://www.gavick.com">GavickPro</a> - High quality free WordPress Themes</p>

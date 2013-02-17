@@ -309,7 +309,7 @@ function gk_head_config() {
 	// output the start script tag
 	echo "<script type=\"text/javascript\">\n";
 	echo "           \$GK_PAGE_URL = '".home_url()."';\n";
-	echo "           \$GK_TMPL_URL = '".get_template_directory_uri()."';\n";
+	echo "           \$GK_TMPL_URL = '".gavern_file_uri(false)."';\n";
 	echo "           \$GK_TMPL_NAME = '".$tpl->name."';\n";
 	echo "           \$GK_MENU = [];\n";
 	// output the menu config
@@ -406,7 +406,7 @@ function gk_head_style_css() {
 			$url = esc_attr(isset($_COOKIE[$tpl->name.'_style']) ? $_COOKIE[$tpl->name.'_style'] : $url);
 		}
 		// output the LINK element
-		echo '<link href="'. get_template_directory_uri()."/css/".$url . '" rel="stylesheet" type="text/css" />';
+		echo '<link href="'. gavern_file_uri('css/' . $url).'" rel="stylesheet" type="text/css" />';
 	}
 }
 
@@ -423,18 +423,18 @@ function gk_head_shortcodes() {
 	// check if shortcodes group are enabled
 	// typography
 	if(get_option($tpl->name . "_shortcodes1_state", 'Y') == 'Y') {
-		echo '<link href="'. get_template_directory_uri().'/css/shortcodes.typography.css" rel="stylesheet" type="text/css" />';
-		wp_enqueue_script('shortcodes_typography_js', get_template_directory_uri()."/js/shortcodes.typography.js", array(), false, false);
+		echo '<link href="'. gavern_file_uri('css/shortcodes.typography.css') .'" rel="stylesheet" type="text/css" />';
+		wp_enqueue_script('shortcodes_typography_js', gavern_file_uri('js/shortcodes.typography.js'), array(), false, false);
 	}
 	// interactive
 	if(get_option($tpl->name . "_shortcodes2_state", 'Y') == 'Y') {
-		echo '<link href="'. get_template_directory_uri().'/css/shortcodes.elements.css" rel="stylesheet" type="text/css" />';
-		wp_enqueue_script('shortcodes_elements_js', get_template_directory_uri()."/js/shortcodes.elements.js", array(), false, false);
+		echo '<link href="'. gavern_file_uri('css/shortcodes.elements.css') .'" rel="stylesheet" type="text/css" />';
+		wp_enqueue_script('shortcodes_elements_js', gavern_file_uri('js/shortcodes.elements.js'), array(), false, false);
 	}
 	// template
 	if(get_option($tpl->name . "_shortcodes3_state", 'Y') == 'Y') {
-		echo '<link href="'. get_template_directory_uri().'/css/shortcodes.template.css" rel="stylesheet" type="text/css" />';
-		wp_enqueue_script('shortcodes_template_js', get_template_directory_uri()."/js/shortcodes.template.js", array(), false, false);	
+		echo '<link href="'. gavern_file_uri('css/shortcodes.template.css') .'" rel="stylesheet" type="text/css" />';
+		wp_enqueue_script('shortcodes_template_js', gavern_file_uri('js/shortcodes.template.js'), array(), false, false);	
 	}
 }
 
@@ -496,7 +496,7 @@ function gk_head_fonts() {
 			
 				$font_family = str_replace('\&#039;', "'", $normal);
 			} else if($type == 'squirrel') {				
-				echo '<link href="' . get_template_directory_uri() . '/fonts/' . $squirrel . '/stylesheet.css' . '" rel="stylesheet" type="text/css" />';
+				echo '<link href="' . gavern_file_uri('fonts/' . $squirrel . '/stylesheet.css') . '" rel="stylesheet" type="text/css" />';
 				$font_family = "'" . $squirrel . "'";
 			} else if($type == 'google'){
 				$fname = array();
@@ -509,7 +509,7 @@ function gk_head_fonts() {
 					preg_match('@family(.+)\|.+@is', $google, $fname);
 				}
 				
-				$font_family = "'" . str_replace('+', ' ', preg_replace('@:.+@', '', preg_replace('@&.+@', '', $fname[1]))) . "'";
+				$font_family = "'" . str_replace('+', ' ', preg_replace('@:.+@', '', $fname[1])) . "'";
 				// We are providing the protocol to avoid duplicated downloads on IE7/8
 				$google = ($tpl->isSSL) ? str_replace('http://', 'https://', $google) : $google;
 				
@@ -546,8 +546,8 @@ function gk_head_style_pages() {
 	global $tpl;
 	// scripts for the contact page
 	if( is_page_template('contact.php') ){ 
-		echo '<script type="text/javascript" src="'. get_template_directory_uri() . '/js/jquery.validate.min.js"></script>';
-		echo '<script type="text/javascript" src="'. get_template_directory_uri() . '/js/contact.js"></script>';
+		echo '<script type="text/javascript" src="'. gavern_file_uri('js/jquery.validate.min.js') .'"></script>';
+		echo '<script type="text/javascript" src="'. gavern_file_uri('js/contact.js') .'"></script>';
 	}
 }
 

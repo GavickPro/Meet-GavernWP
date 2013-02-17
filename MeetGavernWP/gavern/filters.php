@@ -111,8 +111,8 @@ function gavern_custom_die_handler( $message, $title = '', $args = array() ) {
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title><?php echo $title ?></title>
-	<link href="<?php echo get_template_directory_uri(); ?>/fonts/Colaborate/stylesheet.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo get_template_directory_uri(); ?>/css/error.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo gavern_file_uri('fonts/Colaborate/stylesheet.css'); ?>" rel="stylesheet" type="text/css" />
+	<link href="<?php echo gavern_file_uri('css/error.css'); ?>" rel="stylesheet" type="text/css" />
 </head>
 <body id="error-page">
 <?php endif; ?>

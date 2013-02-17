@@ -8,8 +8,8 @@ global $tpl;
 gk_load(
 	'header', 
 	array(
-		'css' => get_template_directory_uri() . '/css/templates/gallery.css',
-		'js' => get_template_directory_uri() . '/js/templates/gallery.js'
+		'css' => gavern_file_uri('css/templates/gallery.css'),
+		'js' => gavern_file_uri('js/templates/gallery.js')
 	)
 );
 gk_load('before');

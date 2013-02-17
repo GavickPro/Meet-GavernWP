@@ -19,17 +19,17 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="shortcut icon" href="<?php get_stylesheet_directory_uri(); ?>/favicon.ico" />
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/normalize.css" />
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/template.css" />
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/wp.css" />
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/stuff.css" />
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/wp.extensions.css" />
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/extensions.css" />
+	<link rel="stylesheet" href="<?php echo gavern_file_uri('css/normalize.css'); ?>" />
+	<link rel="stylesheet" href="<?php echo gavern_file_uri('css/template.css'); ?>" />
+	<link rel="stylesheet" href="<?php echo gavern_file_uri('css/wp.css'); ?>" />
+	<link rel="stylesheet" href="<?php echo gavern_file_uri('css/stuff.css'); ?>" />
+	<link rel="stylesheet" href="<?php echo gavern_file_uri('css/wp.extensions.css'); ?>" />
+	<link rel="stylesheet" href="<?php echo gavern_file_uri('css/extensions.css'); ?>" />
 	<!--[if IE 9]>
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ie9.css" />
+	<link rel="stylesheet" href="<?php echo gavern_file_uri('css/ie9.css'); ?>" />
 	<![endif]-->
 	<!--[if lt IE 9]>
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ie8.css" />
+	<link rel="stylesheet" href="<?php echo gavern_file_uri('css/ie8.css'); ?>" />
 	<![endif]-->
 	
 	<?php do_action('gavernwp_fonts'); ?>
@@ -50,15 +50,15 @@
 	<?php gk_load('responsive_css'); ?>
 	
 	<?php if(get_option($tpl->name . '_prefixfree_state', 'N') == 'Y') : ?>
-	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/prefixfree.js"></script>
+	<script type="text/javascript" src="<?php echo gavern_file_uri('js/prefixfree.js'); ?>"></script>
 	<?php endif; ?>
 	
 	<?php gk_thickbox_load(); ?>
-	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/gk.scripts.js"></script>
-	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/gk.menu.js"></script>
+	<script type="text/javascript" src="<?php echo gavern_file_uri('js/gk.scripts.js'); ?>"></script>
+	<script type="text/javascript" src="<?php echo gavern_file_uri('js/gk.menu.js'); ?>"></script>
 	
 	<?php if(get_option($tpl->name . "_overridecss_state", 'Y') == 'Y') : ?>
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/override.css" />
+	<link rel="stylesheet" href="<?php echo gavern_file_uri('css/override.css'); ?>" />
 	<?php endif; ?>
 	
 	<?php do_action('gavernwp_head'); ?>
