@@ -509,7 +509,7 @@ function gk_head_fonts() {
 					preg_match('@family(.+)\|.+@is', $google, $fname);
 				}
 				
-				$font_family = "'" . str_replace('+', ' ', preg_replace('@:.+@', '', $fname[1])) . "'";
+				$font_family = "'" . str_replace('+', ' ', preg_replace('@:.+@', '', preg_replace('@&.+@', '', $fname[1]))) . "'";
 				// We are providing the protocol to avoid duplicated downloads on IE7/8
 				$google = ($tpl->isSSL) ? str_replace('http://', 'https://', $google) : $google;
 				
