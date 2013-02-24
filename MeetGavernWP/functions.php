@@ -90,6 +90,7 @@ require_once(gavern_file('gavern/helpers/helpers.base.php'));
 require_once(gavern_file('gavern/hooks.php'));
 // Including file with template functions
 require_once(gavern_file('gavern/functions.php'));
+require_once(gavern_file('gavern/user.functions.php'));
 // Including file with template filters
 require_once(gavern_file('gavern/filters.php'));
 // Including file with template widgets
