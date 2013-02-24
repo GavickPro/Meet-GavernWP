@@ -27,6 +27,10 @@
 	<?php else : ?>
 	#gk-mainbody-columns > section { width: 100%; }
 	<?php endif; ?>
+	
+	@media (min-width: <?php echo get_option($tpl->name . '_tablet_width', '800') + 1; ?>px) {
+		#gk-mainmenu-collapse { height: auto!important; }
+	}
 </style>
 
 <link rel="stylesheet" href="<?php echo gavern_file_uri('css/tablet.css'); ?>" media="(max-width: <?php echo get_option($tpl->name . '_tablet_width', '800'); ?>px)" />
