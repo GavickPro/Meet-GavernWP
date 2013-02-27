@@ -16,6 +16,10 @@ require_once(gavern_file('gavern/classes/class.gkbrowser.php'));
 require_once(gavern_file('gavern/classes/class.menu.walker.php'));
 // Including file with mobile menu walker class
 require_once(gavern_file('gavern/classes/class.menu.walker.mobile.php'));
+// Including file used for WPML support
+if (defined('ICL_SITEPRESS_VERSION')) {
+	require_once(gavern_file('gavern/wpml.php'));
+}
 
 class GavernWP {
 	
@@ -382,6 +386,7 @@ class GavernWP {
 	public function get_json($dir, $filename, $lang = true) {		
 		// lang dir
 		$lang = ($lang) ? ($this->language) . '/' : '';
+		$lang = apply_filters('gavern-get-json',$dir,$lang);
 		$path = get_template_directory() . '/gavern/' . $dir . '/' . $lang . $filename . '.json';
 		// check if the specified file exists
 		if(file_exists($path)) {
