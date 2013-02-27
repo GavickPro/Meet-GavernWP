@@ -386,7 +386,10 @@ class GavernWP {
 	public function get_json($dir, $filename, $lang = true) {		
 		// lang dir
 		$lang = ($lang) ? ($this->language) . '/' : '';
-		$lang = apply_filters('gavern-get-json',$dir,$lang);
+		
+		if (defined('ICL_SITEPRESS_VERSION')) {
+			$lang = apply_filters('gavern-get-json',$dir,$lang);
+		}
 		$path = get_template_directory() . '/gavern/' . $dir . '/' . $lang . $filename . '.json';
 		// check if the specified file exists
 		if(file_exists($path)) {
