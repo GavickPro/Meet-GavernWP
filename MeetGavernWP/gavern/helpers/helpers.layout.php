@@ -31,7 +31,7 @@ function gk_load($part_name, $assets = null, $args = null) {
 		}
 	}
 
-	include(TEMPLATEPATH . '/layouts/' . $part_name . '.php');
+	include(gavern_file('layouts/' . $part_name . '.php'));
 }
  
 /**

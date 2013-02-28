@@ -29,11 +29,11 @@ if(is_page() && get_option($tpl->name . '_template_show_details_on_pages', 'Y') 
 <article id="post-<?php the_ID(); ?>" <?php post_class($classname); ?>>
 	<?php if($show_title) : ?>
 	<header>
-		<?php include('layouts/content.post.header.php'); ?>
+		<?php include(gavern_file('layouts/content.post.header.php')); ?>
 	</header>
 	<?php endif; ?>
 
-	<?php include('layouts/content.post.featured.php'); ?>
+	<?php include(gavern_file('layouts/content.post.featured.php')); ?>
 
 	<section class="content">
 		<?php the_content(); ?>
@@ -42,5 +42,5 @@ if(is_page() && get_option($tpl->name . '_template_show_details_on_pages', 'Y') 
 		<?php gk_post_links(); ?>
 	</section>
 	
-	<?php include('layouts/content.post.footer.php'); ?>
+	<?php include(gavern_file('layouts/content.post.footer.php')); ?>
 </article>

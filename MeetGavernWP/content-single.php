@@ -12,10 +12,10 @@ global $tpl;
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(is_page_template('template.fullwidth.php') ? ' page-fullwidth' : null); ?>>
 	<header>
-		<?php include('layouts/content.post.header.php'); ?>
+		<?php include(gavern_file('layouts/content.post.header.php')); ?>
 	</header>
 
-	<?php include('layouts/content.post.featured.php'); ?>
+	<?php include(gavern_file('layouts/content.post.featured.php')); ?>
 
 	<section class="content">
 		<?php the_content(); ?>
@@ -24,5 +24,5 @@ global $tpl;
 		<?php gk_post_links(); ?>
 	</section>
 
-	<?php include('layouts/content.post.footer.php'); ?>
+	<?php include(gavern_file('layouts/content.post.footer.php')); ?>
 </article>
