@@ -570,3 +570,36 @@ div.wp-caption {
 .gallery-caption {
 	font-size: 10px;
 }
+
+/* 5.5. wp-activate.php and wp-signup.php pages
+==================================== */
+
+/* wp-activate.php */
+
+#activateform {
+	margin: 0 auto;
+	max-width: 500px;
+}
+
+#activateform #key,
+#activateform #submit {
+	font-size: inherit!important;
+}
+
+/* wp-signup.php */
+.mu_register {
+	margin: 20px auto!important;
+	max-width: 500px;
+}
+
+.mu_register input[type="submit"], 
+.mu_register #blog_title, 
+.mu_register #user_email, 
+.mu_register #blogname, 
+.mu_register #user_name {
+	font-size: inherit!important;	
+}
+
+.mu_register label {
+	font-size: inherit!important;
+}

@@ -649,53 +649,56 @@ function gk_is_active_sidebar( $index ) {
 	global $tpl;
 	// get access to registered widgets
 	global $wp_registered_widgets;
-	// generate sidebar index
-	$index = ( is_int($index) ) ? "sidebar-$index" : sanitize_title($index);
-	// getting the widgets
-	$sidebars_widgets = wp_get_sidebars_widgets();
-	// get the widget showing rules
-	$options_type = get_option($tpl->name . '_widget_rules_type');
-	$options = get_option($tpl->name . '_widget_rules');
-	$users = get_option($tpl->name . '_widget_users');
 	// sidebar flag
 	$sidebar_flag = false;
-	// if some widget exists
-	if ( !empty($sidebars_widgets[$index]) ) {
-		$widget_counter = 0;
-		foreach ( (array) $sidebars_widgets[$index] as $id ) {
-			// if widget doesn't exists - skip this iteration
-			if ( !isset($wp_registered_widgets[$id]) ) continue;
-			// if the widget rules are enabled
-			if(get_option($tpl->name . '_widget_rules_state') == 'Y') {
-				// check the widget rules
-				$conditional_result = false;
-				// create conditional function based on rules
-				if( isset($options[$id]) && $options[$id] != '' ) {
-					// create function
-					$conditional_function = create_function('', 'return '.gk_condition($options_type[$id], $options[$id], $users[$id]).';');
-					// generate the result of function
-					$conditional_result = $conditional_function();
-				}
-				// if condition for widget isn't set or is TRUE
-				if( !isset($options[$id]) || $options[$id] == '' || $conditional_result === TRUE ) {
-					// return TRUE, because at lease one widget exists in the specific sidebar
-					$sidebar_flag = true;
+	//
+	if($GLOBALS['pagenow'] !== 'wp-signup.php' && $GLOBALS['pagenow'] !== 'wp-activate.php') {
+		// generate sidebar index
+		$index = ( is_int($index) ) ? "sidebar-$index" : sanitize_title($index);
+		// getting the widgets
+		$sidebars_widgets = wp_get_sidebars_widgets();
+		// get the widget showing rules
+		$options_type = get_option($tpl->name . '_widget_rules_type');
+		$options = get_option($tpl->name . '_widget_rules');
+		$users = get_option($tpl->name . '_widget_users');
+		// if some widget exists
+		if ( !empty($sidebars_widgets[$index]) ) {
+			$widget_counter = 0;
+			foreach ( (array) $sidebars_widgets[$index] as $id ) {
+				// if widget doesn't exists - skip this iteration
+				if ( !isset($wp_registered_widgets[$id]) ) continue;
+				// if the widget rules are enabled
+				if(get_option($tpl->name . '_widget_rules_state') == 'Y') {
+					// check the widget rules
+					$conditional_result = false;
+					// create conditional function based on rules
+					if( isset($options[$id]) && $options[$id] != '' ) {
+						// create function
+						$conditional_function = create_function('', 'return '.gk_condition($options_type[$id], $options[$id], $users[$id]).';');
+						// generate the result of function
+						$conditional_result = $conditional_function();
+					}
+					// if condition for widget isn't set or is TRUE
+					if( !isset($options[$id]) || $options[$id] == '' || $conditional_result === TRUE ) {
+						// return TRUE, because at lease one widget exists in the specific sidebar
+						$sidebar_flag = true;
+						$widget_counter++;
+					}
+					// set the state of the widget
+					$wp_registered_widgets[$id]['gkstate'] = $conditional_result;
+				} else {
 					$widget_counter++;
+					$sidebar_flag = true;
+					$wp_registered_widgets[$id]['gkstate'] = true;
 				}
-				// set the state of the widget
-				$wp_registered_widgets[$id]['gkstate'] = $conditional_result;
-			} else {
-				$widget_counter++;
-				$sidebar_flag = true;
-				$wp_registered_widgets[$id]['gkstate'] = true;
 			}
-		}
-		// change num 
-		foreach ( (array) $sidebars_widgets[$index] as $id ) {
-			// if widget doesn't exists - skip this iteration
-			if ( !isset($wp_registered_widgets[$id]) ) continue;
-			// save the class
-			$wp_registered_widgets[$id]['gkcount'] = $widget_counter;
+			// change num 
+			foreach ( (array) $sidebars_widgets[$index] as $id ) {
+				// if widget doesn't exists - skip this iteration
+				if ( !isset($wp_registered_widgets[$id]) ) continue;
+				// save the class
+				$wp_registered_widgets[$id]['gkcount'] = $widget_counter;
+			}
 		}
 	}
 	// if there is no widgets in the sidebar
