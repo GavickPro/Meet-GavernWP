@@ -511,7 +511,6 @@ a.gk-button:hover {
 /* Columns */
 
 .gk-columns {
-	clear: both;
 	margin: 10px 0;
 	overflow: hidden;
 	width: 100%;	
