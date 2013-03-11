@@ -531,6 +531,14 @@ article figure.featured-image img {
 	max-width: 100%;
 }
 
+article figure.featured-image img + figcaption {
+	color: #bbb;
+	font-size: 12px;
+	margin: -30px 0 15px 0;
+	padding: 10px 0;
+	text-align: center;
+}
+
 .alignnone {
 	float: none;
 }

@@ -522,4 +522,26 @@ function gk_author($author_page = false, $return_value = false) {
 	}
 } 
 
+/**
+ *
+ * Function to generate the featured image caption
+ *
+ * @return null
+ *
+ **/
+
+function gk_post_thumbnail_caption() {
+	global $post;
+	// get the post thumbnail ID
+	$thumbnail_id = get_post_thumbnail_id($post->ID);
+	// get the thumbnail description
+	$thumbnail_img = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+	// return the thumbnail caption
+	if ($thumbnail_img && isset($thumbnail_img[0])) {
+		if($thumbnail_img[0]->post_excerpt != '') {
+			return '<figcaption>'.$thumbnail_img[0]->post_excerpt.'</figcaption>';
+		}
+	}
+}
+
 // EOF
