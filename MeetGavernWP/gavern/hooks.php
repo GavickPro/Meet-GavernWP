@@ -72,7 +72,8 @@ add_action('gavernwp_doctype', 'gavernwp_doctype_hook');
 function gavernwp_html_attributes_hook() {
 	// generate the <html> language attributes
 	language_attributes();
-	
+	// generate the prefix attribute
+	echo ' prefix="og: http://ogp.me/ns#"';
  	// YOUR HOOK CODE HERE
 }
 
