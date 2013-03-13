@@ -25,11 +25,14 @@ class GK_Comments_Widget extends WP_Widget {
 		);
 		
 		$this->alt_option_name = 'widget_gk_comments';
-
+		// Comments actions
 		add_action( 'comment_post', array(&$this, 'refresh_cache' ) );
 		add_action( 'comment_unapproved_to_approved', array(&$this, 'refresh_cache' ) );
 		add_action( 'comment_approved_to_unapproved', array(&$this, 'refresh_cache' ) );
 		add_action( 'trashed_comment', array(&$this, 'refresh_cache' ));
+		// Post actions
+		add_action('delete_post', array(&$this, 'refresh_cache'));
+		add_action('trashed_post', array(&$this, 'refresh_cache'));
 	}
 
 	/**
