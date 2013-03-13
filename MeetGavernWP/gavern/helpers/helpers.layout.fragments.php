@@ -411,17 +411,23 @@ function gk_social_api($title, $postID) {
 		}
 		// Pinterest
 		if(get_option($tpl->name . '_pinterest_btn', 'Y') == 'Y') {
-		      $image = get_post_meta($postID, 'gavern_opengraph_image', true);
+		     $pinit_title = gk_post_thumbnail_caption(true);
 		      
-		      if($image == '') {
+		     if($pinit_title == '') {
+		     	$pinit_title = false;
+		     }
+		      
+		     $image = get_post_meta($postID, 'gavern_opengraph_image', true);
+		      
+		     if($image == '') {
 		      	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $postID ), 'single-post-thumbnail' );
 		      	$image = $image[0];
-		      }
+		     }
 		      
 		      
-		      // configure Pinterest buttons               
-		      $pinterest_btn_attributes = get_option($tpl->name . '_pinterest_btn_style', 'horizontal');
-		      $pinterest_output = '<a href="http://pinterest.com/pin/create/button/?url='.get_current_page_url().'&amp;media='.$image.'&amp;description='.urlencode($title).'" class="pin-it-button" count-layout="'.$pinterest_btn_attributes.'"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="'.__('Pin it', GKTPLNAME).'" alt="'.__('Pin it', GKTPLNAME).'" /></a>';
+		     // configure Pinterest buttons               
+		     $pinterest_btn_attributes = get_option($tpl->name . '_pinterest_btn_style', 'horizontal');
+		     $pinterest_output = '<a href="http://pinterest.com/pin/create/button/?url='.get_current_page_url().'&amp;media='.$image.'&amp;description='.(($pinit_title == false) ? urlencode($title) : $pinit_title).'" class="pin-it-button" count-layout="'.$pinterest_btn_attributes.'"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="'.__('Pin it', GKTPLNAME).'" alt="'.__('Pin it', GKTPLNAME).'" /></a>';
 		}
 		
 		return '<section id="gk-social-api">' . $fb_like_output . $gplus_output . $twitter_output . $pinterest_output . '</section>';
@@ -526,11 +532,13 @@ function gk_author($author_page = false, $return_value = false) {
  *
  * Function to generate the featured image caption
  *
- * @return null
+ * @param raw - if you need to get raw text without HTML tags
+ * 
+ * @return HTML output or raw text (depending from params)
  *
  **/
 
-function gk_post_thumbnail_caption() {
+function gk_post_thumbnail_caption($raw = false) {
 	global $post;
 	// get the post thumbnail ID
 	$thumbnail_id = get_post_thumbnail_id($post->ID);
@@ -539,8 +547,14 @@ function gk_post_thumbnail_caption() {
 	// return the thumbnail caption
 	if ($thumbnail_img && isset($thumbnail_img[0])) {
 		if($thumbnail_img[0]->post_excerpt != '') {
-			return '<figcaption>'.$thumbnail_img[0]->post_excerpt.'</figcaption>';
+			if($raw) {
+				return strip_tags($thumbnail_img[0]->post_excerpt);
+			} else {
+				return '<figcaption>'.$thumbnail_img[0]->post_excerpt.'</figcaption>';
+			}
 		}
+	} else {
+		return false;
 	}
 }
 
