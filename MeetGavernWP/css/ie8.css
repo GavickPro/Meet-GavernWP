@@ -38,3 +38,9 @@ input[type="tel"] {
 	padding-top: 8px!important;
 	padding-bottom: 8px!important;
 }
+
+/* image logo fix */
+.imageLogo img {
+	max-width: auto!important;
+	width: auto!important;
+}
