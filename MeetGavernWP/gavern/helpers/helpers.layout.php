@@ -241,7 +241,7 @@ function gk_opengraph_metatags() {
 			//
 			echo '<meta name="og:description" content="'.(($desc == '') ? substr(str_replace("\"", '', strip_tags($wp_query->post->post_content)), 0, 200) : $desc).'" />' . "\n";
 			//
-			echo '<meta name="og:url" content="'.get_current_page_url().'" />' . "\n";
+			echo '<meta name="og:url" content="'.get_permalink($postID).'" />' . "\n";
 			//
 			if($other != '') {
 				$other = preg_split('/\r\n|\r|\n/', $other);
