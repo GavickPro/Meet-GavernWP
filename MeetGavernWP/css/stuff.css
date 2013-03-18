@@ -180,6 +180,11 @@
 	padding: 10px 0;
 }
 
+.tagcloud .tag-cloud a {
+	padding: 0 10px;
+	vertical-align: middle;
+}
+
 /* 7.6. Login page template
 ==================================== */
 
