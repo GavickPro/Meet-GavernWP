@@ -176,24 +176,6 @@ $GAVERNWP_SHORTCODES = [
 		]
 	},
 	{
-		"title": "Dropcap",
-		"code": "[dropcap]Your text[/dropcap]",
-		"submenu": [
-			{
-				"title": "Style 1",
-				"code": "[dropcap style=\"1\"]Your text[/dropcap]"
-			},
-			{
-				"title": "Style 2",
-				"code": "[dropcap style=\"2\"]Your text[/dropcap]"
-			},
-			{
-				"title": "Style 3",
-				"code": "[dropcap style=\"3\"]Your text[/dropcap]"
-			}
-		]
-	},
-	{
 		"title": "Lists",
 		"code": "",
 		"submenu": [
