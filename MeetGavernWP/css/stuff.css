@@ -70,9 +70,12 @@
 	color: #dd514c;
 }
 
-.contactpage .gk-error,
-.contactpage .gk-thanks {
+.contactpage .gk-contact-error,
+.contactpage .gk-contact-thanks {
 	background: #5eb95e;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	color: #fff;
 	font-size: 14px;
 	line-height: 18px;
@@ -83,7 +86,7 @@
 	width: 100%;
 }
 
-.contactpage .gk-error {
+.contactpage .gk-contact-error {
 	background: #dd514c;
 }
 

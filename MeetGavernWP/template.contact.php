@@ -106,12 +106,12 @@ gk_load('before');
 		</section>
 	
 		<?php if($messageSent == true) : ?>
-		<p class="gk-thanks"><?php _e('Your message was sent to us successfully.', GKTPLNAME); ?></p>
+		<p class="gk-contact-thanks"><?php _e('Your message was sent to us successfully.', GKTPLNAME); ?></p>
 		<p><a href="<?php echo home_url(); ?>"><?php _e('Back to the homepage', GKTPLNAME); ?></a></p>
 		<?php else : ?>
 		
 			<?php if(!$validated) : ?>
-			<p class="gk-error"><?php _e('Sorry, an error occured.', GKTPLNAME); ?></p>
+			<p class="gk-contact-error"><?php _e('Sorry, an error occured.', GKTPLNAME); ?></p>
 			<?php endif; ?>
 		
 			<form action="<?php the_permalink(); ?>" id="gk-contact" method="post">
