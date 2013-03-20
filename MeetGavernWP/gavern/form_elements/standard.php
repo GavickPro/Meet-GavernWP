@@ -133,6 +133,32 @@ class GKFormInputText extends GKFormInput {
 
 /**
  *
+ * Raw Text field - basic input field extended with support for removing slashes before apostrophes
+ *
+ **/
+
+class GKFormInputRawText extends GKFormInput {
+	public function output() {
+		return '<p data-visible="true"><label 
+					for="'.($this->tpl->name).'_'.($this->name).'" 
+					title="'.($this->tooltip).'" 
+				>'.$this->label.'</label>
+				<input 
+					type="text" 
+					id="'.($this->tpl->name).'_'.($this->name).'" 
+					name="'.($this->tpl->name).'_'.($this->name).'" 
+					class="gkInput gkText '.($this->class).'"
+					value="'.str_replace('\&#039;', "'", $this->value).'"
+					'.($this->format).' 
+					'.($this->required).' 
+					'.($this->visibility).' 
+					data-name="'.($this->name).'"
+				/></p>';
+	}
+}
+
+/**
+ *
  * Textarea
  *
  **/

@@ -37,7 +37,7 @@
 			},
 			{
 				"name": "breadcrumbs_staterule",
-				"type": "Text",
+				"type": "RawText",
 				"label": "Breadcrumbs Display",
 				"tooltip": "Enable display of breadcrumbs on specific pages.",
 				"default": "",
