@@ -576,12 +576,12 @@ function gk_condition($mode, $input, $users) {
 	if($mode != 'all') {
 		$input = substr($input, 1);
 		$input = explode(',', $input);
-		
+
 		for($i = 0; $i < count($input); $i++) {
 			if($i > 0) {
 				$output .= '||'; 
 			}
-			
+
 			if(stripos($input[$i], 'homepage') !== FALSE) {
 			    $output .= ' is_home() ';
 			} else if(stripos($input[$i], 'page:') !== FALSE) {
@@ -608,13 +608,32 @@ function gk_condition($mode, $input, $users) {
 	            } else {
 	            	$output .= ' (has_term( \'post_format\') && is_single()) ';
 	            }
+			} else if(stripos($input[$i], 'taxonomy:') !== FALSE) {
+			    if(substr($input[$i], 9) != '') {
+			    	$taxonomy = substr($input[$i], 9);
+			    	$taxonomy = explode(';', $taxonomy);
+			    	// check amount of taxonomies
+			    	if(count($taxonomy) == 1) {
+			   			$output .= ' (is_tax(\'' . $taxonomy[0] . '\'))';
+			   		} else if(count($taxonomy) == 2) {
+			   			$output .= ' (is_tax(\'' . $taxonomy[0] . '\', \'' . $taxonomy[1] . '\')) ';
+			   		}
+			   	}
+			} else if(stripos($input[$i], 'posttype:') !== FALSE) {
+			    if(substr($input[$i], 9) != '') {
+			    	$type = substr($input[$i], 9);
+			    	// check for post types
+			    	if($type != '') {
+			   			$output .= ' (get_post_type() == \'' . $type . '\' && is_single()) ';
+			   		}
+			   	}
 			} else if(stripos($input[$i], 'search') !== FALSE) {
 			    $output .= ' is_search() ';
 			} else if(stripos($input[$i], 'page404') !== FALSE) {
 			    $output .= ' is_404() ';
 			}
 		}
-		
+
 		$output .= ')';
 	}
 	
