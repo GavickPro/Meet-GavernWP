@@ -20,6 +20,15 @@
 				"visibility": ""
 			},
 			{
+				"name": "post_aside_state",
+				"type": "Switcher",
+				"label": "Post sidebar informations",
+				"tooltip": "Enable display of the post sidebar informations in the theme.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
+			},
+			{
 				"name": "breadcrumbs_state",
 				"type": "Select",
 				"label": "Conditional Breadcrumbs Display",

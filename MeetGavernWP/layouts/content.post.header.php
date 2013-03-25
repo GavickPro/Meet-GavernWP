@@ -18,7 +18,9 @@ $params_title = isset($params['gavern-post-params-title']) ? esc_attr( $params['
 
 <?php if((!is_page_template('template.fullwidth.php') && ('post' == get_post_type() || 'page' == get_post_type())) && get_the_title() != '') : ?>
 	<?php if(!(is_page() && get_option($tpl->name . '_template_show_details_on_pages', 'Y') == 'N')) : ?>
-	<?php gk_post_meta(); ?>
+		<?php if(!('post' == get_post_type() && get_option($tpl->name . '_post_aside_state', 'Y') == 'N')) : ?>
+			<?php gk_post_meta(); ?>
+		<?php endif; ?>
 	<?php endif; ?>
 <?php endif; ?>
 

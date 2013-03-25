@@ -31,6 +31,27 @@ add_filter( 'excerpt_length', 'gavern_excerpt_length', 999 );
 
 /**
  *
+ * Function used to filter the post_class
+ *
+ * @return the modified list of the classes
+ *
+ **/
+
+function gavern_post_aside_class($classes) {
+	global $post;
+	global $tpl;
+	// if the display of the aside is disabled
+	if(is_single() && get_option($tpl->name . '_post_aside_state', 'Y') == 'N') {
+		$classes[] = 'no-sidebar';
+	}
+	//
+	return $classes;
+}
+
+add_filter('post_class', 'gavern_post_aside_class');
+
+/**
+ *
  * Function used as a die handler
  *
  * @return the proper die handler function name
