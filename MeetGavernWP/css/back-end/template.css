@@ -319,6 +319,49 @@ p[data-visible="false"] {
 	display: none
 }
 
+/* Widget settings bar */
+#gk-message {
+	background: #f7f7f7;
+	border-bottom: 1px solid #e5e5e5;
+	display: block;
+	margin: 0 -20px;
+	padding: 0 20px;
+	position: static;
+}
+
+#gk-message h2 {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 26px;
+	margin: 0;
+	padding: 8px 0;
+	width: 100%;
+}
+
+#gk-message h2.center {
+	text-align: center;
+}
+
+#gk-message h2 button {
+	background: #85B9DE;
+	border: none;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #fff;
+	float: right;
+	font-size: 12px;
+	line-height: 18px;
+	margin-left: 10px;
+}
+
+#gk-message h2 button:active,
+#gk-message h2 button:focus,
+#gk-message h2 button:hover {
+	background: #444;
+	cursor: pointer;
+}
+
 /* width <= 720px */ 
 @media only screen and (max-width: 900px), only screen and (max-device-width: 900px) and (-moz-max-device-pixel-ratio: 1.5), only screen and (max-device-width: 900px) and (-o-max-device-pixel-ratio: 1.5/1), only screen and (max-device-width: 900px) and (-webkit-max-device-pixel-ratio: 1.5), only screen and (max-device-width: 900px) and (max-device-pixel-ratio: 1.5), only screen and (max-device-width: 1800px) and (-moz-min-device-pixel-ratio: 2), only screen and (max-device-width: 1800px) and (-o-min-device-pixel-ratio: 2/1), only screen and (max-device-width: 1800px) and (-webkit-min-device-pixel-ratio: 2), only screen and (max-device-width: 1800px) and (min-device-pixel-ratio: 2) {
 	#gkTabs {

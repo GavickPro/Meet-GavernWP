@@ -425,6 +425,47 @@ class GavernWP {
 			return array();
 		}
 	}
+	
+   /**
+   	*
+   	* Function to load widget settings from the *.data file
+   	*
+   	* @return boolean - result
+   	* 
+   	**/ 
+   	
+   	function loadWidgetSettings() {
+   		global $wpdb;
+   		
+   		$data_file = get_template_directory() . '/gavern/demo/widgets.data';
+   		$lines = file($data_file);
+   		
+   		$option_name = '';
+   		$option_value = '';
+   		
+   		foreach($lines as $line_num => $line) {
+   			if($line_num % 3 == 0) {
+   				$option_name = $line;
+   			}
+   			
+   			if($line_num % 3 == 1) {
+   				$option_value = $line;
+   			}
+   			
+   			if($line_num % 3 == 2) {
+   				if($option_name != '' && $option_value != '') {
+   					$wpdb->query("UPDATE " . $wpdb->prefix . "options SET option_value='" . $option_value . "' WHERE option_name= '" . trim($option_name) . "' LIMIT 1; ");					
+   				}
+   				
+   				$option_name = '';
+   				$option_value = '';
+   			}
+   		}
+   		
+   		update_option($this->name . '_widget_settings_loaded', 'Y');
+   		
+   		return 'loaded';
+   	}
 }
 
 // EOF

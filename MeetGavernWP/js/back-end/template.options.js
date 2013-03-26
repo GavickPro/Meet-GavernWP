@@ -133,6 +133,16 @@ jQuery(document).ready(function() {
 			}
 		});
 	});
+	
+	if(jQuery('#gk-load-settings').length) {
+		jQuery('#gk-load-settings').click(function() {
+			window.location.href += '&task=load_widgets';
+		});
+		
+		jQuery('#gk-cancel-settings').click(function() {
+			window.location.href += '&task=notload_widgets';
+		});
+	}
 });
 // function to init the validation rules
 function gkValidateInit() {

@@ -21,14 +21,37 @@ if(isset($_COOKIE[GKTPLNAME . '_active_tab']) && is_numeric($_COOKIE[GKTPLNAME .
 	$activeTab = floor($_COOKIE[GKTPLNAME . '_active_tab']);
 }
 
+$widget_settings = 'active';
+
+if(get_option($tpl->name . '_widget_settings_loaded', 'N') == 'Y') {
+	$widget_settings = 'inactive';
+} else if(isset($_GET['task']) && $_GET['task'] == 'load_widgets') {
+	$widget_settings = $tpl->loadWidgetSettings();
+} else if(isset($_GET['task']) && $_GET['task'] == 'notload_widgets') {
+	update_option($this->name . '_widget_settings_loaded', 'Y');
+}
+
 ?>
 
-<div class="gkWrap" id="gkMainWrap" data-theme="<?php echo GKTPLNAME; ?>">
+<div class="gkWrap" id="gkMainWrap" data-theme="<?php echo GKTPLNAME; ?>">	
 	<h1>
 		<big><?php echo $tpl->full_name; ?></big><small><?php _e('Based on the Gavern WP framework', GKTPLNAME); ?></small>
 	
 		<a href="customize.php?theme=<?php echo $tpl->full_name; ?>" title="<?php _e('Customize theme', GKTPLNAME); ?>"><?php _e('Customize theme', GKTPLNAME); ?></a>
 	</h1>
+	
+	<?php if($widget_settings == 'active' || $widget_settings == 'loaded') : ?>
+	<div id="gk-message">
+		<?php if($widget_settings == 'active') : ?>
+		<h2><?php _e('Do you want to load demo widget settings?', GKTPLNAME); ?> <button id="gk-cancel-settings"><?php _e('Close', GKTPLNAME); ?></button> <button id="gk-load-settings"><?php _e('Load demo settings', GKTPLNAME); ?></button></h2>
+		<?php endif; ?>
+		
+		<?php if($widget_settings == 'loaded') : ?>
+		<h2 class="center"><?php _e('Demo widget settings has been loaded successfully', GKTPLNAME); ?></h2>
+		<?php endif; ?>
+	</div>
+	<?php endif; ?>
+	
 	<div>
 		<ul id="gkTabs">
 		<?php foreach($tabs as $tab) : ?>
