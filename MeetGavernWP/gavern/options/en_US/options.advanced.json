@@ -54,31 +54,6 @@
 				"default": "Y"
 			},
 			{
-				"name": "recaptcha_state",
-				"type": "Switcher",
-				"label": "Use reCAPTCHA on contact page",
-				"tooltip": "Enable use of reCAPTCHA on the contact page.",
-				"default": "N"
-			},
-			{
-				"name": "recaptcha_public_key",
-				"type": "Text",
-				"label": "reCAPTCHA public key",
-				"tooltip": "Public key to use on your domain",
-				"default": "",
-				"class": "",
-				"visibility": "recaptcha_state=Y"
-			},
-			{
-				"name": "recaptcha_private_key",
-				"type": "Text",
-				"label": "reCAPTCHA private key",
-				"tooltip": "Private key to use on your domain",
-				"default": "",
-				"class": "",
-				"visibility": "recaptcha_state=Y"
-			},
-			{
 				"name": "thickbox_state",
 				"type": "Switcher",
 				"label": "Use Thickbox",
