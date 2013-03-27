@@ -28,7 +28,7 @@ if(get_option($tpl->name . '_widget_settings_loaded', 'N') == 'Y') {
 } else if(isset($_GET['task']) && $_GET['task'] == 'load_widgets') {
 	$widget_settings = $tpl->loadWidgetSettings();
 } else if(isset($_GET['task']) && $_GET['task'] == 'notload_widgets') {
-	update_option($this->name . '_widget_settings_loaded', 'Y');
+	update_option($tpl->name . '_widget_settings_loaded', 'Y');
 }
 
 ?>
