@@ -41,7 +41,7 @@ function gavern_post_aside_class($classes) {
 	global $post;
 	global $tpl;
 	// if the display of the aside is disabled
-	if(is_single() && get_option($tpl->name . '_post_aside_state', 'Y') == 'N') {
+	if(get_option($tpl->name . '_post_aside_state', 'Y') == 'N') {
 		$classes[] = 'no-sidebar';
 	}
 	//
