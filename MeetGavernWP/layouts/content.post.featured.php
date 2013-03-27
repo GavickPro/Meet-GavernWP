@@ -13,7 +13,14 @@ global $tpl;
 
 ?>
 
-<?php if(has_post_thumbnail()) : ?>
+<?php 
+	// if there is a Featured Video
+	if(get_post_meta(get_the_ID(), "_gavern-featured-video", true) != '') : 
+?>
+
+<?php echo get_post_meta(get_the_ID(), "_gavern-featured-video", true); ?>
+
+<?php elseif(has_post_thumbnail()) : ?>
 <figure class="featured-image">
 	<?php the_post_thumbnail(); ?>
 	

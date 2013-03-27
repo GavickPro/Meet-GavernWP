@@ -124,6 +124,66 @@ function gavern_metaboxes_save( $post_id ) {
     }
 }  
 
+
+/**
+ *
+ * Code to create Featured Video metabox
+ *
+ **/
+
+function gavern_add_featured_video() {
+    add_meta_box( 'gavern_featured_video', __( 'Featured Video', GKTPLNAME ), 'gavern_add_featured_video_metabox', 'post', 'side' );
+    add_meta_box( 'gavern_featured_video', __( 'Featured Video', GKTPLNAME ), 'gavern_add_featured_video_metabox', 'page', 'side' );
+}
+
+function gavern_add_featured_video_metabox() {
+    global $post;
+
+    $featured_video = get_post_meta($post->ID, '_gavern-featured-video', true);
+    
+    echo '<div>';
+    echo '<label>'.__('Video Embed Code', GKTPLNAME).'</label>';
+    echo '<textarea name="gavern_featured_video" class="widefat">'.$featured_video.'</textarea>';
+    echo '<input type="hidden" name="gavern_featured_video_nonce" id="gavern_featured_video_nonce" value="'.wp_create_nonce(plugin_basename(__FILE__)).'" />';
+    echo '</div>';
+}
+
+function gavern_save_featured_video(){
+    global $post;
+	// check nonce
+    if(!wp_verify_nonce($_POST['gavern_featured_video_nonce'], plugin_basename(__FILE__))) {
+    	return $post->ID;
+	}
+	// autosave
+	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+		return $post->ID;
+	}
+	// user permissions
+	if(
+		($_POST['post_type'] == 'page' && !current_user_can('edit_page', $post->ID)) ||
+		($_POST['psot_type'] == 'post' && !current_user_can('edit_post', $post->ID))
+	) {
+		return $post->ID;
+	}
+	// if the value exists
+    if(isset($_POST['gavern_featured_video'])) {
+	    $featured_video = $_POST['gavern_featured_video'];
+	    
+	    if($featured_video != '') {
+	    	delete_post_meta($post->ID, '_gavern-featured-video');
+	    	add_post_meta($post->ID, '_gavern-featured-video', $featured_video);
+	    } else {
+	    	delete_post_meta($post->ID, '_gavern-featured-video');
+	    }
+    }
+    
+	return true;
+}
+
+
+add_action( 'save_post',  'gavern_save_featured_video' );
+add_action( 'admin_menu', 'gavern_add_featured_video' );
+
 /**
  *
  * Code to create widget showing manager
