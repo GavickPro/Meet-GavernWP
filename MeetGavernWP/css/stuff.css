@@ -612,6 +612,18 @@ i.icon-fullscreen { background-position: -456px -144px; }
 	margin-left: 140px;
 }
 
+.attachment-page section.intro {
+	overflow: hidden;
+}
+
+.nav-prev {
+	float: left;
+}
+
+.nav-next {
+	float: right;
+}
+
 /* 7.14. Demo content
 ==================================== */
 .gk-demo-content {

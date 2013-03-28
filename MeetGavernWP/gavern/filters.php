@@ -52,6 +52,24 @@ add_filter('post_class', 'gavern_post_aside_class');
 
 /**
  *
+ * Function used in the attachment page image links
+ *
+ * @return the additional class in the links
+ *
+ **/
+
+function gavern_img_link_class( $link )
+{
+    $class = 'next_image_link' === current_filter() ? 'next' : 'prev';
+
+    return str_replace( '<a ', '<a class="btn-nav nav-'.$class.'"', $link );
+}
+
+add_filter( 'previous_image_link', 'gavern_img_link_class' );
+add_filter( 'next_image_link',     'gavern_img_link_class' );
+
+/**
+ *
  * Function used as a die handler
  *
  * @return the proper die handler function name
