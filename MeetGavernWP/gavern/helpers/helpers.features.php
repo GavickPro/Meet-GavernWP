@@ -75,15 +75,26 @@ function gavern_post_seo_callback($post) {
 
 function gavern_post_params_callback($post) { 
 	$values = get_post_custom( $post->ID );  
-	$value_title = isset( $values['gavern-post-params-title'] ) ? esc_attr( $values['gavern-post-params-title'][0] ) : 'Y';     
+	$value_title = isset( $values['gavern-post-params-title'] ) ? esc_attr( $values['gavern-post-params-title'][0] ) : 'Y';
+	$value_image = isset( $values['gavern-post-params-image'] ) ? esc_attr( $values['gavern-post-params-image'][0] ) : 'Y';    
 	// nonce 
 	wp_nonce_field( 'gavern-post-params-nonce', 'gavern_meta_box_params_nonce' ); 
-    // output
+    // output for the title option
+    echo '<p>';
     echo '<label for="gavern-post-params-title-value">'.__('Show title:', GKTPLNAME).'</label>';
     echo '<select name="gavern-post-params-title-value" id="gavern-post-params-title-value">';
     echo '<option value="Y"'.(($value_title == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
     echo '<option value="N"'.(($value_title == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
-    echo '</select>';     
+    echo '</select>';  
+    echo '</p>';
+    // output for the featured image option
+    echo '<p>';
+    echo '<label for="gavern-post-params-image-value">'.__('Show featured image:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-image-value" id="gavern-post-params-image-value">';
+    echo '<option value="Y"'.(($value_image == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_image == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';     
 } 
  
 function gavern_metaboxes_save( $post_id ) {  
@@ -121,6 +132,15 @@ function gavern_metaboxes_save( $post_id ) {
     	}
     	// update post meta
         update_post_meta( $post_id, 'gavern-post-params-title', esc_attr( $_POST['gavern-post-params-title-value'] ) ); 
+    }
+    //
+    if( isset( $_POST['gavern-post-params-image-value'] ) ) {
+    	// check the nonce
+    	if( !isset( $_POST['gavern_meta_box_params_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_params_nonce'], 'gavern-post-params-nonce' ) ) {
+    		return;
+    	}
+    	// update post meta
+        update_post_meta( $post_id, 'gavern-post-params-image', esc_attr( $_POST['gavern-post-params-image-value'] ) ); 
     }
 }  
 
