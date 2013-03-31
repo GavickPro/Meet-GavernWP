@@ -943,9 +943,9 @@ class GK_NSP_Widget extends WP_Widget {
 		 			}
 		 		
 		 			if($this->wdgt_config['article_image_pos'] == 'left' && $this->wdgt_config['article_image_order'] == 1) {
-		 				return '<div class="gk-nsp-image-wrap"><a href="'.$art_url.'" class="gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image" '.$style.' /></a></div>';
+		 				return '<div class="gk-nsp-image-wrap"><a href="'.$art_url.'" class="gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image" '.$style.' width="'.$this->wdgt_config['article_image_w'].'" height="'.$this->wdgt_config['article_image_h'].'" /></a></div>';
 		 			} else {
-		 				return '<a href="'.$art_url.'" class="gk-responsive gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image gk-responsive" '.$style.' /></a>';
+		 				return '<a href="'.$art_url.'" class="gk-responsive gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image gk-responsive" '.$style.' width="'.$this->wdgt_config['article_image_w'].'" height="'.$this->wdgt_config['article_image_h'].'" /></a>';
 		 			}
 	 			} else {
 	 				return __('An error occured during creating the thumbnail.', GKTPLNAME);
