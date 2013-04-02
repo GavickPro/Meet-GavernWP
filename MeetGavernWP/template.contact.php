@@ -6,8 +6,10 @@ Template Name: Contact Form
 
 global $tpl;
 
-//
-require_once('gavern/classes/class.recaptchalib.php');
+// check if reCAPTCHA isn't loaded earlier by other plugin
+if(!function_exists('_recaptcha_qsencode')) {
+	require_once('gavern/classes/class.recaptchalib.php');
+}
 // flag used to detect if the page is validated
 $validated = true;
 // flag to detect if e-mail was sent
