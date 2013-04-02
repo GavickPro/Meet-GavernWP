@@ -859,7 +859,7 @@ function gk_dynamic_sidebar($index) {
  *
  * Code used to implement icons in the widget titles
  *
- * @return null
+ * @return modified title
  * 
  **/
 function gk_title_icons($title) {
@@ -887,19 +887,19 @@ add_filter('widget_title', 'gk_title_icons');
  *
  * Code used to hide widget title only when the title starts with "!" char
  *
- * @return null
+ * @return modified title
  * 
  **/
 
-function gk_hide_widget_title($widget_title) {
-	if(substr($widget_title, 0, 1) === '!') {
+function gk_hide_widget_title($title) {	
+	if(substr(trim($title), 0, 1) == '!') {
 		return '';
 	} else {
-		return $widget_title;
+		return $title;
 	}
 }
 
-add_filter( 'widget_title', 'gk_hide_widget_title' );
+add_filter('widget_title', 'gk_hide_widget_title');
 
 /**
  *
