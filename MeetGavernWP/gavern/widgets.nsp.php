@@ -117,7 +117,8 @@ class GK_NSP_Widget extends WP_Widget {
 		} else if($config['data_source_type'] == 'post') {
 			$post_slugs = explode(',', $config['data_source']);
 			foreach($post_slugs as $slug) {
-				array_push($results, get_posts(array('name' => $slug)));
+				$res = get_posts(array('name' => $slug));
+				array_push($results, $res[0]);
 			}
 		} else if($config['data_source_type'] == 'custom') {
 			$post_type = explode(',', $config['data_source']);
@@ -873,7 +874,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	$art_ID = '';
 	 	$art_url = '';
 	 	
-	 	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 	if($this->wdgt_config['data_source_type'] == 'custom') {
 	 		$art_title = $this->wdgt_results[0][$i]->post_title;
 	 		$art_ID = $this->wdgt_results[0][$i]->ID;
 	 	} else {
@@ -892,7 +893,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 function generate_art_text($i) {
 	 	$art_text = '';
 	 	
-	 	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 	if($this->wdgt_config['data_source_type'] == 'custom') {
 	 		$art_text = $this->wdgt_results[0][$i]->post_content;
 	 	} else {
 	 		$art_text = $this->wdgt_results[$i]->post_content;
@@ -909,7 +910,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 function generate_art_image($i) {
 	 	$art_ID = '';
 	 	
-	 	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 	if($this->wdgt_config['data_source_type'] == 'custom') {
 	 		$art_ID = $this->wdgt_results[0][$i]->ID;
 	 	} else {
 	 		$art_ID = $this->wdgt_results[$i]->ID;
@@ -969,7 +970,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	// check if there is a category in format
 	 	if(stripos($this->wdgt_config['article_info_format'], '%CATEGORY') !== FALSE) {
 	 	
-	 		if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 		if($this->wdgt_config['data_source_type'] == 'custom') {
 	 			$art_ID = $this->wdgt_results[0][$i]->ID;
 	 		} else {
 	 			$art_ID = $this->wdgt_results[$i]->ID;
@@ -985,7 +986,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	}
 	 	// check if there is a author in format
 	 	if(stripos($this->wdgt_config['article_info_format'], '%AUTHOR') !== FALSE) {	 		
-	 		if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 		if($this->wdgt_config['data_source_type'] == 'custom') {
 	 			$author_ID = $this->wdgt_results[0][$i]->post_author;
 	 		} else {
 	 			$author_ID = $this->wdgt_results[$i]->post_author;
@@ -997,7 +998,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	// check if there is a date in format
 	 	if(stripos($this->wdgt_config['article_info_format'], '%DATE') !== FALSE) {
 	 		// post_date
-	 		if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 		if($this->wdgt_config['data_source_type'] == 'custom') {
 	 			$art_ID = $this->wdgt_results[0][$i]->ID;
 	 		} else {
 	 			$art_ID = $this->wdgt_results[$i]->ID;
@@ -1009,7 +1010,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	if(stripos($this->wdgt_config['article_info_format'], '%COMMENTS') !== FALSE) {
 	 		// comment_count
 	 		// post_date
-	 		if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 		if($this->wdgt_config['data_source_type'] == 'custom') {
 	 			$comment_count = $this->wdgt_results[0][$i]->comment_count;
 	 			$art_ID = $this->wdgt_results[0][$i]->ID;
 	 		} else {
@@ -1041,7 +1042,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	$art_ID = '';
 	 	$art_url = '';
 	 	
-	 	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 	if($this->wdgt_config['data_source_type'] == 'custom') {
 	 		$art_ID = $this->wdgt_results[0][$i]->ID;
 	 	} else {
 	 		$art_ID = $this->wdgt_results[$i]->ID;
@@ -1065,7 +1066,7 @@ class GK_NSP_Widget extends WP_Widget {
 	  	$art_ID = '';
 	  	$art_url = '';
 	  	
-	  	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	  	if($this->wdgt_config['data_source_type'] == 'custom') {
 	  		$art_title = $this->wdgt_results[0][$i]->post_title;
 	  		$art_ID = $this->wdgt_results[0][$i]->ID;
 	  	} else {
@@ -1084,7 +1085,7 @@ class GK_NSP_Widget extends WP_Widget {
 	  function generate_link_text($i) {
 	  	$art_text = '';
 	  	
-	  	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	  	if($this->wdgt_config['data_source_type'] == 'custom') {
 	  		$art_text = $this->wdgt_results[0][$i]->post_content;
 	  	} else {
 	  		$art_text = $this->wdgt_results[$i]->post_content;
