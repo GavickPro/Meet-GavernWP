@@ -370,6 +370,26 @@ function gk_breadcrumbs_output() {
 		} elseif (is_page()) { 
 			// output the page name
 			the_title('<span class="gk-current">', '</span>');
+		} elseif (is_tag() && isset($_GET['tag'])) {
+			// output the tag name
+			echo '<span class="gk-current">' . __('Tag: ', GKTPLNAME) . strip_tags($_GET['tag']) . '</span>';
+		} elseif (is_author() && isset($_GET['author'])) {
+			// get the author name
+			$id = strip_tags($_GET['author']);
+			if(is_numeric($id)) {
+				// output the author name
+				echo '<span class="gk-current">' . __('Published by: ', GKTPLNAME) . get_the_author_meta('display_name', $id) . '</span>';
+			}
+		} elseif(is_404()) {
+			echo '<span class="gk-current">' . __('Page not found', GKTPLNAME) . '</span>';
+		} elseif(is_archive()) {
+			echo '<span class="gk-current">' . __('Archives', GKTPLNAME) . '</span>';
+		} elseif(is_search() && isset($_GET['s'])) {
+			// output the author name
+			echo '<span class="gk-current">' . __('Searching for: ', GKTPLNAME) . strip_tags($_GET['s']) . '</span>';
+		} elseif(is_attachment()) {
+			// output the attachment page name
+			the_title('<span class="gk-current">', '</span>');
 		}
 	// if the page is a home
 	} else {
