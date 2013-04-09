@@ -19,8 +19,6 @@ query_posts('posts_per_page=' . get_option('posts_per_page') . '&paged=' . $page
 
 <?php if ( have_posts() ) : ?>
 	<section id="gk-mainbody">
-		<?php gk_content_nav(); ?>
-		
 		<?php while ( have_posts() ) : the_post(); ?>
 			<?php get_template_part( 'content', get_post_format() ); ?>
 		<?php endwhile; ?>
