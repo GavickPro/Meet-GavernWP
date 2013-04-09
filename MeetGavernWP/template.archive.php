@@ -25,7 +25,7 @@ gk_load('before');
 			$debut = 0; //The first article to be displayed
 		?>
 		<div class="widget box first">
-			<h2><?php _e('Lastest posts', GKTPLNAME); ?></h2>
+			<h2><?php _e('Latest posts', GKTPLNAME); ?></h2>
 			<ul>
 				<?php
 					$myposts = get_posts('numberposts='.$posts_to_show.'&offset='.$debut);
