@@ -426,7 +426,7 @@ function gk_head_style_css() {
 			$url = esc_attr(isset($_COOKIE[$tpl->name.'_style']) ? $_COOKIE[$tpl->name.'_style'] : $url);
 		}
 		// output the LINK element
-		echo '<link href="'. gavern_file_uri('css/' . $url).'" rel="stylesheet" type="text/css" />';
+		wp_enqueue_style('gavern-style', gavern_file_uri('css/' . $url), array('gavern-mobile'));
 	}
 }
 
@@ -443,17 +443,17 @@ function gk_head_shortcodes() {
 	// check if shortcodes group are enabled
 	// typography
 	if(get_option($tpl->name . "_shortcodes1_state", 'Y') == 'Y') {
-		echo '<link href="'. gavern_file_uri('css/shortcodes.typography.css') .'" rel="stylesheet" type="text/css" />';
+		wp_enqueue_style('gavern-shortcodes-typography', gavern_file_uri('css/shortcodes.typography.css'), array('gavern-extensions'));
 		wp_enqueue_script('shortcodes_typography_js', gavern_file_uri('js/shortcodes.typography.js'), array(), false, false);
 	}
 	// interactive
 	if(get_option($tpl->name . "_shortcodes2_state", 'Y') == 'Y') {
-		echo '<link href="'. gavern_file_uri('css/shortcodes.elements.css') .'" rel="stylesheet" type="text/css" />';
+		wp_enqueue_style('gavern-shortcodes-elements', gavern_file_uri('css/shortcodes.elements.css'), array('gavern-extensions'));
 		wp_enqueue_script('shortcodes_elements_js', gavern_file_uri('js/shortcodes.elements.js'), array(), false, false);
 	}
 	// template
 	if(get_option($tpl->name . "_shortcodes3_state", 'Y') == 'Y') {
-		echo '<link href="'. gavern_file_uri('css/shortcodes.template.css') .'" rel="stylesheet" type="text/css" />';
+		wp_enqueue_style('gavern-shortcodes-template', gavern_file_uri('css/shortcodes.template.css'), array('gavern-extensions'));
 		wp_enqueue_script('shortcodes_template_js', gavern_file_uri('js/shortcodes.template.js'), array(), false, false);	
 	}
 }
@@ -516,7 +516,7 @@ function gk_head_fonts() {
 			
 				$font_family = str_replace('\&#039;', "'", $normal);
 			} else if($type == 'squirrel') {				
-				echo '<link href="' . gavern_file_uri('fonts/' . $squirrel . '/stylesheet.css') . '" rel="stylesheet" type="text/css" />';
+				wp_enqueue_style('gavern-fonts-' . $i, gavern_file_uri('fonts/' . $squirrel . '/stylesheet.css'), array('gavern-normalize'));
 				$font_family = "'" . $squirrel . "'";
 			} else if($type == 'google'){
 				$fname = array();
@@ -946,9 +946,10 @@ function gk_thickbox_load() {
 			"closeImage":"<?php echo home_url(); ?>/wp-includes/js/thickbox/tb-close.png"
 		};
 	</script>
-	<link rel="stylesheet" href="<?php echo home_url(); ?>/wp-includes/js/thickbox/thickbox.css" media="all" />
+	
 	<script type="text/javascript" src="<?php echo home_url(); ?>/wp-includes/js/thickbox/thickbox.js"></script>
 	<?php
+		wp_enqueue_style('gavern-thickbox', home_url() . '/wp-includes/js/thickbox/thickbox.css', array('gavern-extensions'));
 	endif;
 }
 

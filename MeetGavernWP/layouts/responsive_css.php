@@ -33,6 +33,19 @@
 	}
 </style>
 
-<link rel="stylesheet" href="<?php echo gavern_file_uri('css/tablet.css'); ?>" media="(max-width: <?php echo get_option($tpl->name . '_tablet_width', '800'); ?>px)" />
+<?php
 
-<link rel="stylesheet" href="<?php echo gavern_file_uri('css/mobile.css'); ?>" media="(max-width: <?php echo get_option($tpl->name . '_mobile_width', '800'); ?>px)" />
+// check the dependicies for the tablet.css file
+if(get_option($tpl->name . "_shortcodes3_state", 'Y') == 'Y') {
+	wp_enqueue_style('gavern-tablet', gavern_file_uri('css/tablet.css'), array('gavern-shortcodes-template'), false, '(max-width: '. get_option($tpl->name . '_tablet_width', '800') . 'px)');
+} elseif(get_option($tpl->name . "_shortcodes2_state", 'Y') == 'Y') {
+	wp_enqueue_style('gavern-tablet', gavern_file_uri('css/tablet.css'), array('gavern-shortcodes-elements'), false, '(max-width: '. get_option($tpl->name . '_tablet_width', '800') . 'px)');
+} elseif(get_option($tpl->name . "_shortcodes1_state", 'Y') == 'Y') {
+	wp_enqueue_style('gavern-tablet', gavern_file_uri('css/tablet.css'), array('gavern-shortcodes-typography'), false, '(max-width: '. get_option($tpl->name . '_tablet_width', '800') . 'px)');
+} else {
+	wp_enqueue_style('gavern-tablet', gavern_file_uri('css/tablet.css'), array('gavern-extensions'), false, '(max-width: '. get_option($tpl->name . '_tablet_width', '800') . 'px)');
+}
+// mobile.css is always loaded after the tablet.css file
+wp_enqueue_style('gavern-mobile', gavern_file_uri('css/mobile.css'), array('gavern-tablet'), false, '(max-width: '. get_option($tpl->name . '_mobile_width', '800') . 'px)');
+
+// EOF
