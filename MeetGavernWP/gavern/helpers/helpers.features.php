@@ -76,7 +76,17 @@ function gavern_post_seo_callback($post) {
 function gavern_post_params_callback($post) { 
 	$values = get_post_custom( $post->ID );  
 	$value_title = isset( $values['gavern-post-params-title'] ) ? esc_attr( $values['gavern-post-params-title'][0] ) : 'Y';
-	$value_image = isset( $values['gavern-post-params-image'] ) ? esc_attr( $values['gavern-post-params-image'][0] ) : 'Y';    
+	$value_image = isset( $values['gavern-post-params-image'] ) ? esc_attr( $values['gavern-post-params-image'][0] ) : 'Y'; 
+	$value_templates = isset( $values['gavern-post-params-templates'] ) ? $values['gavern-post-params-templates'][0] : false; 
+	// if the data are JSON
+	if($value_templates) {
+		$value_templates = unserialize(unserialize($value_templates));
+		$value_contact = $value_templates['contact'];
+		
+		if($value_contact != '' && count($value_contact) > 0) {
+			$value_contact = explode(',', $value_contact); // [0] - name, [1] - e-mail, [2] - send copy   
+		}
+	}
 	// nonce 
 	wp_nonce_field( 'gavern-post-params-nonce', 'gavern_meta_box_params_nonce' ); 
     // output for the title option
@@ -93,6 +103,28 @@ function gavern_post_params_callback($post) {
     echo '<select name="gavern-post-params-image-value" id="gavern-post-params-image-value">';
     echo '<option value="Y"'.(($value_image == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
     echo '<option value="N"'.(($value_image == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>'; 
+    // output for the contact page options
+    echo '<p data-template="template.contact.php">';
+    echo '<label for="gavern-post-params-contact-name">'.__('Show name field:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-contact-name" id="gavern-post-params-contact-name">';
+    echo '<option value="Y"'.((!$value_contact || $value_contact[0] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_contact !== FALSE && $value_contact[0] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
+    echo '<p data-template="template.contact.php">';
+    echo '<label for="gavern-post-params-contact-email">'.__('Show e-mail field:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-contact-email" id="gavern-post-params-contact-email">';
+    echo '<option value="Y"'.((!$value_contact || $value_contact[1] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_contact !== FALSE && $value_contact[1] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';  
+    echo '<p data-template="template.contact.php">';
+    echo '<label for="gavern-post-params-contact-copy">'.__('Show "send copy":', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-contact-copy" id="gavern-post-params-contact-copy">';
+    echo '<option value="Y"'.((!$value_contact || $value_contact[2] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_contact !== FALSE && $value_contact[2] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
     echo '</select>';
     echo '</p>';     
 } 
@@ -141,6 +173,17 @@ function gavern_metaboxes_save( $post_id ) {
     	}
     	// update post meta
         update_post_meta( $post_id, 'gavern-post-params-image', esc_attr( $_POST['gavern-post-params-image-value'] ) ); 
+    }
+    //
+    if( isset( $_POST['gavern-post-params-contact-name'] ) ) {
+    	// check the nonce
+    	if( !isset( $_POST['gavern_meta_box_params_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_params_nonce'], 'gavern-post-params-nonce' ) ) {
+    		return;
+    	}
+    	// update post meta
+    	$contact_value = esc_attr( $_POST['gavern-post-params-contact-name'] ) . ',' . esc_attr( $_POST['gavern-post-params-contact-email'] ) . ',' . esc_attr( $_POST['gavern-post-params-contact-copy'] );
+    	$templates_value = array('contact' => $contact_value);
+        update_post_meta( $post_id, 'gavern-post-params-templates', serialize($templates_value) ); 
     }
 }  
 

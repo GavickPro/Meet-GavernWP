@@ -1,0 +1,13 @@
+/**
+ *
+ * Styles for the metaboxes
+ *
+ **/
+ 
+#gavern-post-params p[data-template] {
+	display: none;
+}
+
+#gavern-post-params p[data-template].active {
+	display: block;
+}
