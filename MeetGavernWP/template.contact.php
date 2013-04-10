@@ -105,11 +105,11 @@ if(isset($_POST['message-send'])) {
 		}
 		// e-mail structure
 		if($params_name) {
-			$subject = 'From ' . $output['name'];
+			$subject = __('From ', GKTPLNAME) . $output['name'];
 		} else if(!$params_name && $params_email) {
-			$subject = 'From ' . $output['email'];
+			$subject = __('From ', GKTPLNAME) . $output['email'];
 		} else {
-			$subject = 'From ' . get_bloginfo('name');
+			$subject = __('From ', GKTPLNAME) . get_bloginfo('name');
 		}
 		
 		$body = "<html>";
