@@ -299,7 +299,7 @@
 	display: block;
 	margin: 10px 0;
 	padding: 10px 20px; 
-	word-spacing: pre;
+	white-space: pre;
 }
 
 #comments li article blockquote {
