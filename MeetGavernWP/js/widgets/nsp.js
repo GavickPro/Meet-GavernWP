@@ -204,7 +204,7 @@ GK_NSP.prototype = {
 		links_container.bind('touchmove', function(e) {
 			var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
 
-			if(touches.length > 0 && arts_swipe) {
+			if(touches.length > 0 && links_swipe) {
 				if(
 					Math.abs(touches[0].pageX - links_pos_start_x) > Math.abs(touches[0].pageY - links_pos_start_y)
 				) {
