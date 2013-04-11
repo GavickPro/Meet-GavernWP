@@ -135,6 +135,102 @@ GK_NSP.prototype = {
 				});
 			}
 		}
+		// article touch events
+		var arts_pos_start_x = 0;
+		var arts_pos_start_y = 0;
+		var arts_time_start = 0;
+		var arts_swipe = false;
+		var arts_container = jQuery(this.module.find('.gk-nsp-arts'));
+
+		arts_container.bind('touchstart', function(e) {
+			arts_swipe = true;
+			var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+
+			if(touches.length > 0) {
+				arts_pos_start_x = touches[0].pageX;
+				arts_pos_start_y = touches[0].pageY;
+				arts_time_start = new Date().getTime();
+			}
+		});
+
+		arts_container.bind('touchmove', function(e) {
+			var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+
+			if(touches.length > 0 && arts_swipe) {
+				if(
+					Math.abs(touches[0].pageX - arts_pos_start_x) > Math.abs(touches[0].pageY - arts_pos_start_y)
+				) {
+					e.preventDefault();
+				} else {
+					arts_swipe = false;
+				}
+			}
+		});
+
+		arts_container.bind('touchend', function(e) {
+			var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+
+			if(touches.length > 0 && arts_swipe) {									
+				if(
+					Math.abs(touches[0].pageX - arts_pos_start_x) >= 30 && 
+					new Date().getTime() - arts_time_start <= 500
+				) {					
+					if(touches[0].pageX - arts_pos_start_x > 0) {
+						$this.arts_anim('prev');
+					} else {
+						$this.arts_anim('next');
+					}
+				}
+			}
+		});
+		// links touch events
+		var links_pos_start_x = 0;
+		var links_pos_start_y = 0;
+		var links_time_start = 0;
+		var links_swipe = false;
+		var links_container = jQuery(this.module.find('.gk-nsp-links'));
+
+		links_container.bind('touchstart', function(e) {
+			links_swipe = true;
+			var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+
+			if(touches.length > 0) {
+				links_pos_start_x = touches[0].pageX;
+				links_pos_start_y = touches[0].pageY;
+				links_time_start = new Date().getTime();
+			}
+		});
+
+		links_container.bind('touchmove', function(e) {
+			var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+
+			if(touches.length > 0 && arts_swipe) {
+				if(
+					Math.abs(touches[0].pageX - links_pos_start_x) > Math.abs(touches[0].pageY - links_pos_start_y)
+				) {
+					e.preventDefault();
+				} else {
+					links_swipe = false;
+				}
+			}
+		});
+
+		links_container.bind('touchend', function(e) {
+			var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+
+			if(touches.length > 0 && links_swipe) {									
+				if(
+					Math.abs(touches[0].pageX - links_pos_start_x) >= 30 && 
+					new Date().getTime() - links_time_start <= 500
+				) {					
+					if(touches[0].pageX - links_pos_start_x > 0) {
+						$this.lists_anim('prev');
+					} else {
+						$this.lists_anim('next');
+					}
+				}
+			}
+		});
 	},
 	//
 	nsp_art_list: function(i, pos){
