@@ -114,6 +114,14 @@ class GK_NSP_Widget extends WP_Widget {
 				'orderby' => $config['orderby'],
 				'order' => $config['order']
 			));
+		} else if($config['data_source_type'] == 'tag') {
+			$results = get_posts(array(
+				'tag' => $config['data_source'],
+				'posts_per_page' => $amount_of_posts,
+				'offset' => $config['offset'], 
+				'orderby' => $config['orderby'],
+				'order' => $config['order']
+			));
 		} else if($config['data_source_type'] == 'post') {
 			$post_slugs = explode(',', $config['data_source']);
 			foreach($post_slugs as $slug) {
@@ -462,6 +470,9 @@ class GK_NSP_Widget extends WP_Widget {
 					</option>
 					<option value="category"<?php echo (esc_attr($data_source_type) == 'category') ? ' selected="selected"' : ''; ?>>
 						<?php _e('Categories slugs', GKTPLNAME); ?>
+					</option>
+					<option value="tag"<?php echo (esc_attr($data_source_type) == 'tag') ? ' selected="selected"' : ''; ?>>
+						<?php _e('Tags', GKTPLNAME); ?>
 					</option>
 					<option value="post"<?php echo (esc_attr($data_source_type) == 'post') ? ' selected="selected"' : ''; ?>>
 						<?php _e('Posts slugs', GKTPLNAME); ?>
