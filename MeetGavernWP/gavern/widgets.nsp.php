@@ -155,7 +155,7 @@ class GK_NSP_Widget extends WP_Widget {
 		// generate the articles
 		$amount_of_articles = $config['article_pages'] * $config['article_cols'] * $config['article_rows'];
 		$amount_of_articles = $amount_of_articles > count($results) ? count($results) : $amount_of_articles; 
-		$amount_of_art_pages = ($amount_of_articles > count($results)) ? ceil(count($results) / ($config['article_cols'] * $config['article_rows'])) : $config['article_pages'];
+		$amount_of_art_pages = ($amount_of_articles >= count($results)) ? ceil(count($results) / ($config['article_cols'] * $config['article_rows'])) : $config['article_pages'];
 		// iterate
 		$this->wdgt_config = $config;
 		$this->wdgt_results = $results;
