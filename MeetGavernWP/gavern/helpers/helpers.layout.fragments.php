@@ -198,9 +198,32 @@ function gk_post_fields() {
 function gk_post_meta($attachment = false) {
  	global $tpl;
  	$tag_list = get_the_tag_list( '', __( ', ', GKTPLNAME ) );
+ 	$params = get_post_custom();
+ 	$params_aside = isset($params['gavern-post-params-aside']) ? $params['gavern-post-params-aside'][0] : false;
+ 	
+ 	$param_aside = true;
+ 	$param_date = true;
+ 	$param_author = true;
+ 	$param_category = true;
+ 	$param_tags = true;
+ 	$param_comments = true;
+ 	
+ 	if($params_aside) {
+ 		$params_aside = unserialize(unserialize($params_aside));
+ 		$param_aside = $params_aside['aside'] == 'Y';
+ 		$param_date = $params_aside['date'] == 'Y';
+ 		$param_author = $params_aside['author'] == 'Y';
+ 		$param_category = $params_aside['category'] == 'Y';
+ 		$param_tags = $params_aside['tags'] == 'Y';
+ 		$param_comments = $params_aside['comments'] == 'Y';
+ 	}
+ 	
  	?>
+ 	
+ 	<?php if($param_aside) : ?>
  	<aside class="meta">
 	 	<dl>
+	 		<?php if($param_date) : ?>
 	 		<dt class="date">
 	 			<?php _e('Post date:', GKTPLNAME); ?>
 	 		</dt>
@@ -213,15 +236,17 @@ function gk_post_meta($attachment = false) {
 	 				</time>
 	 			</a>
 	 		</dd>
-	 		
+		 		
 	 		<?php if(get_post_format() != '') : ?>
 	 		<dd class="format gk-format-<?php echo get_post_format(); ?>">
 	 			<?php echo get_post_format(); ?>
 	 		</dd>
 	 		<?php endif; ?>
 	 		
+	 		<?php endif; ?>
+	 		
 	 		<?php if(!(is_tag() || is_archive() || is_home() || is_search())) : ?>
-		 		<?php if(!is_page()) : ?>
+		 		<?php if(!is_page() && $param_category) : ?>
 		 		<dt class="category">
 		 			<?php _e('Category:', GKTPLNAME); ?>
 		 		</dt>
@@ -229,13 +254,17 @@ function gk_post_meta($attachment = false) {
 		 			<?php echo get_the_category_list( __(', ', GKTPLNAME )); ?>
 		 		</dd>
 		 		<?php endif; ?>
+		 		
+		 		<?php if($param_author) : ?>
 		 		<dt class="author">
 		 			<?php _e('Author:', GKTPLNAME); ?>
 		 		</dt>
 		 		<dd>
 		 			<a class="url fn n" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(sprintf(__('View all posts by %s', GKTPLNAME), get_the_author())); ?>" rel="author"><?php echo get_the_author(); ?></a>
 		 		</dd>
-		 		<?php if ( comments_open() && ! post_password_required() ) : ?>
+		 		<?php endif; ?>
+		 		
+		 		<?php if ( comments_open() && ! post_password_required() && $param_comments) : ?>
 		 		<dt class="comments">
 		 			<?php _e('Comments:', GKTPLNAME); ?>
 		 		</dt>
@@ -248,8 +277,9 @@ function gk_post_meta($attachment = false) {
 		 				);
 		 			?>
 		 		</dd>
-		 		<?php endif; ?> 		
-		 		<?php if($tag_list != ''): ?>
+		 		<?php endif; ?> 	
+		 			
+		 		<?php if($tag_list != '' && $param_tags) : ?>
 		 		<dt class="tags">
 		 			<?php _e('Tags:', GKTPLNAME); ?>
 		 		</dt>
@@ -283,6 +313,7 @@ function gk_post_meta($attachment = false) {
 	 		<?php endif; ?>
  		</dl>
  	</aside>
+ 	<?php endif; ?>
  	
  	<?php
 }

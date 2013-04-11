@@ -40,8 +40,17 @@ add_filter( 'excerpt_length', 'gavern_excerpt_length', 999 );
 function gavern_post_aside_class($classes) {
 	global $post;
 	global $tpl;
+	// get the post params
+	$params = get_post_custom();
+	$params_aside = isset($params['gavern-post-params-aside']) ? $params['gavern-post-params-aside'][0] : false;
+	$param_aside = true;
+	
+	if($params_aside) {
+		$params_aside = unserialize(unserialize($params_aside));
+		$param_aside = $params_aside['aside'] == 'Y';
+	}
 	// if the display of the aside is disabled
-	if(get_option($tpl->name . '_post_aside_state', 'Y') == 'N') {
+	if(get_option($tpl->name . '_post_aside_state', 'Y') == 'N' || !$param_aside) {
 		$classes[] = 'no-sidebar';
 	}
 	//

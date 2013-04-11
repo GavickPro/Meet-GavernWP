@@ -87,6 +87,11 @@ function gavern_post_params_callback($post) {
 			$value_contact = explode(',', $value_contact); // [0] - name, [1] - e-mail, [2] - send copy   
 		}
 	}
+	// parse the aside values
+	$value_aside = isset( $values['gavern-post-params-aside'] ) ? $values['gavern-post-params-aside'][0] : false;
+	if($value_aside) {
+		$value_aside = unserialize(unserialize($value_aside));
+	}
 	// nonce 
 	wp_nonce_field( 'gavern-post-params-nonce', 'gavern_meta_box_params_nonce' ); 
     // output for the title option
@@ -105,6 +110,49 @@ function gavern_post_params_callback($post) {
     echo '<option value="N"'.(($value_image == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
     echo '</select>';
     echo '</p>'; 
+    // output for the aside option
+    echo '<p>';
+    echo '<label for="gavern-post-params-aside-value">'.__('Show sidebar information:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-aside-value" id="gavern-post-params-aside-value">';
+    echo '<option value="Y"'.((!$value_aside['aside'] || $value_aside['aside'] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_aside['aside'] !== FALSE && $value_aside['aside'] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
+    echo '<p>';
+    echo '<label for="gavern-post-params-date-value">'.__('Show date:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-date-value" id="gavern-post-params-date-value">';
+    echo '<option value="Y"'.((!$value_aside['date'] || $value_aside['date'] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_aside['date'] !== FALSE && $value_aside['date'] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
+    echo '<p>';
+    echo '<label for="gavern-post-params-author-value">'.__('Show author:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-author-value" id="gavern-post-params-author-value">';
+    echo '<option value="Y"'.((!$value_aside['author'] || $value_aside['author'] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_aside['author'] !== FALSE && $value_aside['author'] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
+    echo '<p>';
+    echo '<label for="gavern-post-params-category-value">'.__('Show category:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-category-value" id="gavern-post-params-category-value">';
+    echo '<option value="Y"'.((!$value_aside['category'] || $value_aside['category'] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_aside['category'] !== FALSE && $value_aside['category'] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
+    echo '<p>';
+    echo '<label for="gavern-post-params-tags-value">'.__('Show tags:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-tags-value" id="gavern-post-params-tags-value">';
+    echo '<option value="Y"'.((!$value_aside['tags'] || $value_aside['tags'] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_aside['tags'] !== FALSE && $value_aside['tags'] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
+    echo '<p>';
+    echo '<label for="gavern-post-params-comments-value">'.__('Show comments:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-comments-value" id="gavern-post-params-comments-value">';
+    echo '<option value="Y"'.((!$value_aside['comments'] || $value_aside['comments'] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_aside['comments'] !== FALSE && $value_aside['comments'] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
     // output for the contact page options
     echo '<p data-template="template.contact.php">';
     echo '<label for="gavern-post-params-contact-name">'.__('Show name field:', GKTPLNAME).'</label>';
@@ -164,6 +212,23 @@ function gavern_metaboxes_save( $post_id ) {
     	}
     	// update post meta
         update_post_meta( $post_id, 'gavern-post-params-title', esc_attr( $_POST['gavern-post-params-title-value'] ) ); 
+    }
+    //
+    if( isset( $_POST['gavern-post-params-aside-value'] ) ) {
+    	// check the nonce
+    	if( !isset( $_POST['gavern_meta_box_params_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_params_nonce'], 'gavern-post-params-nonce' ) ) {
+    		return;
+    	}
+    	$aside_value = array(
+    		'aside' => esc_attr( $_POST['gavern-post-params-aside-value'] ),
+    		'date' => esc_attr( $_POST['gavern-post-params-date-value'] ),
+    		'author' => esc_attr( $_POST['gavern-post-params-author-value'] ),
+    		'category' => esc_attr( $_POST['gavern-post-params-category-value'] ),
+    		'tags' => esc_attr( $_POST['gavern-post-params-tags-value'] ),
+    		'comments' => esc_attr( $_POST['gavern-post-params-comments-value'] )
+    	);
+    	// update post meta
+        update_post_meta( $post_id, 'gavern-post-params-aside', serialize($aside_value) ); 
     }
     //
     if( isset( $_POST['gavern-post-params-image-value'] ) ) {
