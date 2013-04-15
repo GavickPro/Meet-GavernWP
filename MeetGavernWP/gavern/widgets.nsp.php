@@ -1103,6 +1103,7 @@ class GK_NSP_Widget extends WP_Widget {
 	  	}
 	  	
 	  	$art_text = $this->cut_text('links_text', $art_text);
+	  	$art_text = preg_replace('@\[.+?\]@mis', '', $art_text);
 	  	
 	  	$output = '<p class="gk-nsp-link-text">'.$art_text.'</p>';
 	  	
