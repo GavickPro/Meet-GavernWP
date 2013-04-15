@@ -243,6 +243,11 @@ aside.meta dd.bookmark {
 	display: none;
 }
 
+.gk-columns > div {
+	padding: 10px 0!important;
+	width: 100%!important;
+}
+
 /* 11.5. Device classes
 ==================================== */
 

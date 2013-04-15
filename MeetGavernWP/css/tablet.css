@@ -114,7 +114,7 @@
 	font-size: 24px!important;
 }
 
-/* 10.3. Demo elements
+/* 10.3. Other elements
 ==================================== */
 
 .gk-demo-content {
@@ -122,6 +122,10 @@
 	margin: 0 auto!important;
 	max-width:360px;
 	width: 100%;
+}
+
+.gk-columns > div {
+	padding: 0 6px;
 }
 
 /* 10.4. Main menu elements
