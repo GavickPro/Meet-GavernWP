@@ -30,7 +30,7 @@ class GK_Tabs_Widget extends WP_Widget {
 	}
 	
 	static function add_scripts() {
-		wp_register_script( 'gk-tabs', gavern_file_uri('js/widgets/tabs.js'), array('jquery'));
+		wp_register_script( 'gk-tabs', gavern_file_uri('js/widgets/tabs.js'), array('jquery'), false, true);
 		wp_enqueue_script('gk-tabs');
 	}
 

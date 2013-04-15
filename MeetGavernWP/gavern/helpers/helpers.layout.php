@@ -444,17 +444,17 @@ function gk_head_shortcodes() {
 	// typography
 	if(get_option($tpl->name . "_shortcodes1_state", 'Y') == 'Y') {
 		wp_enqueue_style('gavern-shortcodes-typography', gavern_file_uri('css/shortcodes.typography.css'), array('gavern-extensions'));
-		wp_enqueue_script('shortcodes_typography_js', gavern_file_uri('js/shortcodes.typography.js'), array(), false, false);
+		wp_enqueue_script('gavern-shortcodes-typography', gavern_file_uri('js/shortcodes.typography.js'), array('jquery', 'gavern-scripts'), false, true);
 	}
 	// interactive
 	if(get_option($tpl->name . "_shortcodes2_state", 'Y') == 'Y') {
 		wp_enqueue_style('gavern-shortcodes-elements', gavern_file_uri('css/shortcodes.elements.css'), array('gavern-extensions'));
-		wp_enqueue_script('shortcodes_elements_js', gavern_file_uri('js/shortcodes.elements.js'), array(), false, false);
+		wp_enqueue_script('gavern-shortcodes-elements', gavern_file_uri('js/shortcodes.elements.js'), array('jquery', 'gavern-scripts'), false, true);
 	}
 	// template
 	if(get_option($tpl->name . "_shortcodes3_state", 'Y') == 'Y') {
 		wp_enqueue_style('gavern-shortcodes-template', gavern_file_uri('css/shortcodes.template.css'), array('gavern-extensions'));
-		wp_enqueue_script('shortcodes_template_js', gavern_file_uri('js/shortcodes.template.js'), array(), false, false);	
+		wp_enqueue_script('gavern-shortcodes-template', gavern_file_uri('js/shortcodes.template.js'), array('jquery', 'gavern-scripts'), false, true);	
 	}
 }
 
@@ -565,9 +565,9 @@ function gk_head_style_pages() {
 	// get access to the template object
 	global $tpl;
 	// scripts for the contact page
-	if( is_page_template('contact.php') ){ 
-		echo '<script type="text/javascript" src="'. gavern_file_uri('js/jquery.validate.min.js') .'"></script>';
-		echo '<script type="text/javascript" src="'. gavern_file_uri('js/contact.js') .'"></script>';
+	if( is_page_template('contact.php') ){ 		
+		wp_enqueue_script('gavern-contact-validate', gavern_file_uri('js/jquery.validate.min.js'), array('jquery', 'gavern-scripts'), false, true);
+		wp_enqueue_script('gavern-contact-main', gavern_file_uri('js/contact.js'), array('jquery', 'gavern-scripts'), false, true);
 	}
 }
 
@@ -946,10 +946,10 @@ function gk_thickbox_load() {
 			"closeImage":"<?php echo home_url(); ?>/wp-includes/js/thickbox/tb-close.png"
 		};
 	</script>
-	
-	<script type="text/javascript" src="<?php echo home_url(); ?>/wp-includes/js/thickbox/thickbox.js"></script>
+
 	<?php
 		wp_enqueue_style('gavern-thickbox', home_url() . '/wp-includes/js/thickbox/thickbox.css', array('gavern-extensions'));
+		wp_enqueue_script('gavern-thickbox', home_url() . '/wp-includes/js/thickbox/thickbox.js', array('jquery', 'gavern-scripts'), false, true);
 	endif;
 }
 

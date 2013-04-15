@@ -54,15 +54,20 @@
 	<?php gk_head_style_css(); ?>
 	<?php gk_head_style_pages(); ?>	
 	
+	<?php
+		if(get_option($tpl->name . '_prefixfree_state', 'N') == 'Y') {
+			wp_enqueue_script('gavern-prefixfree', gavern_file_uri('js/prefixfree.js'));
+		} 
+	?>
+	
 	<?php wp_head(); ?>
 	
-	<?php if(get_option($tpl->name . '_prefixfree_state', 'N') == 'Y') : ?>
-	<script type="text/javascript" src="<?php echo gavern_file_uri('js/prefixfree.js'); ?>"></script>
-	<?php endif; ?>
-	
 	<?php gk_thickbox_load(); ?>
-	<script type="text/javascript" src="<?php echo gavern_file_uri('js/gk.scripts.js'); ?>"></script>
-	<script type="text/javascript" src="<?php echo gavern_file_uri('js/gk.menu.js'); ?>"></script>
+	
+	<?php
+		wp_enqueue_script('gavern-scripts', gavern_file_uri('js/gk.scripts.js'), array('jquery'), false, true);
+		wp_enqueue_script('gavern-menu', gavern_file_uri('js/gk.menu.js'), array('jquery', 'gavern-scripts'), false, true);
+	?>
 	
 	<?php do_action('gavernwp_head'); ?>
 	
