@@ -293,3 +293,48 @@
 .onlyTabltetsAndSmartphones {
 	display: block!important;
 }
+
+/* 10.7. Responsive tables
+==================================== */
+
+@media (max-width: 600px) {
+	article section table {
+		border: 1px solid #eee;
+		border-bottom: none;
+		max-width: 100%!important;
+		width: 100%!important;
+	}
+	
+	article section table thead {
+		display: none;
+	}
+	
+	article section table td {
+		border-top: 1px solid #eee;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		clear: both;
+		display: block;
+		float: right;
+		padding: 5px 0 5px 50%;
+		position: relative;
+		width: 100%;
+	}
+	
+	article section table td:first-child {
+		border-top: none;
+	}
+	
+	article section table tbody tr {
+		border-bottom: 2px solid #eee;
+	}
+	
+	article section table td span.gk-table-label {
+		display: block;
+		font-size: 95%;
+		font-weight: bold;
+		left: 5px;
+		position: absolute;
+	}
+}

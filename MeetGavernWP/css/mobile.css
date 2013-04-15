@@ -29,30 +29,6 @@
 	max-width: 100%!important;
 }
 
-/* tables fix */
-#gk-mainbody table:before {
-	content: "Scroll horizontally to view the whole table";
-	height: 14px;
-	width: 100%;
-	display: block;
-	font-size: 10px;
-	margin-top: -30px;
-	margin-bottom: 10px;
-	font-family: Arial, sans-serif;
-}
-
-#gk-mainbody table {
-	width: 540px;
-	overflow: scroll;
-	display: block;
-	padding: 30px 0 20px 0; /* padding for the scrollbars and the top message */
-}
-
-#gk-mainbody table tr {
-	width: 540px;
-	display: table;
-}
-
 /* column rules */
 #gk-sidebar {
 	padding: 20px 0!important;

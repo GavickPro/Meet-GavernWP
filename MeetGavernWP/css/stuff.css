@@ -419,9 +419,6 @@ header hgroup h2 {
 	max-width: 100%!important;
 }
 
-
-
-
 /* 7.12. Widget title icons
 ==================================== */
 
@@ -624,7 +621,32 @@ i.icon-fullscreen { background-position: -456px -144px; }
 	float: right;
 }
 
-/* 7.14. Demo content
+/* 7.14. Tables
+==================================== */
+
+article section table {
+	margin: 10px 0;
+}
+
+article section table th {
+	background: #eee;
+	padding: 0 4px;
+	text-align: left;
+}
+
+article section table td {
+	padding: 0 4px;
+}
+
+article section table tbody tr:nth-child(2n) {
+	background: #f5f5f5;
+}
+
+article section table td span.gk-table-label {
+	display: none;
+}
+
+/* 7.15. Demo content
 ==================================== */
 .gk-demo-content {
 	-webkit-box-sizing: border-box;
