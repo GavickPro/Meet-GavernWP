@@ -279,12 +279,12 @@ function gavern_add_featured_video_metabox() {
 function gavern_save_featured_video(){
     global $post;
 	// check nonce
-    if(!wp_verify_nonce($_POST['gavern_featured_video_nonce'], plugin_basename(__FILE__))) {
-    	return $post->ID;
+    if(!isset($_POST['gavern_featured_video_nonce']) || !wp_verify_nonce($_POST['gavern_featured_video_nonce'], plugin_basename(__FILE__))) {
+    	return is_object($post) ? $post->ID : $post;
 	}
 	// autosave
 	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-		return $post->ID;
+		return is_object($post) ? $post->ID : $post;
 	}
 	// user permissions
 	if(
