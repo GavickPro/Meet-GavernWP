@@ -3,6 +3,8 @@
 // disable direct access to the file	
 defined('GAVERN_WP') or die('Access denied');	
 
+global $tpl;
+
 /**
  *
  * Function used to add the Google Profile URL in the user profile
@@ -67,8 +69,7 @@ add_filter('post_class', 'gavern_post_aside_class');
  *
  **/
 
-function gavern_img_link_class( $link )
-{
+function gavern_img_link_class( $link ) {
     $class = 'next_image_link' === current_filter() ? 'next' : 'prev';
 
     return str_replace( '<a ', '<a class="btn-nav nav-'.$class.'"', $link );
@@ -76,6 +77,60 @@ function gavern_img_link_class( $link )
 
 add_filter( 'previous_image_link', 'gavern_img_link_class' );
 add_filter( 'next_image_link',     'gavern_img_link_class' );
+
+/**
+ *
+ * Function used to auto-close comments
+ *
+ * @return the posts array
+ *
+ **/
+
+if(get_option($tpl->name . '_comments_autoclose', '0') !== '0') {
+	function gavern_comments_close($posts) {
+		global $tpl;
+		// check if the page is single
+		if (!is_single()) { 
+			return $posts; 
+		}
+		// check the time period
+		if (time() - strtotime($posts[0]->post_date_gmt) > (get_option($tpl->name . '_comments_autoclose', '0') * 24 * 60 * 60)) {
+			$posts[0]->comment_status = 'closed';
+			$posts[0]->ping_status = 'closed';
+		}
+		
+		return $posts;
+	}
+	
+	add_filter( 'the_posts', 'gavern_comments_close' );
+} 
+
+/**
+ *
+ * Function used to add target="_blank" in the comments links
+ *
+ * @return comment code
+ *
+ **/
+
+if(get_option($tpl->name . '_comments_autoblank', 'Y') == 'Y') {
+	function gavern_comments_autoblank($text) {
+		$return = str_replace('<a', '<a target="_blank"', $text);
+		return $return;
+	}
+	
+	add_filter('comment_text', 'gavern_comments_autoblank');
+}
+
+/**
+ *
+ * Code used to disable autolinking in comments
+ *
+ **/
+ 
+if(get_option($tpl->name . '_comments_autolinking', 'Y') == 'N') {
+	remove_filter('comment_text', 'make_clickable', 9);
+}
 
 /**
  *

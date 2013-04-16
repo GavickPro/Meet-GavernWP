@@ -82,6 +82,32 @@
 				"default": "Y"
 			},
 			{
+				"name": "comments_explained",
+				"type": "TextBlock",
+				"label": "Settings connected with comments"
+			},
+			{
+				"name": "comments_autoclose",
+				"type": "Text",
+				"label": "Auto-close comments after X days",
+				"tooltip": "Please specify amount of days when the comments will be automatically closed. Left 0 to set the infinite amount od days (comments will be never closed).",
+				"default": "0"
+			},
+			{
+				"name": "comments_autoblank",
+				"type": "Switcher",
+				"label": "Add target blank to comments links",
+				"tooltip": "If this option is enabled then every link in the comments text will contain attribute target='_blank'.",
+				"default": "Y"
+			},
+			{
+				"name": "comments_autolinking",
+				"type": "Switcher",
+				"label": "Autolinking in comments",
+				"tooltip": "If this option is enabled then every link in the comments text will be automatically changed into hyperlink.",
+				"default": "Y"
+			},
+			{
 				"name": "opensearch_explained",
 				"type": "TextBlock",
 				"label": "Open Search is an open protocol used to easily integrate your page search with the browser search engines."
