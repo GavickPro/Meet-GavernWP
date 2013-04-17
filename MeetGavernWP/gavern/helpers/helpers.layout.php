@@ -594,6 +594,7 @@ function gk_condition($mode, $input, $users) {
 	}
 	
 	if($mode != 'all') {
+		$input = preg_replace('@[^a-zA-Z0-9\-_,;\:\s]@mis', '', $input);
 		$input = substr($input, 1);
 		$input = explode(',', $input);
 
