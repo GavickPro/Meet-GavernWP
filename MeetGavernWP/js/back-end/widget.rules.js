@@ -316,17 +316,28 @@ function gk_widget_control_init_events(id, inner) {
 				var parent = jQuery(event.target).parent();
 				parent.find('strong').remove();
 				var text = parent.text();
-
+				//
 				if(text == 'All pages') text = 'page:';
-				else if(text == 'All posts pages') text = 'post';
+				else if(text == 'All posts pages') text = 'post:';
 				else if(text== 'All category pages') text = 'category:';
 				else if(text == 'All tag pages') text = 'tag:';
 				else if(text == 'All author pages') text = 'author:';
 				else if(text == 'All taxonomy pages') text = 'taxonomy:';
-				//else if(text == 'All post format pages') text = 'format:';
+				else if(text == 'All post format pages') text = 'format:';
 				else if(text == 'All page template pages') text = 'template:';
-
-				output.val(output.val().replace("," + text, ""));
+				//
+				if(text.indexOf(':') == text.length - 1) {
+					var startlen = output.val().length;
+					output.val(output.val().replace("," + text + ",", ""));
+					// if previous regexp didn't changed the value
+					if(startlen === output.val().length) {
+						var regex = new RegExp(',' + text + '$', 'gmi');
+						output.val(output.val().replace(regex, ""));	
+					}
+				} else {
+					output.val(output.val().replace("," + text, ""));
+				}
+				//
 				gk_widget_control_refresh(form);	
 			}
 		});
@@ -392,7 +403,7 @@ function gk_widget_control_refresh(form) {
 				else if(out == 'tag:') out = 'All tag pages';
 				else if(out == 'author:') out = 'All author pages';
 				else if(out == 'taxonomy:') out = 'All taxonomy pages';
-				//else if(out == 'format:') out = 'All post format pages';
+				else if(out == 'format:') out = 'All post format pages';
 				else if(out == 'template:') out = 'All page template pages';
 
 				list.html(list.html() + "<span class="+type+">"+out+"<strong>&times;</strong></span>");
