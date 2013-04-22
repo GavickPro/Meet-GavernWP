@@ -204,7 +204,7 @@ class GKFormInputSelect extends GKFormInput {
 				>';
 				
 		foreach($this->other->options as $value => $label) {		
-			$output .= '<option value="'.$value.'"'.(($this->value == $value) ? ' selected="selected"' : '').'>'.$label.'</option>';
+			$output .= '<option value="'.$value.'"'.selected($this->value, $value, false).'>'.$label.'</option>';
 		}
 		
 		$output .= '</select></p>';
@@ -234,8 +234,8 @@ class GKFormInputSwitcher extends GKFormInput {
 					'.($this->visibility).'
 					data-name="'.($this->name).'"
 				>';
-		$output .= '<option value="N"'.(($this->value == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
-		$output .= '<option value="Y"'.(($this->value == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+		$output .= '<option value="N"'.selected($this->value, 'N', false).'>'.__('Disabled', GKTPLNAME).'</option>';
+		$output .= '<option value="Y"'.selected($this->value, 'Y', false).'>'.__('Enabled', GKTPLNAME).'</option>';
 		$output .= '</select></p>';
 		
 		return $output;

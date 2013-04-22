@@ -221,7 +221,7 @@ class GK_Tabs_Widget extends WP_Widget {
 			
 			<select id="<?php echo esc_attr( $this->get_field_id( 'sidebar' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'sidebar' ) ); ?>">
 				<?php foreach(array_keys($wp_registered_sidebars) as $sidebar) : ?>
-				<option value="<?php echo $sidebar; ?>"<?php echo (esc_attr($sidebar) == $selected_sidebar) ? ' selected="selected"' : ''; ?>>
+				<option value="<?php echo $sidebar; ?>"<?php selected($sidebar, $selected_sidebar); ?>>
 					<?php echo $wp_registered_sidebars[$sidebar]["name"]; ?>
 				</option>
 				<?php endforeach; ?>
@@ -231,11 +231,11 @@ class GK_Tabs_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo esc_attr($this->get_field_id('event')); ?>"><?php _e('Tabs activator event:', GKTPLNAME); ?></label>
 			
-			<select id="<?php echo esc_attr( $this->get_field_id('event')); ?>" name="<?php echo esc_attr( $this->get_field_name('event')); ?>">
-				<option value="click"<?php echo (esc_attr($event) == 'click') ? ' selected="selected"' : ''; ?>>
+			<select id="<?php echo esc_attr($this->get_field_id('event')); ?>" name="<?php echo esc_attr( $this->get_field_name('event')); ?>">
+				<option value="click"<?php selected($event, 'click'); ?>>
 					<?php _e('Click', GKTPLNAME); ?>
 				</option>
-				<option value="hover"<?php echo (esc_attr($event) == 'hover') ? ' selected="selected"' : ''; ?>>
+				<option value="hover"<?php selected($event, 'hover'); ?>>
 					<?php _e('Hover', GKTPLNAME); ?>
 				</option>
 			</select>
@@ -245,10 +245,10 @@ class GK_Tabs_Widget extends WP_Widget {
 			<label for="<?php echo esc_attr($this->get_field_id('autoanim')); ?>"><?php _e('Auto animation:', GKTPLNAME); ?></label>
 			
 			<select id="<?php echo esc_attr( $this->get_field_id('autoanim')); ?>" name="<?php echo esc_attr( $this->get_field_name('autoanim')); ?>">
-				<option value="enabled"<?php echo (esc_attr($autoanim) == 'enabled') ? ' selected="selected"' : ''; ?>>
+				<option value="enabled"<?php selected($autoanim, 'enabled'); ?>>
 					<?php _e('Enabled', GKTPLNAME); ?>
 				</option>
-				<option value="disabled"<?php echo (esc_attr($autoanim) == 'disabled') ? ' selected="selected"' : ''; ?>>
+				<option value="disabled"<?php selected($autoanim, 'disabled'); ?>>
 					<?php _e('Disabled', GKTPLNAME); ?>
 				</option>
 			</select>

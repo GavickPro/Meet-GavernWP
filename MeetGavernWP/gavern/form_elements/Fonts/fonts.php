@@ -54,29 +54,29 @@ class GKFormInputFonts extends GKFormInput {
 			$output .= '<select id="'.($this->tpl->name).'_fonts_type_'.($font_family->short_name).'" class="gkInput gkSelect" data-name="fonts_type_'.($font_family->short_name).'" data-family="'.($font_family->short_name).'" data-type="type"
 			'.($this->required).' 
 			'.($this->visibility).'>
-				<option value="normal"'.(($type == 'normal') ? ' selected="selected"' : '').'>'.__('Standard fonts', GKTPLNAME).'</option>
-				<option value="squirrel"'.(($type == 'squirrel') ? ' selected="selected"' : '').'>'.__('Fonts Squirrel', GKTPLNAME).'</option>
-				<option value="google"'.(($type == 'google') ? ' selected="selected"' : '').'>'.__('Google Web Fonts', GKTPLNAME).'</option>
-				<option value="edgefonts"'.(($type == 'edgefonts') ? ' selected="selected"' : '').'>'.__('Adobe Edge Fonts', GKTPLNAME).'</option>
+				<option value="normal"'.selected($type, 'normal', false).'>'.__('Standard fonts', GKTPLNAME).'</option>
+				<option value="squirrel"'.selected($type, 'squirrel', false).'>'.__('Fonts Squirrel', GKTPLNAME).'</option>
+				<option value="google"'.selected($type, 'google', false).'>'.__('Google Web Fonts', GKTPLNAME).'</option>
+				<option value="edgefonts"'.selected($type, 'edgefonts', false).'>'.__('Adobe Edge Fonts', GKTPLNAME).'</option>
 			</select></p>';
 			// normal fonts selector
 			$output .= '<p><label>'.__('Font family: ', GKTPLNAME).'</label><select id="'.($this->tpl->name).'_fonts_normal_'.($font_family->short_name).'" class="gkInput gkSelect" data-name="fonts_normal_'.($font_family->short_name).'" data-family="'.($font_family->short_name).'" data-type="normal"
 			'.($this->required).' 
 			'.($this->visibility).'>
-				<option value="Verdana, Geneva, sans-serif"'.(($normal == "Verdana, Geneva, sans-serif") ? ' selected="selected"' : ''). '>Verdana</option>
-				<option value="Georgia, Times New Roman, Times, serif"'.(($normal == "Georgia, Times New Roman, Times, serif") ? ' selected="selected"' : '').'>Georgia</option>
-				<option value="Arial, Helvetica, sans-serif"'.(($normal == "Arial, Helvetica, sans-serif") ? ' selected="selected"' : '').'>Arial</option>
-				<option value="Impact, Arial, Helvetica, sans-serif"'.(($normal == "Impact, Arial, Helvetica, sans-serif") ?  ' selected="selected"' : '' ).'>Impact</option>
-				<option value="Tahoma, Geneva, sans-serif"'.(($normal == "Tahoma, Geneva, sans-serif") ? ' selected="selected"' : '').'>Tahoma</option>
-				<option value="Trebuchet MS, Arial, Helvetica, sans-serif"'.(($normal == "Trebuchet MS, Arial, Helvetica, sans-serif") ? ' selected="selected"' : '').'>Trebuchet MS</option>
-				<option value="Arial Black, Gadget, sans-serif"'.(($normal == "Arial Black, Gadget, sans-serif") ? ' selected="selected"' : ''). '>Arial Black</option>
-				<option value="Times, Times New Roman, serif"'.(($normal == "Times, Times New Roman, serif") ? ' selected="selected"' : '').'>Times</option>
-				<option value="Palatino Linotype, Book Antiqua, Palatino, serif"'.(($normal == "Palatino Linotype, Book Antiqua, Palatino, serif") ? ' selected="selected"' : '').'>Palatino Linotype</option>
-				<option value="Lucida Sans Unicode, Lucida Grande, sans-serif"'.(($normal == "Lucida Sans Unicode, Lucida Grande, sans-serif") ? ' selected="selected"' : '').'>Lucida Sans Unicode</option>
-				<option value="MS Serif, New York, serif"'.(($normal == "MS Serif, New York, serif") ? ' selected="selected"' : '').'>MS Serif</option>
-				<option value="Comic Sans MS, cursive"'.(($normal == "Comic Sans MS, cursive") ? ' selected="selected"' : '').'>Comic Sans MS</option>
-				<option value="Courier New, Courier, monospace"'.(($normal == "Courier New, Courier, monospace") ? ' selected="selected"' : '').'>Courier New</option>
-				<option value="Lucida Console, Monaco, monospace"'.(($normal == "Lucida Console, Monaco, monospace") ? ' selected="selected"' : '').'>Lucida Console</option>
+				<option value="Verdana, Geneva, sans-serif"'.selected($normal, "Verdana, Geneva, sans-serif", false). '>Verdana</option>
+				<option value="Georgia, Times New Roman, Times, serif"'.selected($normal, "Georgia, Times New Roman, Times, serif", false).'>Georgia</option>
+				<option value="Arial, Helvetica, sans-serif"'.selected($normal, "Arial, Helvetica, sans-serif", false).'>Arial</option>
+				<option value="Impact, Arial, Helvetica, sans-serif"'.selected($normal, "Impact, Arial, Helvetica, sans-serif", false).'>Impact</option>
+				<option value="Tahoma, Geneva, sans-serif"'.selected($normal, "Tahoma, Geneva, sans-serif", false).'>Tahoma</option>
+				<option value="Trebuchet MS, Arial, Helvetica, sans-serif"'.selected($normal, "Trebuchet MS, Arial, Helvetica, sans-serif", false).'>Trebuchet MS</option>
+				<option value="Arial Black, Gadget, sans-serif"'.selected($normal, "Arial Black, Gadget, sans-serif", false). '>Arial Black</option>
+				<option value="Times, Times New Roman, serif"'.selected($normal, "Times, Times New Roman, serif", false).'>Times</option>
+				<option value="Palatino Linotype, Book Antiqua, Palatino, serif"'.selected($normal, "Palatino Linotype, Book Antiqua, Palatino, serif", false).'>Palatino Linotype</option>
+				<option value="Lucida Sans Unicode, Lucida Grande, sans-serif"'.selected($normal, "Lucida Sans Unicode, Lucida Grande, sans-serif", false).'>Lucida Sans Unicode</option>
+				<option value="MS Serif, New York, serif"'.selected($normal, "MS Serif, New York, serif", false).'>MS Serif</option>
+				<option value="Comic Sans MS, cursive"'.selected($normal, "Comic Sans MS, cursive", false).'>Comic Sans MS</option>
+				<option value="Courier New, Courier, monospace"'.selected($normal, "Courier New, Courier, monospace", false).'>Courier New</option>
+				<option value="Lucida Console, Monaco, monospace"'.selected($normal, "Lucida Console, Monaco, monospace", false).'>Lucida Console</option>
 			</select></p>';
 			// squirrel fonts selector
 			$squirrel_fonts = (glob(TEMPLATEPATH . '/fonts/*' , GLOB_ONLYDIR));
@@ -87,7 +87,7 @@ class GKFormInputFonts extends GKFormInput {
 				if(count($squirrel_fonts) > 0) { 
 					for($i = 0; $i < count($squirrel_fonts); $i++) {
 						$short_name = str_replace(TEMPLATEPATH . '/fonts/', '', $squirrel_fonts[$i]);
-						$output .= '<option value="'.$short_name.'"'.(($squirrel == $short_name) ? ' selected="selected"' : '').'>'.$short_name.'</option>';
+						$output .= '<option value="'.$short_name.'"'.selected($squirrel, $short_name, false).'>'.$short_name.'</option>';
 					}
 				} else {
 					$output .= '<option value="-1" selected="selected">'.__('You have no fonts in fonts/ directory', GKTPLNAME).'</option>';

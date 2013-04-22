@@ -98,16 +98,16 @@ function gavern_post_params_callback($post) {
     echo '<p>';
     echo '<label for="gavern-post-params-title-value">'.__('Show title:', GKTPLNAME).'</label>';
     echo '<select name="gavern-post-params-title-value" id="gavern-post-params-title-value">';
-    echo '<option value="Y"'.(($value_title == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
-    echo '<option value="N"'.(($value_title == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '<option value="Y"'.selected($value_title, 'Y', false).'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.selected($value_title, 'N', false).'>'.__('Disabled', GKTPLNAME).'</option>';
     echo '</select>';  
     echo '</p>';
     // output for the featured image option
     echo '<p>';
     echo '<label for="gavern-post-params-image-value">'.__('Show featured image:', GKTPLNAME).'</label>';
     echo '<select name="gavern-post-params-image-value" id="gavern-post-params-image-value">';
-    echo '<option value="Y"'.(($value_image == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
-    echo '<option value="N"'.(($value_image == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '<option value="Y"'.selected($value_image, 'Y', false).'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.selected($value_image, 'N', false).'>'.__('Disabled', GKTPLNAME).'</option>';
     echo '</select>';
     echo '</p>'; 
     // output for the aside option
@@ -433,8 +433,8 @@ function gavern_widget_control() {
 				<label for="' . $tpl->name . '_widget_rules_'.$id.'">'.__('Visible at: ', GKTPLNAME).'</label>
 				<select name="' . $tpl->name . '_widget_rules_type_'.$id.'" id="' . $tpl->name . '_widget_rules_type_'.$id.'" class="gk_widget_rules_select">
 					<option value="all"'.(($value_type != "include" && $value_type != 'exclude') ? " selected=\"selected\"":"").'>'.__('All pages', GKTPLNAME).'</option>
-					<option value="exclude"'.(($value_type == "exclude") ? " selected=\"selected\"":"").'>'.__('All pages expecting:', GKTPLNAME).'</option>
-					<option value="include"'.(($value_type == "include") ? " selected=\"selected\"":"").'>'.__('No pages expecting:', GKTPLNAME).'</option>
+					<option value="exclude"'.selected($value_type, "exclude", false).'>'.__('All pages expecting:', GKTPLNAME).'</option>
+					<option value="include"'.selected($value_type, "include", false).'>'.__('No pages expecting:', GKTPLNAME).'</option>
 				</select>
 			</p>
 			<fieldset class="gk_widget_rules_form" id="gk_widget_rules_form_'.$unique_id.'" data-id="gk_widget_rules_form_'.$id.'">
@@ -608,7 +608,7 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 		// check the flag state
 		if($add_the_item) {
 			// add the item if the module isn't excluded
-			array_push($items, '<option value="'.$style->css_class.'"'.(($style->css_class == $value1) ? ' selected="selected"' : '').'>'.$style->name.'</option>');
+			array_push($items, '<option value="'.$style->css_class.'"'.selected($style->css_class, $value1, false).'>'.$style->name.'</option>');
 		}
 	}
 	// check if the items array is blank - the prepare a basic field
@@ -616,7 +616,7 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 		$items = array('<option value="" selected="selected">'.__('No styles available', GKTPLNAME).'</option>');
 	}
 	// add the last option
-	array_push($items, '<option value="gkcustom"'.(($value1 == 'gkcustom') ? ' selected="selected"' : '').'>'.__('Custom CSS class', GKTPLNAME).'</option>');
+	array_push($items, '<option value="gkcustom"'.selected($value1, 'gkcustom', false).'>'.__('Custom CSS class', GKTPLNAME).'</option>');
 	// output the control
 	echo '<div>';
 	echo '<p><label for="' . $tpl->name . '_widget_style_'.$id.'">'.__('Widget style: ', GKTPLNAME).'<select name="' . $tpl->name . '_widget_style_'.$id.'"  id="' . $tpl->name . '_widget_style_'.$id.'" class="gk_widget_rules_select_styles">';
@@ -627,10 +627,10 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 	// output the responsive select
 	$items = array(
 		'<option value="all"'.((!$value2 || $value2 == 'all') ? ' selected="selected"' : '').'>'.__('All devices', GKTPLNAME).'</option>',
-		'<option value="onlyDesktop"'.(($value2 == 'onlyDesktop') ? ' selected="selected"' : '').'>'.__('Desktop', GKTPLNAME).'</option>',
-		'<option value="onlyTablets"'.(($value2 == 'onlyTablets') ? ' selected="selected"' : '').'>'.__('Tablets', GKTPLNAME).'</option>',
-		'<option value="onlySmartphones"'.(($value2 == 'onlySmartphones') ? ' selected="selected"' : '').'>'.__('Smartphones', GKTPLNAME).'</option>',
-		'<option value="onlyTabltetsAndSmartphones"'.(($value2 == 'onlyTabltetsAndSmartphones') ? ' selected="selected"' : '').'>'.__('Tablet/Smartphones', GKTPLNAME).'</option>'
+		'<option value="onlyDesktop"'.selected($value2, 'onlyDesktop', false).'>'.__('Desktop', GKTPLNAME).'</option>',
+		'<option value="onlyTablets"'.selected($value2, 'onlyTablets', false).'>'.__('Tablets', GKTPLNAME).'</option>',
+		'<option value="onlySmartphones"'.selected($value2, 'onlySmartphones', false).'>'.__('Smartphones', GKTPLNAME).'</option>',
+		'<option value="onlyTabltetsAndSmartphones"'.selected($value2, 'onlyTabltetsAndSmartphones', false).'>'.__('Tablet/Smartphones', GKTPLNAME).'</option>'
 	);
 	//
 	echo '<p><label for="' . $tpl->name . '_widget_responsive_'.$id.'">'.__('Visible on: ', GKTPLNAME).'<select name="' . $tpl->name . '_widget_responsive_'.$id.'"  id="' . $tpl->name . '_widget_responsive_'.$id.'">';
@@ -643,9 +643,9 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 	// output the user groups select
 	$items = array(
 		'<option value="all"'.(($value3 == null || !$value3 || $value3 == 'all') ? ' selected="selected"' : '').'>'.__('All users', GKTPLNAME).'</option>',
-		'<option value="guests"'.(($value3 == 'guests') ? ' selected="selected"' : '').'>'.__('Only guests', GKTPLNAME).'</option>',
-		'<option value="registered"'.(($value3 == 'registered') ? ' selected="selected"' : '').'>'.__('Only registered users', GKTPLNAME).'</option>',
-		'<option value="administrator"'.(($value3 == 'administrator') ? ' selected="selected"' : '').'>'.__('Only administrator', GKTPLNAME).'</option>'
+		'<option value="guests"'.selected($value3, 'guests', false).'>'.__('Only guests', GKTPLNAME).'</option>',
+		'<option value="registered"'.selected($value3, 'registered', false).'>'.__('Only registered users', GKTPLNAME).'</option>',
+		'<option value="administrator"'.selected($value3, 'administrator', false).'>'.__('Only administrator', GKTPLNAME).'</option>'
 	);
 	//
 	echo '<p><label for="' . $tpl->name . '_widget_users_'.$id.'">'.__('Visible for: ', GKTPLNAME).'<select name="' . $tpl->name . '_widget_users_'.$id.'"  id="' . $tpl->name . '_widget_users_'.$id.'">';
