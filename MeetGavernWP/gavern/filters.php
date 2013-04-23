@@ -23,6 +23,22 @@ defined('GAVERN_WP') or die('Access denied');
  * - gavern_breadcrumb
  * - gavern_breadcrumb_home
  *
+ * - gk_nsp_art_title
+ * - gk_nsp_art_text
+ * - gk_nsp_art_image
+ * - gk_nsp_art_info
+ * - gk_nsp_art_readmore
+ * - gk_nsp_link_title
+ * - gk_nsp_link_text
+ *
+ * - gk_social_fb_link
+ * - gk_social_gplus_link
+ * - gk_social_twitter_link
+ * - gk_social_rss_link
+ *
+ * - gk_tabs_tab
+ * - gk_tabs_content
+ *
  **/
 
 global $tpl;

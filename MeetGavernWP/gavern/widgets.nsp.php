@@ -898,7 +898,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	
 	 	$output = '<h3 class="gk-nsp-header"><a href="'.$art_url.'" title="'.str_replace('"','', $art_title).'">'.$art_title_short.'</a></h3>';
 	 	
-	 	return $output;
+	 	return apply_filters('gk_nsp_art_title', $output);
 	 }
 	 
 	 function generate_art_text($i) {
@@ -915,7 +915,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	
 	 	$output = '<p class="gk-nsp-text">'.$art_text.'</p>';
 	 	
-	 	return $output;
+	 	return apply_filters('gk_nsp_art_text', $output);
 	 }
 	 
 	 function generate_art_image($i) {
@@ -956,9 +956,9 @@ class GK_NSP_Widget extends WP_Widget {
 		 			}
 		 		
 		 			if($this->wdgt_config['article_image_pos'] == 'left' && $this->wdgt_config['article_image_order'] == 1) {
-		 				return '<div class="gk-nsp-image-wrap"><a href="'.$art_url.'" class="gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image" '.$style.' /></a></div>';
+		 				return apply_filters('gk_nsp_art_image', '<div class="gk-nsp-image-wrap"><a href="'.$art_url.'" class="gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image" '.$style.' /></a></div>');
 		 			} else {
-		 				return '<a href="'.$art_url.'" class="gk-responsive gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image gk-responsive" '.$style.' /></a>';
+		 				return apply_filters('gk_nsp_art_image', '<a href="'.$art_url.'" class="gk-responsive gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image gk-responsive" '.$style.' /></a>');
 		 			}
 	 			} else {
 	 				return __('An error occured during creating the thumbnail.', GKTPLNAME);
@@ -1046,7 +1046,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 		$this->wdgt_config['article_info_format']
 	 	);
 	 
-	 	return '<p class="gk-nsp-info">' . $output . '</p>';
+	 	return apply_filters('gk_nsp_art_info', '<p class="gk-nsp-info">' . $output . '</p>');
 	 }
 	 
 	 function generate_art_readmore($i) {
@@ -1063,7 +1063,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	
 	 	$output = '<a href="'.$art_url.'" class="readon btn" title="'.__('Read more', GKTPLNAME).'">'.__('Read more', GKTPLNAME).'</a>';
 	 	
-	 	return $output;
+	 	return apply_filters('gk_nsp_art_readmore', $output);
 	 }
 	 
 	 /**
@@ -1090,7 +1090,7 @@ class GK_NSP_Widget extends WP_Widget {
 	  	
 	  	$output = '<h4 class="gk-nsp-link-header"><a href="'.$art_url.'" title="'.str_replace('"','', $art_title).'">'.$art_title_short.'</a></h4>';
 	  	
-	  	return $output;
+	  	return apply_filters('gk_nsp_link_title', $output);
 	  }
 	  
 	  function generate_link_text($i) {
@@ -1107,7 +1107,7 @@ class GK_NSP_Widget extends WP_Widget {
 	  	
 	  	$output = '<p class="gk-nsp-link-text">'.$art_text.'</p>';
 	  	
-	  	return $output;
+	  	return apply_filters('gk_nsp_link_text', $output);
 	  }
 	 
 	 /**

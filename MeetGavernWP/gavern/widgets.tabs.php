@@ -135,13 +135,13 @@ class GK_Tabs_Widget extends WP_Widget {
 			// generate the tabs content
 			echo '<ol class="gk-tabs-nav">';
 			for($i = 0; $i < count($tabs); $i++) {
-				echo '<li'.(($i == 0) ? ' class="active"' : '').'>' . $tabs[$i] . '</li>';
+				echo '<li'.(($i == 0) ? ' class="active"' : '').'>' . apply_filters('gk_tabs_tab', $tabs[$i]) . '</li>';
 			}
 			echo '</ol>';
 			
 			echo '<div class="gk-tabs-container">';
 			for($i = 0; $i < count($tabs_content); $i++) {
-				echo '<div class="gk-tabs-item'.(($i == 0) ? ' active' : '').'">' . $tabs_content[$i] . '</div>';
+				echo '<div class="gk-tabs-item'.(($i == 0) ? ' active' : '').'">' . apply_filters('gk_tabs_content', $tabs_content[$i]) . '</div>';
 			}
 			echo '</div>';
 			// close the tabs wrapper
