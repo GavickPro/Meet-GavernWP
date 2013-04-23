@@ -461,7 +461,9 @@ function gk_social_api($title, $postID) {
 		     $pinterest_output = '<a href="http://pinterest.com/pin/create/button/?url='.get_permalink($postID).'&amp;media='.$image.'&amp;description='.(($pinit_title == false) ? urlencode($title) : $pinit_title).'" class="pin-it-button" count-layout="'.$pinterest_btn_attributes.'"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="'.__('Pin it', GKTPLNAME).'" alt="'.__('Pin it', GKTPLNAME).'" /></a>';
 		}
 		
-		return '<section id="gk-social-api">' . $fb_like_output . $gplus_output . $twitter_output . $pinterest_output . '</section>';
+		$output = '<section id="gk-social-api">' . $fb_like_output . $gplus_output . $twitter_output . $pinterest_output . '</section>';
+		
+		return apply_filters('gavern_social_api', $output);
 	}
 }
 
@@ -579,9 +581,9 @@ function gk_post_thumbnail_caption($raw = false) {
 	if ($thumbnail_img && isset($thumbnail_img[0])) {
 		if($thumbnail_img[0]->post_excerpt != '') {
 			if($raw) {
-				return strip_tags($thumbnail_img[0]->post_excerpt);
+				return apply_filters('gavern_thumbnail_caption', strip_tags($thumbnail_img[0]->post_excerpt));
 			} else {
-				return '<figcaption>'.$thumbnail_img[0]->post_excerpt.'</figcaption>';
+				return apply_filters('gavern_thumbnail_caption', '<figcaption>'.$thumbnail_img[0]->post_excerpt.'</figcaption>');
 			}
 		}
 	} else {

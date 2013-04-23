@@ -3,7 +3,76 @@
 // disable direct access to the file	
 defined('GAVERN_WP') or die('Access denied');	
 
+/**
+ *
+ * Built-in filters:
+ * 
+ * - gavern_social_api
+ * - gavern_thumbnail_caption
+ * - gavern_blog_name
+ * - gavern_blog_desc
+ * - gavern_logo_html
+ * - gavern_meta_description
+ * - gavern_meta_keywords
+ * - gavern_og_title
+ * - gavern_og_image
+ * - gavern_og_type
+ * - gavern_og_description
+ * - gavern_og_url
+ * - gavern_og_custom
+ * - gavern_breadcrumb
+ * - gavern_breadcrumb_home
+ *
+ **/
+
 global $tpl;
+
+/**
+ *
+ * Code used to implement icons in the widget titles
+ *
+ * @return modified title
+ * 
+ **/
+ 
+function gk_title_icons($title) {
+	if($title == '&nbsp;' || trim($title) == '' || strlen($title) == 0) {
+		return false;
+	} else {
+		$icons = array();	
+		preg_match('(icon([\-a-zA-Z0-9]){1,})', $title, $icons);
+		// icon text (if exists)
+		$icon = '';
+		//
+		if(count($icons) > 0) {
+			$icon = '<i class="'.$icons[0].'"></i>';
+		}
+		//
+		$title = preg_replace('@(\[icon([\-a-zA-Z0-9]){1,}\])@', '', $title);
+		//
+		return $icon.' '.$title;
+	}
+}
+
+add_filter('widget_title', 'gk_title_icons');
+
+/**
+ *
+ * Code used to hide widget title only when the title starts with "!" char
+ *
+ * @return modified title
+ * 
+ **/
+
+function gk_hide_widget_title($title) {	
+	if(substr(trim($title), 0, 1) == '!') {
+		return '';
+	} else {
+		return $title;
+	}
+}
+
+add_filter('widget_title', 'gk_hide_widget_title');
 
 /**
  *

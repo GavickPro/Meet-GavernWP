@@ -100,10 +100,10 @@ function gk_blog_name() {
 	// if user enabled our SEO override
 	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y') {
 		// blog name from template SEO options
-		return get_option($tpl->name . '_seo_blogname');
+		return apply_filters('gavern_blog_name', get_option($tpl->name . '_seo_blogname'));
 	} else { // in other case
 		// output standard blog name
-		return get_bloginfo( 'name' );
+		return apply_filters('gavern_blog_name', get_bloginfo( 'name' ));
 	}
 }
 
@@ -120,10 +120,10 @@ function gk_blog_desc() {
 	// if user enabled our SEO override
 	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y') {
 		// description from template SEO options
-		return get_option($tpl->name . '_seo_description');
+		return apply_filters('gavern_blog_desc', get_option($tpl->name . '_seo_description'));
 	} else { // in other case
 		// output standard blog description
-		return get_bloginfo( 'description' );
+		return apply_filters('gavern_blog_desc', get_bloginfo( 'description' ));
 	}
 }
 
@@ -157,7 +157,7 @@ function gk_blog_logo() {
 			$logo_text = get_option($tpl->name . "_branding_logo_text_value", '') . '<small>' . get_option($tpl->name . "_branding_logo_slogan_value", '') . '</small>';
 		}
 		// return the logo output
-		echo $logo_text;
+		echo apply_filters('gavern_logo_html', $logo_text);
 	}
 }
 
@@ -175,11 +175,11 @@ function gk_metatags() {
 	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y') {
 		if(is_home() || is_front_page()) {
 			if(get_option($tpl->name . '_seo_homepage_desc') == 'custom') {
-				echo '<meta name="description" content="'.get_option($tpl->name . '_seo_homepage_desc_value').'" />';
+				echo apply_filters('gavern_meta_description', '<meta name="description" content="'.get_option($tpl->name . '_seo_homepage_desc_value').'" />');
 			}
 			
 			if(get_option($tpl->name . '_seo_homepage_keywords') == 'custom') {
-				echo '<meta name="keywords" content="'.get_option($tpl->name . '_seo_homepage_keywords_value').'" />';
+				echo apply_filters('gavern_meta_keywords', '<meta name="keywords" content="'.get_option($tpl->name . '_seo_homepage_keywords_value').'" />');
 			}
 		}
 		
@@ -189,13 +189,13 @@ function gk_metatags() {
 		
 			if(get_post_meta($postID, 'gavern-post-desc', true) != '') {
 				if(get_option($tpl->name . '_seo_post_desc') == 'custom') {
-					echo '<meta name="description" content="'.get_post_meta($postID, 'gavern-post-desc',true).'" />';
+					echo apply_filters('gavern_meta_description', '<meta name="description" content="'.get_post_meta($postID, 'gavern-post-desc',true).'" />');
 				}
 			}
 			 			
 			if(get_post_meta($postID, 'gavern-post-keywords', true) != '') {
 				if(get_option($tpl->name . '_seo_post_keywords') == 'custom') {
-					echo '<meta name="keywords" content="'.get_post_meta($postID, 'gavern-post-keywords',true).'" />';
+					echo apply_filters('gavern_meta_keywords', '<meta name="keywords" content="'.get_post_meta($postID, 'gavern-post-keywords',true).'" />');
 				}
 			}
 		}
@@ -231,17 +231,17 @@ function gk_opengraph_metatags() {
 			$desc = get_post_meta($postID, 'gavern_opengraph_desc', true);
 			$other = get_post_meta($postID, 'gavern_opengraph_other', true);
 			//
-			echo '<meta name="og:title" content="'.(($title == '') ? $wp_query->post->post_title : $title).'" />' . "\n";
+			echo apply_filters('gavern_og_title', '<meta name="og:title" content="'.(($title == '') ? $wp_query->post->post_title : $title).'" />' . "\n");
 			//
 			if($image != '') {
-				echo '<meta name="og:image" content="'.$image.'" />' . "\n";
+				echo apply_filters('gavern_og_image', '<meta name="og:image" content="'.$image.'" />' . "\n");
 			}
 			//
-			echo '<meta name="og:type" content="'.(($type == '') ? 'article' : $type).'" />' . "\n";
+			echo apply_filters('gavern_og_type', '<meta name="og:type" content="'.(($type == '') ? 'article' : $type).'" />' . "\n");
 			//
-			echo '<meta name="og:description" content="'.(($desc == '') ? substr(str_replace("\"", '', strip_tags($wp_query->post->post_content)), 0, 200) : $desc).'" />' . "\n";
+			echo apply_filters('gavern_og_description', '<meta name="og:description" content="'.(($desc == '') ? substr(str_replace("\"", '', strip_tags($wp_query->post->post_content)), 0, 200) : $desc).'" />' . "\n");
 			//
-			echo '<meta name="og:url" content="'.get_permalink($postID).'" />' . "\n";
+			echo apply_filters('gavern_og_url', '<meta name="og:url" content="'.get_permalink($postID).'" />' . "\n");
 			//
 			if($other != '') {
 				$other = preg_split('/\r\n|\r|\n/', $other);
@@ -251,7 +251,7 @@ function gk_opengraph_metatags() {
 					$item = explode('=', $item);
 					//	
 					if(count($item) >= 2) {
-						echo '<meta name="'.$item[0].'" content="'.$item[1].'" />' . "\n";
+						echo apply_filters('gavern_og_custom', '<meta name="'.$item[0].'" content="'.$item[1].'" />' . "\n");
 					}
 				}
 			}
@@ -352,52 +352,54 @@ function gk_show_breadcrumbs() {
  **/
 function gk_breadcrumbs_output() {
 	// open the breadcrumbs tag
-	echo '<div class="gk-breadcrumbs">';
+	$output = '<div class="gk-breadcrumbs">';
 	// check if we are on the post or normal page
 	if (!is_home()) {
 		// return the Home link
-		echo '<a href="' . home_url() . '" class="gk-home">' . get_bloginfo('name') . "</a>";
+		$output .= '<a href="' . home_url() . '" class="gk-home">' . apply_filters('gavern_breadcrumb_home', get_bloginfo('name')) . "</a>";
 		// if page is category or post
 		if (is_category() || is_single()) {
 			// return the category link
-			the_category(' ');
+			$output .= get_the_category(' ');
 			// if it is a post page
 			if (is_single()) {
 				// return link the name of current post
-				the_title('<span class="gk-current">', '</span>');
+				$output .= get_the_title('<span class="gk-current">', '</span>');
 			}
 		// if it is a normal page
 		} elseif (is_page()) { 
 			// output the page name
-			the_title('<span class="gk-current">', '</span>');
+			$output .= get_the_title('<span class="gk-current">', '</span>');
 		} elseif (is_tag() && isset($_GET['tag'])) {
 			// output the tag name
-			echo '<span class="gk-current">' . __('Tag: ', GKTPLNAME) . strip_tags($_GET['tag']) . '</span>';
+			$output .= '<span class="gk-current">' . __('Tag: ', GKTPLNAME) . strip_tags($_GET['tag']) . '</span>';
 		} elseif (is_author() && isset($_GET['author'])) {
 			// get the author name
 			$id = strip_tags($_GET['author']);
 			if(is_numeric($id)) {
 				// output the author name
-				echo '<span class="gk-current">' . __('Published by: ', GKTPLNAME) . get_the_author_meta('display_name', $id) . '</span>';
+				$output .= '<span class="gk-current">' . __('Published by: ', GKTPLNAME) . get_the_author_meta('display_name', $id) . '</span>';
 			}
 		} elseif(is_404()) {
-			echo '<span class="gk-current">' . __('Page not found', GKTPLNAME) . '</span>';
+			$output .= '<span class="gk-current">' . __('Page not found', GKTPLNAME) . '</span>';
 		} elseif(is_archive()) {
-			echo '<span class="gk-current">' . __('Archives', GKTPLNAME) . '</span>';
+			$output .= '<span class="gk-current">' . __('Archives', GKTPLNAME) . '</span>';
 		} elseif(is_search() && isset($_GET['s'])) {
 			// output the author name
-			echo '<span class="gk-current">' . __('Searching for: ', GKTPLNAME) . strip_tags($_GET['s']) . '</span>';
+			$output .= '<span class="gk-current">' . __('Searching for: ', GKTPLNAME) . strip_tags($_GET['s']) . '</span>';
 		} elseif(is_attachment()) {
 			// output the attachment page name
-			the_title('<span class="gk-current">', '</span>');
+			$output .= get_the_title('<span class="gk-current">', '</span>');
 		}
 	// if the page is a home
 	} else {
 		// output the home link only
-		echo '<a href="' . home_url() . '" class="gk-home">' . get_bloginfo('name') . "</a>";
+		$output .= '<a href="' . home_url() . '" class="gk-home">' . get_bloginfo('name') . "</a>";
 	}
 	// close the breadcrumbs container
-	echo '</div>';
+	$output .= '</div>';
+	
+	echo apply_filters('gavern_breadcrumb', $output);
 }
 
 /**
@@ -875,52 +877,6 @@ function gk_dynamic_sidebar($index) {
 	// run hook
 	do_action('gavernwp_after_sidebar');
 }
-
-/**
- *
- * Code used to implement icons in the widget titles
- *
- * @return modified title
- * 
- **/
-function gk_title_icons($title) {
-	if($title == '&nbsp;' || trim($title) == '' || strlen($title) == 0) {
-		return false;
-	} else {
-		$icons = array();	
-		preg_match('(icon([\-a-zA-Z0-9]){1,})', $title, $icons);
-		// icon text (if exists)
-		$icon = '';
-		//
-		if(count($icons) > 0) {
-			$icon = '<i class="'.$icons[0].'"></i>';
-		}
-		//
-		$title = preg_replace('@(\[icon([\-a-zA-Z0-9]){1,}\])@', '', $title);
-		//
-		return $icon.' '.$title;
-	}
-}
-
-add_filter('widget_title', 'gk_title_icons');
-
-/**
- *
- * Code used to hide widget title only when the title starts with "!" char
- *
- * @return modified title
- * 
- **/
-
-function gk_hide_widget_title($title) {	
-	if(substr(trim($title), 0, 1) == '!') {
-		return '';
-	} else {
-		return $title;
-	}
-}
-
-add_filter('widget_title', 'gk_hide_widget_title');
 
 /**
  *
