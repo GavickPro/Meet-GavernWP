@@ -932,22 +932,21 @@ class GK_NSP_Widget extends WP_Widget {
 	 	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $art_ID ), 'single-post-thumbnail' );
 	 	$image_path = $image[0];
 	 	$upload_dir = wp_upload_dir();
-	 	$image_path = str_replace($upload_dir['baseurl'] . DIRECTORY_SEPARATOR, '', $image_path);
+	 	$image_path = str_replace($upload_dir['baseurl'] . '/', '', $image_path);
 	 	
 	 	if($image_path != '') {
-	 		$img_editor = wp_get_image_editor( $upload_dir['basedir'] . DIRECTORY_SEPARATOR . $image_path);
+	 		$img_editor = wp_get_image_editor( $upload_dir['basedir'] . '/' . $image_path);
 	 		
 	 		if(!is_wp_error($img_editor)) {
 		 		$img_editor->resize($this->wdgt_config['article_image_w'], $this->wdgt_config['article_image_h'], true);
-		 		$img_filename = $img_editor->generate_filename( $this->id, dirname(__FILE__) . DIRECTORY_SEPARATOR . 'cache_nsp');
+		 		$img_filename = $img_editor->generate_filename( $this->id, dirname(__FILE__) . '/' . 'cache_nsp');
 		 		$img_editor->save($img_filename);
 		 		
-		 	    $new_path = $img_filename;	
+		 		$new_path = basename($img_filename);  
+		 		$cache_uri = get_template_directory_uri() . '/gavern/cache_nsp/';
 		 		
 		 		if(is_string($new_path)) {
-			 		$new_path_pos = stripos($new_path, '/gavern/cache_nsp');
-		 			$new_path = substr($new_path, $new_path_pos);
-		 			$new_path = get_template_directory_uri() . $new_path;
+			 		$new_path = $cache_uri . $new_path;
 		 		
 		 			$style = '';
 		 			
