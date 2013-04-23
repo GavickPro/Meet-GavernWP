@@ -943,7 +943,7 @@ class GK_NSP_Widget extends WP_Widget {
 		 		$img_editor->save($img_filename);
 		 		
 		 		$new_path = basename($img_filename);  
-		 		$cache_uri = get_template_directory_uri() . '/gavern/cache_nsp/';
+		 		$cache_uri = get_stylesheet_directory_uri() . '/gavern/cache_nsp/';
 		 		
 		 		if(is_string($new_path)) {
 			 		$new_path = $cache_uri . $new_path;
