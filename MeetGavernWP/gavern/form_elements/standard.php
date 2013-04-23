@@ -251,7 +251,8 @@ class GKFormInputSwitcher extends GKFormInput {
 class GKFormInputMedia extends GKFormInput {
 	public function output() {
 		
-		$output = '<p data-visible="true"><label 
+		$output = '<p data-visible="true">
+			<label 
 			for="'.($this->tpl->name).'_'.($this->name).'"
 			title="'.($this->tooltip).'"
 			>
@@ -270,7 +271,9 @@ class GKFormInputMedia extends GKFormInput {
 				data-name="'.($this->name).'"
 			/>
 			<input id="'.($this->tpl->name).'_'.($this->name).'_button" class="gkMedia" type="button" value="'.__('Upload Image', GKTPLNAME).'" />
-			<small>'.__('Enter an URL or upload an image.', GKTPLNAME).'</small></p>
+			<small>'.__('Enter an URL or upload an image.', GKTPLNAME).'</small>
+			<span class="gkMediaPreview" data-text="'.__('No image selected', GKTPLNAME).'">'.(($this->value != '') ? '<img src="'.$this->value.'" alt="Preview" />' : __('No image selected', GKTPLNAME)).'</span>
+			</p>
 		';
 		
 		return $output;

@@ -314,6 +314,19 @@ body input.gkMedia {
 	float: left;
 	margin-right: 4px;
 }
+.gkMediaPreview {
+	background: #f8f8f8;
+	border: 3px double #eee;
+	display: block;
+	height: auto;
+	margin: 10px 0 0 300px;
+	max-width: 320px;
+	padding: 10px;
+}
+.gkMediaPreview img {
+	max-width: 320px;
+}
+
 #gkTabsContent > div,
 p[data-visible="false"] {
 	display: none
@@ -380,5 +393,8 @@ p[data-visible="false"] {
 	.gkMedia + small {
 		clear: both;
 		margin-left: 0px!important;
+	}
+	.gkMediaPreview {
+		margin-left: 0;
 	}
 }
