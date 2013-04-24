@@ -358,14 +358,14 @@ function gk_breadcrumbs_output() {
 		// return the Home link
 		$output .= '<a href="' . home_url() . '" class="gk-home">' . apply_filters('gavern_breadcrumb_home', get_bloginfo('name')) . "</a>";
 		// if page is category or post
-		if (is_category() || is_single()) {
+		if (is_category() || is_singular()) {
 			// return the category link
 			$output .= get_the_category_list(' ');
 			// if it is a post page
-			if (is_single() || is_page()) {
+			if (is_singular()) {
 				// return link the name of current post
 				$output .= '<span class="gk-current">' . get_the_title() . '</span>';
-			}
+			}			
 		// if it is a normal page
 		} elseif (is_page()) { 
 			// output the page name
@@ -387,9 +387,6 @@ function gk_breadcrumbs_output() {
 		} elseif(is_search() && isset($_GET['s'])) {
 			// output the author name
 			$output .= '<span class="gk-current">' . __('Searching for: ', GKTPLNAME) . strip_tags($_GET['s']) . '</span>';
-		} elseif(is_attachment()) {
-			// output the attachment page name
-			$output .= '<span class="gk-current">' . get_the_title() . '</span>';
 		}
 	// if the page is a home
 	} else {
