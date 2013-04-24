@@ -362,7 +362,7 @@ function gk_breadcrumbs_output() {
 			// return the category link
 			$output .= get_the_category_list(' ');
 			// if it is a post page
-			if (is_single()) {
+			if (is_single() || is_page()) {
 				// return link the name of current post
 				$output .= '<span class="gk-current">' . get_the_title() . '</span>';
 			}
