@@ -360,7 +360,7 @@ function gk_breadcrumbs_output() {
 		// if page is category or post
 		if (is_category() || is_single()) {
 			// return the category link
-			$output .= get_the_category(' ');
+			$output .= get_the_category_list(' ');
 			// if it is a post page
 			if (is_single()) {
 				// return link the name of current post
