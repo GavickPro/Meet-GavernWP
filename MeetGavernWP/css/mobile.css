@@ -242,3 +242,50 @@ aside.meta dd.bookmark {
 .onlyTabltetsAndSmartphones {
 	display: block!important;
 }
+
+/* 11.6. RTL Support
+==================================== */
+
+html[dir="rtl"] article.post, 
+html[dir="rtl"] article.page {
+	padding-right: 0!important;
+}
+
+html[dir="rtl"] aside.meta dt.date + dd {
+	left: auto;
+	padding-left: 0!important;
+	padding-right: 16px!important;
+	right: 0;
+}
+
+html[dir="rtl"] aside.meta dt,
+html[dir="rtl"] aside.meta dd {
+	float: right;
+	padding-left: 0;
+	padding-right: 106px;
+}
+
+html[dir="rtl"] aside.meta dd {
+	padding-left: 0;
+	padding-right: 10px;
+}
+
+html[dir="rtl"] .tag-page article aside.meta time,
+html[dir="rtl"] .category-page article aside.meta time,
+html[dir="rtl"] .search-page article aside.meta time,
+html[dir="rtl"] .home article aside.meta time,
+html[dir="rtl"] .archive article aside.meta time {
+	float: right!important;
+}
+
+html[dir="rtl"] .tag-page article aside.meta dd.format,
+html[dir="rtl"] .category-page article aside.meta dd.format,
+html[dir="rtl"] .search-page article aside.meta dd.format,
+html[dir="rtl"] .home article aside.meta dd.format,
+html[dir="rtl"] .archive article aside.meta dd.format {
+	float: right!important;
+}
+
+html[dir="rtl"] #comments {
+	margin-right: 0!important;
+}

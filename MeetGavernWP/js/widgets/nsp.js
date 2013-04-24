@@ -34,6 +34,7 @@ GK_NSP.prototype = {
 	links_current: 0,
 	modInterface: null,
 	module: null,
+	anim_property: '',
 	//
 	init_fields: function(module) {
 		// the most important class field ;)
@@ -61,6 +62,7 @@ GK_NSP.prototype = {
 			bottom: this.module.find('.gk-nsp-links-nav')
 		};
 		this.pages_amount = Math.ceil(this.arts.length / this.arts_per_page);
+		this.anim_property = jQuery('html').attr('dir') == 'rtl' ? 'right': 'left';
 	},
 	init_interface: function() {
 		var $this = this;
@@ -255,9 +257,15 @@ GK_NSP.prototype = {
 			this.arts_current = dir;
 		}
 		//		
-		jQuery($this.module.find('.gk-nsp-arts-scroll')).animate({
-			'margin-left': (-1 * this.arts_current * this.arts_block_width) + "%"
-		}, $this.config['animation_speed']);
+		if(this.anim_property == 'left') {
+			jQuery($this.module.find('.gk-nsp-arts-scroll')).animate({
+				'margin-left': (-1 * this.arts_current * this.arts_block_width) + "%"
+			}, $this.config['animation_speed']);
+		} else {
+			jQuery($this.module.find('.gk-nsp-arts-scroll')).animate({
+				'margin-right': (-1 * this.arts_current * this.arts_block_width) + "%"
+			}, $this.config['animation_speed']);
+		}
 
 		setTimeout(function() {
 			jQuery($this.arts_pages[$this.arts_current]).addClass('active');
@@ -293,9 +301,15 @@ GK_NSP.prototype = {
 			}
 		}, this.config['animation_speed'] * 0.5);
 		//
-		jQuery($this.module.find('.gk-nsp-links-scroll')).animate({
-			'margin-left': (-1 * this.links_current * this.links_block_width) + "%"
-		}, $this.config['animation_speed']);
+		if(this.anim_property == 'left') {
+			jQuery($this.module.find('.gk-nsp-links-scroll')).animate({
+				'margin-left': (-1 * this.links_current * this.links_block_width) + "%"
+			}, $this.config['animation_speed']);
+		} else {
+			jQuery($this.module.find('.gk-nsp-links-scroll')).animate({
+				'margin-right': (-1 * this.links_current * this.links_block_width) + "%"
+			}, $this.config['animation_speed']);
+		}
 
 		this.nsp_art_list(null, 'bottom');
 	},

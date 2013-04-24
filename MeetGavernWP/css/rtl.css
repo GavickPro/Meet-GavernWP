@@ -10,9 +10,6 @@
  *
  * 14. RTL Support
  *
- * IMPORTANT! Remember to change the tablet and mobile max-width
- * in the media queries manually.
- *
  * 
 ------------------------------------ */
 
@@ -81,7 +78,7 @@ body {
 
 /* wp.css */
 #main-menu {
-	float: none;
+	float: left;
 }
 
 #main-menu > li {
@@ -347,7 +344,7 @@ article section table th {
 
 .gk-nsp-next,
 .gk-nsp-prev {
-	float: right;
+	float: left;
 	margin: 4px 4px 0 0;
 }
 
@@ -497,97 +494,4 @@ article ul li:before {
 .gk-blue-button:first-child,
 .gk-yellow-button:first-child {
 	margin-right: 0;
-}
-
-/* tablet.css */
-@media (max-width: 900px) {
-	.archivepage .widget.first {
-		margin-right: 0;
-		margin-left: 2%!important;
-	}
-	
-	.archivepage .widget.first,
-	.archivepage .widget.first + .widget {
-		margin-right: 2%;
-		margin-left: 0;
-	}
-	
-	#gk-sidebar .box {
-		float: right!important;
-	}
-	
-	#gk-mainmenu-toggle {
-		float: left;
-	}
-	
-	#main-menu li a {
-		padding: 0 15px 0 0!important;
-	}
-	
-	#main-menu li li a {
-		padding: 0 30px 0 0!important;
-	}
-	
-	#main-menu li li li a {
-		padding: 0 45px 0 0!important;
-	}
-}
-
-@media (max-width: 600px) {
-	article section table td {
-		float: left;
-		padding: 5px 50% 5px 0;
-	}
-	
-	article section table td span.gk-table-label {
-		left: 0;
-		right: 5px;
-	}
-}
-
-/* mobile.css */
-@media (max-width: 540px) {
-	article.post, 
-	article.page {
-		padding-right: 0!important;
-	}
-	
-	aside.meta dt.date + dd {
-		left: auto;
-		padding-left: 0!important;
-		padding-right: 16px!important;
-		right: 0;
-	}
-	
-	aside.meta dt,
-	aside.meta dd {
-		float: right;
-		padding-left: 0;
-		padding-right: 106px;
-	}
-	
-	aside.meta dd {
-		padding-left: 0;
-		padding-right: 10px;
-	}
-	
-	.tag-page article aside.meta time,
-	.category-page article aside.meta time,
-	.search-page article aside.meta time,
-	.home article aside.meta time,
-	.archive article aside.meta time {
-		float: right!important;
-	}
-	
-	.tag-page article aside.meta dd.format,
-	.category-page article aside.meta dd.format,
-	.search-page article aside.meta dd.format,
-	.home article aside.meta dd.format,
-	.archive article aside.meta dd.format {
-		float: right!important;
-	}
-	
-	#comments {
-		margin-right: 0!important;
-	}
 }
