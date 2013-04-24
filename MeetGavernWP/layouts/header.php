@@ -48,6 +48,10 @@
 		if(get_option($tpl->name . "_overridecss_state", 'Y') == 'Y') {
 			wp_enqueue_style('gavern-override', gavern_file_uri('css/override.css'), array('gavern-style'));
 		}
+		
+		if(is_rtl()) {
+			wp_enqueue_style('gavern-rtl', gavern_file_uri('css/rtl.css'), array('gavern-style'));
+		}
 	?>
 	
 	<?php gk_head_shortcodes(); ?>

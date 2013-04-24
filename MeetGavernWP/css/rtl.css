@@ -1,0 +1,593 @@
+/**
+ *
+ * -------------------------------------------
+ * RTL Support
+ * -------------------------------------------
+ *
+ **/
+
+/*
+ *
+ * 14. RTL Support
+ *
+ * IMPORTANT! Remember to change the tablet and mobile max-width
+ * in the media queries manually.
+ *
+ * 
+------------------------------------ */
+
+/* 14.1. Changed elements
+==================================== */
+
+/* template.css */
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+.box ul ul,
+.box ol ol {
+	padding: 0 20px 0 0;
+}
+
+#gk-mainbody-columns > section {
+	float: right;
+	padding: 0;
+}
+
+#gk-mainbody-columns > aside {
+	float: left;
+	padding: 0 20px 0 0;
+}
+
+#gk-mainbody-columns.gk-column-left > section {
+	float: left;
+}
+
+#gk-mainbody-columns.gk-column-left > aside {
+	float: right;
+	padding: 0 0 20px 0;
+}
+
+#gk-head h1 {
+	float: right;
+}
+
+#gk-head a.textLogo {
+	padding: 7px 10px 0 0;
+}
+
+#footer-menu {
+	float: right;
+}
+
+#footer-menu li {
+	float: right;
+}
+
+#gk-footer .gk-copyrights {
+	float: left;
+}
+
+#gk-top-link {
+	margin-left: 0;
+	margin-right: 20px;
+}
+
+#gk-top .box,
+#gk-bottom .box {
+	float: right;
+}
+
+/* wp.css */
+#main-menu {
+	float: none;
+}
+
+#main-menu > li {
+	float: right;
+}
+
+#main-menu .sub-menu:before {
+	left: auto;
+	right: 26px;
+}
+
+#main-menu .sub-menu .sub-menu {
+	margin-left: inherit;
+	margin-right: 180px;
+}
+
+#comments ol.children {
+	margin-left: 0;
+	margin-right: 5%;
+}
+
+#comments li article > .content {
+	margin-left: 0;
+	margin-right: 56px;
+}
+
+#comments .children article > .content {
+	margin-left: 0;
+	margin-right: 48px;
+}
+
+#comments article footer .edit,
+#comments article footer .reply {
+	margin-left: 0;
+	margin-right: 10px;
+}
+
+#comments li.bypostauthor article aside {
+	left: 0;
+	right: 2%;
+}
+
+#comments li article code {
+	border-left: inherit;
+	border-right: 4px solid #eee;
+}
+
+article.post,
+article.page {
+	padding-left: 0;
+	padding-right: 120px;
+}
+
+article.post.no-sidebar,
+article.page.no-sidebar {
+	padding-right: 0;
+}
+
+article.no-title,
+article.page-fullwidth {
+	padding-right: 0;
+}
+
+section#comments {
+	margin-left: 0;
+	margin-right: 120px;
+}
+
+article.no-sidebar + section#comments {
+	margin-right: 0;
+}
+
+article.no-title + section#comments,
+article.page-fullwidth + section#comments {
+	margin-right: 0;
+}
+
+aside.meta {
+	float: right;
+	left: 0;
+	right: -120px;
+}
+
+aside.meta time {
+	float: left;
+}
+
+aside.meta dt,
+aside.meta dd {
+	text-align: left;
+}
+
+#gk-social-api > * {
+	float: right!important;
+	margin-left: 5px!important;
+	margin-right: 0px!important;
+}
+
+/* stuff.css */
+.gk-breadcrumbs {
+	float: right;
+	text-align: right;
+}
+
+#gk-font-size {
+	float: left;
+}
+
+#gk-font-size > a {
+	margin-left: 0;
+	margin-right: 5px;
+}
+
+.contactpage input[type="submit"] {
+	float: left;
+}
+
+.archivepage .widget {
+    float: right;
+}
+
+.archivepage .widget.first {
+	margin-left: 2%;
+    margin-right: 0;
+}
+
+.archivepage .widget.last {
+    margin-left: 0;
+    margin-right: 2%;
+}
+
+.archivepage .widget.first li a {
+    padding-left: 0;
+    padding-right: 54px;
+}
+
+.archivepage .widget li small {
+    left: inherit;
+  	right: 0;
+}
+
+.loginpage .login-remember {
+	float: right;
+}
+
+.loginpage .login-submit {
+	float: left;
+}
+
+.loginpage nav.small ul li {
+	float: right;
+	margin-left: 10px;
+	margin-right: 0;
+	padding-left: inherit;
+	padding-right: 0;
+}
+
+.gk-format-aside,
+.gk-format-audio,
+.gk-format-chat,
+.gk-format-gallery,
+.gk-format-image,
+.gk-format-link,
+.gk-format-quote,
+.gk-format-status,
+.gk-format-video {
+	left: auto;
+	right: 0;
+	text-align: right!important;
+}
+
+.pagenav .nav-prev {
+	float: right;
+}
+
+.pagenav .nav-next {
+	float: left;
+}
+
+.author-info > aside {
+	left: auto;
+	right: 20px;
+}
+
+.author-info > div {
+	padding: 0 84px 0 0;
+}
+
+.attachment-page > aside {
+	left: auto;
+	right: 0;
+}
+
+.attachment-page > aside ~ section,
+.attachment-page > aside ~ footer {
+	margin-left: 0;
+	margin-right: 140px;
+}
+
+.nav-prev {
+	float: right;
+}
+
+.nav-next {
+	float: left;
+}
+
+article section table th {
+	text-align: right;
+}
+
+/* wp.extensions.css */
+.box h3.box-title .rsswidget {
+	float: right;
+	margin-left: 10px;
+	margin-right: 0;
+}
+
+.box .rss-date {
+	text-align: left;
+}
+
+.box.tags .tagcloud a {
+	float: right;
+	margin: 0 0 5px 5px;
+}
+
+/* extensions.css */
+.widget_gk_comments li > img,
+.widget_gk_comments li > strong,
+.widget_gk_comments li > small {
+	float: right;
+}
+
+.widget_gk_comments li > img {
+	margin-left: 10px;
+	margin-right: 0;
+}
+
+.widget_gk_comments li > p {
+	background-position: 95% 100%!important;
+}
+
+.gk-nsp-links-nav {
+	float: left;
+}
+
+.gk-nsp-arts-nav {
+	left: 12px;
+	right: auto;
+}
+
+.gk-nsp-arts-nav ul,
+.gk-nsp-links-nav ul {
+	float: right;
+}
+
+.gk-nsp-arts-nav ul li,
+.gk-nsp-links-nav ul li {
+	float: right;
+	margin: -2px 0 0 4px!important;
+}
+
+.gk-nsp-next,
+.gk-nsp-prev {
+	float: right;
+	margin: 4px 4px 0 0;
+}
+
+.gk-nsp-art {
+	float: right;
+}
+
+.gk-nsp-art .gk-nsp-info a,
+.gk-nsp-art .gk-nsp-info span {
+	padding-left: 0;
+	padding-right: 8px;
+}
+
+.gk-nsp-art .gk-nsp-info a:first-child,
+.gk-nsp-art .gk-nsp-info span:first-child {
+	padding-right: 0!important;
+}
+
+.gk-nsp-links ul {
+	float: right;
+}
+
+.gk-nsp-image-wrap {
+	float: right;
+}
+
+.gk-tabs-wrap > ol li {
+	float: right;
+	margin: 0 -1px 0 0;
+}
+
+.gk-tabs-wrap > ol li.active::after {
+	float: right;
+	margin-left: 0;
+	margin-right: -14px;
+}
+
+/* gallery.css */
+
+#gallery figure {
+	left: auto;
+	right: 0;
+}
+
+#gallery figcaption {
+	left: auto;
+	right: 0;
+}
+
+#gallery figcaption small {
+	text-align: left;
+}
+
+/* shortoces.typography.css */
+.gk-warning,
+.gk-notice,
+.gk-info,
+.gk-error,
+.gk-thanks { /* Common rules for all these types */
+	padding: 8px 14px 8px 35px;
+}
+
+.gk-numblock span,
+.gk-numblock[data-style="style1"] span {
+	float: right;
+	margin: 0 0 10px 10px;
+}
+
+blockquote.gk-quote cite {
+	float: left;
+}
+
+article ol {
+	margin-left: 0;
+	margin-right: 10px;
+}
+
+article ul li,
+article ol li {
+	padding-left: 0;
+	padding-right: 20px;
+}
+
+article ol li {
+	padding-right: 0;
+}
+
+article ul li:before {
+	float: right;
+	left: auto;
+	right: 8px;
+}
+
+.gk-legend > strong:first-child {
+	left: 0;
+	right: 20px;
+}
+
+.gk-columns > div {
+	float: right;
+}
+
+.gk-columns > div:first-child {
+	padding-left: 12px;
+	padding-right: 0;
+}
+
+.gk-columns > div:last-child {
+	padding-left: 0;
+	padding-right: 12px;
+}
+
+/* shortcodes.elements.css */
+.gk-rss > i {
+	margin-left: 5px;
+	margin-right: 0;
+}
+
+.gk-pdf > i {
+	margin-left: 5px;
+	margin-right: 0;
+}
+
+.gk-note:before,
+.gk-members > strong:first-child {
+	left: auto;
+	right: 10px;
+}
+
+.gk-toggle.opened > h3:after,
+.gk-toggle.closed > h3:after {
+	left: 0;
+	right: auto;
+}
+
+.gk-toggle > h3 {
+	padding: 10px 32px 10px 0;
+}
+
+/* shortcodes.tempate.css */
+.gk-blue-button,
+.gk-yellow-button {
+	margin-left: 0;
+	margin-right: 25px;
+}
+
+.gk-blue-button:first-child,
+.gk-yellow-button:first-child {
+	margin-right: 0;
+}
+
+/* tablet.css */
+@media (max-width: 900px) {
+	.archivepage .widget.first {
+		margin-right: 0;
+		margin-left: 2%!important;
+	}
+	
+	.archivepage .widget.first,
+	.archivepage .widget.first + .widget {
+		margin-right: 2%;
+		margin-left: 0;
+	}
+	
+	#gk-sidebar .box {
+		float: right!important;
+	}
+	
+	#gk-mainmenu-toggle {
+		float: left;
+	}
+	
+	#main-menu li a {
+		padding: 0 15px 0 0!important;
+	}
+	
+	#main-menu li li a {
+		padding: 0 30px 0 0!important;
+	}
+	
+	#main-menu li li li a {
+		padding: 0 45px 0 0!important;
+	}
+}
+
+@media (max-width: 600px) {
+	article section table td {
+		float: left;
+		padding: 5px 50% 5px 0;
+	}
+	
+	article section table td span.gk-table-label {
+		left: 0;
+		right: 5px;
+	}
+}
+
+/* mobile.css */
+@media (max-width: 540px) {
+	article.post, 
+	article.page {
+		padding-right: 0!important;
+	}
+	
+	aside.meta dt.date + dd {
+		left: auto;
+		padding-left: 0!important;
+		padding-right: 16px!important;
+		right: 0;
+	}
+	
+	aside.meta dt,
+	aside.meta dd {
+		float: right;
+		padding-left: 0;
+		padding-right: 106px;
+	}
+	
+	aside.meta dd {
+		padding-left: 0;
+		padding-right: 10px;
+	}
+	
+	.tag-page article aside.meta time,
+	.category-page article aside.meta time,
+	.search-page article aside.meta time,
+	.home article aside.meta time,
+	.archive article aside.meta time {
+		float: right!important;
+	}
+	
+	.tag-page article aside.meta dd.format,
+	.category-page article aside.meta dd.format,
+	.search-page article aside.meta dd.format,
+	.home article aside.meta dd.format,
+	.archive article aside.meta dd.format {
+		float: right!important;
+	}
+	
+	#comments {
+		margin-right: 0!important;
+	}
+}
