@@ -364,7 +364,7 @@ function gk_breadcrumbs_output() {
 			// if it is a post page
 			if (is_single()) {
 				// return link the name of current post
-				$output .= get_the_title('<span class="gk-current">', '</span>');
+				$output .= '<span class="gk-current">' . get_the_title() . '</span>';
 			}
 		// if it is a normal page
 		} elseif (is_page()) { 
@@ -389,7 +389,7 @@ function gk_breadcrumbs_output() {
 			$output .= '<span class="gk-current">' . __('Searching for: ', GKTPLNAME) . strip_tags($_GET['s']) . '</span>';
 		} elseif(is_attachment()) {
 			// output the attachment page name
-			$output .= get_the_title('<span class="gk-current">', '</span>');
+			$output .= '<span class="gk-current">' . get_the_title() . '</span>';
 		}
 	// if the page is a home
 	} else {
