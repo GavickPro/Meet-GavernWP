@@ -40,7 +40,6 @@
 	
 	<?php if(is_singular() && get_option('thread_comments' )) wp_enqueue_script( 'comment-reply' ); ?>
 	<?php do_action('gavernwp_ie_scripts'); ?>
-	<?php echo $assets_output; ?>
 	
 	<?php 
 		gk_load('responsive_css'); 

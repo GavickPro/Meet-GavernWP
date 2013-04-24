@@ -19,14 +19,13 @@ defined('GAVERN_WP') or die('Access denied');
  *
  **/
 function gk_load($part_name, $assets = null, $args = null) {	
-	$assets_output = '';
 	
 	if($assets !== null) {
 		foreach($assets as $key => $value) {
 			if($key == 'css') {
-				$assets_output .= '<link rel="stylesheet" type="text/css" href="'.$value.'" />' . "\n";
+				wp_enqueue_style('gavern-gallery-template', $value, array('gavern-style'));
 			} elseif($key == 'js') {
-				$assets_output .= '<script type="text/javascript" src="'.$value.'"></script>' . "\n";
+				wp_enqueue_script('gavern-gallery-template', $value, array('jquery'));
 			}
 		}
 	}
