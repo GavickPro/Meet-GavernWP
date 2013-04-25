@@ -407,10 +407,15 @@ article section table th {
 	padding: 8px 14px 8px 35px;
 }
 
+pre.gk-code[data-style="style2"] {
+	border-left: 0!important;
+	border-right: 4px solid #5990de!important;
+}
+
 .gk-numblock span,
 .gk-numblock[data-style="style1"] span {
-	float: right;
-	margin: 0 0 10px 10px;
+	float: right!important;
+	margin: 0 0 10px 10px!important;
 }
 
 blockquote.gk-quote cite {
@@ -439,7 +444,7 @@ article ul li:before {
 }
 
 .gk-legend > strong:first-child {
-	left: 0;
+	left: auto!important;
 	right: 20px;
 }
 
@@ -481,7 +486,7 @@ article ul li:before {
 }
 
 .gk-toggle > h3 {
-	padding: 10px 32px 10px 0;
+	padding: 10px 32px 10px 0!important;
 }
 
 /* shortcodes.tempate.css */
