@@ -151,7 +151,7 @@ function gk_blog_logo() {
 	} else { // text logo
 		// get the logo text type
 		if(get_option($tpl->name . "_branding_logo_text_type", 'wp') == 'wp') {
-			$logo_text = gk_blog_name() . '<small>' . gk_blog_desc() . '</small>';	
+			$logo_text = gk_blog_name() . ' <small>' . gk_blog_desc() . '</small>';	
 		} else {
 			$logo_text = get_option($tpl->name . "_branding_logo_text_value", '') . '<small>' . get_option($tpl->name . "_branding_logo_slogan_value", '') . '</small>';
 		}
@@ -351,7 +351,7 @@ function gk_show_breadcrumbs() {
  **/
 function gk_breadcrumbs_output() {
 	// open the breadcrumbs tag
-	$output = '<div class="gk-breadcrumbs">';
+	$output = '<nav class="gk-breadcrumbs">';
 	// check if we are on the post or normal page
 	if (!is_home()) {
 		// return the Home link
@@ -393,7 +393,7 @@ function gk_breadcrumbs_output() {
 		$output .= '<a href="' . home_url() . '" class="gk-home">' . get_bloginfo('name') . "</a>";
 	}
 	// close the breadcrumbs container
-	$output .= '</div>';
+	$output .= '</nav>';
 	
 	echo apply_filters('gavern_breadcrumb', $output);
 }

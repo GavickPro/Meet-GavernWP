@@ -15,9 +15,9 @@
 ?>
 		
 				<?php if(gk_is_active_sidebar('mainbody_bottom')) : ?>
-				<section id="gk-mainbody-bottom">
+				<div id="gk-mainbody-bottom">
 					<?php gk_dynamic_sidebar('mainbody_bottom'); ?>
-				</section>
+				</div>
 				<?php endif; ?>
 			</section><!-- end of the mainbody section -->
 		
@@ -36,12 +36,12 @@
 			</aside>
 			<?php do_action('gavernwp_after_column'); ?>
 			<?php endif; ?>
-		</section><!-- end of the #gk-mainbody-columns -->
-	</section><!-- end of the .gk-page section -->
-</section><!-- end of the .gk-page-wrap section -->	
+		</div><!-- end of the #gk-mainbody-columns -->
+	</div><!-- end of the .gk-page section -->
+</div><!-- end of the .gk-page-wrap section -->	
 
 <?php if(gk_is_active_sidebar('bottom')) : ?>
-<section id="gk-bottom" class="gk-page widget-area">
+<div id="gk-bottom" class="gk-page widget-area">
 	<?php gk_dynamic_sidebar('bottom'); ?>
-</section>
+</div>
 <?php endif; ?>

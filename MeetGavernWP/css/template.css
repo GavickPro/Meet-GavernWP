@@ -378,8 +378,8 @@ article {
  *
 ------------------------------------ */
 
-.gk-page + .gk-page-wrap,
-.gk-page + #gk-top {
+#gk-head + .gk-page-wrap,
+#gk-head + #gk-top {
 	border-top: 1px solid #e5e5e5;
 	padding-top: 45px;
 }

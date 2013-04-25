@@ -83,8 +83,8 @@
 	?>
 </head>
 <body <?php do_action('gavernwp_body_attributes'); ?>>
-	<section class="gk-page">
-		<header id="gk-head">
+	<header id="gk-head">
+		<div class="gk-page">
 			<?php if(get_option($tpl->name . "_branding_logo_type", 'css') != 'none') : ?>
 			<h1>
 				<a href="<?php echo home_url(); ?>" class="<?php echo get_option($tpl->name . "_branding_logo_type", 'css'); ?>Logo"><?php gk_blog_logo(); ?></a>
@@ -96,9 +96,9 @@
 				<?php _e('Main menu', GKTPLNAME); ?>
 			</a>
 			
-			<div id="gk-mainmenu-collapse" class="menu-hidden" data-btn="gk-mainmenu-toggle">	
+			<nav id="gk-mainmenu-collapse" class="menu-hidden" data-btn="gk-mainmenu-toggle">	
 				<?php gavern_menu('mainmenu', 'gk-main-menu', array('walker' => new GKMenuWalker())); ?>
-			</div>
+			</nav>
 			<?php endif; ?>
-		</header>
-	</section>
+		</div>
+	</header>

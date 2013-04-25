@@ -16,7 +16,7 @@
 /* 7.1. Breadcrumbs & font-size
 ==================================== */
  
-#gk-breadcrumb-fontsize {
+#gk-breadcrumb-area {
 	border-bottom: 1px solid #e5e5e5;
 	overflow: hidden;
 	padding: 10px 0;
