@@ -398,11 +398,12 @@ header hgroup h2 {
 /* 7.11. oEmbed support
 ==================================== */
 
-/* YouTube - responsive support */
+/* YouTube, Vimeo - responsive support */
 .content iframe[src^='http://www.youtube.com'],
 .content iframe[src^='https://www.youtube.com'],
 .content iframe[src^='http://youtube.com'],
-.content iframe[src^='https://youtube.com'] {
+.content iframe[src^='https://youtube.com'],
+.content iframe[src*='vimeo.com'] {
 	max-width: 100%!important;
 }
 
