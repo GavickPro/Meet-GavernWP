@@ -438,7 +438,7 @@ function gk_social_api($title, $postID) {
 			}
 			$tweet_btn_attributes .= ' data-lang="'.get_option($tpl->name . '_tweet_btn_data_lang', 'en').'"';
 			  
-			$twitter_output = '<a href="http://twitter.com/share" class="twitter-share-button" data-text="'.$title.'" data-url="'.get_permalink($postID).'" '.$tweet_btn_attributes.'>'.__('Tweet', GKTPLNAME).'</a>';
+			$twitter_output = '<a href="http://twitter.com/share" class="twitter-share-button" data-text="'.strip_tags($title).'" data-url="'.get_permalink($postID).'" '.$tweet_btn_attributes.'>'.__('Tweet', GKTPLNAME).'</a>';
 		}
 		// Pinterest
 		if(get_option($tpl->name . '_pinterest_btn', 'Y') == 'Y') {
@@ -458,7 +458,7 @@ function gk_social_api($title, $postID) {
 		      
 		     // configure Pinterest buttons               
 		     $pinterest_btn_attributes = get_option($tpl->name . '_pinterest_btn_style', 'horizontal');
-		     $pinterest_output = '<a href="http://pinterest.com/pin/create/button/?url='.get_permalink($postID).'&amp;media='.$image.'&amp;description='.(($pinit_title == false) ? urlencode($title) : $pinit_title).'" class="pin-it-button" count-layout="'.$pinterest_btn_attributes.'"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="'.__('Pin it', GKTPLNAME).'" alt="'.__('Pin it', GKTPLNAME).'" /></a>';
+		     $pinterest_output = '<a href="http://pinterest.com/pin/create/button/?url='.get_permalink($postID).'&amp;media='.$image.'&amp;description='.(($pinit_title == false) ? urlencode(strip_tags($title)) : $pinit_title).'" class="pin-it-button" count-layout="'.$pinterest_btn_attributes.'"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="'.__('Pin it', GKTPLNAME).'" alt="'.__('Pin it', GKTPLNAME).'" /></a>';
 		}
 		
 		$output = '<section id="gk-social-api">' . $fb_like_output . $gplus_output . $twitter_output . $pinterest_output . '</section>';
