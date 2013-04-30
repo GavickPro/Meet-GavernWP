@@ -34,10 +34,6 @@
 	<link rel="stylesheet" href="<?php echo gavern_file_uri('css/ie8.css'); ?>" />
 	<![endif]-->
 	
-	<?php do_action('gavernwp_fonts'); ?>
-	<?php gk_head_config(); ?>
-	<?php wp_enqueue_script("jquery"); ?>
-	
 	<?php if(is_singular() && get_option('thread_comments' )) wp_enqueue_script( 'comment-reply' ); ?>
 	<?php do_action('gavernwp_ie_scripts'); ?>
 	
@@ -64,6 +60,10 @@
 	?>
 	
 	<?php wp_head(); ?>
+	
+	<?php do_action('gavernwp_fonts'); ?>
+	<?php gk_head_config(); ?>
+	<?php wp_enqueue_script("jquery"); ?>
 	
 	<?php gk_thickbox_load(); ?>
 	
