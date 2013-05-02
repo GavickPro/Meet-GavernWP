@@ -335,7 +335,7 @@ function gk_show_breadcrumbs() {
 	$conditional_function = false;
 	
 	if(get_option($tpl->name . '_breadcrumbs_state', 'Y') == 'rule') {
-		$conditional_function = create_function('', 'return '.get_option($tpl->name . '_breadcrumbs_staterule', '').';');
+		$conditional_function = create_function('', 'return '.str_replace(array('\&#039;'), array("'"), get_option($tpl->name . '_breadcrumbs_staterule', '')).';');
 	}
 	
 	return (get_option($tpl->name . '_breadcrumbs_state', 'Y') == 'Y' || 
