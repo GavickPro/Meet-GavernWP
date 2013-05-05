@@ -508,7 +508,7 @@ aside.meta time span {
 }
 
 #gk-social-api > a {
-	min-height: auto;
+	min-height: inherit!important;
 }
 
 /* 5.4. Post additional features
