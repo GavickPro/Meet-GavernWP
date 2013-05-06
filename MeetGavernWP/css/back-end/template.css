@@ -51,7 +51,7 @@ textarea {
 	width: 95%
 }
 .gkWrap > h1:first-child {
-	background: #85B9DE;
+	background: #3f4c6b;
 	border-radius: 3px 3px 0 0;
 	color: #fff;
 	font: normal 25px/48px Arial, Helvetica, sans-serif;
@@ -133,6 +133,9 @@ textarea {
 #gkTabs li.layout {
 	background-position: 20px -49px
 }
+#gkTabs li.pages {
+	background-position: 20px -690px
+}
 #gkTabs li.fonts {
 	background-position: 20px -112px
 }
@@ -164,6 +167,10 @@ textarea {
 #gkTabs li:hover.layout,
 #gkTabs li.layout.active {
 	background-position: -291px -49px
+}
+#gkTabs li:hover.pages,
+#gkTabs li.pages.active {
+	background-position: -290px -690px
 }
 #gkTabs li:hover.fonts,
 #gkTabs li.fonts.active {
@@ -279,7 +286,7 @@ textarea {
 	-ms-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
 	-webkit-border-radius: 2px;
 	-webkit-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
-	background: #85b9e0!important;
+	background: #3f4c6b!important;
 	border: none!important;
 	border-radius: 2px;
 	color: #fff;
@@ -356,7 +363,7 @@ p[data-visible="false"] {
 }
 
 #gk-message h2 button {
-	background: #85B9DE;
+	background: #3f4c6b;
 	border: none;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
