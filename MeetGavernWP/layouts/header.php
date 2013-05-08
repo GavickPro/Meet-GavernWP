@@ -21,6 +21,7 @@
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	<?php
 		wp_enqueue_style('gavern-normalize', gavern_file_uri('css/normalize.css'), false);
+		wp_enqueue_style('gavern-font-awesome', gavern_file_uri('css/font-awesome.css'), array('gavern-normalize'));
 		wp_enqueue_style('gavern-template', gavern_file_uri('css/template.css'), array('gavern-normalize'));
 		wp_enqueue_style('gavern-wp', gavern_file_uri('css/wp.css'), array('gavern-template'));
 		wp_enqueue_style('gavern-stuff', gavern_file_uri('css/stuff.css'), array('gavern-wp'));
