@@ -514,7 +514,7 @@ function gk_head_fonts() {
 			
 				$font_family = str_replace('\&#039;', "'", $normal);
 			} else if($type == 'squirrel') {				
-				wp_enqueue_style('gavern-fonts-' . $i, gavern_file_uri('fonts/' . $squirrel . '/stylesheet.css'), array('gavern-normalize'));
+				echo '<link href="' . gavern_file_uri('fonts/' . $squirrel . '/stylesheet.css') . '" rel="stylesheet" type="text/css" />';
 				$font_family = "'" . $squirrel . "'";
 			} else if($type == 'google'){
 				$fname = array();

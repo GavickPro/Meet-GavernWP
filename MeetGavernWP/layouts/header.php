@@ -59,13 +59,13 @@
 		} 
 	?>
 	
+	
+	<?php gk_thickbox_load(); ?>
 	<?php wp_head(); ?>
 	
 	<?php do_action('gavernwp_fonts'); ?>
 	<?php gk_head_config(); ?>
 	<?php wp_enqueue_script("jquery"); ?>
-	
-	<?php gk_thickbox_load(); ?>
 	
 	<?php
 		wp_enqueue_script('gavern-scripts', gavern_file_uri('js/gk.scripts.js'), array('jquery'), false, true);
