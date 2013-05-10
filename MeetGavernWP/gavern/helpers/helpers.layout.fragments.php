@@ -246,7 +246,7 @@ function gk_post_meta($attachment = false) {
 	 		<?php endif; ?>
 	 		
 	 		<?php if(!(is_tag() || is_archive() || is_home() || is_search())) : ?>
-		 		<?php if(!is_page() && $param_category) : ?>
+		 		<?php if(get_post_type() != 'page' && $param_category) : ?>
 		 		<dt class="category">
 		 			<?php _e('Category:', GKTPLNAME); ?>
 		 		</dt>
