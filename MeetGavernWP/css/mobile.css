@@ -224,6 +224,27 @@ aside.meta dd.bookmark {
 	width: 100%!important;
 }
 
+/* GK News Show Pro */
+.gk-nsp .gk-nsp-art {
+	border-top: 1px solid #eee!important;
+	border-left: none!important;
+	padding-bottom: 20px!important;
+	padding-top: 20px!important;
+	width: 100%!important;
+}
+
+.gk-nsp .gk-nsp-art:first-child {
+	border-top: none!important;
+}
+
+/* GK Tabs */
+.gk-tabs-wrap > ol.gk-tabs-nav > li,
+.gk-tabs-wrap > ol.gk-tabs-nav > li.active, 
+.gk-tabs-wrap > ol.gk-tabs-nav > li.active:hover {
+	border-bottom: 1px solid #e5e5e5!important;
+	width: 100%;
+}
+
 /* 11.5. Device classes
 ==================================== */
 
