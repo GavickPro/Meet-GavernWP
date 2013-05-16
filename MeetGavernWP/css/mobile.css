@@ -241,7 +241,12 @@ aside.meta dd.bookmark {
 .gk-tabs-wrap > ol.gk-tabs-nav > li,
 .gk-tabs-wrap > ol.gk-tabs-nav > li.active, 
 .gk-tabs-wrap > ol.gk-tabs-nav > li.active:hover {
-	border-bottom: 1px solid #e5e5e5!important;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 1px solid #e5e5e5!important;
+	border-right: none!important;
+	border-top: none!important;
 	width: 100%;
 }
 
