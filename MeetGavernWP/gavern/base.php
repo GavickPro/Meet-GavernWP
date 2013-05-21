@@ -454,7 +454,13 @@ class GavernWP {
    			
    			if($line_num % 3 == 2) {
    				if($option_name != '' && $option_value != '') {
-   					$wpdb->query("UPDATE " . $wpdb->prefix . "options SET option_value='" . $option_value . "' WHERE option_name= '" . trim($option_name) . "' LIMIT 1; ");					
+   					$res = $wpdb->query("UPDATE " . $wpdb->prefix . "options SET option_value='" . $option_value . "' WHERE option_name= '" . trim($option_name) . "' LIMIT 1; ");
+   					
+   					if($res === 0) {
+   						$wpdb->query("INSERT INTO " . $wpdb->prefix . "options VALUES (NULL, '".trim($option_name)."', '" . trim($option_value) . "', 'yes'); ");
+   					}
+   					
+   					echo $option_name . '<br />';
    				}
    				
    				$option_name = '';
