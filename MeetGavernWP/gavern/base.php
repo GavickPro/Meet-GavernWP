@@ -459,8 +459,6 @@ class GavernWP {
    					if($res === 0) {
    						$wpdb->query("INSERT INTO " . $wpdb->prefix . "options VALUES (NULL, '".trim($option_name)."', '" . trim($option_value) . "', 'yes'); ");
    					}
-   					
-   					echo $option_name . '<br />';
    				}
    				
    				$option_name = '';
