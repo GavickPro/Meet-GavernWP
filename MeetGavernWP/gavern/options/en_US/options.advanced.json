@@ -87,13 +87,6 @@
 				"label": "Settings connected with comments"
 			},
 			{
-				"name": "comments_autoclose",
-				"type": "Text",
-				"label": "Auto-close comments after X days",
-				"tooltip": "Please specify amount of days when the comments will be automatically closed. Left 0 to set the infinite amount od days (comments will be never closed).",
-				"default": "0"
-			},
-			{
 				"name": "comments_autoblank",
 				"type": "Switcher",
 				"label": "Add target blank to comments links",

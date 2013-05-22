@@ -1,7 +1,7 @@
 <?php
 
 // disable direct access to the file	
-defined('GAVERN_WP') or die('Access denied');	
+defined('GAVERN_WP') or die('Access denied');
 
 /**
  *
@@ -162,33 +162,6 @@ function gavern_img_link_class( $link ) {
 
 add_filter( 'previous_image_link', 'gavern_img_link_class' );
 add_filter( 'next_image_link',     'gavern_img_link_class' );
-
-/**
- *
- * Function used to auto-close comments
- *
- * @return the posts array
- *
- **/
-
-if(get_option($tpl->name . '_comments_autoclose', '0') !== '0') {
-	function gavern_comments_close($posts) {
-		global $tpl;
-		// check if the page is single
-		if (!is_single()) { 
-			return $posts; 
-		}
-		// check the time period
-		if (time() - strtotime($posts[0]->post_date_gmt) > (get_option($tpl->name . '_comments_autoclose', '0') * 24 * 60 * 60)) {
-			$posts[0]->comment_status = 'closed';
-			$posts[0]->ping_status = 'closed';
-		}
-		
-		return $posts;
-	}
-	
-	add_filter( 'the_posts', 'gavern_comments_close' );
-} 
 
 /**
  *
