@@ -372,6 +372,11 @@
 /* 5.3. Post meta-data
 ==================================== */
 
+.content > form input[type="submit"] {
+	display: inline-block;
+	float: none;
+}
+
 #gk-mainbody article > header h1 {
 	color: #444;
 	font-size: 48px;
