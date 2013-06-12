@@ -179,6 +179,10 @@ function gavernwp_body_attributes_hook() {
  	if($tpl->browser->get("tablet") == true) {
  		echo ' data-tablet="true"';
  	} 
+ 	// generate the mobile attribute
+ 	if($tpl->browser->get("mobile") == true) {
+ 		echo ' data-mobile="true"';
+ 	} 
  	// generate the table-width attribute
  	echo ' data-tablet-width="'. get_option($tpl->name . '_tablet_width', 800) .'"';
  	
