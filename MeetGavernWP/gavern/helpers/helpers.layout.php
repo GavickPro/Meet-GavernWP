@@ -335,7 +335,14 @@ function gk_show_breadcrumbs() {
 	$conditional_function = false;
 	
 	if(get_option($tpl->name . '_breadcrumbs_state', 'Y') == 'rule') {
-		$conditional_function = create_function('', 'return '.str_replace(array('\&#039;'), array("'"), get_option($tpl->name . '_breadcrumbs_staterule', '')).';');
+		$state_rule = str_replace('\&#039;', "'", get_option($tpl->name . '_breadcrumbs_staterule', ''));
+		$is_correct = preg_match("@^[a-zA-Z0-9\_\s\(\)'\"\-&|]+$@ms", $state_rule);
+		
+		if($is_correct) {
+			$conditional_function = create_function('', 'return '. $state_rule .';');
+		} else {
+			$conditional_function = create_function('', 'return FALSE;');
+		}
 	}
 	
 	return (get_option($tpl->name . '_breadcrumbs_state', 'Y') == 'Y' || 
