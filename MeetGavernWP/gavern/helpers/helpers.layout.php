@@ -336,7 +336,7 @@ function gk_show_breadcrumbs() {
 	
 	if(get_option($tpl->name . '_breadcrumbs_state', 'Y') == 'rule') {
 		$state_rule = str_replace('\&#039;', "'", get_option($tpl->name . '_breadcrumbs_staterule', ''));
-		$is_correct = preg_match("@^[a-zA-Z0-9\_\s\(\)'\"\-&|]+$@ms", $state_rule);
+		$is_correct = preg_match("@^[a-zA-Z0-9\_\s\(\)'\"\-&|!]+$@ms", $state_rule);
 		
 		if($is_correct) {
 			$conditional_function = create_function('', 'return '. $state_rule .';');
