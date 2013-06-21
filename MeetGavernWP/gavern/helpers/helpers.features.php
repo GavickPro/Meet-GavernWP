@@ -478,29 +478,12 @@ function gavern_widget_control() {
 		$params = func_get_args();
 		// find the widget ID
 		$id = $params[0]['widget_id'];
-		//
-		$styles = get_option($tpl->name . '_widget_style');
-		$responsive = get_option($tpl->name . '_widget_responsive');
-		// if this styles is set at first time
-		if( !is_array($styles) ) {
-			$styles = array();
-		}
-		// if this responsive is set at first time
-		if( !is_array($responsive) ) {
-			$responsive = array();
-		}
 		// get the widget form callback
 		$callback = $wp_registered_widget_controls[$id]['callback_redir'];
 		// if the callbac exist - run it with the widget parameters
 		if (is_callable($callback)) {
 			call_user_func_array($callback, $params);
 		}
-		//
-		$style = !empty($styles[$id]) ? htmlspecialchars(stripslashes($styles[$id]),ENT_QUOTES) : '';
-		$style_css = !empty($styles[$id]) ? htmlspecialchars(stripslashes($styles_css[$id]),ENT_QUOTES) : '';
-		$responsiveMode = !empty($responsive[$id]) ? htmlspecialchars(stripslashes($responsive[$id]),ENT_QUOTES) : '';	
-		// create the list of suffixes
-		gavern_widget_control_styles_list($params[0]['widget_id'], $id, $style, $responsiveMode, null, $style_css);
 	}
 }
 
