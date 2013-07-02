@@ -31,6 +31,10 @@ function gk_load($part_name, $assets = null, $args = null) {
 	}
 
 	include(gavern_file('layouts/' . $part_name . '.php'));
+	
+	if ($part_name = 'header') {
+	    do_action( 'get_header', $part_name );
+	}
 }
  
 /**
