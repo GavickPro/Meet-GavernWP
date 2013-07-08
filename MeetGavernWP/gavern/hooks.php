@@ -72,7 +72,8 @@ add_action('gavernwp_doctype', 'gavernwp_doctype_hook');
 function gavernwp_html_attributes_hook() {
 	// generate the <html> language attributes
 	language_attributes();
-	
+	// generate the prefix attribute
+	echo ' prefix="og: http://ogp.me/ns#"';
  	// YOUR HOOK CODE HERE
 }
 
@@ -102,7 +103,10 @@ add_action('gavernwp_title', 'gavernwp_title_hook');
 function gavernwp_metatags_hook() {
 	global $tpl; 
 	
-	echo '<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />' . "\n";
+	// only for IE
+	if(preg_match('/MSIE/i',$_SERVER['HTTP_USER_AGENT'])) {
+		echo '<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />' . "\n";
+	}
 	echo '<meta charset="'.get_bloginfo('charset').'" />' . "\n";
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />' . "\n";
 	
@@ -174,6 +178,10 @@ function gavernwp_body_attributes_hook() {
  	// generate the tablet attribute
  	if($tpl->browser->get("tablet") == true) {
  		echo ' data-tablet="true"';
+ 	} 
+ 	// generate the mobile attribute
+ 	if($tpl->browser->get("mobile") == true) {
+ 		echo ' data-mobile="true"';
  	} 
  	// generate the table-width attribute
  	echo ' data-tablet-width="'. get_option($tpl->name . '_tablet_width', 800) .'"';

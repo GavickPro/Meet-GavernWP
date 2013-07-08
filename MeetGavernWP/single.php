@@ -15,11 +15,11 @@ gk_load('before');
 
 <section id="gk-mainbody">
 	<?php while ( have_posts() ) : the_post(); ?>
-		<?php gk_content_nav(); ?>
-		
 		<?php get_template_part( 'content', get_post_format() ); ?>
 				
 		<?php comments_template( '', true ); ?>
+		
+		<?php gk_content_nav(); ?>
 	<?php endwhile; // end of the loop. ?>
 </section>
 

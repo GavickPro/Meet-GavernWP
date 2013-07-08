@@ -143,6 +143,14 @@
 	background-color:#953;
 }
 
+.gk_widget_rules_pages div span.taxonomy {
+	background-color:#39d;
+}
+
+.gk_widget_rules_pages div span.posttype {
+	background-color:#a97;
+}
+
 /*.gk_widget_rules_pages div span.format {
 	background: #22aacc;
 }*/

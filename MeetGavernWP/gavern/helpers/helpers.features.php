@@ -75,15 +75,106 @@ function gavern_post_seo_callback($post) {
 
 function gavern_post_params_callback($post) { 
 	$values = get_post_custom( $post->ID );  
-	$value_title = isset( $values['gavern-post-params-title'] ) ? esc_attr( $values['gavern-post-params-title'][0] ) : 'Y';     
+	$value_title = isset( $values['gavern-post-params-title'] ) ? esc_attr( $values['gavern-post-params-title'][0] ) : 'Y';
+	$value_image = isset( $values['gavern-post-params-image'] ) ? esc_attr( $values['gavern-post-params-image'][0] ) : 'Y'; 
+	$value_templates = isset( $values['gavern-post-params-templates'] ) ? $values['gavern-post-params-templates'][0] : false; 
+	// if the data are JSON
+	if($value_templates) {
+		$value_templates = unserialize(unserialize($value_templates));
+		$value_contact = $value_templates['contact'];
+		
+		if($value_contact != '' && count($value_contact) > 0) {
+			$value_contact = explode(',', $value_contact); // [0] - name, [1] - e-mail, [2] - send copy   
+		}
+	}
+	// parse the aside values
+	$value_aside = isset( $values['gavern-post-params-aside'] ) ? $values['gavern-post-params-aside'][0] : false;
+	if($value_aside) {
+		$value_aside = unserialize(unserialize($value_aside));
+	}
 	// nonce 
 	wp_nonce_field( 'gavern-post-params-nonce', 'gavern_meta_box_params_nonce' ); 
-    // output
+    // output for the title option
+    echo '<p>';
     echo '<label for="gavern-post-params-title-value">'.__('Show title:', GKTPLNAME).'</label>';
     echo '<select name="gavern-post-params-title-value" id="gavern-post-params-title-value">';
-    echo '<option value="Y"'.(($value_title == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
-    echo '<option value="N"'.(($value_title == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
-    echo '</select>';     
+    echo '<option value="Y"'.selected($value_title, 'Y', false).'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.selected($value_title, 'N', false).'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';  
+    echo '</p>';
+    // output for the featured image option
+    echo '<p>';
+    echo '<label for="gavern-post-params-image-value">'.__('Show featured image:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-image-value" id="gavern-post-params-image-value">';
+    echo '<option value="Y"'.selected($value_image, 'Y', false).'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.selected($value_image, 'N', false).'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>'; 
+    // output for the aside option
+    echo '<p>';
+    echo '<label for="gavern-post-params-aside-value">'.__('Show sidebar information:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-aside-value" id="gavern-post-params-aside-value">';
+    echo '<option value="Y"'.((!$value_aside['aside'] || $value_aside['aside'] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_aside['aside'] !== FALSE && $value_aside['aside'] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
+    echo '<p>';
+    echo '<label for="gavern-post-params-date-value">'.__('Show date:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-date-value" id="gavern-post-params-date-value">';
+    echo '<option value="Y"'.((!$value_aside['date'] || $value_aside['date'] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_aside['date'] !== FALSE && $value_aside['date'] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
+    echo '<p>';
+    echo '<label for="gavern-post-params-author-value">'.__('Show author:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-author-value" id="gavern-post-params-author-value">';
+    echo '<option value="Y"'.((!$value_aside['author'] || $value_aside['author'] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_aside['author'] !== FALSE && $value_aside['author'] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
+    echo '<p>';
+    echo '<label for="gavern-post-params-category-value">'.__('Show category:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-category-value" id="gavern-post-params-category-value">';
+    echo '<option value="Y"'.((!$value_aside['category'] || $value_aside['category'] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_aside['category'] !== FALSE && $value_aside['category'] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
+    echo '<p>';
+    echo '<label for="gavern-post-params-tags-value">'.__('Show tags:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-tags-value" id="gavern-post-params-tags-value">';
+    echo '<option value="Y"'.((!$value_aside['tags'] || $value_aside['tags'] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_aside['tags'] !== FALSE && $value_aside['tags'] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
+    echo '<p>';
+    echo '<label for="gavern-post-params-comments-value">'.__('Show comments:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-comments-value" id="gavern-post-params-comments-value">';
+    echo '<option value="Y"'.((!$value_aside['comments'] || $value_aside['comments'] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_aside['comments'] !== FALSE && $value_aside['comments'] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
+    // output for the contact page options
+    echo '<p data-template="template.contact.php">';
+    echo '<label for="gavern-post-params-contact-name">'.__('Show name field:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-contact-name" id="gavern-post-params-contact-name">';
+    echo '<option value="Y"'.((!$value_contact || $value_contact[0] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_contact !== FALSE && $value_contact[0] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';
+    echo '<p data-template="template.contact.php">';
+    echo '<label for="gavern-post-params-contact-email">'.__('Show e-mail field:', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-contact-email" id="gavern-post-params-contact-email">';
+    echo '<option value="Y"'.((!$value_contact || $value_contact[1] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_contact !== FALSE && $value_contact[1] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';  
+    echo '<p data-template="template.contact.php">';
+    echo '<label for="gavern-post-params-contact-copy">'.__('Show "send copy":', GKTPLNAME).'</label>';
+    echo '<select name="gavern-post-params-contact-copy" id="gavern-post-params-contact-copy">';
+    echo '<option value="Y"'.((!$value_contact || $value_contact[2] == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+    echo '<option value="N"'.(($value_contact !== FALSE && $value_contact[2] == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
+    echo '</select>';
+    echo '</p>';     
 } 
  
 function gavern_metaboxes_save( $post_id ) {  
@@ -122,7 +213,104 @@ function gavern_metaboxes_save( $post_id ) {
     	// update post meta
         update_post_meta( $post_id, 'gavern-post-params-title', esc_attr( $_POST['gavern-post-params-title-value'] ) ); 
     }
+    //
+    if( isset( $_POST['gavern-post-params-aside-value'] ) ) {
+    	// check the nonce
+    	if( !isset( $_POST['gavern_meta_box_params_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_params_nonce'], 'gavern-post-params-nonce' ) ) {
+    		return;
+    	}
+    	$aside_value = array(
+    		'aside' => esc_attr( $_POST['gavern-post-params-aside-value'] ),
+    		'date' => esc_attr( $_POST['gavern-post-params-date-value'] ),
+    		'author' => esc_attr( $_POST['gavern-post-params-author-value'] ),
+    		'category' => esc_attr( $_POST['gavern-post-params-category-value'] ),
+    		'tags' => esc_attr( $_POST['gavern-post-params-tags-value'] ),
+    		'comments' => esc_attr( $_POST['gavern-post-params-comments-value'] )
+    	);
+    	// update post meta
+        update_post_meta( $post_id, 'gavern-post-params-aside', serialize($aside_value) ); 
+    }
+    //
+    if( isset( $_POST['gavern-post-params-image-value'] ) ) {
+    	// check the nonce
+    	if( !isset( $_POST['gavern_meta_box_params_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_params_nonce'], 'gavern-post-params-nonce' ) ) {
+    		return;
+    	}
+    	// update post meta
+        update_post_meta( $post_id, 'gavern-post-params-image', esc_attr( $_POST['gavern-post-params-image-value'] ) ); 
+    }
+    //
+    if( isset( $_POST['gavern-post-params-contact-name'] ) ) {
+    	// check the nonce
+    	if( !isset( $_POST['gavern_meta_box_params_nonce'] ) || !wp_verify_nonce( $_POST['gavern_meta_box_params_nonce'], 'gavern-post-params-nonce' ) ) {
+    		return;
+    	}
+    	// update post meta
+    	$contact_value = esc_attr( $_POST['gavern-post-params-contact-name'] ) . ',' . esc_attr( $_POST['gavern-post-params-contact-email'] ) . ',' . esc_attr( $_POST['gavern-post-params-contact-copy'] );
+    	$templates_value = array('contact' => $contact_value);
+        update_post_meta( $post_id, 'gavern-post-params-templates', serialize($templates_value) ); 
+    }
 }  
+
+
+/**
+ *
+ * Code to create Featured Video metabox
+ *
+ **/
+
+function gavern_add_featured_video() {
+    add_meta_box( 'gavern_featured_video', __( 'Featured Video', GKTPLNAME ), 'gavern_add_featured_video_metabox', 'post', 'side' );
+    add_meta_box( 'gavern_featured_video', __( 'Featured Video', GKTPLNAME ), 'gavern_add_featured_video_metabox', 'page', 'side' );
+}
+
+function gavern_add_featured_video_metabox() {
+    global $post;
+
+    $featured_video = get_post_meta($post->ID, '_gavern-featured-video', true);
+    
+    echo '<div>';
+    echo '<label>'.__('Video Embed Code', GKTPLNAME).'</label>';
+    echo '<textarea name="gavern_featured_video" class="widefat">'.$featured_video.'</textarea>';
+    echo '<input type="hidden" name="gavern_featured_video_nonce" id="gavern_featured_video_nonce" value="'.wp_create_nonce(plugin_basename(__FILE__)).'" />';
+    echo '</div>';
+}
+
+function gavern_save_featured_video(){
+    global $post;
+	// check nonce
+    if(!isset($_POST['gavern_featured_video_nonce']) || !wp_verify_nonce($_POST['gavern_featured_video_nonce'], plugin_basename(__FILE__))) {
+    	return is_object($post) ? $post->ID : $post;
+	}
+	// autosave
+	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+		return is_object($post) ? $post->ID : $post;
+	}
+	// user permissions
+	if(
+		($_POST['post_type'] == 'page' && !current_user_can('edit_page', $post->ID)) ||
+		($_POST['psot_type'] == 'post' && !current_user_can('edit_post', $post->ID))
+	) {
+		return $post->ID;
+	}
+	// if the value exists
+    if(isset($_POST['gavern_featured_video'])) {
+	    $featured_video = $_POST['gavern_featured_video'];
+	    
+	    if($featured_video != '') {
+	    	delete_post_meta($post->ID, '_gavern-featured-video');
+	    	add_post_meta($post->ID, '_gavern-featured-video', $featured_video);
+	    } else {
+	    	delete_post_meta($post->ID, '_gavern-featured-video');
+	    }
+    }
+    
+	return true;
+}
+
+
+add_action( 'save_post',  'gavern_save_featured_video' );
+add_action( 'admin_menu', 'gavern_add_featured_video' );
 
 /**
  *
@@ -245,8 +433,8 @@ function gavern_widget_control() {
 				<label for="' . $tpl->name . '_widget_rules_'.$id.'">'.__('Visible at: ', GKTPLNAME).'</label>
 				<select name="' . $tpl->name . '_widget_rules_type_'.$id.'" id="' . $tpl->name . '_widget_rules_type_'.$id.'" class="gk_widget_rules_select">
 					<option value="all"'.(($value_type != "include" && $value_type != 'exclude') ? " selected=\"selected\"":"").'>'.__('All pages', GKTPLNAME).'</option>
-					<option value="exclude"'.(($value_type == "exclude") ? " selected=\"selected\"":"").'>'.__('All pages expecting:', GKTPLNAME).'</option>
-					<option value="include"'.(($value_type == "include") ? " selected=\"selected\"":"").'>'.__('No pages expecting:', GKTPLNAME).'</option>
+					<option value="exclude"'.selected($value_type, "exclude", false).'>'.__('All pages expecting:', GKTPLNAME).'</option>
+					<option value="include"'.selected($value_type, "include", false).'>'.__('No pages expecting:', GKTPLNAME).'</option>
 				</select>
 			</p>
 			<fieldset class="gk_widget_rules_form" id="gk_widget_rules_form_'.$unique_id.'" data-id="gk_widget_rules_form_'.$id.'">
@@ -260,6 +448,8 @@ function gavern_widget_control() {
 				 	<option value="archive">'.__('Archive', GKTPLNAME).'</option>
 				 	<option value="author:">'.__('Author', GKTPLNAME).'</option>
 				 	<option value="template:">'.__('Page Template', GKTPLNAME).'</option>
+				 	<option value="taxonomy:">'.__('Taxonomy', GKTPLNAME).'</option>
+				 	<option value="posttype:">'.__('Post type', GKTPLNAME).'</option>
 				 	<option value="search">'.__('Search page', GKTPLNAME).'</option>
 				 	<option value="page404">'.__('404 page', GKTPLNAME).'</option>
 				 </select>
@@ -269,6 +459,9 @@ function gavern_widget_control() {
 				 <p><label>'.__('Tag ID/Name:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_tag" /></label></p>
 				 <p><label>'.__('Author:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_author" /></label></p>
 				 <p><label>'.__('Template:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_template" /></label></p>
+				 <p><label>'.__('Taxonomy:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_taxonomy" /></label></p>
+				 <p><label>'.__('Taxonomy term:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_taxonomy_term" /></label></p>
+				 <p><label>'.__('Post type:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_posttype" /></label></p>
 				 <p><button class="gk_widget_rules_btn button-secondary">'.__('Add page', GKTPLNAME).'</button></p>
 				 <input type="text" name="' . $tpl->name . '_widget_rules_'.$id.'"  id="' . $tpl->name . '_widget_rules_'.$id.'" value="'.$value.'" class="gk_widget_rules_output" />
 				 <fieldset class="gk_widget_rules_pages">
@@ -285,29 +478,12 @@ function gavern_widget_control() {
 		$params = func_get_args();
 		// find the widget ID
 		$id = $params[0]['widget_id'];
-		//
-		$styles = get_option($tpl->name . '_widget_style');
-		$responsive = get_option($tpl->name . '_widget_responsive');
-		// if this styles is set at first time
-		if( !is_array($styles) ) {
-			$styles = array();
-		}
-		// if this responsive is set at first time
-		if( !is_array($responsive) ) {
-			$responsive = array();
-		}
 		// get the widget form callback
 		$callback = $wp_registered_widget_controls[$id]['callback_redir'];
 		// if the callbac exist - run it with the widget parameters
 		if (is_callable($callback)) {
 			call_user_func_array($callback, $params);
 		}
-		//
-		$style = !empty($styles[$id]) ? htmlspecialchars(stripslashes($styles[$id]),ENT_QUOTES) : '';
-		$style_css = !empty($styles[$id]) ? htmlspecialchars(stripslashes($styles_css[$id]),ENT_QUOTES) : '';
-		$responsiveMode = !empty($responsive[$id]) ? htmlspecialchars(stripslashes($responsive[$id]),ENT_QUOTES) : '';	
-		// create the list of suffixes
-		gavern_widget_control_styles_list($params[0]['widget_id'], $id, $style, $responsiveMode, null, $style_css);
 	}
 }
 
@@ -415,7 +591,7 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 		// check the flag state
 		if($add_the_item) {
 			// add the item if the module isn't excluded
-			array_push($items, '<option value="'.$style->css_class.'"'.(($style->css_class == $value1) ? ' selected="selected"' : '').'>'.$style->name.'</option>');
+			array_push($items, '<option value="'.$style->css_class.'"'.selected($style->css_class, $value1, false).'>'.$style->name.'</option>');
 		}
 	}
 	// check if the items array is blank - the prepare a basic field
@@ -423,7 +599,7 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 		$items = array('<option value="" selected="selected">'.__('No styles available', GKTPLNAME).'</option>');
 	}
 	// add the last option
-	array_push($items, '<option value="gkcustom"'.(($value1 == 'gkcustom') ? ' selected="selected"' : '').'>'.__('Custom CSS class', GKTPLNAME).'</option>');
+	array_push($items, '<option value="gkcustom"'.selected($value1, 'gkcustom', false).'>'.__('Custom CSS class', GKTPLNAME).'</option>');
 	// output the control
 	echo '<div>';
 	echo '<p><label for="' . $tpl->name . '_widget_style_'.$id.'">'.__('Widget style: ', GKTPLNAME).'<select name="' . $tpl->name . '_widget_style_'.$id.'"  id="' . $tpl->name . '_widget_style_'.$id.'" class="gk_widget_rules_select_styles">';
@@ -434,10 +610,10 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 	// output the responsive select
 	$items = array(
 		'<option value="all"'.((!$value2 || $value2 == 'all') ? ' selected="selected"' : '').'>'.__('All devices', GKTPLNAME).'</option>',
-		'<option value="onlyDesktop"'.(($value2 == 'onlyDesktop') ? ' selected="selected"' : '').'>'.__('Desktop', GKTPLNAME).'</option>',
-		'<option value="onlyTablets"'.(($value2 == 'onlyTablets') ? ' selected="selected"' : '').'>'.__('Tablets', GKTPLNAME).'</option>',
-		'<option value="onlySmartphones"'.(($value2 == 'onlySmartphones') ? ' selected="selected"' : '').'>'.__('Smartphones', GKTPLNAME).'</option>',
-		'<option value="onlyTabltetsAndSmartphones"'.(($value2 == 'onlyTabltetsAndSmartphones') ? ' selected="selected"' : '').'>'.__('Tablet/Smartphones', GKTPLNAME).'</option>'
+		'<option value="onlyDesktop"'.selected($value2, 'onlyDesktop', false).'>'.__('Desktop', GKTPLNAME).'</option>',
+		'<option value="onlyTablets"'.selected($value2, 'onlyTablets', false).'>'.__('Tablets', GKTPLNAME).'</option>',
+		'<option value="onlySmartphones"'.selected($value2, 'onlySmartphones', false).'>'.__('Smartphones', GKTPLNAME).'</option>',
+		'<option value="onlyTabltetsAndSmartphones"'.selected($value2, 'onlyTabltetsAndSmartphones', false).'>'.__('Tablet/Smartphones', GKTPLNAME).'</option>'
 	);
 	//
 	echo '<p><label for="' . $tpl->name . '_widget_responsive_'.$id.'">'.__('Visible on: ', GKTPLNAME).'<select name="' . $tpl->name . '_widget_responsive_'.$id.'"  id="' . $tpl->name . '_widget_responsive_'.$id.'">';
@@ -450,9 +626,9 @@ function gavern_widget_control_styles_list($widget_name, $id, $value1, $value2, 
 	// output the user groups select
 	$items = array(
 		'<option value="all"'.(($value3 == null || !$value3 || $value3 == 'all') ? ' selected="selected"' : '').'>'.__('All users', GKTPLNAME).'</option>',
-		'<option value="guests"'.(($value3 == 'guests') ? ' selected="selected"' : '').'>'.__('Only guests', GKTPLNAME).'</option>',
-		'<option value="registered"'.(($value3 == 'registered') ? ' selected="selected"' : '').'>'.__('Only registered users', GKTPLNAME).'</option>',
-		'<option value="administrator"'.(($value3 == 'administrator') ? ' selected="selected"' : '').'>'.__('Only administrator', GKTPLNAME).'</option>'
+		'<option value="guests"'.selected($value3, 'guests', false).'>'.__('Only guests', GKTPLNAME).'</option>',
+		'<option value="registered"'.selected($value3, 'registered', false).'>'.__('Only registered users', GKTPLNAME).'</option>',
+		'<option value="administrator"'.selected($value3, 'administrator', false).'>'.__('Only administrator', GKTPLNAME).'</option>'
 	);
 	//
 	echo '<p><label for="' . $tpl->name . '_widget_users_'.$id.'">'.__('Visible for: ', GKTPLNAME).'<select name="' . $tpl->name . '_widget_users_'.$id.'"  id="' . $tpl->name . '_widget_users_'.$id.'">';

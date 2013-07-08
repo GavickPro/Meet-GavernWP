@@ -13,7 +13,7 @@ gk_load('before');
 <section id="gk-mainbody" class="archivepage">
 	<?php the_post(); ?>
 	
-	<h2 class="page-title"><?php the_title(); ?></h2>
+	<h1 class="page-title"><?php the_title(); ?></h1>
 	
 	<article>
 		<section class="intro">
@@ -25,7 +25,7 @@ gk_load('before');
 			$debut = 0; //The first article to be displayed
 		?>
 		<div class="widget box first">
-			<h2><?php _e('Lastest posts', GKTPLNAME); ?></h2>
+			<h2><?php _e('Latest posts', GKTPLNAME); ?></h2>
 			<ul>
 				<?php
 					$myposts = get_posts('numberposts='.$posts_to_show.'&offset='.$debut);

@@ -114,7 +114,7 @@
 	font-size: 24px!important;
 }
 
-/* 10.3. Demo elements
+/* 10.3. Other elements
 ==================================== */
 
 .gk-demo-content {
@@ -122,6 +122,10 @@
 	margin: 0 auto!important;
 	max-width:360px;
 	width: 100%;
+}
+
+.gk-columns > div {
+	padding: 0 6px;
 }
 
 /* 10.4. Main menu elements
@@ -288,4 +292,96 @@
 
 .onlyTabltetsAndSmartphones {
 	display: block!important;
+}
+
+/* 10.7. Responsive tables
+==================================== */
+
+@media (max-width: 600px) {
+	article section table {
+		border: 1px solid #eee;
+		border-bottom: none;
+		max-width: 100%!important;
+		width: 100%!important;
+	}
+	
+	article section table thead {
+		display: none;
+	}
+	
+	article section table td {
+		border-top: 1px solid #eee;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		clear: both;
+		display: block;
+		float: right;
+		padding: 5px 0 5px 50%;
+		position: relative;
+		width: 100%;
+	}
+	
+	article section table td:first-child {
+		border-top: none;
+	}
+	
+	article section table tbody tr {
+		border-bottom: 2px solid #eee;
+	}
+	
+	article section table td span.gk-table-label {
+		display: block;
+		font-size: 95%;
+		font-weight: bold;
+		left: 5px;
+		position: absolute;
+	}
+}
+
+/* 10.7. RTL Support
+==================================== */
+
+html[dir="rtl"] .archivepage .widget.first {
+	margin-right: 0;
+	margin-left: 2%!important;
+}
+
+html[dir="rtl"] .archivepage .widget.first,
+html[dir="rtl"] .archivepage .widget.first + .widget {
+	margin-right: 2%;
+	margin-left: 0;
+}
+
+html[dir="rtl"] #gk-sidebar .box {
+	float: right!important;
+}
+
+html[dir="rtl"] #gk-mainmenu-toggle {
+	float: left;
+}
+
+html[dir="rtl"] #main-menu li a {
+	padding: 0 15px 0 0!important;
+}
+
+html[dir="rtl"] #main-menu li li a {
+	padding: 0 30px 0 0!important;
+}
+
+html[dir="rtl"] #main-menu li li li a {
+	padding: 0 45px 0 0!important;
+}
+
+/* Responsive Tables RTL Support */
+@media (max-width: 600px) {
+	html[dir="rtl"] article section table td {
+		float: left;
+		padding: 5px 50% 5px 0;
+	}
+	
+	html[dir="rtl"] article section table td span.gk-table-label {
+		left: 0;
+		right: 5px;
+	}
 }

@@ -159,14 +159,17 @@ function gavern_theme_setup(){
 }
 // scripts enqueue function
 function gavern_enqueue_admin_js_and_css() {
-	// opengraph scripts
-	wp_enqueue_script('gavern.opengraph.js', gavern_file_uri('js/back-end/gavern.opengraph.js'));
+	// metaboxes scripts
+	wp_enqueue_script('gavern.metabox.js', gavern_file_uri('js/back-end/gavern.metabox.js'));
 	// widget rules JS
 	wp_register_script('widget-rules-js', gavern_file_uri('js/back-end/widget.rules.js'), array('jquery'));
 	wp_enqueue_script('widget-rules-js');
 	// widget rules CSS
 	wp_register_style('widget-rules-css', gavern_file_uri('css/back-end/widget.rules.css'));
 	wp_enqueue_style('widget-rules-css');
+	// metaboxes CSS
+	wp_register_style('gavern-metabox-css', gavern_file_uri('css/back-end/metabox.css'));
+	wp_enqueue_style('gavern-metabox-css');
 	// GK News Show Pro Widget back-end CSS
 	wp_register_style('nsp-admin-css', gavern_file_uri('css/back-end/nsp.css'));
 	wp_enqueue_style('nsp-admin-css');

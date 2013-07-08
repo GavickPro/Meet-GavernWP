@@ -113,4 +113,21 @@ jQuery(document).ready(function() {
 		jQuery('head').append('<link rel="stylesheet" href="'+file+'" type="text/css" />');
 		jQuery.cookie($GK_TMPL_NAME+'_style', style, { expires: 365, path: '/' });
 	}
+	
+	// Responsive tables
+	jQuery('article section table').each(function(i, table) {
+		table = jQuery(table);
+		console.log(table);
+		var heads = table.find('thead th');
+		var cells = table.find('tbody td');
+		var heads_amount = heads.length;
+		// if there are the thead cells
+		if(heads_amount) {
+			var cells_len = cells.length;
+			for(var i = 0; i < cells_len; i++) {
+				var head_content = jQuery(heads.get(i % heads_amount)).text();
+				jQuery(cells.get(i)).html('<span class="gk-table-label">' + head_content + '</span>' + jQuery(cells.get(i)).html());
+			}
+		}
+	});
 });

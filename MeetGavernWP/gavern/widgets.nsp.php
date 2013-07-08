@@ -44,7 +44,7 @@ class GK_NSP_Widget extends WP_Widget {
 	}
 	
 	static function add_scripts() {
-		wp_register_script( 'gk-nsp', gavern_file_uri('js/widgets/nsp.js'), array('jquery'));
+		wp_register_script( 'gk-nsp', gavern_file_uri('js/widgets/nsp.js'), array('jquery'), false, true);
 		wp_enqueue_script('gk-nsp');
 	}
 
@@ -114,10 +114,19 @@ class GK_NSP_Widget extends WP_Widget {
 				'orderby' => $config['orderby'],
 				'order' => $config['order']
 			));
+		} else if($config['data_source_type'] == 'tag') {
+			$results = get_posts(array(
+				'tag' => $config['data_source'],
+				'posts_per_page' => $amount_of_posts,
+				'offset' => $config['offset'], 
+				'orderby' => $config['orderby'],
+				'order' => $config['order']
+			));
 		} else if($config['data_source_type'] == 'post') {
 			$post_slugs = explode(',', $config['data_source']);
 			foreach($post_slugs as $slug) {
-				array_push($results, get_posts(array('name' => $slug)));
+				$res = get_posts(array('name' => $slug));
+				array_push($results, $res[0]);
 			}
 		} else if($config['data_source_type'] == 'custom') {
 			$post_type = explode(',', $config['data_source']);
@@ -146,7 +155,7 @@ class GK_NSP_Widget extends WP_Widget {
 		// generate the articles
 		$amount_of_articles = $config['article_pages'] * $config['article_cols'] * $config['article_rows'];
 		$amount_of_articles = $amount_of_articles > count($results) ? count($results) : $amount_of_articles; 
-		$amount_of_art_pages = ($amount_of_articles > count($results)) ? ceil(count($results) / ($config['article_cols'] * $config['article_rows'])) : $config['article_pages'];
+		$amount_of_art_pages = ($amount_of_articles >= count($results)) ? ceil(count($results) / ($config['article_cols'] * $config['article_rows'])) : $config['article_pages'];
 		// iterate
 		$this->wdgt_config = $config;
 		$this->wdgt_results = $results;
@@ -456,16 +465,19 @@ class GK_NSP_Widget extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'data_source_type' ) ); ?>"><?php _e( 'Data source:', GKTPLNAME ); ?></label>
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('data_source_type')); ?>" name="<?php echo esc_attr( $this->get_field_name('data_source_type')); ?>">
-					<option value="latest"<?php echo (esc_attr($data_source_type) == 'latest') ? ' selected="selected"' : ''; ?>>
+					<option value="latest"<?php selected($data_source_type, 'latest'); ?>>
 						<?php _e('Latest posts', GKTPLNAME); ?>
 					</option>
-					<option value="category"<?php echo (esc_attr($data_source_type) == 'category') ? ' selected="selected"' : ''; ?>>
+					<option value="category"<?php selected($data_source_type, 'category'); ?>>
 						<?php _e('Categories slugs', GKTPLNAME); ?>
 					</option>
-					<option value="post"<?php echo (esc_attr($data_source_type) == 'post') ? ' selected="selected"' : ''; ?>>
+					<option value="tag"<?php selected($data_source_type, 'tag'); ?>>
+						<?php _e('Tags', GKTPLNAME); ?>
+					</option>
+					<option value="post"<?php selected($data_source_type, 'post'); ?>>
 						<?php _e('Posts slugs', GKTPLNAME); ?>
 					</option>
-					<option value="custom"<?php echo (esc_attr($data_source_type) == 'custom') ? ' selected="selected"' : ''; ?>>
+					<option value="custom"<?php selected($data_source_type, 'custom'); ?>>
 						<?php _e('Custom post types', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -477,32 +489,32 @@ class GK_NSP_Widget extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'orderby' ) ); ?>"><?php _e( 'Order by:', GKTPLNAME ); ?></label>
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('orderby')); ?>" name="<?php echo esc_attr( $this->get_field_name('orderby')); ?>">
-					<option value="ID"<?php echo (esc_attr($orderby) == 'ID') ? ' selected="selected"' : ''; ?>>
+					<option value="ID"<?php selected($orderby, 'ID'); ?>>
 						<?php _e('ID', GKTPLNAME); ?>
 					</option>
 					
-					<option value="date"<?php echo (esc_attr($orderby) == 'date') ? ' selected="selected"' : ''; ?>>
+					<option value="date"<?php selected($orderby, 'date'); ?>>
 						<?php _e('Date', GKTPLNAME); ?>
 					</option>
 					
-					<option value="title"<?php echo (esc_attr($orderby) == 'title') ? ' selected="selected"' : ''; ?>>
+					<option value="title"<?php selected($orderby, 'title'); ?>>
 						<?php _e('Title', GKTPLNAME); ?>
 					</option>
 					
-					<option value="modified"<?php echo (esc_attr($orderby) == 'modified') ? ' selected="selected"' : ''; ?>>
+					<option value="modified"<?php selected($orderby, 'modified'); ?>>
 						<?php _e('Modified', GKTPLNAME); ?>
 					</option>
 					
-					<option value="rand"<?php echo (esc_attr($orderby) == 'rand') ? ' selected="selected"' : ''; ?>>
+					<option value="rand"<?php selected($orderby, 'rand'); ?>>
 						<?php _e('Random', GKTPLNAME); ?>
 					</option>
 				</select>
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('order')); ?>" name="<?php echo esc_attr( $this->get_field_name('order')); ?>">
-					<option value="ASC"<?php echo (esc_attr($order) == 'ASC') ? ' selected="selected"' : ''; ?>>
+					<option value="ASC"<?php selected($order, 'ASC'); ?>>
 						<?php _e('ASC', GKTPLNAME); ?>
 					</option>
-					<option value="DESC"<?php echo (esc_attr($order) == 'DESC') ? ' selected="selected"' : ''; ?>>
+					<option value="DESC"<?php selected($order, 'DESC'); ?>>
 						<?php _e('DESC', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -538,13 +550,13 @@ class GK_NSP_Widget extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'article_pagination' ) ); ?>"><?php _e( 'Article pagination:', GKTPLNAME ); ?></label>
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('article_pagination')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_pagination')); ?>">
-					<option value="pagination"<?php echo (esc_attr($article_pagination) == 'pagination') ? ' selected="selected"' : ''; ?>>
+					<option value="pagination"<?php selected($article_pagination, 'pagination'); ?>>
 						<?php _e('Pagination', GKTPLNAME); ?>
 					</option>
-					<option value="arrows"<?php echo (esc_attr($article_pagination) == 'arrows') ? ' selected="selected"' : ''; ?>>
+					<option value="arrows"<?php selected($article_pagination, 'arrows'); ?>>
 						<?php _e('Arrows', GKTPLNAME); ?>
 					</option>
-					<option value="pagination_with_arrows"<?php echo (esc_attr($article_pagination) == 'pagination_with_arrows') ? ' selected="selected"' : ''; ?>>
+					<option value="pagination_with_arrows"<?php selected($article_pagination, 'pagination_with_arrows'); ?>>
 						<?php _e('Both', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -554,13 +566,13 @@ class GK_NSP_Widget extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'links_pagination' ) ); ?>"><?php _e( 'Links pagination:', GKTPLNAME ); ?></label>
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('links_pagination')); ?>" name="<?php echo esc_attr( $this->get_field_name('links_pagination')); ?>">
-					<option value="pagination"<?php echo (esc_attr($links_pagination) == 'pagination') ? ' selected="selected"' : ''; ?>>
+					<option value="pagination"<?php selected($links_pagination, 'pagination'); ?>>
 						<?php _e('Pagination', GKTPLNAME); ?>
 					</option>
-					<option value="arrows"<?php echo (esc_attr($links_pagination) == 'arrows') ? ' selected="selected"' : ''; ?>>
+					<option value="arrows"<?php selected($links_pagination, 'arrows'); ?>>
 						<?php _e('Arrows', GKTPLNAME); ?>
 					</option>
-					<option value="pagination_with_arrows"<?php echo (esc_attr($links_pagination) == 'pagination_with_arrows') ? ' selected="selected"' : ''; ?>>
+					<option value="pagination_with_arrows"<?php selected($links_pagination, 'pagination_with_arrows'); ?>>
 						<?php _e('Both', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -571,10 +583,10 @@ class GK_NSP_Widget extends WP_Widget {
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'autoanim' ) ); ?>"><?php _e( 'Auto-animation:', GKTPLNAME ); ?></label>
 				<select id="<?php echo esc_attr( $this->get_field_id('autoanim')); ?>" name="<?php echo esc_attr( $this->get_field_name('autoanim')); ?>">
-					<option value="on"<?php echo (esc_attr($autoanim) == 'on') ? ' selected="selected"' : ''; ?>>
+					<option value="on"<?php selected($autoanim, 'on'); ?>>
 						<?php _e('On', GKTPLNAME); ?>
 					</option>
-					<option value="off"<?php echo (esc_attr($autoanim) == 'off') ? ' selected="selected"' : ''; ?>>
+					<option value="off"<?php selected($autoanim, 'off'); ?>>
 						<?php _e('Off', GKTPLNAME); ?>
 					</option>
 				</select>			
@@ -588,10 +600,10 @@ class GK_NSP_Widget extends WP_Widget {
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'autoanim_hover' ) ); ?>"><?php _e( 'Auto-animation stops on hover:', GKTPLNAME ); ?></label>
 				<select id="<?php echo esc_attr( $this->get_field_id('autoanim_hover')); ?>" name="<?php echo esc_attr( $this->get_field_name('autoanim_hover')); ?>">
-					<option value="on"<?php echo (esc_attr($autoanim_hover) == 'on') ? ' selected="selected"' : ''; ?>>
+					<option value="on"<?php selected($autoanim_hover, 'on'); ?>>
 						<?php _e('On', GKTPLNAME); ?>
 					</option>
-					<option value="off"<?php echo (esc_attr($autoanim_hover) == 'off') ? ' selected="selected"' : ''; ?>>
+					<option value="off"<?php selected($autoanim_hover, 'off'); ?>>
 						<?php _e('Off', GKTPLNAME); ?>
 					</option>
 				</select>			
@@ -611,10 +623,10 @@ class GK_NSP_Widget extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'article_title_state' ) ); ?>"><?php _e('Title', GKTPLNAME); ?></label>
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('article_title_state')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_title_state')); ?>">
-					<option value="on"<?php echo (esc_attr($article_title_state) == 'on') ? ' selected="selected"' : ''; ?>>
+					<option value="on"<?php selected($article_title_state, 'on'); ?>>
 						<?php _e('On', GKTPLNAME); ?>
 					</option>
-					<option value="off"<?php echo (esc_attr($article_title_state) == 'off') ? ' selected="selected"' : ''; ?>>
+					<option value="off"<?php selected($article_title_state, 'off'); ?>>
 						<?php _e('Off', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -624,10 +636,10 @@ class GK_NSP_Widget extends WP_Widget {
 				<input id="<?php echo esc_attr( $this->get_field_id( 'article_title_len' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'article_title_len' ) ); ?>" type="text" value="<?php echo esc_attr( $article_title_len ); ?>" class="short" />
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('article_title_len_type')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_title_len_type')); ?>">
-					<option value="chars"<?php echo (esc_attr($article_title_len_type) == 'chars') ? ' selected="selected"' : ''; ?>>
+					<option value="chars"<?php selected($article_title_len_type, 'chars'); ?>>
 						<?php _e('Chars', GKTPLNAME); ?>
 					</option>
-					<option value="words"<?php echo (esc_attr($article_title_len_type) == 'words') ? ' selected="selected"' : ''; ?>>
+					<option value="words"<?php selected($article_title_len_type, 'words'); ?>>
 						<?php _e('Words', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -636,11 +648,11 @@ class GK_NSP_Widget extends WP_Widget {
 					<label for="<?php echo esc_attr( $this->get_field_id( 'article_title_order' ) ); ?>"><?php _e( 'order:', GKTPLNAME ); ?></label>
 					
 					<select id="<?php echo esc_attr( $this->get_field_id('article_title_order')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_title_order')); ?>" class="gk-order">
-						<option value="1"<?php echo (esc_attr($article_title_order) == '1') ? ' selected="selected"' : ''; ?>>1</option>
-						<option value="2"<?php echo (esc_attr($article_title_order) == '2') ? ' selected="selected"' : ''; ?>>2</option>
-						<option value="3"<?php echo (esc_attr($article_title_order) == '3') ? ' selected="selected"' : ''; ?>>3</option>
-						<option value="4"<?php echo (esc_attr($article_title_order) == '4') ? ' selected="selected"' : ''; ?>>4</option>
-						<option value="5"<?php echo (esc_attr($article_title_order) == '5') ? ' selected="selected"' : ''; ?>>5</option>
+						<option value="1"<?php selected($article_title_order, '1'); ?>>1</option>
+						<option value="2"<?php selected($article_title_order, '2'); ?>>2</option>
+						<option value="3"<?php selected($article_title_order, '3'); ?>>3</option>
+						<option value="4"<?php selected($article_title_order, '4'); ?>>4</option>
+						<option value="5"<?php selected($article_title_order, '5'); ?>>5</option>
 					</select>
 				</span>
 			</p>
@@ -649,10 +661,10 @@ class GK_NSP_Widget extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'article_text_state' ) ); ?>"><?php _e('Text', GKTPLNAME); ?></label>
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('article_text_state')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_text_state')); ?>">
-					<option value="on"<?php echo (esc_attr($article_text_state) == 'on') ? ' selected="selected"' : ''; ?>>
+					<option value="on"<?php selected($article_text_state, 'on'); ?>>
 						<?php _e('On', GKTPLNAME); ?>
 					</option>
-					<option value="off"<?php echo (esc_attr($article_text_state) == 'off') ? ' selected="selected"' : ''; ?>>
+					<option value="off"<?php selected($article_text_state, 'off'); ?>>
 						<?php _e('Off', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -662,10 +674,10 @@ class GK_NSP_Widget extends WP_Widget {
 				<input id="<?php echo esc_attr( $this->get_field_id( 'article_text_len' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'article_text_len' ) ); ?>" type="text" value="<?php echo esc_attr( $article_text_len ); ?>" class="short" />
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('article_text_len_type')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_text_len_type')); ?>">
-					<option value="chars"<?php echo (esc_attr($article_text_len_type) == 'chars') ? ' selected="selected"' : ''; ?>>
+					<option value="chars"<?php selected($article_text_len_type, 'chars'); ?>>
 						<?php _e('Chars', GKTPLNAME); ?>
 					</option>
-					<option value="words"<?php echo (esc_attr($article_text_len_type) == 'words') ? ' selected="selected"' : ''; ?>>
+					<option value="words"<?php selected($article_text_len_type, 'words'); ?>>
 						<?php _e('Words', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -674,11 +686,11 @@ class GK_NSP_Widget extends WP_Widget {
 					<label for="<?php echo esc_attr( $this->get_field_id( 'article_text_order' ) ); ?>"><?php _e( 'order:', GKTPLNAME ); ?></label>
 					
 					<select id="<?php echo esc_attr( $this->get_field_id('article_text_order')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_text_order')); ?>" class="gk-order">
-						<option value="1"<?php echo (esc_attr($article_text_order) == '1') ? ' selected="selected"' : ''; ?>>1</option>
-						<option value="2"<?php echo (esc_attr($article_text_order) == '2') ? ' selected="selected"' : ''; ?>>2</option>
-						<option value="3"<?php echo (esc_attr($article_text_order) == '3') ? ' selected="selected"' : ''; ?>>3</option>
-						<option value="4"<?php echo (esc_attr($article_text_order) == '4') ? ' selected="selected"' : ''; ?>>4</option>
-						<option value="5"<?php echo (esc_attr($article_text_order) == '5') ? ' selected="selected"' : ''; ?>>5</option>
+						<option value="1"<?php selected($article_text_order, '1'); ?>>1</option>
+						<option value="2"<?php selected($article_text_order, '2'); ?>>2</option>
+						<option value="3"<?php selected($article_text_order, '3'); ?>>3</option>
+						<option value="4"<?php selected($article_text_order, '4'); ?>>4</option>
+						<option value="5"<?php selected($article_text_order, '5'); ?>>5</option>
 					</select>
 				</span>
 			</p>	
@@ -687,10 +699,10 @@ class GK_NSP_Widget extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'article_image_state' ) ); ?>"><?php _e('Image', GKTPLNAME); ?></label>
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('article_image_state')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_image_state')); ?>">
-					<option value="on"<?php echo (esc_attr($article_image_state) == 'on') ? ' selected="selected"' : ''; ?>>
+					<option value="on"<?php selected($article_image_state, 'on'); ?>>
 						<?php _e('On', GKTPLNAME); ?>
 					</option>
-					<option value="off"<?php echo (esc_attr($article_image_state) == 'off') ? ' selected="selected"' : ''; ?>>
+					<option value="off"<?php selected($article_image_state, 'off'); ?>>
 						<?php _e('Off', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -705,11 +717,11 @@ class GK_NSP_Widget extends WP_Widget {
 					<label for="<?php echo esc_attr( $this->get_field_id( 'article_image_order' ) ); ?>"><?php _e( 'order:', GKTPLNAME ); ?></label>
 					
 					<select id="<?php echo esc_attr( $this->get_field_id('article_image_order')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_image_order')); ?>" class="gk-order">
-						<option value="1"<?php echo (esc_attr($article_image_order) == '1') ? ' selected="selected"' : ''; ?>>1</option>
-						<option value="2"<?php echo (esc_attr($article_image_order) == '2') ? ' selected="selected"' : ''; ?>>2</option>
-						<option value="3"<?php echo (esc_attr($article_image_order) == '3') ? ' selected="selected"' : ''; ?>>3</option>
-						<option value="4"<?php echo (esc_attr($article_image_order) == '4') ? ' selected="selected"' : ''; ?>>4</option>
-						<option value="5"<?php echo (esc_attr($article_image_order) == '5') ? ' selected="selected"' : ''; ?>>5</option>
+						<option value="1"<?php selected($article_image_order, '1'); ?>>1</option>
+						<option value="2"<?php selected($article_image_order, '2'); ?>>2</option>
+						<option value="3"<?php selected($article_image_order, '3'); ?>>3</option>
+						<option value="4"<?php selected($article_image_order, '4'); ?>>4</option>
+						<option value="5"<?php selected($article_image_order, '5'); ?>>5</option>
 					</select>
 				</span>
 			</p>	
@@ -724,8 +736,8 @@ class GK_NSP_Widget extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'article_image_pos' ) ); ?>"><?php _e( 'Position:', GKTPLNAME ); ?></label>
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('article_image_pos')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_image_pos')); ?>">
-					<option value="top"<?php echo (esc_attr($article_image_pos) == 'top') ? ' selected="selected"' : ''; ?>><?php _e('Top', GKTPLNAME); ?></option>
-					<option value="left"<?php echo (esc_attr($article_image_pos) == 'left') ? ' selected="selected"' : ''; ?>><?php _e('Left', GKTPLNAME); ?></option>
+					<option value="top"<?php selected($article_image_pos, 'top'); ?>><?php _e('Top', GKTPLNAME); ?></option>
+					<option value="left"<?php selected($article_image_pos, 'left'); ?>><?php _e('Left', GKTPLNAME); ?></option>
 				</select>
 			</p>	
 						
@@ -733,10 +745,10 @@ class GK_NSP_Widget extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'article_info_state' ) ); ?>"><?php _e('Info block', GKTPLNAME); ?></label>
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('article_info_state')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_info_state')); ?>">
-					<option value="on"<?php echo (esc_attr($article_info_state) == 'on') ? ' selected="selected"' : ''; ?>>
+					<option value="on"<?php selected($article_info_state, 'on'); ?>>
 						<?php _e('On', GKTPLNAME); ?>
 					</option>
-					<option value="off"<?php echo (esc_attr($article_info_state) == 'off') ? ' selected="selected"' : ''; ?>>
+					<option value="off"<?php selected($article_info_state, 'off'); ?>>
 						<?php _e('Off', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -745,11 +757,11 @@ class GK_NSP_Widget extends WP_Widget {
 					<label for="<?php echo esc_attr( $this->get_field_id( 'article_info_order' ) ); ?>"><?php _e( 'order:', GKTPLNAME ); ?></label>
 					
 					<select id="<?php echo esc_attr( $this->get_field_id('article_info_order')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_info_order')); ?>" class="gk-order">
-						<option value="1"<?php echo (esc_attr($article_info_order) == '1') ? ' selected="selected"' : ''; ?>>1</option>
-						<option value="2"<?php echo (esc_attr($article_info_order) == '2') ? ' selected="selected"' : ''; ?>>2</option>
-						<option value="3"<?php echo (esc_attr($article_info_order) == '3') ? ' selected="selected"' : ''; ?>>3</option>
-						<option value="4"<?php echo (esc_attr($article_info_order) == '4') ? ' selected="selected"' : ''; ?>>4</option>
-						<option value="5"<?php echo (esc_attr($article_info_order) == '5') ? ' selected="selected"' : ''; ?>>5</option>
+						<option value="1"<?php selected($article_info_order, '1'); ?>>1</option>
+						<option value="2"<?php selected($article_info_order, '2'); ?>>2</option>
+						<option value="3"<?php selected($article_info_order, '3'); ?>>3</option>
+						<option value="4"<?php selected($article_info_order, '4'); ?>>4</option>
+						<option value="5"<?php selected($article_info_order, '5'); ?>>5</option>
 					</select>
 				</span>
 			</p>
@@ -774,10 +786,10 @@ class GK_NSP_Widget extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'article_readmore_state' ) ); ?>"><?php _e('Read more', GKTPLNAME); ?></label>
 			
 				<select id="<?php echo esc_attr( $this->get_field_id('article_readmore_state')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_readmore_state')); ?>">
-					<option value="on"<?php echo (esc_attr($article_readmore_state) == 'on') ? ' selected="selected"' : ''; ?>>
+					<option value="on"<?php selected($article_readmore_state, 'on'); ?>>
 						<?php _e('On', GKTPLNAME); ?>
 					</option>
-					<option value="off"<?php echo (esc_attr($article_readmore_state) == 'off') ? ' selected="selected"' : ''; ?>>
+					<option value="off"<?php selected($article_readmore_state, 'off'); ?>>
 						<?php _e('Off', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -786,11 +798,11 @@ class GK_NSP_Widget extends WP_Widget {
 					<label for="<?php echo esc_attr( $this->get_field_id( 'article_readmore_order' ) ); ?>"><?php _e( 'order:', GKTPLNAME ); ?></label>
 					
 					<select id="<?php echo esc_attr( $this->get_field_id('article_readmore_order')); ?>" name="<?php echo esc_attr( $this->get_field_name('article_readmore_order')); ?>" class="gk-order">
-						<option value="1"<?php echo (esc_attr($article_readmore_order) == '1') ? ' selected="selected"' : ''; ?>>1</option>
-						<option value="2"<?php echo (esc_attr($article_readmore_order) == '2') ? ' selected="selected"' : ''; ?>>2</option>
-						<option value="3"<?php echo (esc_attr($article_readmore_order) == '3') ? ' selected="selected"' : ''; ?>>3</option>
-						<option value="4"<?php echo (esc_attr($article_readmore_order) == '4') ? ' selected="selected"' : ''; ?>>4</option>
-						<option value="5"<?php echo (esc_attr($article_readmore_order) == '5') ? ' selected="selected"' : ''; ?>>5</option>
+						<option value="1"<?php selected($article_readmore_order, '1'); ?>>1</option>
+						<option value="2"<?php selected($article_readmore_order, '2'); ?>>2</option>
+						<option value="3"<?php selected($article_readmore_order, '3'); ?>>3</option>
+						<option value="4"<?php selected($article_readmore_order, '4'); ?>>4</option>
+						<option value="5"<?php selected($article_readmore_order, '5'); ?>>5</option>
 					</select>
 				</span>
 			</p>
@@ -801,10 +813,10 @@ class GK_NSP_Widget extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'link_title_state' ) ); ?>"><?php _e('Title', GKTPLNAME); ?></label>
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('links_title_state')); ?>" name="<?php echo esc_attr( $this->get_field_name('links_title_state')); ?>">
-					<option value="on"<?php echo (esc_attr($links_title_state) == 'on') ? ' selected="selected"' : ''; ?>>
+					<option value="on"<?php selected($links_title_state, 'on'); ?>>
 						<?php _e('On', GKTPLNAME); ?>
 					</option>
-					<option value="off"<?php echo (esc_attr($links_title_state) == 'off') ? ' selected="selected"' : ''; ?>>
+					<option value="off"<?php selected($links_title_state, 'off'); ?>>
 						<?php _e('Off', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -814,10 +826,10 @@ class GK_NSP_Widget extends WP_Widget {
 				<input id="<?php echo esc_attr( $this->get_field_id( 'links_title_len' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'links_title_len' ) ); ?>" type="text" value="<?php echo esc_attr( $links_title_len ); ?>" class="short" />
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('links_title_len_type')); ?>" name="<?php echo esc_attr( $this->get_field_name('links_title_len_type')); ?>">
-					<option value="chars"<?php echo (esc_attr($links_title_len_type) == 'chars') ? ' selected="selected"' : ''; ?>>
+					<option value="chars"<?php selected($links_title_len_type, 'chars'); ?>>
 						<?php _e('Chars', GKTPLNAME); ?>
 					</option>
-					<option value="words"<?php echo (esc_attr($links_title_len_type) == 'words') ? ' selected="selected"' : ''; ?>>
+					<option value="words"<?php selected($links_title_len_type, 'words'); ?>>
 						<?php _e('Words', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -827,10 +839,10 @@ class GK_NSP_Widget extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'link_text_state' ) ); ?>"><?php _e('Text', GKTPLNAME); ?></label>
 			
 				<select id="<?php echo esc_attr( $this->get_field_id('links_text_state')); ?>" name="<?php echo esc_attr( $this->get_field_name('links_text_state')); ?>">
-					<option value="on"<?php echo (esc_attr($links_text_state) == 'on') ? ' selected="selected"' : ''; ?>>
+					<option value="on"<?php selected($links_text_state, 'on'); ?>>
 						<?php _e('On', GKTPLNAME); ?>
 					</option>
-					<option value="off"<?php echo (esc_attr($links_text_state) == 'off') ? ' selected="selected"' : ''; ?>>
+					<option value="off"<?php selected($links_text_state, 'off'); ?>>
 						<?php _e('Off', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -840,10 +852,10 @@ class GK_NSP_Widget extends WP_Widget {
 				<input id="<?php echo esc_attr( $this->get_field_id( 'links_text_len' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'links_text_len' ) ); ?>" type="text" value="<?php echo esc_attr( $links_text_len ); ?>" class="short" />
 				
 				<select id="<?php echo esc_attr( $this->get_field_id('links_text_len_type')); ?>" name="<?php echo esc_attr( $this->get_field_name('links_text_len_type')); ?>">
-					<option value="chars"<?php echo (esc_attr($links_text_len_type) == 'chars') ? ' selected="selected"' : ''; ?>>
+					<option value="chars"<?php selected($links_text_len_type, 'chars'); ?>>
 						<?php _e('Chars', GKTPLNAME); ?>
 					</option>
-					<option value="words"<?php echo (esc_attr($links_text_len_type) == 'words') ? ' selected="selected"' : ''; ?>>
+					<option value="words"<?php selected($links_text_len_type, 'words'); ?>>
 						<?php _e('Words', GKTPLNAME); ?>
 					</option>
 				</select>
@@ -873,7 +885,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	$art_ID = '';
 	 	$art_url = '';
 	 	
-	 	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 	if($this->wdgt_config['data_source_type'] == 'custom') {
 	 		$art_title = $this->wdgt_results[0][$i]->post_title;
 	 		$art_ID = $this->wdgt_results[0][$i]->ID;
 	 	} else {
@@ -886,29 +898,30 @@ class GK_NSP_Widget extends WP_Widget {
 	 	
 	 	$output = '<h3 class="gk-nsp-header"><a href="'.$art_url.'" title="'.str_replace('"','', $art_title).'">'.$art_title_short.'</a></h3>';
 	 	
-	 	return $output;
+	 	return apply_filters('gk_nsp_art_title', $output);
 	 }
 	 
 	 function generate_art_text($i) {
 	 	$art_text = '';
 	 	
-	 	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 	if($this->wdgt_config['data_source_type'] == 'custom') {
 	 		$art_text = $this->wdgt_results[0][$i]->post_content;
 	 	} else {
 	 		$art_text = $this->wdgt_results[$i]->post_content;
 	 	}
 	 	
 	 	$art_text = $this->cut_text('article_text', $art_text);
+	 	$art_text = preg_replace('@\[.+?\]@mis', '', $art_text);
 	 	
 	 	$output = '<p class="gk-nsp-text">'.$art_text.'</p>';
 	 	
-	 	return $output;
+	 	return apply_filters('gk_nsp_art_text', $output);
 	 }
 	 
 	 function generate_art_image($i) {
 	 	$art_ID = '';
 	 	
-	 	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 	if($this->wdgt_config['data_source_type'] == 'custom') {
 	 		$art_ID = $this->wdgt_results[0][$i]->ID;
 	 	} else {
 	 		$art_ID = $this->wdgt_results[$i]->ID;
@@ -919,22 +932,21 @@ class GK_NSP_Widget extends WP_Widget {
 	 	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $art_ID ), 'single-post-thumbnail' );
 	 	$image_path = $image[0];
 	 	$upload_dir = wp_upload_dir();
-	 	$image_path = str_replace($upload_dir['baseurl'] . DIRECTORY_SEPARATOR, '', $image_path);
+	 	$image_path = str_replace($upload_dir['baseurl'] . '/', '', $image_path);
 	 	
 	 	if($image_path != '') {
-	 		$img_editor = wp_get_image_editor( $upload_dir['basedir'] . DIRECTORY_SEPARATOR . $image_path);
+	 		$img_editor = wp_get_image_editor( $upload_dir['basedir'] . '/' . $image_path);
 	 		
 	 		if(!is_wp_error($img_editor)) {
 		 		$img_editor->resize($this->wdgt_config['article_image_w'], $this->wdgt_config['article_image_h'], true);
-		 		$img_filename = $img_editor->generate_filename( $this->id, dirname(__FILE__) . DIRECTORY_SEPARATOR . 'cache_nsp');
+		 		$img_filename = $img_editor->generate_filename( $this->id, dirname(__FILE__) . '/' . 'cache_nsp');
 		 		$img_editor->save($img_filename);
 		 		
-		 	    $new_path = $img_filename;	
+		 		$new_path = basename($img_filename);  
+		 		$cache_uri = get_stylesheet_directory_uri() . '/gavern/cache_nsp/';
 		 		
 		 		if(is_string($new_path)) {
-			 		$new_path_pos = stripos($new_path, '/gavern/cache_nsp');
-		 			$new_path = substr($new_path, $new_path_pos);
-		 			$new_path = get_template_directory_uri() . $new_path;
+			 		$new_path = $cache_uri . $new_path;
 		 		
 		 			$style = '';
 		 			
@@ -943,9 +955,15 @@ class GK_NSP_Widget extends WP_Widget {
 		 			}
 		 		
 		 			if($this->wdgt_config['article_image_pos'] == 'left' && $this->wdgt_config['article_image_order'] == 1) {
+<<<<<<< HEAD
 		 				return '<div class="gk-nsp-image-wrap"><a href="'.$art_url.'" class="gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image" '.$style.' width="'.$this->wdgt_config['article_image_w'].'" height="'.$this->wdgt_config['article_image_h'].'" /></a></div>';
 		 			} else {
 		 				return '<a href="'.$art_url.'" class="gk-responsive gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image gk-responsive" '.$style.' width="'.$this->wdgt_config['article_image_w'].'" height="'.$this->wdgt_config['article_image_h'].'" /></a>';
+=======
+		 				return apply_filters('gk_nsp_art_image', '<div class="gk-nsp-image-wrap"><a href="'.$art_url.'" class="gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image" '.$style.' /></a></div>');
+		 			} else {
+		 				return apply_filters('gk_nsp_art_image', '<a href="'.$art_url.'" class="gk-responsive gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image gk-responsive" '.$style.' /></a>');
+>>>>>>> GavernWP-1.7
 		 			}
 	 			} else {
 	 				return __('An error occured during creating the thumbnail.', GKTPLNAME);
@@ -968,7 +986,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	// check if there is a category in format
 	 	if(stripos($this->wdgt_config['article_info_format'], '%CATEGORY') !== FALSE) {
 	 	
-	 		if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 		if($this->wdgt_config['data_source_type'] == 'custom') {
 	 			$art_ID = $this->wdgt_results[0][$i]->ID;
 	 		} else {
 	 			$art_ID = $this->wdgt_results[$i]->ID;
@@ -984,7 +1002,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	}
 	 	// check if there is a author in format
 	 	if(stripos($this->wdgt_config['article_info_format'], '%AUTHOR') !== FALSE) {	 		
-	 		if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 		if($this->wdgt_config['data_source_type'] == 'custom') {
 	 			$author_ID = $this->wdgt_results[0][$i]->post_author;
 	 		} else {
 	 			$author_ID = $this->wdgt_results[$i]->post_author;
@@ -996,7 +1014,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	// check if there is a date in format
 	 	if(stripos($this->wdgt_config['article_info_format'], '%DATE') !== FALSE) {
 	 		// post_date
-	 		if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 		if($this->wdgt_config['data_source_type'] == 'custom') {
 	 			$art_ID = $this->wdgt_results[0][$i]->ID;
 	 		} else {
 	 			$art_ID = $this->wdgt_results[$i]->ID;
@@ -1008,7 +1026,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	if(stripos($this->wdgt_config['article_info_format'], '%COMMENTS') !== FALSE) {
 	 		// comment_count
 	 		// post_date
-	 		if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 		if($this->wdgt_config['data_source_type'] == 'custom') {
 	 			$comment_count = $this->wdgt_results[0][$i]->comment_count;
 	 			$art_ID = $this->wdgt_results[0][$i]->ID;
 	 		} else {
@@ -1033,14 +1051,14 @@ class GK_NSP_Widget extends WP_Widget {
 	 		$this->wdgt_config['article_info_format']
 	 	);
 	 
-	 	return '<p class="gk-nsp-info">' . $output . '</p>';
+	 	return apply_filters('gk_nsp_art_info', '<p class="gk-nsp-info">' . $output . '</p>');
 	 }
 	 
 	 function generate_art_readmore($i) {
 	 	$art_ID = '';
 	 	$art_url = '';
 	 	
-	 	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	 	if($this->wdgt_config['data_source_type'] == 'custom') {
 	 		$art_ID = $this->wdgt_results[0][$i]->ID;
 	 	} else {
 	 		$art_ID = $this->wdgt_results[$i]->ID;
@@ -1050,7 +1068,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	
 	 	$output = '<a href="'.$art_url.'" class="readon btn" title="'.__('Read more', GKTPLNAME).'">'.__('Read more', GKTPLNAME).'</a>';
 	 	
-	 	return $output;
+	 	return apply_filters('gk_nsp_art_readmore', $output);
 	 }
 	 
 	 /**
@@ -1064,7 +1082,7 @@ class GK_NSP_Widget extends WP_Widget {
 	  	$art_ID = '';
 	  	$art_url = '';
 	  	
-	  	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	  	if($this->wdgt_config['data_source_type'] == 'custom') {
 	  		$art_title = $this->wdgt_results[0][$i]->post_title;
 	  		$art_ID = $this->wdgt_results[0][$i]->ID;
 	  	} else {
@@ -1077,23 +1095,24 @@ class GK_NSP_Widget extends WP_Widget {
 	  	
 	  	$output = '<h4 class="gk-nsp-link-header"><a href="'.$art_url.'" title="'.str_replace('"','', $art_title).'">'.$art_title_short.'</a></h4>';
 	  	
-	  	return $output;
+	  	return apply_filters('gk_nsp_link_title', $output);
 	  }
 	  
 	  function generate_link_text($i) {
 	  	$art_text = '';
 	  	
-	  	if($this->wdgt_config['data_source_type'] == 'post' || $this->wdgt_config['data_source_type'] == 'custom') {
+	  	if($this->wdgt_config['data_source_type'] == 'custom') {
 	  		$art_text = $this->wdgt_results[0][$i]->post_content;
 	  	} else {
 	  		$art_text = $this->wdgt_results[$i]->post_content;
 	  	}
 	  	
 	  	$art_text = $this->cut_text('links_text', $art_text);
+	  	$art_text = preg_replace('@\[.+?\]@mis', '', $art_text);
 	  	
 	  	$output = '<p class="gk-nsp-link-text">'.$art_text.'</p>';
 	  	
-	  	return $output;
+	  	return apply_filters('gk_nsp_link_text', $output);
 	  }
 	 
 	 /**

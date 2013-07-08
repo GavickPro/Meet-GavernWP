@@ -133,6 +133,32 @@ class GKFormInputText extends GKFormInput {
 
 /**
  *
+ * Raw Text field - basic input field extended with support for removing slashes before apostrophes
+ *
+ **/
+
+class GKFormInputRawText extends GKFormInput {
+	public function output() {
+		return '<p data-visible="true"><label 
+					for="'.($this->tpl->name).'_'.($this->name).'" 
+					title="'.($this->tooltip).'" 
+				>'.$this->label.'</label>
+				<input 
+					type="text" 
+					id="'.($this->tpl->name).'_'.($this->name).'" 
+					name="'.($this->tpl->name).'_'.($this->name).'" 
+					class="gkInput gkText '.($this->class).'"
+					value="'.str_replace('\&#039;', "'", $this->value).'"
+					'.($this->format).' 
+					'.($this->required).' 
+					'.($this->visibility).' 
+					data-name="'.($this->name).'"
+				/></p>';
+	}
+}
+
+/**
+ *
  * Textarea
  *
  **/
@@ -178,7 +204,7 @@ class GKFormInputSelect extends GKFormInput {
 				>';
 				
 		foreach($this->other->options as $value => $label) {		
-			$output .= '<option value="'.$value.'"'.(($this->value == $value) ? ' selected="selected"' : '').'>'.$label.'</option>';
+			$output .= '<option value="'.$value.'"'.selected($this->value, $value, false).'>'.$label.'</option>';
 		}
 		
 		$output .= '</select></p>';
@@ -208,8 +234,8 @@ class GKFormInputSwitcher extends GKFormInput {
 					'.($this->visibility).'
 					data-name="'.($this->name).'"
 				>';
-		$output .= '<option value="N"'.(($this->value == 'N') ? ' selected="selected"' : '').'>'.__('Disabled', GKTPLNAME).'</option>';
-		$output .= '<option value="Y"'.(($this->value == 'Y') ? ' selected="selected"' : '').'>'.__('Enabled', GKTPLNAME).'</option>';
+		$output .= '<option value="N"'.selected($this->value, 'N', false).'>'.__('Disabled', GKTPLNAME).'</option>';
+		$output .= '<option value="Y"'.selected($this->value, 'Y', false).'>'.__('Enabled', GKTPLNAME).'</option>';
 		$output .= '</select></p>';
 		
 		return $output;
@@ -225,7 +251,8 @@ class GKFormInputSwitcher extends GKFormInput {
 class GKFormInputMedia extends GKFormInput {
 	public function output() {
 		
-		$output = '<p data-visible="true"><label 
+		$output = '<p data-visible="true">
+			<label 
 			for="'.($this->tpl->name).'_'.($this->name).'"
 			title="'.($this->tooltip).'"
 			>
@@ -244,7 +271,9 @@ class GKFormInputMedia extends GKFormInput {
 				data-name="'.($this->name).'"
 			/>
 			<input id="'.($this->tpl->name).'_'.($this->name).'_button" class="gkMedia" type="button" value="'.__('Upload Image', GKTPLNAME).'" />
-			<small>'.__('Enter an URL or upload an image.', GKTPLNAME).'</small></p>
+			<small>'.__('Enter an URL or upload an image.', GKTPLNAME).'</small>
+			<span class="gkMediaPreview" data-text="'.__('No image selected', GKTPLNAME).'">'.(($this->value != '') ? '<img src="'.$this->value.'" alt="Preview" />' : __('No image selected', GKTPLNAME)).'</span>
+			</p>
 		';
 		
 		return $output;

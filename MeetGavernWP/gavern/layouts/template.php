@@ -23,12 +23,13 @@ if(isset($_COOKIE[GKTPLNAME . '_active_tab']) && is_numeric($_COOKIE[GKTPLNAME .
 
 ?>
 
-<div class="gkWrap" id="gkMainWrap" data-theme="<?php echo GKTPLNAME; ?>">
+<div class="gkWrap" id="gkMainWrap" data-theme="<?php echo GKTPLNAME; ?>">	
 	<h1>
 		<big><?php echo $tpl->full_name; ?></big><small><?php _e('Based on the Gavern WP framework', GKTPLNAME); ?></small>
 	
 		<a href="customize.php?theme=<?php echo $tpl->full_name; ?>" title="<?php _e('Customize theme', GKTPLNAME); ?>"><?php _e('Customize theme', GKTPLNAME); ?></a>
 	</h1>
+	
 	<div>
 		<ul id="gkTabs">
 		<?php foreach($tabs as $tab) : ?>

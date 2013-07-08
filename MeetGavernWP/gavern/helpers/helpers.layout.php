@@ -19,19 +19,22 @@ defined('GAVERN_WP') or die('Access denied');
  *
  **/
 function gk_load($part_name, $assets = null, $args = null) {	
-	$assets_output = '';
 	
 	if($assets !== null) {
 		foreach($assets as $key => $value) {
 			if($key == 'css') {
-				$assets_output .= '<link rel="stylesheet" type="text/css" href="'.$value.'" />' . "\n";
+				wp_enqueue_style('gavern-gallery-template', $value, array('gavern-style'));
 			} elseif($key == 'js') {
-				$assets_output .= '<script type="text/javascript" src="'.$value.'"></script>' . "\n";
+				wp_enqueue_script('gavern-gallery-template', $value, array('jquery'));
 			}
 		}
 	}
 
 	include(gavern_file('layouts/' . $part_name . '.php'));
+	
+	if ($part_name = 'header') {
+	    do_action( 'get_header', $part_name );
+	}
 }
  
 /**
@@ -100,10 +103,10 @@ function gk_blog_name() {
 	// if user enabled our SEO override
 	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y') {
 		// blog name from template SEO options
-		return get_option($tpl->name . '_seo_blogname');
+		return apply_filters('gavern_blog_name', get_option($tpl->name . '_seo_blogname'));
 	} else { // in other case
 		// output standard blog name
-		return get_bloginfo( 'name' );
+		return apply_filters('gavern_blog_name', get_bloginfo( 'name' ));
 	}
 }
 
@@ -120,10 +123,10 @@ function gk_blog_desc() {
 	// if user enabled our SEO override
 	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y') {
 		// description from template SEO options
-		return get_option($tpl->name . '_seo_description');
+		return apply_filters('gavern_blog_desc', get_option($tpl->name . '_seo_description'));
 	} else { // in other case
 		// output standard blog description
-		return get_bloginfo( 'description' );
+		return apply_filters('gavern_blog_desc', get_bloginfo( 'description' ));
 	}
 }
 
@@ -152,12 +155,12 @@ function gk_blog_logo() {
 	} else { // text logo
 		// get the logo text type
 		if(get_option($tpl->name . "_branding_logo_text_type", 'wp') == 'wp') {
-			$logo_text = gk_blog_name() . '<small>' . gk_blog_desc() . '</small>';	
+			$logo_text = gk_blog_name() . ' <small>' . gk_blog_desc() . '</small>';	
 		} else {
 			$logo_text = get_option($tpl->name . "_branding_logo_text_value", '') . '<small>' . get_option($tpl->name . "_branding_logo_slogan_value", '') . '</small>';
 		}
 		// return the logo output
-		echo $logo_text;
+		echo apply_filters('gavern_logo_html', $logo_text);
 	}
 }
 
@@ -175,11 +178,11 @@ function gk_metatags() {
 	if(get_option($tpl->name . '_seo_use_gk_seo_settings') == 'Y') {
 		if(is_home() || is_front_page()) {
 			if(get_option($tpl->name . '_seo_homepage_desc') == 'custom') {
-				echo '<meta name="description" content="'.get_option($tpl->name . '_seo_homepage_desc_value').'" />';
+				echo apply_filters('gavern_meta_description', '<meta name="description" content="'.get_option($tpl->name . '_seo_homepage_desc_value').'" />');
 			}
 			
 			if(get_option($tpl->name . '_seo_homepage_keywords') == 'custom') {
-				echo '<meta name="keywords" content="'.get_option($tpl->name . '_seo_homepage_keywords_value').'" />';
+				echo apply_filters('gavern_meta_keywords', '<meta name="keywords" content="'.get_option($tpl->name . '_seo_homepage_keywords_value').'" />');
 			}
 		}
 		
@@ -189,13 +192,13 @@ function gk_metatags() {
 		
 			if(get_post_meta($postID, 'gavern-post-desc', true) != '') {
 				if(get_option($tpl->name . '_seo_post_desc') == 'custom') {
-					echo '<meta name="description" content="'.get_post_meta($postID, 'gavern-post-desc',true).'" />';
+					echo apply_filters('gavern_meta_description', '<meta name="description" content="'.get_post_meta($postID, 'gavern-post-desc',true).'" />');
 				}
 			}
 			 			
 			if(get_post_meta($postID, 'gavern-post-keywords', true) != '') {
 				if(get_option($tpl->name . '_seo_post_keywords') == 'custom') {
-					echo '<meta name="keywords" content="'.get_post_meta($postID, 'gavern-post-keywords',true).'" />';
+					echo apply_filters('gavern_meta_keywords', '<meta name="keywords" content="'.get_post_meta($postID, 'gavern-post-keywords',true).'" />');
 				}
 			}
 		}
@@ -231,17 +234,17 @@ function gk_opengraph_metatags() {
 			$desc = get_post_meta($postID, 'gavern_opengraph_desc', true);
 			$other = get_post_meta($postID, 'gavern_opengraph_other', true);
 			//
-			echo '<meta name="og:title" content="'.(($title == '') ? $wp_query->post->post_title : $title).'" />' . "\n";
+			echo apply_filters('gavern_og_title', '<meta name="og:title" content="'.(($title == '') ? $wp_query->post->post_title : $title).'" />' . "\n");
 			//
 			if($image != '') {
-				echo '<meta name="og:image" content="'.$image.'" />' . "\n";
+				echo apply_filters('gavern_og_image', '<meta name="og:image" content="'.$image.'" />' . "\n");
 			}
 			//
-			echo '<meta name="og:type" content="'.(($type == '') ? 'article' : $type).'" />' . "\n";
+			echo apply_filters('gavern_og_type', '<meta name="og:type" content="'.(($type == '') ? 'article' : $type).'" />' . "\n");
 			//
-			echo '<meta name="og:description" content="'.(($desc == '') ? substr(str_replace("\"", '', strip_tags($wp_query->post->post_content)), 0, 200) : $desc).'" />' . "\n";
+			echo apply_filters('gavern_og_description', '<meta name="og:description" content="'.(($desc == '') ? substr(str_replace("\"", '', strip_tags($wp_query->post->post_content)), 0, 200) : $desc).'" />' . "\n");
 			//
-			echo '<meta name="og:url" content="'.get_current_page_url().'" />' . "\n";
+			echo apply_filters('gavern_og_url', '<meta name="og:url" content="'.get_permalink($postID).'" />' . "\n");
 			//
 			if($other != '') {
 				$other = preg_split('/\r\n|\r|\n/', $other);
@@ -251,7 +254,7 @@ function gk_opengraph_metatags() {
 					$item = explode('=', $item);
 					//	
 					if(count($item) >= 2) {
-						echo '<meta name="'.$item[0].'" content="'.$item[1].'" />' . "\n";
+						echo apply_filters('gavern_og_custom', '<meta name="'.$item[0].'" content="'.$item[1].'" />' . "\n");
 					}
 				}
 			}
@@ -336,7 +339,14 @@ function gk_show_breadcrumbs() {
 	$conditional_function = false;
 	
 	if(get_option($tpl->name . '_breadcrumbs_state', 'Y') == 'rule') {
-		$conditional_function = create_function('', 'return '.get_option($tpl->name . '_breadcrumbs_staterule', '').';');
+		$state_rule = str_replace('\&#039;', "'", get_option($tpl->name . '_breadcrumbs_staterule', ''));
+		$is_correct = preg_match("@^[a-zA-Z0-9\_\s\(\)'\"\-&|!]+$@ms", $state_rule);
+		
+		if($is_correct) {
+			$conditional_function = create_function('', 'return '. $state_rule .';');
+		} else {
+			$conditional_function = create_function('', 'return FALSE;');
+		}
 	}
 	
 	return (get_option($tpl->name . '_breadcrumbs_state', 'Y') == 'Y' || 
@@ -352,32 +362,51 @@ function gk_show_breadcrumbs() {
  **/
 function gk_breadcrumbs_output() {
 	// open the breadcrumbs tag
-	echo '<div class="gk-breadcrumbs">';
+	$output = '<nav class="gk-breadcrumbs">';
 	// check if we are on the post or normal page
 	if (!is_home()) {
 		// return the Home link
-		echo '<a href="' . home_url() . '" class="gk-home">' . get_bloginfo('name') . "</a>";
+		$output .= '<a href="' . home_url() . '" class="gk-home">' . apply_filters('gavern_breadcrumb_home', get_bloginfo('name')) . "</a>";
 		// if page is category or post
-		if (is_category() || is_single()) {
+		if (is_category() || is_singular()) {
 			// return the category link
-			the_category(' ');
+			$output .= get_the_category_list(' ');
 			// if it is a post page
-			if (is_single()) {
+			if (is_singular()) {
 				// return link the name of current post
-				the_title('<span class="gk-current">', '</span>');
-			}
+				$output .= '<span class="gk-current">' . get_the_title() . '</span>';
+			}			
 		// if it is a normal page
 		} elseif (is_page()) { 
 			// output the page name
-			the_title('<span class="gk-current">', '</span>');
+			$output .= get_the_title('<span class="gk-current">', '</span>');
+		} elseif (is_tag() && isset($_GET['tag'])) {
+			// output the tag name
+			$output .= '<span class="gk-current">' . __('Tag: ', GKTPLNAME) . strip_tags($_GET['tag']) . '</span>';
+		} elseif (is_author() && isset($_GET['author'])) {
+			// get the author name
+			$id = strip_tags($_GET['author']);
+			if(is_numeric($id)) {
+				// output the author name
+				$output .= '<span class="gk-current">' . __('Published by: ', GKTPLNAME) . get_the_author_meta('display_name', $id) . '</span>';
+			}
+		} elseif(is_404()) {
+			$output .= '<span class="gk-current">' . __('Page not found', GKTPLNAME) . '</span>';
+		} elseif(is_archive()) {
+			$output .= '<span class="gk-current">' . __('Archives', GKTPLNAME) . '</span>';
+		} elseif(is_search() && isset($_GET['s'])) {
+			// output the author name
+			$output .= '<span class="gk-current">' . __('Searching for: ', GKTPLNAME) . strip_tags($_GET['s']) . '</span>';
 		}
 	// if the page is a home
 	} else {
 		// output the home link only
-		echo '<a href="' . home_url() . '" class="gk-home">' . get_bloginfo('name') . "</a>";
+		$output .= '<a href="' . home_url() . '" class="gk-home">' . get_bloginfo('name') . "</a>";
 	}
 	// close the breadcrumbs container
-	echo '</div>';
+	$output .= '</nav>';
+	
+	echo apply_filters('gavern_breadcrumb', $output);
 }
 
 /**
@@ -406,7 +435,7 @@ function gk_head_style_css() {
 			$url = esc_attr(isset($_COOKIE[$tpl->name.'_style']) ? $_COOKIE[$tpl->name.'_style'] : $url);
 		}
 		// output the LINK element
-		echo '<link href="'. gavern_file_uri('css/' . $url).'" rel="stylesheet" type="text/css" />';
+		wp_enqueue_style('gavern-style', gavern_file_uri('css/' . $url), array('gavern-mobile'));
 	}
 }
 
@@ -423,18 +452,18 @@ function gk_head_shortcodes() {
 	// check if shortcodes group are enabled
 	// typography
 	if(get_option($tpl->name . "_shortcodes1_state", 'Y') == 'Y') {
-		echo '<link href="'. gavern_file_uri('css/shortcodes.typography.css') .'" rel="stylesheet" type="text/css" />';
-		wp_enqueue_script('shortcodes_typography_js', gavern_file_uri('js/shortcodes.typography.js'), array(), false, false);
+		wp_enqueue_style('gavern-shortcodes-typography', gavern_file_uri('css/shortcodes.typography.css'), array('gavern-extensions'));
+		wp_enqueue_script('gavern-shortcodes-typography', gavern_file_uri('js/shortcodes.typography.js'), array('jquery', 'gavern-scripts'), false, true);
 	}
 	// interactive
 	if(get_option($tpl->name . "_shortcodes2_state", 'Y') == 'Y') {
-		echo '<link href="'. gavern_file_uri('css/shortcodes.elements.css') .'" rel="stylesheet" type="text/css" />';
-		wp_enqueue_script('shortcodes_elements_js', gavern_file_uri('js/shortcodes.elements.js'), array(), false, false);
+		wp_enqueue_style('gavern-shortcodes-elements', gavern_file_uri('css/shortcodes.elements.css'), array('gavern-extensions'));
+		wp_enqueue_script('gavern-shortcodes-elements', gavern_file_uri('js/shortcodes.elements.js'), array('jquery', 'gavern-scripts'), false, true);
 	}
 	// template
 	if(get_option($tpl->name . "_shortcodes3_state", 'Y') == 'Y') {
-		echo '<link href="'. gavern_file_uri('css/shortcodes.template.css') .'" rel="stylesheet" type="text/css" />';
-		wp_enqueue_script('shortcodes_template_js', gavern_file_uri('js/shortcodes.template.js'), array(), false, false);	
+		wp_enqueue_style('gavern-shortcodes-template', gavern_file_uri('css/shortcodes.template.css'), array('gavern-extensions'));
+		wp_enqueue_script('gavern-shortcodes-template', gavern_file_uri('js/shortcodes.template.js'), array('jquery', 'gavern-scripts'), false, true);	
 	}
 }
 
@@ -545,9 +574,9 @@ function gk_head_style_pages() {
 	// get access to the template object
 	global $tpl;
 	// scripts for the contact page
-	if( is_page_template('contact.php') ){ 
-		echo '<script type="text/javascript" src="'. gavern_file_uri('js/jquery.validate.min.js') .'"></script>';
-		echo '<script type="text/javascript" src="'. gavern_file_uri('js/contact.js') .'"></script>';
+	if( is_page_template('contact.php') ){ 		
+		wp_enqueue_script('gavern-contact-validate', gavern_file_uri('js/jquery.validate.min.js'), array('jquery', 'gavern-scripts'), false, true);
+		wp_enqueue_script('gavern-contact-main', gavern_file_uri('js/contact.js'), array('jquery', 'gavern-scripts'), false, true);
 	}
 }
 
@@ -574,14 +603,15 @@ function gk_condition($mode, $input, $users) {
 	}
 	
 	if($mode != 'all') {
+		$input = preg_replace('@[^a-zA-Z0-9\-_,;\:\s]@mis', '', $input);
 		$input = substr($input, 1);
 		$input = explode(',', $input);
-		
+
 		for($i = 0; $i < count($input); $i++) {
 			if($i > 0) {
 				$output .= '||'; 
 			}
-			
+
 			if(stripos($input[$i], 'homepage') !== FALSE) {
 			    $output .= ' is_home() ';
 			} else if(stripos($input[$i], 'page:') !== FALSE) {
@@ -608,13 +638,32 @@ function gk_condition($mode, $input, $users) {
 	            } else {
 	            	$output .= ' (has_term( \'post_format\') && is_single()) ';
 	            }
+			} else if(stripos($input[$i], 'taxonomy:') !== FALSE) {
+			    if(substr($input[$i], 9) != '') {
+			    	$taxonomy = substr($input[$i], 9);
+			    	$taxonomy = explode(';', $taxonomy);
+			    	// check amount of taxonomies
+			    	if(count($taxonomy) == 1) {
+			   			$output .= ' (is_tax(\'' . $taxonomy[0] . '\'))';
+			   		} else if(count($taxonomy) == 2) {
+			   			$output .= ' (is_tax(\'' . $taxonomy[0] . '\', \'' . $taxonomy[1] . '\')) ';
+			   		}
+			   	}
+			} else if(stripos($input[$i], 'posttype:') !== FALSE) {
+			    if(substr($input[$i], 9) != '') {
+			    	$type = substr($input[$i], 9);
+			    	// check for post types
+			    	if($type != '') {
+			   			$output .= ' (get_post_type() == \'' . $type . '\' && is_single()) ';
+			   		}
+			   	}
 			} else if(stripos($input[$i], 'search') !== FALSE) {
 			    $output .= ' is_search() ';
 			} else if(stripos($input[$i], 'page404') !== FALSE) {
 			    $output .= ' is_404() ';
 			}
 		}
-		
+
 		$output .= ')';
 	}
 	
@@ -838,34 +887,6 @@ function gk_dynamic_sidebar($index) {
 
 /**
  *
- * Code used to implement icons in the widget titles
- *
- * @return null
- * 
- **/
-function gk_title_icons($title) {
-	if($title == '&nbsp;' || trim($title) == '' || strlen($title) == 0) {
-		return false;
-	} else {
-		$icons = array();	
-		preg_match('(icon([\-a-zA-Z0-9]){1,})', $title, $icons);
-		// icon text (if exists)
-		$icon = '';
-		//
-		if(count($icons) > 0) {
-			$icon = '<i class="'.$icons[0].'"></i>';
-		}
-		//
-		$title = preg_replace('@(\[icon([\-a-zA-Z0-9]){1,}\])@', '', $title);
-		//
-		return $icon.' '.$title;
-	}
-}
-
-add_filter('widget_title', 'gk_title_icons');
-
-/**
- *
  * Code used to implement thickbox in the page
  *
  * @return null
@@ -889,9 +910,10 @@ function gk_thickbox_load() {
 			"closeImage":"<?php echo home_url(); ?>/wp-includes/js/thickbox/tb-close.png"
 		};
 	</script>
-	<link rel="stylesheet" href="<?php echo home_url(); ?>/wp-includes/js/thickbox/thickbox.css" media="all" />
-	<script type="text/javascript" src="<?php echo home_url(); ?>/wp-includes/js/thickbox/thickbox.js"></script>
+
 	<?php
+		wp_enqueue_style('gavern-thickbox', home_url() . '/wp-includes/js/thickbox/thickbox.css', array('gavern-extensions'));
+		wp_enqueue_script('gavern-thickbox', home_url() . '/wp-includes/js/thickbox/thickbox.js', array('jquery', 'gavern-scripts'), false, true);
 	endif;
 }
 

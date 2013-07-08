@@ -187,25 +187,6 @@ if(get_option($tpl->name . '_shortcodes1_state', 'Y') == 'Y') {
 	
 	/**
 	 *
-	 * Dropcaps
-	 *
-	 **/
-	if(!function_exists('gavern_ts_dropcap')) {
-		// Usage:
-		// [dropcap]text[/dropcap]
-		// [dropcap style="2"]text[/dropcap]
-		function gavern_ts_dropcap($atts, $content) {   
-			// get the optional style value
-			extract(shortcode_atts( array('style' => '1'), $atts));
-			// return the url
-		    return '<p class="gk-dropcap" data-style="style' . $style . '">'.$content.'</p>';  
-		} 
-		// add the shortcode to system
-		add_shortcode('dropcap', 'gavern_ts_dropcap');
-	}
-	
-	/**
-	 *
 	 * Ordered lists
 	 *
 	 **/

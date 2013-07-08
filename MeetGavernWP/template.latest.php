@@ -10,8 +10,8 @@ gk_load('before');
 
 global $more;
 $more = 0;
-
-$paged = isset($_GET['paged']) ? (is_numeric($_GET['paged']) ? $_GET['paged'] : 1) : $paged;
+// get the page number
+$paged = (get_query_var('paged')) ? get_query_var('paged') : ((get_query_var('page')) ? get_query_var('page') : 1);
 
 query_posts('posts_per_page=' . get_option('posts_per_page') . '&paged=' . $paged );
 
@@ -19,8 +19,6 @@ query_posts('posts_per_page=' . get_option('posts_per_page') . '&paged=' . $page
 
 <?php if ( have_posts() ) : ?>
 	<section id="gk-mainbody">
-		<?php gk_content_nav(); ?>
-		
 		<?php while ( have_posts() ) : the_post(); ?>
 			<?php get_template_part( 'content', get_post_format() ); ?>
 		<?php endwhile; ?>

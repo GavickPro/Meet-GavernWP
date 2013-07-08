@@ -299,7 +299,7 @@
 	display: block;
 	margin: 10px 0;
 	padding: 10px 20px; 
-	word-spacing: pre;
+	white-space: pre;
 }
 
 #comments li article blockquote {
@@ -372,6 +372,11 @@
 /* 5.3. Post meta-data
 ==================================== */
 
+.content > form input[type="submit"] {
+	display: inline-block;
+	float: none;
+}
+
 #gk-mainbody article > header h1 {
 	color: #444;
 	font-size: 48px;
@@ -392,6 +397,11 @@ article.page {
 	padding-left: 120px;
 }
 
+article.post.no-sidebar,
+article.page.no-sidebar {
+	padding-left: 0;
+}
+
 article.no-title,
 article.page-fullwidth {
 	padding-left: 0;
@@ -399,6 +409,10 @@ article.page-fullwidth {
 
 section#comments {
 	margin-left: 120px;
+}
+
+article.no-sidebar + section#comments {
+	margin-left: 0;
 }
 
 article.no-title + section#comments,
@@ -499,7 +513,7 @@ aside.meta time span {
 }
 
 #gk-social-api > a {
-	min-height: auto;
+	min-height: inherit!important;
 }
 
 /* 5.4. Post additional features
@@ -529,6 +543,14 @@ article figure.featured-image img {
 	height: auto;
 	margin: 15px auto 30px auto;
 	max-width: 100%;
+}
+
+article figure.featured-image img + figcaption {
+	color: #bbb;
+	font-size: 12px;
+	margin: -30px 0 15px 0;
+	padding: 10px 0;
+	text-align: center;
 }
 
 .alignnone {

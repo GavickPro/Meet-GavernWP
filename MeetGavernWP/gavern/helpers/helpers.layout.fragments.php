@@ -198,9 +198,32 @@ function gk_post_fields() {
 function gk_post_meta($attachment = false) {
  	global $tpl;
  	$tag_list = get_the_tag_list( '', __( ', ', GKTPLNAME ) );
+ 	$params = get_post_custom();
+ 	$params_aside = isset($params['gavern-post-params-aside']) ? $params['gavern-post-params-aside'][0] : false;
+ 	
+ 	$param_aside = true;
+ 	$param_date = true;
+ 	$param_author = true;
+ 	$param_category = true;
+ 	$param_tags = true;
+ 	$param_comments = true;
+ 	
+ 	if($params_aside) {
+ 		$params_aside = unserialize(unserialize($params_aside));
+ 		$param_aside = $params_aside['aside'] == 'Y';
+ 		$param_date = $params_aside['date'] == 'Y';
+ 		$param_author = $params_aside['author'] == 'Y';
+ 		$param_category = $params_aside['category'] == 'Y';
+ 		$param_tags = $params_aside['tags'] == 'Y';
+ 		$param_comments = $params_aside['comments'] == 'Y';
+ 	}
+ 	
  	?>
+ 	
+ 	<?php if($param_aside) : ?>
  	<aside class="meta">
 	 	<dl>
+	 		<?php if($param_date) : ?>
 	 		<dt class="date">
 	 			<?php _e('Post date:', GKTPLNAME); ?>
 	 		</dt>
@@ -213,15 +236,17 @@ function gk_post_meta($attachment = false) {
 	 				</time>
 	 			</a>
 	 		</dd>
-	 		
+		 		
 	 		<?php if(get_post_format() != '') : ?>
 	 		<dd class="format gk-format-<?php echo get_post_format(); ?>">
 	 			<?php echo get_post_format(); ?>
 	 		</dd>
 	 		<?php endif; ?>
 	 		
+	 		<?php endif; ?>
+	 		
 	 		<?php if(!(is_tag() || is_archive() || is_home() || is_search())) : ?>
-		 		<?php if(!is_page()) : ?>
+		 		<?php if(get_post_type() != 'page' && $param_category) : ?>
 		 		<dt class="category">
 		 			<?php _e('Category:', GKTPLNAME); ?>
 		 		</dt>
@@ -229,13 +254,17 @@ function gk_post_meta($attachment = false) {
 		 			<?php echo get_the_category_list( __(', ', GKTPLNAME )); ?>
 		 		</dd>
 		 		<?php endif; ?>
+		 		
+		 		<?php if($param_author) : ?>
 		 		<dt class="author">
 		 			<?php _e('Author:', GKTPLNAME); ?>
 		 		</dt>
 		 		<dd>
 		 			<a class="url fn n" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(sprintf(__('View all posts by %s', GKTPLNAME), get_the_author())); ?>" rel="author"><?php echo get_the_author(); ?></a>
 		 		</dd>
-		 		<?php if ( comments_open() && ! post_password_required() ) : ?>
+		 		<?php endif; ?>
+		 		
+		 		<?php if ( comments_open() && ! post_password_required() && $param_comments) : ?>
 		 		<dt class="comments">
 		 			<?php _e('Comments:', GKTPLNAME); ?>
 		 		</dt>
@@ -248,8 +277,9 @@ function gk_post_meta($attachment = false) {
 		 				);
 		 			?>
 		 		</dd>
-		 		<?php endif; ?> 		
-		 		<?php if($tag_list != ''): ?>
+		 		<?php endif; ?> 	
+		 			
+		 		<?php if($tag_list != '' && $param_tags) : ?>
 		 		<dt class="tags">
 		 			<?php _e('Tags:', GKTPLNAME); ?>
 		 		</dt>
@@ -283,6 +313,7 @@ function gk_post_meta($attachment = false) {
 	 		<?php endif; ?>
  		</dl>
  	</aside>
+ 	<?php endif; ?>
  	
  	<?php
 }
@@ -380,7 +411,7 @@ function gk_social_api($title, $postID) {
 			$fb_like_attributes .= ' data-font="'.get_option($tpl->name . '_fb_like_font', 'arial').'"';
 			$fb_like_attributes .= ' data-colorscheme="'.get_option($tpl->name . '_fb_like_colorscheme', 'light').'"';
 			
-			$fb_like_output = '<div class="fb-like" data-href="'.get_current_page_url().'" '.$fb_like_attributes.'></div>';
+			$fb_like_output = '<div class="fb-like" data-href="'.get_permalink($postID).'" '.$fb_like_attributes.'></div>';
 		}
 		// G+
 		if(get_option($tpl->name . '_google_plus', 'Y') == 'Y') {
@@ -395,7 +426,7 @@ function gk_social_api($title, $postID) {
 				$gplus_attributes .= ' size="'.get_option($tpl->name . '_google_plus_size', 'medium').'"'; 
 			}
 			
-			$gplus_output = '<g:plusone '.$gplus_attributes.' callback="'.get_current_page_url().'"></g:plusone>';
+			$gplus_output = '<g:plusone '.$gplus_attributes.' callback="'.get_permalink($postID).'"></g:plusone>';
 		}
 		// Twitter
 		if(get_option($tpl->name . '_tweet_btn', 'Y') == 'Y') {
@@ -407,24 +438,32 @@ function gk_social_api($title, $postID) {
 			}
 			$tweet_btn_attributes .= ' data-lang="'.get_option($tpl->name . '_tweet_btn_data_lang', 'en').'"';
 			  
-			$twitter_output = '<a href="http://twitter.com/share" class="twitter-share-button" data-text="'.$title.'" data-url="'.get_current_page_url().'" '.$tweet_btn_attributes.'>'.__('Tweet', GKTPLNAME).'</a>';
+			$twitter_output = '<a href="http://twitter.com/share" class="twitter-share-button" data-text="'.strip_tags($title).'" data-url="'.get_permalink($postID).'" '.$tweet_btn_attributes.'>'.__('Tweet', GKTPLNAME).'</a>';
 		}
 		// Pinterest
 		if(get_option($tpl->name . '_pinterest_btn', 'Y') == 'Y') {
-		      $image = get_post_meta($postID, 'gavern_opengraph_image', true);
+		     $pinit_title = gk_post_thumbnail_caption(true);
 		      
-		      if($image == '') {
+		     if($pinit_title == '') {
+		     	$pinit_title = false;
+		     }
+		      
+		     $image = get_post_meta($postID, 'gavern_opengraph_image', true);
+		      
+		     if($image == '') {
 		      	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $postID ), 'single-post-thumbnail' );
 		      	$image = $image[0];
-		      }
+		     }
 		      
 		      
-		      // configure Pinterest buttons               
-		      $pinterest_btn_attributes = get_option($tpl->name . '_pinterest_btn_style', 'horizontal');
-		      $pinterest_output = '<a href="http://pinterest.com/pin/create/button/?url='.get_current_page_url().'&amp;media='.$image.'&amp;description='.urlencode($title).'" class="pin-it-button" count-layout="'.$pinterest_btn_attributes.'"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="'.__('Pin it', GKTPLNAME).'" alt="'.__('Pin it', GKTPLNAME).'" /></a>';
+		     // configure Pinterest buttons               
+		     $pinterest_btn_attributes = get_option($tpl->name . '_pinterest_btn_style', 'horizontal');
+		     $pinterest_output = '<a href="http://pinterest.com/pin/create/button/?url='.get_permalink($postID).'&amp;media='.$image.'&amp;description='.(($pinit_title == false) ? urlencode(strip_tags($title)) : $pinit_title).'" class="pin-it-button" count-layout="'.$pinterest_btn_attributes.'"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="'.__('Pin it', GKTPLNAME).'" alt="'.__('Pin it', GKTPLNAME).'" /></a>';
 		}
 		
-		return '<section id="gk-social-api">' . $fb_like_output . $gplus_output . $twitter_output . $pinterest_output . '</section>';
+		$output = '<section id="gk-social-api">' . $fb_like_output . $gplus_output . $twitter_output . $pinterest_output . '</section>';
+		
+		return apply_filters('gavern_social_api', $output);
 	}
 }
 
@@ -482,7 +521,7 @@ function gk_author($author_page = false, $return_value = false) {
 			        <div class="author-desc">
 			            <h2>
 			                <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
-			                    <?php printf( __( 'Author: %s %s', GKTPLNAME ), get_the_author_meta('first_name', get_the_author_meta( 'ID' )), get_the_author_meta('last_name', get_the_author_meta( 'ID' )) ); ?> 
+			                    <?php printf( __( 'Author: %s ', GKTPLNAME ), get_the_author_meta('display_name', get_the_author_meta( 'ID' )) ); ?> 
 			                </a>
 			            </h2>
 			            <p>
@@ -521,5 +560,35 @@ function gk_author($author_page = false, $return_value = false) {
 		return false;
 	}
 } 
+
+/**
+ *
+ * Function to generate the featured image caption
+ *
+ * @param raw - if you need to get raw text without HTML tags
+ * 
+ * @return HTML output or raw text (depending from params)
+ *
+ **/
+
+function gk_post_thumbnail_caption($raw = false) {
+	global $post;
+	// get the post thumbnail ID
+	$thumbnail_id = get_post_thumbnail_id($post->ID);
+	// get the thumbnail description
+	$thumbnail_img = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+	// return the thumbnail caption
+	if ($thumbnail_img && isset($thumbnail_img[0])) {
+		if($thumbnail_img[0]->post_excerpt != '') {
+			if($raw) {
+				return apply_filters('gavern_thumbnail_caption', strip_tags($thumbnail_img[0]->post_excerpt));
+			} else {
+				return apply_filters('gavern_thumbnail_caption', '<figcaption>'.$thumbnail_img[0]->post_excerpt.'</figcaption>');
+			}
+		}
+	} else {
+		return false;
+	}
+}
 
 // EOF

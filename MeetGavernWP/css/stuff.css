@@ -16,7 +16,7 @@
 /* 7.1. Breadcrumbs & font-size
 ==================================== */
  
-#gk-breadcrumb-fontsize {
+#gk-breadcrumb-area {
 	border-bottom: 1px solid #e5e5e5;
 	overflow: hidden;
 	padding: 10px 0;
@@ -70,9 +70,12 @@
 	color: #dd514c;
 }
 
-.contactpage .gk-error,
-.contactpage .gk-thanks {
+.contactpage .gk-contact-error,
+.contactpage .gk-contact-thanks {
 	background: #5eb95e;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	color: #fff;
 	font-size: 14px;
 	line-height: 18px;
@@ -83,7 +86,7 @@
 	width: 100%;
 }
 
-.contactpage .gk-error {
+.contactpage .gk-contact-error {
 	background: #dd514c;
 }
 
@@ -178,6 +181,11 @@
 	border-top: 1px solid #e5e5e5;
 	margin: 20px 0;
 	padding: 10px 0;
+}
+
+.tagcloud .tag-cloud a {
+	padding: 0 10px;
+	vertical-align: middle;
 }
 
 /* 7.6. Login page template
@@ -390,11 +398,12 @@ header hgroup h2 {
 /* 7.11. oEmbed support
 ==================================== */
 
-/* YouTube - responsive support */
+/* YouTube, Vimeo - responsive support */
 .content iframe[src^='http://www.youtube.com'],
 .content iframe[src^='https://www.youtube.com'],
 .content iframe[src^='http://youtube.com'],
-.content iframe[src^='https://youtube.com'] {
+.content iframe[src^='https://youtube.com'],
+.content iframe[src*='vimeo.com'] {
 	max-width: 100%!important;
 }
 
@@ -411,183 +420,13 @@ header hgroup h2 {
 	max-width: 100%!important;
 }
 
-
-
-
 /* 7.12. Widget title icons
 ==================================== */
 
-i[class^="icon-"],
-i[class*=" icon-"] {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  *margin-right: .3em;
-  line-height: 14px;
-  vertical-align: baseline;
-  background-image: url("../images/glyphicons.png");
-  background-position: 14px 14px;
-  background-repeat: no-repeat;
+.box-title > i {
+	font-size: 16px;
 }
-
-i[class^="icon-"]:last-child,
-i[class*=" icon-"]:last-child {
-  *margin-left: 0;
-}
-
-i.icon-white,
-.red i[class^="icon-"],
-.green i[class^="icon-"],
-.blue i[class^="icon-"],
-.yellow i[class^="icon-"],
-.red i[class*=" icon-"],
-.green i[class*=" icon-"],
-.blue i[class*=" icon-"],
-.yellow i[class*=" icon-"] {
-  background-image: url("../images/glyphicons-white.png");
-}
-
-i.icon-glass { background-position: 0 0; }
-i.icon-music { background-position: -24px 0; }
-i.icon-search { background-position: -48px 0; }
-i.icon-envelope { background-position: -72px 0; }
-i.icon-heart { background-position: -96px 0; }
-i.icon-star { background-position: -120px 0; }
-i.icon-star-empty { background-position: -144px 0; }
-i.icon-user { background-position: -168px 0; }
-i.icon-film { background-position: -192px 0; }
-i.icon-th-large { background-position: -216px 0; }
-i.icon-th { background-position: -240px 0; }
-i.icon-th-list { background-position: -264px 0; }
-i.icon-ok { background-position: -288px 0; }
-i.icon-remove { background-position: -312px 0; }
-i.icon-zoom-in { background-position: -336px 0; }
-i.icon-zoom-out { background-position: -360px 0; }
-i.icon-off { background-position: -384px 0; }
-i.icon-signal { background-position: -408px 0; }
-i.icon-cog { background-position: -432px 0; }
-i.icon-trash { background-position: -456px 0; }
-i.icon-home { background-position: 0 -24px; }
-i.icon-file { background-position: -24px -24px; }
-i.icon-time { background-position: -48px -24px; }
-i.icon-road { background-position: -72px -24px; }
-i.icon-download-alt { background-position: -96px -24px; }
-i.icon-download { background-position: -120px -24px; }
-i.icon-upload { background-position: -144px -24px; }
-i.icon-inbox { background-position: -168px -24px; }
-i.icon-play-circle { background-position: -192px -24px; }
-i.icon-repeat { background-position: -216px -24px; }
-i.icon-refresh { background-position: -240px -24px; }
-i.icon-list-alt { background-position: -264px -24px; }
-i.icon-lock { background-position: -287px -24px; }
-i.icon-flag { background-position: -312px -24px; }
-i.icon-headphones { background-position: -336px -24px; }
-i.icon-volume-off { background-position: -360px -24px; }
-i.icon-volume-down { background-position: -384px -24px; }
-i.icon-volume-up { background-position: -408px -24px; }
-i.icon-qrcode { background-position: -432px -24px; }
-i.icon-barcode { background-position: -456px -24px; }
-i.icon-tag { background-position: 0 -48px; }
-i.icon-tags { background-position: -25px -48px; }
-i.icon-book { background-position: -48px -48px; }
-i.icon-bookmark { background-position: -72px -48px; }
-i.icon-print { background-position: -96px -48px; }
-i.icon-camera { background-position: -120px -48px; }
-i.icon-font { background-position: -144px -48px; }
-i.icon-bold { background-position: -167px -48px; }
-i.icon-italic { background-position: -192px -48px; }
-i.icon-text-height { background-position: -216px -48px; }
-i.icon-text-width { background-position: -240px -48px; }
-i.icon-align-left { background-position: -264px -48px; }
-i.icon-align-center { background-position: -288px -48px; }
-i.icon-align-right { background-position: -312px -48px; }
-i.icon-align-justify { background-position: -336px -48px; }
-i.icon-list { background-position: -360px -48px; }
-i.icon-indent-left { background-position: -384px -48px; }
-i.icon-indent-right { background-position: -408px -48px; }
-i.icon-facetime-video { background-position: -432px -48px; }
-i.icon-picture { background-position: -456px -48px; }
-i.icon-pencil { background-position: 0 -72px; }
-i.icon-map-marker { background-position: -24px -72px; }
-i.icon-adjust { background-position: -48px -72px; }
-i.icon-tint { background-position: -72px -72px; }
-i.icon-edit { background-position: -96px -72px; }
-i.icon-share { background-position: -120px -72px; }
-i.icon-check { background-position: -144px -72px; }
-i.icon-move { background-position: -168px -72px; }
-i.icon-step-backward { background-position: -192px -72px; }
-i.icon-fast-backward { background-position: -216px -72px; }
-i.icon-backward { background-position: -240px -72px; }
-i.icon-play { background-position: -264px -72px; }
-i.icon-pause { background-position: -288px -72px; }
-i.icon-stop { background-position: -312px -72px; }
-i.icon-forward { background-position: -336px -72px; }
-i.icon-fast-forward { background-position: -360px -72px; }
-i.icon-step-forward { background-position: -384px -72px; }
-i.icon-eject { background-position: -408px -72px; }
-i.icon-chevron-left { background-position: -432px -72px; }
-i.icon-chevron-right { background-position: -456px -72px; }
-i.icon-plus-sign { background-position: 0 -96px; }
-i.icon-minus-sign { background-position: -24px -96px; }
-i.icon-remove-sign { background-position: -48px -96px; }
-i.icon-ok-sign { background-position: -72px -96px; }
-i.icon-question-sign { background-position: -96px -96px; }
-i.icon-info-sign { background-position: -120px -96px; }
-i.icon-screenshot { background-position: -144px -96px; }
-i.icon-remove-circle { background-position: -168px -96px; }
-i.icon-ok-circle { background-position: -192px -96px; }
-i.icon-ban-circle { background-position: -216px -96px; }
-i.icon-arrow-left { background-position: -240px -96px; }
-i.icon-arrow-right { background-position: -264px -96px; }
-i.icon-arrow-up { background-position: -289px -96px; }
-i.icon-arrow-down { background-position: -312px -96px; }
-i.icon-share-alt { background-position: -336px -96px; }
-i.icon-resize-full { background-position: -360px -96px; }
-i.icon-resize-small { background-position: -384px -96px; }
-i.icon-plus { background-position: -408px -96px; }
-i.icon-minus { background-position: -433px -96px; }
-i.icon-asterisk { background-position: -456px -96px; }
-i.icon-exclamation-sign { background-position: 0 -120px; }
-i.icon-gift { background-position: -24px -120px; }
-i.icon-leaf { background-position: -48px -120px; }
-i.icon-fire { background-position: -72px -120px; }
-i.icon-eye-open { background-position: -96px -120px; }
-i.icon-eye-close { background-position: -120px -120px; }
-i.icon-warning-sign { background-position: -144px -120px; }
-i.icon-plane { background-position: -168px -120px; }
-i.icon-calendar { background-position: -192px -120px; }
-i.icon-random { background-position: -216px -120px; }
-i.icon-comment { background-position: -240px -120px; }
-i.icon-magnet { background-position: -264px -120px; }
-i.icon-chevron-up { background-position: -288px -120px; }
-i.icon-chevron-down { background-position: -313px -119px; }
-i.icon-retweet { background-position: -336px -120px; }
-i.icon-shopping-cart { background-position: -360px -120px; }
-i.icon-folder-close { background-position: -384px -120px; }
-i.icon-folder-open { background-position: -408px -120px; }
-i.icon-resize-vertical { background-position: -432px -119px; }
-i.icon-resize-horizontal { background-position: -456px -118px; }
-i.icon-hdd { background-position: 0 -144px; }
-i.icon-bullhorn { background-position: -24px -144px; }
-i.icon-bell { background-position: -48px -144px; }
-i.icon-certificate { background-position: -72px -144px; }
-i.icon-thumbs-up { background-position: -96px -144px; }
-i.icon-thumbs-down { background-position: -120px -144px; }
-i.icon-hand-right { background-position: -144px -144px; }
-i.icon-hand-left { background-position: -168px -144px; }
-i.icon-hand-up { background-position: -192px -144px; }
-i.icon-hand-down { background-position: -216px -144px; }
-i.icon-circle-arrow-right { background-position: -240px -144px; }
-i.icon-circle-arrow-left { background-position: -264px -144px; }
-i.icon-circle-arrow-up { background-position: -288px -144px; }
-i.icon-circle-arrow-down { background-position: -312px -144px; }
-i.icon-globe { background-position: -336px -144px; }
-i.icon-wrench { background-position: -360px -144px; }
-i.icon-tasks { background-position: -384px -144px; }
-i.icon-filter { background-position: -408px -144px; }
-i.icon-briefcase { background-position: -432px -144px; }
-i.icon-fullscreen { background-position: -456px -144px; }
-
+ 
 /* 7.13. Attachment page
 ==================================== */
 
@@ -604,7 +443,44 @@ i.icon-fullscreen { background-position: -456px -144px; }
 	margin-left: 140px;
 }
 
-/* 7.14. Demo content
+.attachment-page section.intro {
+	overflow: hidden;
+}
+
+.nav-prev {
+	float: left;
+}
+
+.nav-next {
+	float: right;
+}
+
+/* 7.14. Tables
+==================================== */
+
+article section table {
+	margin: 10px 0;
+}
+
+article section table th {
+	background: #eee;
+	padding: 0 4px;
+	text-align: left;
+}
+
+article section table td {
+	padding: 0 4px;
+}
+
+article section table tbody tr:nth-child(2n) {
+	background: #f5f5f5;
+}
+
+article section table td span.gk-table-label {
+	display: none;
+}
+
+/* 7.15. Demo content
 ==================================== */
 .gk-demo-content {
 	-webkit-box-sizing: border-box;

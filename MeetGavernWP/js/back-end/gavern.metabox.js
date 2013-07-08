@@ -1,13 +1,13 @@
 /**
  *
  * -------------------------------------------
- * Script for the OpenGraph metabox
+ * Script for the Gavern metaboxes
  * -------------------------------------------
  *
  **/
-
+ 
+// Open Graph metatags
 jQuery(function(jQuery) {
-
 	jQuery('.gavern_opengraph_upload_image_button').click(function() {
 		formfield = jQuery(this).siblings('.gavern_opengraph_upload_image');
 		preview = jQuery(this).siblings('.gavern_opengraph_preview_image');
@@ -29,5 +29,25 @@ jQuery(function(jQuery) {
 		jQuery(this).parent().siblings('.gavern_opengraph_preview_image').attr('src', defaultImage);
 		return false;
 	});
+});
 
+// Page additional params
+jQuery(document).ready(function() {
+	var templateSelect = jQuery('#page_template');
+	var template = templateSelect.find('option:selected').val();
+	
+	jQuery(document).find('p[data-template]').removeClass('active');
+	jQuery(document).find('p[data-template="' + template + '"]').addClass('active');
+	
+	templateSelect.change(function() {
+		var template = templateSelect.find('option:selected').val();
+		jQuery(document).find('p[data-template]').removeClass('active');
+		jQuery(document).find('p[data-template="' + template + '"]').addClass('active');
+	});
+	
+	templateSelect.blur(function() {
+		var template = templateSelect.find('option:selected').val();
+		jQuery(document).find('p[data-template]').removeClass('active');
+		jQuery(document).find('p[data-template="' + template + '"]').addClass('active');
+	});
 });

@@ -34,6 +34,7 @@ GK_NSP.prototype = {
 	links_current: 0,
 	modInterface: null,
 	module: null,
+	anim_property: '',
 	//
 	init_fields: function(module) {
 		// the most important class field ;)
@@ -61,6 +62,7 @@ GK_NSP.prototype = {
 			bottom: this.module.find('.gk-nsp-links-nav')
 		};
 		this.pages_amount = Math.ceil(this.arts.length / this.arts_per_page);
+		this.anim_property = jQuery('html').attr('dir') == 'rtl' ? 'right': 'left';
 	},
 	init_interface: function() {
 		var $this = this;
@@ -135,6 +137,102 @@ GK_NSP.prototype = {
 				});
 			}
 		}
+		// article touch events
+		var arts_pos_start_x = 0;
+		var arts_pos_start_y = 0;
+		var arts_time_start = 0;
+		var arts_swipe = false;
+		var arts_container = jQuery(this.module.find('.gk-nsp-arts'));
+
+		arts_container.bind('touchstart', function(e) {
+			arts_swipe = true;
+			var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+
+			if(touches.length > 0) {
+				arts_pos_start_x = touches[0].pageX;
+				arts_pos_start_y = touches[0].pageY;
+				arts_time_start = new Date().getTime();
+			}
+		});
+
+		arts_container.bind('touchmove', function(e) {
+			var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+
+			if(touches.length > 0 && arts_swipe) {
+				if(
+					Math.abs(touches[0].pageX - arts_pos_start_x) > Math.abs(touches[0].pageY - arts_pos_start_y)
+				) {
+					e.preventDefault();
+				} else {
+					arts_swipe = false;
+				}
+			}
+		});
+
+		arts_container.bind('touchend', function(e) {
+			var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+
+			if(touches.length > 0 && arts_swipe) {									
+				if(
+					Math.abs(touches[0].pageX - arts_pos_start_x) >= 30 && 
+					new Date().getTime() - arts_time_start <= 500
+				) {					
+					if(touches[0].pageX - arts_pos_start_x > 0) {
+						$this.arts_anim('prev');
+					} else {
+						$this.arts_anim('next');
+					}
+				}
+			}
+		});
+		// links touch events
+		var links_pos_start_x = 0;
+		var links_pos_start_y = 0;
+		var links_time_start = 0;
+		var links_swipe = false;
+		var links_container = jQuery(this.module.find('.gk-nsp-links'));
+
+		links_container.bind('touchstart', function(e) {
+			links_swipe = true;
+			var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+
+			if(touches.length > 0) {
+				links_pos_start_x = touches[0].pageX;
+				links_pos_start_y = touches[0].pageY;
+				links_time_start = new Date().getTime();
+			}
+		});
+
+		links_container.bind('touchmove', function(e) {
+			var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+
+			if(touches.length > 0 && links_swipe) {
+				if(
+					Math.abs(touches[0].pageX - links_pos_start_x) > Math.abs(touches[0].pageY - links_pos_start_y)
+				) {
+					e.preventDefault();
+				} else {
+					links_swipe = false;
+				}
+			}
+		});
+
+		links_container.bind('touchend', function(e) {
+			var touches = e.originalEvent.changedTouches || e.originalEvent.touches;
+
+			if(touches.length > 0 && links_swipe) {									
+				if(
+					Math.abs(touches[0].pageX - links_pos_start_x) >= 30 && 
+					new Date().getTime() - links_time_start <= 500
+				) {					
+					if(touches[0].pageX - links_pos_start_x > 0) {
+						$this.lists_anim('prev');
+					} else {
+						$this.lists_anim('next');
+					}
+				}
+			}
+		});
 	},
 	//
 	nsp_art_list: function(i, pos){
@@ -159,9 +257,15 @@ GK_NSP.prototype = {
 			this.arts_current = dir;
 		}
 		//		
-		jQuery($this.module.find('.gk-nsp-arts-scroll')).animate({
-			'margin-left': (-1 * this.arts_current * this.arts_block_width) + "%"
-		}, $this.config['animation_speed']);
+		if(this.anim_property == 'left') {
+			jQuery($this.module.find('.gk-nsp-arts-scroll')).animate({
+				'margin-left': (-1 * this.arts_current * this.arts_block_width) + "%"
+			}, $this.config['animation_speed']);
+		} else {
+			jQuery($this.module.find('.gk-nsp-arts-scroll')).animate({
+				'margin-right': (-1 * this.arts_current * this.arts_block_width) + "%"
+			}, $this.config['animation_speed']);
+		}
 
 		setTimeout(function() {
 			jQuery($this.arts_pages[$this.arts_current]).addClass('active');
@@ -197,9 +301,15 @@ GK_NSP.prototype = {
 			}
 		}, this.config['animation_speed'] * 0.5);
 		//
-		jQuery($this.module.find('.gk-nsp-links-scroll')).animate({
-			'margin-left': (-1 * this.links_current * this.links_block_width) + "%"
-		}, $this.config['animation_speed']);
+		if(this.anim_property == 'left') {
+			jQuery($this.module.find('.gk-nsp-links-scroll')).animate({
+				'margin-left': (-1 * this.links_current * this.links_block_width) + "%"
+			}, $this.config['animation_speed']);
+		} else {
+			jQuery($this.module.find('.gk-nsp-links-scroll')).animate({
+				'margin-right': (-1 * this.links_current * this.links_block_width) + "%"
+			}, $this.config['animation_speed']);
+		}
 
 		this.nsp_art_list(null, 'bottom');
 	},

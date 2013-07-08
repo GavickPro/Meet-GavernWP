@@ -22,11 +22,11 @@
 	<?php do_action('gavernwp_before_comments_count'); ?>
 	<h2>
 		<?php if(get_comments_number() == 1) : ?>
-		<?php printf(__( 'One thought on &ldquo;%1$s&rdquo;', GKTPLNAME), '<span>' . get_the_title() . '</span>'); ?>
+		<?php _e( '1 Comment', GKTPLNAME); ?>
 		<?php elseif(get_comments_number() == 2) : ?>
-		<?php printf(__( 'Two thoughts on &ldquo;%1$s&rdquo;', GKTPLNAME), '<span>' . get_the_title() . '</span>'); ?>
+		<?php _e( '2 Comments', GKTPLNAME); ?>
 		<?php elseif(get_comments_number() > 2) : ?>
-		<?php printf(__( '%1$s thoughts on &ldquo;%2$s&rdquo;', GKTPLNAME), number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>'); ?>
+		<?php printf(__( '%1$s Comments', GKTPLNAME), number_format_i18n(get_comments_number())); ?>
 		<?php endif; ?>
 	</h2>
 	<?php do_action('gavernwp_after_comments_count'); ?>

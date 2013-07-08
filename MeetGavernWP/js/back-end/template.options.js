@@ -133,6 +133,16 @@ jQuery(document).ready(function() {
 			}
 		});
 	});
+	
+	if(jQuery('#gk-load-settings').length) {
+		jQuery('#gk-load-settings').click(function() {
+			window.location.href += '&task=load_widgets';
+		});
+		
+		jQuery('#gk-cancel-settings').click(function() {
+			window.location.href += '&task=notload_widgets';
+		});
+	}
 });
 // function to init the validation rules
 function gkValidateInit() {
@@ -335,7 +345,8 @@ function gkMediaInit() {
 	// image uploaders
 	jQuery('.gkMediaInput').each(
 		function(i, el) {
-			var btnid = jQuery(el).attr('id') + '_button'; 
+			el = jQuery(el);
+			var btnid = el.attr('id') + '_button'; 
 		
 			jQuery('#'+btnid).click(function() {
 				uploadID = jQuery(this).prev('input');
@@ -344,6 +355,24 @@ function gkMediaInit() {
 				
 				return false;
 			});
+			
+			el.change(function() {
+				if(el.val() == '') {
+					var span = el.parent().find('.gkMediaPreview');
+					span.html(span.attr('data-text'));
+				} else {
+					el.parent().find('.gkMediaPreview').html('<img src="' + el.val() + '" alt="Preview" />');
+				}
+			});
+			
+			el.blur(function() {
+				if(el.val() == '') {
+					var span = el.parent().find('.gkMediaPreview');
+					span.html(span.attr('data-text'));
+				} else {
+					el.parent().find('.gkMediaPreview').html('<img src="' + el.val() + '" alt="Preview" />');
+				}
+			});
 		}
 	);
 }
@@ -351,5 +380,6 @@ function gkMediaInit() {
 window.send_to_editor = function(html) {
 	imgurl = jQuery('img', html).attr('src');
 	uploadID.val(imgurl);
+	uploadID.parent().find('.gkMediaPreview').html('<img src="' + imgurl + '" alt="Preview" />');
 	tb_remove();
 }

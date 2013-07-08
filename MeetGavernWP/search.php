@@ -26,8 +26,6 @@ gk_load('before');
 		
 		<?php do_action('gavernwp_before_loop'); ?>
 		
-		<?php gk_content_nav(); ?>
-		
 		<?php while ( have_posts() ) : the_post(); ?>
 			<?php
 			

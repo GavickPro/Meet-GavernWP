@@ -51,7 +51,7 @@ textarea {
 	width: 95%
 }
 .gkWrap > h1:first-child {
-	background: #85B9DE;
+	background: #3f4c6b;
 	border-radius: 3px 3px 0 0;
 	color: #fff;
 	font: normal 25px/48px Arial, Helvetica, sans-serif;
@@ -133,6 +133,9 @@ textarea {
 #gkTabs li.layout {
 	background-position: 20px -49px
 }
+#gkTabs li.pages {
+	background-position: 20px -690px
+}
 #gkTabs li.fonts {
 	background-position: 20px -112px
 }
@@ -164,6 +167,10 @@ textarea {
 #gkTabs li:hover.layout,
 #gkTabs li.layout.active {
 	background-position: -291px -49px
+}
+#gkTabs li:hover.pages,
+#gkTabs li.pages.active {
+	background-position: -290px -690px
 }
 #gkTabs li:hover.fonts,
 #gkTabs li.fonts.active {
@@ -279,7 +286,7 @@ textarea {
 	-ms-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
 	-webkit-border-radius: 2px;
 	-webkit-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
-	background: #85b9e0!important;
+	background: #3f4c6b!important;
 	border: none!important;
 	border-radius: 2px;
 	color: #fff;
@@ -314,9 +321,65 @@ body input.gkMedia {
 	float: left;
 	margin-right: 4px;
 }
+.gkMediaPreview {
+	background: #f8f8f8;
+	border: 3px double #eee;
+	display: block;
+	height: auto;
+	margin: 10px 0 0 300px;
+	max-width: 320px;
+	padding: 10px;
+}
+.gkMediaPreview img {
+	max-width: 320px;
+}
+
 #gkTabsContent > div,
 p[data-visible="false"] {
 	display: none
+}
+
+/* Widget settings bar */
+#gk-message {
+	background: #f7f7f7;
+	border-bottom: 1px solid #e5e5e5;
+	display: block;
+	margin: 0 -20px;
+	padding: 0 20px;
+	position: static;
+}
+
+#gk-message h2 {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 26px;
+	margin: 0;
+	padding: 8px 0;
+	width: 100%;
+}
+
+#gk-message h2.center {
+	text-align: center;
+}
+
+#gk-message h2 button {
+	background: #3f4c6b;
+	border: none;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #fff;
+	float: right;
+	font-size: 12px;
+	line-height: 18px;
+	margin-left: 10px;
+}
+
+#gk-message h2 button:active,
+#gk-message h2 button:focus,
+#gk-message h2 button:hover {
+	background: #444;
+	cursor: pointer;
 }
 
 /* width <= 720px */ 
@@ -337,5 +400,8 @@ p[data-visible="false"] {
 	.gkMedia + small {
 		clear: both;
 		margin-left: 0px!important;
+	}
+	.gkMediaPreview {
+		margin-left: 0;
 	}
 }

@@ -208,25 +208,6 @@ pre.gk-code[data-style="style3"] {
 	width: 100%;
 }
 
-/* Dropcaps */
-.gk-dropcap:first-letter,
-.gk-dropcap[data-style="style1"]:first-letter {
-	font-size: 32px;
-	padding-right: 4px;
-}
-
-.gk-dropcap[data-style="style2"]:first-letter {
-	display: block;
-	float: left;
-	line-height: 29px;
-}
-
-.gk-dropcap[data-style="style3"]:first-letter {
-	display: block;
-	float: left;
-	line-height: 42px;
-}
-
 /* Blockquote */
 blockquote.gk-quote {
 	border-left: 4px solid #e5e5e5;

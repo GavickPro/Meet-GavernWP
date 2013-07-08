@@ -29,30 +29,6 @@
 	max-width: 100%!important;
 }
 
-/* tables fix */
-#gk-mainbody table:before {
-	content: "Scroll horizontally to view the whole table";
-	height: 14px;
-	width: 100%;
-	display: block;
-	font-size: 10px;
-	margin-top: -30px;
-	margin-bottom: 10px;
-	font-family: Arial, sans-serif;
-}
-
-#gk-mainbody table {
-	width: 540px;
-	overflow: scroll;
-	display: block;
-	padding: 30px 0 20px 0; /* padding for the scrollbars and the top message */
-}
-
-#gk-mainbody table tr {
-	width: 540px;
-	display: table;
-}
-
 /* column rules */
 #gk-sidebar {
 	padding: 20px 0!important;
@@ -243,6 +219,37 @@ aside.meta dd.bookmark {
 	display: none;
 }
 
+.gk-columns > div {
+	padding: 10px 0!important;
+	width: 100%!important;
+}
+
+/* GK News Show Pro */
+.gk-nsp .gk-nsp-art {
+	border-top: 1px solid #eee!important;
+	border-left: none!important;
+	padding-bottom: 20px!important;
+	padding-top: 20px!important;
+	width: 100%!important;
+}
+
+.gk-nsp .gk-nsp-art:first-child {
+	border-top: none!important;
+}
+
+/* GK Tabs */
+.gk-tabs-wrap > ol.gk-tabs-nav > li,
+.gk-tabs-wrap > ol.gk-tabs-nav > li.active, 
+.gk-tabs-wrap > ol.gk-tabs-nav > li.active:hover {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 1px solid #e5e5e5!important;
+	border-right: none!important;
+	border-top: none!important;
+	width: 100%;
+}
+
 /* 11.5. Device classes
 ==================================== */
 
@@ -260,4 +267,51 @@ aside.meta dd.bookmark {
 
 .onlyTabltetsAndSmartphones {
 	display: block!important;
+}
+
+/* 11.6. RTL Support
+==================================== */
+
+html[dir="rtl"] article.post, 
+html[dir="rtl"] article.page {
+	padding-right: 0!important;
+}
+
+html[dir="rtl"] aside.meta dt.date + dd {
+	left: auto;
+	padding-left: 0!important;
+	padding-right: 16px!important;
+	right: 0;
+}
+
+html[dir="rtl"] aside.meta dt,
+html[dir="rtl"] aside.meta dd {
+	float: right;
+	padding-left: 0;
+	padding-right: 106px;
+}
+
+html[dir="rtl"] aside.meta dd {
+	padding-left: 0;
+	padding-right: 10px;
+}
+
+html[dir="rtl"] .tag-page article aside.meta time,
+html[dir="rtl"] .category-page article aside.meta time,
+html[dir="rtl"] .search-page article aside.meta time,
+html[dir="rtl"] .home article aside.meta time,
+html[dir="rtl"] .archive article aside.meta time {
+	float: right!important;
+}
+
+html[dir="rtl"] .tag-page article aside.meta dd.format,
+html[dir="rtl"] .category-page article aside.meta dd.format,
+html[dir="rtl"] .search-page article aside.meta dd.format,
+html[dir="rtl"] .home article aside.meta dd.format,
+html[dir="rtl"] .archive article aside.meta dd.format {
+	float: right!important;
+}
+
+html[dir="rtl"] #comments {
+	margin-right: 0!important;
 }

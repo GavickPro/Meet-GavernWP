@@ -1,7 +1,94 @@
 <?php
 
 // disable direct access to the file	
-defined('GAVERN_WP') or die('Access denied');	
+defined('GAVERN_WP') or die('Access denied');
+
+/**
+ *
+ * Built-in filters:
+ * 
+ * - gavern_social_api
+ * - gavern_thumbnail_caption
+ * - gavern_blog_name
+ * - gavern_blog_desc
+ * - gavern_logo_html
+ * - gavern_meta_description
+ * - gavern_meta_keywords
+ * - gavern_og_title
+ * - gavern_og_image
+ * - gavern_og_type
+ * - gavern_og_description
+ * - gavern_og_url
+ * - gavern_og_custom
+ * - gavern_breadcrumb
+ * - gavern_breadcrumb_home
+ *
+ * - gk_nsp_art_title
+ * - gk_nsp_art_text
+ * - gk_nsp_art_image
+ * - gk_nsp_art_info
+ * - gk_nsp_art_readmore
+ * - gk_nsp_link_title
+ * - gk_nsp_link_text
+ *
+ * - gk_social_fb_link
+ * - gk_social_gplus_link
+ * - gk_social_twitter_link
+ * - gk_social_rss_link
+ *
+ * - gk_tabs_tab
+ * - gk_tabs_content
+ *
+ **/
+
+global $tpl;
+
+/**
+ *
+ * Code used to implement icons in the widget titles
+ *
+ * @return modified title
+ * 
+ **/
+ 
+function gk_title_icons($title) {
+	if($title == '&nbsp;' || trim($title) == '' || strlen($title) == 0) {
+		return false;
+	} else {
+		$icons = array();	
+		preg_match('(icon([\-a-zA-Z0-9]){1,})', $title, $icons);
+		// icon text (if exists)
+		$icon = '';
+		//
+		if(count($icons) > 0) {
+			$icon = '<i class="'.$icons[0].'"></i>';
+		}
+		//
+		$title = preg_replace('@(\[icon([\-a-zA-Z0-9]){1,}\])@', '', $title);
+		//
+		return $icon.' '.$title;
+	}
+}
+
+add_filter('widget_title', 'gk_title_icons');
+
+/**
+ *
+ * Code used to hide widget title only when the title starts with "!" char
+ *
+ * @return modified title
+ * 
+ **/
+
+function gk_hide_widget_title($title) {	
+	if(substr(trim($title), 0, 1) == '!') {
+		return '';
+	} else {
+		return $title;
+	}
+}
+
+add_filter('widget_title', 'gk_hide_widget_title');
 
 /**
  *
@@ -28,6 +115,80 @@ function gavern_excerpt_length($length) {
 }
 
 add_filter( 'excerpt_length', 'gavern_excerpt_length', 999 );
+
+/**
+ *
+ * Function used to filter the post_class
+ *
+ * @return the modified list of the classes
+ *
+ **/
+
+function gavern_post_aside_class($classes) {
+	global $post;
+	global $tpl;
+	// get the post params
+	$params = get_post_custom();
+	$params_aside = isset($params['gavern-post-params-aside']) ? $params['gavern-post-params-aside'][0] : false;
+	$param_aside = true;
+	
+	if($params_aside) {
+		$params_aside = unserialize(unserialize($params_aside));
+		$param_aside = $params_aside['aside'] == 'Y';
+	}
+	// if the display of the aside is disabled
+	if(get_option($tpl->name . '_post_aside_state', 'Y') == 'N' || !$param_aside) {
+		$classes[] = 'no-sidebar';
+	}
+	//
+	return $classes;
+}
+
+add_filter('post_class', 'gavern_post_aside_class');
+
+/**
+ *
+ * Function used in the attachment page image links
+ *
+ * @return the additional class in the links
+ *
+ **/
+
+function gavern_img_link_class( $link ) {
+    $class = 'next_image_link' === current_filter() ? 'next' : 'prev';
+
+    return str_replace( '<a ', '<a class="btn-nav nav-'.$class.'"', $link );
+}
+
+add_filter( 'previous_image_link', 'gavern_img_link_class' );
+add_filter( 'next_image_link',     'gavern_img_link_class' );
+
+/**
+ *
+ * Function used to add target="_blank" in the comments links
+ *
+ * @return comment code
+ *
+ **/
+
+if(get_option($tpl->name . '_comments_autoblank', 'Y') == 'Y') {
+	function gavern_comments_autoblank($text) {
+		$return = str_replace('<a', '<a target="_blank"', $text);
+		return $return;
+	}
+	
+	add_filter('comment_text', 'gavern_comments_autoblank');
+}
+
+/**
+ *
+ * Code used to disable autolinking in comments
+ *
+ **/
+ 
+if(get_option($tpl->name . '_comments_autolinking', 'Y') == 'N') {
+	remove_filter('comment_text', 'make_clickable', 9);
+}
 
 /**
  *

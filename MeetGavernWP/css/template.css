@@ -86,6 +86,8 @@ h6 {
 	color: #444;
 	font-weight: normal;
 	margin: 20px 0;
+	-ms-word-wrap: break-word;
+	    word-wrap: break-word;
 }
 
 h1 {
@@ -110,6 +112,11 @@ h5 {
 
 h6 {
 	font-size: 14px;
+}
+
+p {
+	-ms-word-wrap: break-word;
+	    word-wrap: break-word;
 }
 
 .page-title {
@@ -378,8 +385,8 @@ article {
  *
 ------------------------------------ */
 
-.gk-page + .gk-page-wrap,
-.gk-page + #gk-top {
+#gk-head + .gk-page-wrap,
+#gk-head + #gk-top {
 	border-top: 1px solid #e5e5e5;
 	padding-top: 45px;
 }

@@ -83,7 +83,7 @@ class GavernWPFormParser {
 	private function output() {
 		// prepare empty string for the output
 		$prepared_data = '';
-		$standard_fields = array('Text', 'Select', 'Switcher', 'Textarea', 'Media', 'WidthHeight', 'TextBlock');
+		$standard_fields = array('Text', 'RawText', 'Select', 'Switcher', 'Textarea', 'Media', 'WidthHeight', 'TextBlock');
 		// parse groups
 		foreach($this->loaded_data as $group) {
 			// 

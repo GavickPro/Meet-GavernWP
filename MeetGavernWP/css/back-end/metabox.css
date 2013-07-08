@@ -1,0 +1,31 @@
+/**
+ *
+ * Styles for the metaboxes
+ *
+ **/
+ 
+#gavern-post-params p[data-template] {
+	display: none;
+}
+
+#gavern-post-params p[data-template].active {
+	display: block;
+}
+
+#gavern-post-params p label {
+	line-height: 24px;
+}
+
+#gavern-post-params p select {
+	float: right;
+}
+
+#gavern-post-params p {
+	border-top: 1px solid #dfdfdf;
+	margin: 0;
+	padding: 10px 0;
+}
+
+#gavern-post-params p:nth-of-type(1) {
+	border-top: none;
+}
