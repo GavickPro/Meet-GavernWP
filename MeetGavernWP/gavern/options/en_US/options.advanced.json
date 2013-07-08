@@ -82,6 +82,13 @@
 				"default": "Y"
 			},
 			{
+				"name": "custom_rss_feed",
+				"type": "Text",
+				"label": "Custom RSS feed URL",
+				"tooltip": "Specify the custom RSS feed URL if you're using services like Feedburner",
+				"default": ""
+			},
+			{
 				"name": "comments_explained",
 				"type": "TextBlock",
 				"label": "Settings connected with comments"

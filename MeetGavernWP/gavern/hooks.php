@@ -231,4 +231,40 @@ function gavernwp_ga_code_hook() {
   
 add_action('gavernwp_ga_code', 'gavernwp_ga_code_hook');
  
+/**
+ * 
+ * 
+ * 
+ * 
+ * WP Core actions 
+ *
+ *
+ *
+ *
+ **/
+
+/**
+ *
+ * Function used to generate the custom RSS feed link
+ *
+ **/
+
+function gavernwp_custom_rss_feed_url( $output, $feed ) {
+    global $tpl;
+    // get the new RSS URL
+    $feed_link = get_option($tpl->name . '_custom_rss_feed', '');
+    // check the URL
+    if(trim($feed_link) !== '') {
+	    if (strpos($output, 'comments')) {
+	        return $output;
+	    }
+	
+	    return esc_url($feed_link);
+    } else {
+    	return $output;
+    }
+}
+
+add_action( 'feed_link', 'gavernwp_custom_rss_feed_url', 10, 2 ); 
+ 
 // EOF
