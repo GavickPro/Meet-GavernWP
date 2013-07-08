@@ -46,6 +46,29 @@
 	margin: 0;
 }
 
+#main-menu > li.haschild:after {
+	content: "\f078";
+	font-family: FontAwesome;
+	font-size: 10px;
+	margin: 0 0 0 -5px;
+	position: relative;
+	top: -2px;
+}
+
+#main-menu > li li.haschild {
+	position: relative;
+}
+
+#main-menu > li li.haschild:after {
+	content: "\f054";
+	font-family: FontAwesome;
+	font-size: 10px;
+	margin: 0;
+	position: absolute;
+	right: 10px;
+	top: 7px;
+}
+
 #main-menu > li > a {
 	color: #777;
 	margin: 0;
