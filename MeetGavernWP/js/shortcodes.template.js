@@ -5,9 +5,8 @@
  * -------------------------------------------
  *
  **/
-
 // onLoad event
-jQuery(window).load(function() {
-	// header animation
-	jQuery(document.body).addClass('loaded');
+jQuery(window).load(function () {
+    // header animation
+    jQuery(document.body).addClass('loaded');
 });
