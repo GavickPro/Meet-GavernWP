@@ -7,7 +7,6 @@
  **/
 (function () {
     "use strict";
-
     jQuery(document).ready(function () {
         if (jQuery(window).width() > jQuery(document.body).attr('data-tablet-width')) {
             if (jQuery('#main-menu')) {
@@ -58,13 +57,11 @@
                             $GK_MENU[menuName].animation.indexOf('opacity') !== -1
                         )
                     ) {
-                        var content = false;
-                        
                         base.find('li.haschild').each(function (i, el) {
                             el = jQuery(el);
 
                             if (el.children('.sub-menu').length > 0) {
-                                content = jQuery(el.children('.sub-menu').first());
+                                var content = jQuery(el.children('.sub-menu').first());
                                 var prevh = content.height();
                                 var prevw = content.width();
                                 var heightAnim = $GK_MENU[menuName].animation.indexOf('height') !== -1;
@@ -168,7 +165,7 @@
 
                         base.find('li.haschild').each(function (i, el) {
                             el = jQuery(el);
-                            content = jQuery(el.children('.sub-menu').first());
+                            var content = jQuery(el.children('.sub-menu').first());
                             content.css({
                                 'display': 'none'
                             });
