@@ -12,10 +12,10 @@ global $tpl;
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<header class="status">
-			<?php include(gavern_file('layouts/content.post.header.php')); ?>
+			<?php get_template_part( 'layouts/content.post.header' ); ?>
 		</header>
 
-		<?php include(gavern_file('layouts/content.post.featured.php')); ?>
+		<?php get_template_part( 'layouts/content.post.featured' ); ?>
 
 		<?php if (is_search() || is_archive() || is_tag()) : ?>
 		<section class="summary">
@@ -34,5 +34,5 @@ global $tpl;
 		</section>
 		<?php endif; ?>
 
-		<?php include(gavern_file('layouts/content.post.footer.php')); ?>
+		<?php get_template_part( 'layouts/content.post.footer' ); ?>
 	</article>

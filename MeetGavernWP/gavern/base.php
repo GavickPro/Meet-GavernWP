@@ -9,16 +9,16 @@
 define('GAVERN_WP', 1);
 
 // Including file with template object class
-require_once(gavern_file('gavern/classes/class.gkobject.php'));
+include_once(gavern_file('gavern/classes/class.gkobject.php'));
 // Including file with template browser class
-require_once(gavern_file('gavern/classes/class.gkbrowser.php'));
+include_once(gavern_file('gavern/classes/class.gkbrowser.php'));
 // Including file with menu walker class
-require_once(gavern_file('gavern/classes/class.menu.walker.php'));
+include_once(gavern_file('gavern/classes/class.menu.walker.php'));
 // Including file with mobile menu walker class
-require_once(gavern_file('gavern/classes/class.menu.walker.mobile.php'));
+include_once(gavern_file('gavern/classes/class.menu.walker.mobile.php'));
 // Including file used for WPML support
 if (defined('ICL_SITEPRESS_VERSION')) {
-	require_once(gavern_file('gavern/wpml.php'));
+	include_once(gavern_file('gavern/wpml.php'));
 }
 
 class GavernWP {
