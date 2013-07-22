@@ -78,7 +78,7 @@
 	margin: 10px 0;
 	min-height: 16px;
 	overflow: hidden;
-	padding: 10px 15px;
+	padding: 15px 20px;
 	position: relative;
 }
 
@@ -94,12 +94,12 @@
 
 .gk-toggle.opened > h3:after,
 .gk-toggle.closed > h3:after {
-	background: transparent url('../images/toggler.png') no-repeat 0 0;
-	content: " ";
+	content: "\f056";
+	color: #dd5749;
 	cursor: pointer;
 	display: block;
-	height: 21px;
-	line-height: 21px;
+	font-family: FontAwesome;
+	font-size: 21px;
 	position: absolute;
 	right: 0;
 	top: 8px;
@@ -107,7 +107,7 @@
 }
 
 .gk-toggle.closed > h3:after {
-	background: transparent url('../images/toggler.png') no-repeat 0 -40px;	
+	content: "\f055";
 }
 
 .gk-toggle > h3 {
@@ -117,7 +117,7 @@
 	font-size: 16px;
 	line-height: 17px;
 	margin: -10px 0;
-	padding: 10px 0;
+	padding: 10px 0 15px;
 	position: relative;	
 	z-index: 1;
 }
