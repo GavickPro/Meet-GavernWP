@@ -66,7 +66,7 @@ class GK_NSP_Widget extends WP_Widget {
 		
 		$title = apply_filters('widget_title', empty($instance['title']) ? '' : $instance['title'], $instance, $this->id_base);
 		
-		$ops = array('data_source_type', 'data_source', 'orderby', 'order', 'offset', 'article_pages', 'article_cols', 'article_rows', 'links_pages', 'links_rows', 'article_pagination', 'links_pagination', 'article_title_state', 'article_title_len', 'article_title_len_type', 'article_title_order', 'article_text_state', 'article_text_len', 'article_text_len_type', 'article_text_order', 'article_image_state', 'article_image_w', 'article_image_h', 'article_image_pos', 'article_image_order', 'article_info_state', 'article_info_format', 'article_info_date_format', 'article_info_order', 'article_readmore_state', 'article_readmore_order', 'links_title_state', 'links_title_len', 'links_title_len_type', 'links_text_state', 'links_text_len', 'links_text_len_type', 'article_block_padding', 'image_block_padding', 'cache_time', 'autoanim', 'autoanim_interval', 'autoanim_hover');
+		$ops = array('data_source_type', 'data_source', 'orderby', 'order', 'offset', 'data_source_blog', 'article_pages', 'article_cols', 'article_rows', 'links_pages', 'links_rows', 'article_pagination', 'links_pagination', 'article_title_state', 'article_title_len', 'article_title_len_type', 'article_title_order', 'article_text_state', 'article_text_len', 'article_text_len_type', 'article_text_order', 'article_image_state', 'article_image_w', 'article_image_h', 'article_image_pos', 'article_image_order', 'article_info_state', 'article_info_format', 'article_info_date_format', 'article_info_order', 'article_readmore_state', 'article_readmore_order', 'links_title_state', 'links_title_len', 'links_title_len_type', 'links_text_state', 'links_text_len', 'links_text_len_type', 'article_block_padding', 'image_block_padding', 'cache_time', 'autoanim', 'autoanim_interval', 'autoanim_hover');
 		
 		foreach($ops as $option) {
 			$config[$option] =  empty($instance[$option]) ? null : $instance[$option];
@@ -100,13 +100,25 @@ class GK_NSP_Widget extends WP_Widget {
 		$results = array();
 		// data source
 		if($config['data_source_type'] == 'latest') {
+			if(is_multisite() && $config['data_source_blog'] != '' && is_numeric($config['data_source_blog'])) {
+				switch_to_blog($config['data_source_blog']);
+			}
+			
 			$results = get_posts(array(
 				'posts_per_page' => $amount_of_posts,
 				'offset' => $config['offset'], 
 				'orderby' => $config['orderby'],
 				'order' => $config['order']
 			));
+			
+			if(is_multisite()) {
+				restore_current_blog();
+			}
 		} else if($config['data_source_type'] == 'category') {
+			if(is_multisite() && $config['data_source_blog'] != '' && is_numeric($config['data_source_blog'])) {
+				switch_to_blog($config['data_source_blog']);
+			}
+			
 			$results = get_posts(array(
 				'category_name' => $config['data_source'],
 				'posts_per_page' => $amount_of_posts,
@@ -114,7 +126,15 @@ class GK_NSP_Widget extends WP_Widget {
 				'orderby' => $config['orderby'],
 				'order' => $config['order']
 			));
+			
+			if(is_multisite()) {
+				restore_current_blog();
+			}
 		} else if($config['data_source_type'] == 'tag') {
+			if(is_multisite() && $config['data_source_blog'] != '' && is_numeric($config['data_source_blog'])) {
+				switch_to_blog($config['data_source_blog']);
+			}
+			
 			$results = get_posts(array(
 				'tag' => $config['data_source'],
 				'posts_per_page' => $amount_of_posts,
@@ -122,15 +142,35 @@ class GK_NSP_Widget extends WP_Widget {
 				'orderby' => $config['orderby'],
 				'order' => $config['order']
 			));
+			
+			if(is_multisite()) {
+				restore_current_blog();
+			}
 		} else if($config['data_source_type'] == 'post') {
+			if(is_multisite() && $config['data_source_blog'] != '' && is_numeric($config['data_source_blog'])) {
+				switch_to_blog($config['data_source_blog']);
+			}
+			
 			$post_slugs = explode(',', $config['data_source']);
 			foreach($post_slugs as $slug) {
 				$res = get_posts(array('name' => $slug));
 				array_push($results, $res[0]);
 			}
+			
+			if(is_multisite()) {
+				restore_current_blog();
+			}
 		} else if($config['data_source_type'] == 'custom') {
+			if(is_multisite() && $config['data_source_blog'] != '' && is_numeric($config['data_source_blog'])) {
+				switch_to_blog($config['data_source_blog']);
+			}
+			
 			$post_type = explode(',', $config['data_source']);
 			array_push($results, get_posts(array('post_type' => $post_type, 'numberposts' => $amount_of_posts)));
+			
+			if(is_multisite()) {
+				restore_current_blog();
+			}
 		}
 		// restore the global $post variable
 		$post = $tmp_post;
@@ -332,7 +372,7 @@ class GK_NSP_Widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
-		$ops = array('data_source_type', 'data_source', 'orderby', 'order', 'offset', 'article_pages', 'article_cols', 'article_rows', 'links_pages', 'links_rows', 'article_pagination', 'links_pagination', 'article_title_state', 'article_title_len', 'article_title_len_type', 'article_title_order', 'article_text_state', 'article_text_len', 'article_text_len_type', 'article_text_order', 'article_image_state', 'article_image_w', 'article_image_h', 'article_image_pos', 'article_image_order', 'article_info_state', 'article_info_format', 'article_info_date_format', 'article_info_order', 'article_readmore_state', 'article_readmore_order', 'links_title_state', 'links_title_len', 'links_title_len_type', 'links_text_state', 'links_text_len', 'links_text_len_type', 'article_block_padding', 'image_block_padding', 'cache_time', 'autoanim', 'autoanim_interval', 'autoanim_hover');
+		$ops = array('data_source_type', 'data_source', 'orderby', 'order', 'offset', 'data_source_blog', 'article_pages', 'article_cols', 'article_rows', 'links_pages', 'links_rows', 'article_pagination', 'links_pagination', 'article_title_state', 'article_title_len', 'article_title_len_type', 'article_title_order', 'article_text_state', 'article_text_len', 'article_text_len_type', 'article_text_order', 'article_image_state', 'article_image_w', 'article_image_h', 'article_image_pos', 'article_image_order', 'article_info_state', 'article_info_format', 'article_info_date_format', 'article_info_order', 'article_readmore_state', 'article_readmore_order', 'links_title_state', 'links_title_len', 'links_title_len_type', 'links_text_state', 'links_text_len', 'links_text_len_type', 'article_block_padding', 'image_block_padding', 'cache_time', 'autoanim', 'autoanim_interval', 'autoanim_hover');
 		
 		foreach($ops as $option) {
 			$instance[$option] = strip_tags( $new_instance[$option] );	
@@ -386,6 +426,7 @@ class GK_NSP_Widget extends WP_Widget {
 		$orderby = isset($instance['orderby']) ? esc_attr($instance['orderby']) : 'ID';
 		$order = isset($instance['order']) ? esc_attr($instance['order']) : 'DESC';
 		$offset = isset($instance['offset']) ? esc_attr($instance['offset']) : '0';
+		$data_source_blog = isset($instance['data_source_blog']) ? esc_attr($instance['data_source_blog']) : '';
 		
 		// articles amount
 		$article_pages = isset($instance['article_pages']) ? esc_attr($instance['article_pages']) : '1';
@@ -524,6 +565,13 @@ class GK_NSP_Widget extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'offset' ) ); ?>"><?php _e( 'Offset:', GKTPLNAME ); ?></label>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'offset' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'offset' ) ); ?>" type="text" value="<?php echo esc_attr( $offset ); ?>" class="short" />
 			</p>
+			
+			<?php if(is_multisite()) : ?>
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'data_source_blog' ) ); ?>"><?php _e( 'Blog ID (leave blank for current blog): ', GKTPLNAME ); ?></label>
+				<input id="<?php echo esc_attr( $this->get_field_id( 'data_source_blog' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'data_source_blog' ) ); ?>" type="text" value="<?php echo esc_attr( $data_source_blog ); ?>" class="short" />
+			</p>
+			<?php endif; ?>
 			
 			<p>
 				<h3><?php _e('Articles amount', GKTPLNAME); ?></h3>
