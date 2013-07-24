@@ -453,9 +453,11 @@ function gk_social_api($title, $postID) {
 		     if($image == '') {
 		      	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $postID ), 'single-post-thumbnail' );
 		      	$image = $image[0];
-		     }
-		      
-		      
+		      	
+		      	if($image == '' && get_option($tpl->name . '_og_default_image', '') != '') {
+		      		$image = get_option($tpl->name . '_og_default_image', '');
+		      	}
+		     } 
 		     // configure Pinterest buttons               
 		     $pinterest_btn_attributes = get_option($tpl->name . '_pinterest_btn_style', 'horizontal');
 		     $pinterest_output = '<a href="http://pinterest.com/pin/create/button/?url='.get_permalink($postID).'&amp;media='.$image.'&amp;description='.(($pinit_title == false) ? urlencode(strip_tags($title)) : $pinit_title).'" class="pin-it-button" count-layout="'.$pinterest_btn_attributes.'"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="'.__('Pin it', GKTPLNAME).'" alt="'.__('Pin it', GKTPLNAME).'" /></a>';

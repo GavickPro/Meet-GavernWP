@@ -263,6 +263,13 @@
 				}
 			},
 			{
+				"name": "og_default_image",
+				"type": "Media",
+				"label": "Open Graph default image",
+				"tooltip": "Select the image for the Open Graph metatags no images specified.",
+				"default": ""
+			},
+			{
 				"name": "excluding_explained",
 				"type": "TextBlock",
 				"label": "Include/Exclude specific pages or categories from Social API"
