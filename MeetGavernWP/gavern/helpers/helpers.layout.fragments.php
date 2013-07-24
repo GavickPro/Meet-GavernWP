@@ -463,7 +463,7 @@ function gk_social_api($title, $postID) {
 		     $pinterest_output = '<a href="http://pinterest.com/pin/create/button/?url='.get_permalink($postID).'&amp;media='.$image.'&amp;description='.(($pinit_title == false) ? urlencode(strip_tags($title)) : $pinit_title).'" class="pin-it-button" count-layout="'.$pinterest_btn_attributes.'"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="'.__('Pin it', GKTPLNAME).'" alt="'.__('Pin it', GKTPLNAME).'" /></a>';
 		}
 		
-		$output = '<section id="gk-social-api">' . $fb_like_output . $gplus_output . $twitter_output . $pinterest_output . '</section>';
+		$output = '<section id="gk-social-api">' . apply_filters('gavern_social_api_fb', $fb_like_output) . apply_filters('gavern_social_api_gplus', $gplus_output) . apply_filters('gavern_social_api_twitter', $twitter_output) . apply_filters('gavern_social_api_pinterest', $pinterest_output) . '</section>';
 		
 		return apply_filters('gavern_social_api', $output);
 	}
