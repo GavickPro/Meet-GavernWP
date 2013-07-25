@@ -5,7 +5,6 @@
  * -------------------------------------------
  *
  **/
- 
 "use strict";
 
 /**
@@ -18,35 +17,26 @@
  *
  */
 jQuery.cookie = function (key, value, options) {
-
-         // key and at least value given, set cookie...
-        
+    // key and at least value given, set cookie...        
     if (arguments.length > 1 && String(value) !== "[object Object]") {        
         options = jQuery.extend({}, options);
-
                 
         if (value === null || value === undefined) {            
             options.expires = -1;        
         }
-
                 
         if (typeof options.expires === 'number') {            
             var days = options.expires,
                 t = options.expires = new Date();            
             t.setDate(t.getDate() + days);        
         }
-
                 
         value = String(value);
 
-                
-        return (document.cookie = [            encodeURIComponent(key), '=',             options.raw ? value : encodeURIComponent(value),             options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
-                        options.path ? '; path=' + options.path : '',             options.domain ? '; domain=' + options.domain : '',             options.secure ? '; secure' : ''        
+        return (document.cookie = [encodeURIComponent(key), '=', options.raw ? value : encodeURIComponent(value), options.expires ? '; expires=' + options.expires.toUTCString() : '', options.path ? '; path=' + options.path : '', options.domain ? '; domain=' + options.domain : '', options.secure ? '; secure' : ''        
         ].join(''));    
     }
-
-         // key and possibly options given, get cookie...
-        
+    // key and possibly options given, get cookie...   
     options = value || {};    
     var result, decode = options.raw ? function (s) {
             return s;
@@ -137,17 +127,12 @@ function gk_widget_control_init_events(id, inner) {
         form.attr('data-state', 'initialized');
         var firstSelect = form.parent().find('.gk_widget_rules_select');
         var select = form.children('.gk_widget_rules_form_select');
-        var page = form.find('.gk_widget_rules_form_input_page').parent();
-        var post = form.find('.gk_widget_rules_form_input_post').parent();
-        var category = form.find('.gk_widget_rules_form_input_category').parent();
-        var tag = form.find('.gk_widget_rules_form_input_tag').parent();
-        var template = form.find('.gk_widget_rules_form_input_template').parent();
-        var taxonomy = form.find('.gk_widget_rules_form_input_taxonomy').parent();
-        var taxonomy_term = form.find('.gk_widget_rules_form_input_taxonomy_term').parent();
-        var posttype = form.find('.gk_widget_rules_form_input_posttype').parent();
-        //var format = form.find('.gk_widget_rules_form_input_format').parent();
-        var author = form.find('.gk_widget_rules_form_input_author').parent();
         var btn = form.find('.gk_widget_rules_btn');
+        var form_inputs = {};
+        var form_inputs_names = ['page', 'post', 'category', 'tag', 'template', 'taxonomy', 'taxonomy_term', 'posttype', 'author'];
+        jQuery.each(form_inputs_names, function (i, el) {
+            form_inputs[el] = form.find('.gk_widget_rules_form_input_' + el).parent();
+        });
         // hide unnecesary form
         if (firstSelect.children('option:selected').val() === 'all') {
             form.css('display', 'none');
@@ -169,114 +154,18 @@ function gk_widget_control_init_events(id, inner) {
             var value = select.children('option:selected').val();
 
             if (value === 'homepage' || value === 'page404' || value === 'search' || value === 'archive') {
-                page.css('display', 'none');
-                post.css('display', 'none');
-                category.css('display', 'none');
-                tag.css('display', 'none');
-                author.css('display', 'none');
-                taxonomy.css('display', 'none');
-                taxonomy_term.css('display', 'none');
-                //format.css('display', 'none');
-                template.css('display', 'none');
-                posttype.css('display', 'none');
-            } else if (value === 'page:') {
-                page.css('display', 'block');
-                post.css('display', 'none');
-                category.css('display', 'none');
-                tag.css('display', 'none');
-                author.css('display', 'none');
-                taxonomy.css('display', 'none');
-                taxonomy_term.css('display', 'none');
-                //format.css('display', 'none');
-                template.css('display', 'none');
-                posttype.css('display', 'none');
-            } else if (value === 'post:') {
-                page.css('display', 'none');
-                post.css('display', 'block');
-                category.css('display', 'none');
-                tag.css('display', 'none');
-                author.css('display', 'none');
-                taxonomy.css('display', 'none');
-                taxonomy_term.css('display', 'none');
-                //format.css('display', 'none');
-                template.css('display', 'none');
-                posttype.css('display', 'none');
-            } else if (value === 'category:') {
-                page.css('display', 'none');
-                post.css('display', 'none');
-                category.css('display', 'block');
-                tag.css('display', 'none');
-                author.css('display', 'none');
-                taxonomy.css('display', 'none');
-                taxonomy_term.css('display', 'none');
-                //format.css('display', 'none');
-                template.css('display', 'none');
-                posttype.css('display', 'none');
-            } else if (value === 'tag:') {
-                page.css('display', 'none');
-                post.css('display', 'none');
-                category.css('display', 'none');
-                tag.css('display', 'block');
-                author.css('display', 'none');
-                taxonomy.css('display', 'none');
-                taxonomy_term.css('display', 'none');
-                //format.css('display', 'none');
-                template.css('display', 'none');
-                posttype.css('display', 'none');
-            } else if (value === 'author:') {
-                page.css('display', 'none');
-                post.css('display', 'none');
-                category.css('display', 'none');
-                tag.css('display', 'none');
-                author.css('display', 'block');
-                taxonomy.css('display', 'none');
-                taxonomy_term.css('display', 'none');
-                //format.css('display', 'none');
-                template.css('display', 'none');
-                posttype.css('display', 'none');
-            } else if (value === 'template:') {
-                page.css('display', 'none');
-                post.css('display', 'none');
-                category.css('display', 'none');
-                tag.css('display', 'none');
-                author.css('display', 'none');
-                taxonomy.css('display', 'none');
-                taxonomy_term.css('display', 'none');
-                //format.css('display', 'none');
-                template.css('display', 'block');
-                posttype.css('display', 'none');
-            } else if (value === 'taxonomy:') {
-                page.css('display', 'none');
-                post.css('display', 'none');
-                category.css('display', 'none');
-                tag.css('display', 'none');
-                author.css('display', 'none');
-                //format.css('display', 'none');
-                template.css('display', 'none');
-                taxonomy.css('display', 'block');
-                taxonomy_term.css('display', 'block');
-                posttype.css('display', 'none');
-            } else if (value === 'posttype:') {
-                page.css('display', 'none');
-                post.css('display', 'none');
-                category.css('display', 'none');
-                tag.css('display', 'none');
-                author.css('display', 'none');
-                //format.css('display', 'none');
-                template.css('display', 'none');
-                taxonomy.css('display', 'none');
-                taxonomy_term.css('display', 'none');
-                posttype.css('display', 'block');
+                jQuery.each(form_inputs, function (i, el) {
+                    el.css('display', 'none');
+                });
+            } else {
+                jQuery.each(form_inputs_names, function (i, el) {
+                    if (value.replace(':', '') !== el && value.replace(':', '') !== el + '_term') {
+                        form_inputs[el].css('display', 'none');
+                    } else {
+                        form_inputs[el].css('display', 'block');
+                    }
+                });
             }
-            /*else if(value === 'format:') {
-				page.css('display', 'none');
-				post.css('display', 'none');
-				category.css('display', 'none');
-				tag.css('display', 'none');
-				author.css('display', 'none');
-				format.css('display', 'block');
-				template.css('display', 'none');
-			}*/
         });
         // add the onClick event to the button
         btn.click(function (event) {
@@ -285,43 +174,33 @@ function gk_widget_control_init_events(id, inner) {
             var output = form.find('.gk_widget_rules_output');
             var value = select.children('option:selected').val();
 
-            if (value === 'homepage') {
-                output.val(output.val() + ',homepage');
-            } else if (value === 'search') {
-                output.val(output.val() + ',search');
-            } else if (value === 'archive') {
-                output.val(output.val() + ',archive');
-            } else if (value === 'page404') {
-                output.val(output.val() + ',page404');
-            } else if (value === 'page:') {
-                output.val(output.val() + ',page:' + form.find('.gk_widget_rules_form_input_page').val());
-            } else if (value === 'post:') {
-                output.val(output.val() + ',post:' + form.find('.gk_widget_rules_form_input_post').val());
-            } else if (value === 'format:') {
-                output.val(output.val() + ',format:' + form.find('.gk_widget_rules_form_input_format').val());
-            } else if (value === 'template:') {
-                output.val(output.val() + ',template:' + form.find('.gk_widget_rules_form_input_template').val());
-            } else if (value === 'category:') {
-                output.val(output.val() + ',category:' + form.find('.gk_widget_rules_form_input_category').val());
-            } else if (value === 'tag:') {
-                output.val(output.val() + ',tag:' + form.find('.gk_widget_rules_form_input_tag').val());
+            if (
+                value === 'homepage' ||
+                value === 'search' ||
+                value === 'archive' ||
+                value === 'page404'
+            ) {
+                output.val(output.val() + ',' + value);
+            } else if (
+                value === 'page:' ||
+                value === 'post:' ||
+                value === 'format:' ||
+                value === 'template:' ||
+                value === 'category:' ||
+                value === 'tag:' ||
+                value === 'author:'
+            ) {
+                output.val(output.val() + ',' + value + form.find('.gk_widget_rules_form_input_' + value.replace(':', '')).val());
             } else if (value === 'taxonomy:') {
                 var tax = form.find('.gk_widget_rules_form_input_taxonomy').val();
                 var term = form.find('.gk_widget_rules_form_input_taxonomy_term').val();
-                //
-                if (term !== '') {
-                    output.val(output.val() + ',taxonomy:' + tax + ';' + term);
-                } else {
-                    output.val(output.val() + ',taxonomy:' + tax);
-                }
+                output.val(output.val() + ',taxonomy:' + tax + ((term !== '') ? ';' + term : ''));
             } else if (value === 'posttype:') {
                 var type = form.find('.gk_widget_rules_form_input_posttype').val();
                 //
                 if (type !== '') {
                     output.val(output.val() + ',posttype:' + type);
                 }
-            } else if (value === 'author:') {
-                output.val(output.val() + ',author:' + form.find('.gk_widget_rules_form_input_author').val());
             }
 
             gk_widget_control_refresh(form);
@@ -408,32 +287,13 @@ function gk_widget_control_refresh(form) {
             if (pages[i] !== '') {
                 pages_exist = true;
                 var type = 'homepage';
+                var types = ['page:', 'post:', 'category:', 'tag:', 'archive', 'author:', 'template:', 'taxonomy:', 'posttype:', 'page404', 'search'];
 
-                if (pages[i].substr(0, 5) === 'page:') {
-                    type = 'page';
-                } else if (pages[i].substr(0, 5) === 'post:') {
-                    type = 'post';
-                } else if (pages[i].substr(0, 9) === 'category:') {
-                    type = 'category';
-                } else if (pages[i].substr(0, 4) === 'tag:') {
-                    type = 'tag';
-                } else if (pages[i].substr(0, 7) === 'archive') {
-                    type = 'archive';
-                } else if (pages[i].substr(0, 7) === 'author:') {
-                    type = 'author';
-                }
-                //else if(pages[i].substr(0,7) === 'format:') { type = 'format'; }
-                else if (pages[i].substr(0, 9) === 'template:') {
-                    type = 'template';
-                } else if (pages[i].substr(0, 9) === 'taxonomy:') {
-                    type = 'taxonomy';
-                } else if (pages[i].substr(0, 9) === 'posttype:') {
-                    type = 'posttype';
-                } else if (pages[i].substr(0, 7) === 'page404') {
-                    type = 'page404';
-                } else if (pages[i].substr(0, 6) === 'search') {
-                    type = 'search';
-                }
+                jQuery.each(types, function (j, el) {
+                    if (pages[i].substr(0, el.length) === el) {
+                        type = el.replace(':', '');
+                    }
+                });
 
                 var out = pages[i];
 
