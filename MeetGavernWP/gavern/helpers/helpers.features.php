@@ -731,7 +731,10 @@ function gavern_show_og_meta_box() {
 					
 					// image
 					case 'image':
-						$image = 'none';
+						$image = 'none'; 
+						if (get_option($tpl->name . '_og_default_image', '') != '')  {
+							$image = get_option($tpl->name . '_og_default_image'); 
+						}
 						echo '<span class="gavern_opengraph_default_image" style="display:none">'.$image.'</span>';
 						if ($meta) { 
 							$image = wp_get_attachment_image_src($meta, 'medium');	

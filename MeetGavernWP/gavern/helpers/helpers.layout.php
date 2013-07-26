@@ -238,8 +238,6 @@ function gk_opengraph_metatags() {
 			//
 			if($image != '') {
 				echo apply_filters('gavern_og_image', '<meta name="og:image" content="'.$image.'" />' . "\n");
-			} elseif(get_option($tpl->name . '_og_default_image', '') != '') {
-				echo apply_filters('gavern_og_image', '<meta name="og:image" content="'.get_option($tpl->name . '_og_default_image', '').'" />' . "\n");
 			}
 			//
 			echo apply_filters('gavern_og_type', '<meta name="og:type" content="'.(($type == '') ? 'article' : $type).'" />' . "\n");
