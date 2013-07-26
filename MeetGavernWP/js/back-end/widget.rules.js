@@ -159,10 +159,20 @@ function gk_widget_control_init_events(id, inner) {
                 });
             } else {
                 jQuery.each(form_inputs_names, function (i, el) {
-                    if (value.replace(':', '') !== el && value.replace(':', '') !== el + '_term') {
-                        form_inputs[el].css('display', 'none');
-                    } else {
-                        form_inputs[el].css('display', 'block');
+                	if(el !== 'taxonomy_term') {
+	                    if (value.replace(':', '') !== el) {
+	                        form_inputs[el].css('display', 'none');
+	                        
+	                        if(value.replace(':', '') !== 'taxonomy') {
+	                        	form_inputs['taxonomy_term'].css('display', 'none');
+	                        }
+	                    } else {
+	                        form_inputs[el].css('display', 'block');
+	                        
+	                        if(value.replace(':', '') === 'taxonomy') {
+	                        	form_inputs['taxonomy_term'].css('display', 'block');
+	                        }
+	                    }
                     }
                 });
             }
