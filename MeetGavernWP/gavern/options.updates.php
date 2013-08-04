@@ -17,7 +17,7 @@ function gavern_updates_options() {
 	    wp_die(__('You don\'t have sufficient permissions to access this page!', GKTPLNAME));  
 	} 
 
-	include_once('layouts/updates.php');
+	include_once(TEMPLATEPATH . '/gavern/layouts/updates.php');
 }
 
 /**
