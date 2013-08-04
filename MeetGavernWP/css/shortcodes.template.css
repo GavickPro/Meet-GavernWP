@@ -34,7 +34,7 @@
 }
 
 body.loaded .gk-big-header {
-	-webkit-filter: blur(0px);
+	-webkit-filter: none;
 }
 
 .gk-big-header span {
