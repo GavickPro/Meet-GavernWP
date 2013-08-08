@@ -8,7 +8,7 @@ global $tpl;
 
 // check if reCAPTCHA isn't loaded earlier by other plugin
 if(!function_exists('_recaptcha_qsencode')) {
-	require_once('gavern/classes/class.recaptchalib.php');
+	include_once('gavern/classes/class.recaptchalib.php');
 }
 // get the params
 $params = get_post_custom();

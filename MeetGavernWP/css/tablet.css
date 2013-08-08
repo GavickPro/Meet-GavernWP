@@ -245,6 +245,11 @@
 	border-top: none!important;
 }
 
+#main-menu > li.haschild:after,
+#main-menu > li li.haschild:after {
+	display: none!important;
+}
+
 /* 10.5. Footer
 ==================================== */ 
 

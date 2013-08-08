@@ -360,6 +360,37 @@ function gavern_widget_update($instance, $new_instance, $old_instance, $widget) 
 		$styles_css[$widget->id] = $_POST[$tpl->name . '_widget_style_css_' . $widget->id];
 		$responsive[$widget->id] = $_POST[$tpl->name . '_widget_responsive_' . $widget->id];
 		$users[$widget->id] = $_POST[$tpl->name . '_widget_users_' . $widget->id];
+		
+		//
+		// Clean up the variables
+		//
+		
+		// get all widgets names
+		$all_widgets = array();
+		$all_widgets_assoc = get_option('sidebars_widgets'); 
+		// iterate throug the sidebar widgets settings to get all active widgets names
+		foreach($all_widgets_assoc as $sidebar_name => $sidebar) {
+			// remember about wp_inactive_widgets and array_version fields!
+			if($sidebar_name != 'wp_inactive_widgets' && is_array($sidebar) && count($sidebar) > 0) {
+				foreach($sidebar as $widget_name) {
+					array_push($all_widgets, $widget_name);
+				}
+			}
+		}
+		// get the widget names from the exisitng settings
+		$widget_names = array_keys($options_type);
+		// check for the unexisting widgets
+		foreach($widget_names as $widget_name) {
+			// if widget doesn't exist - remove it from the options
+			if(in_array($widget_name, $all_widgets) !== TRUE) {
+				unset($options_type[$widget_name]);
+				unset($options[$widget_name]);
+				unset($styles[$widget_name]);
+				unset($styles_css[$widget_name]);
+				unset($responsive[$widget_name]);
+				unset($users[$widget_name]);
+			}
+		}
 		// update the settings
 		update_option($tpl->name . '_widget_rules_type', $options_type);
 		update_option($tpl->name . '_widget_rules', $options);
@@ -700,7 +731,10 @@ function gavern_show_og_meta_box() {
 					
 					// image
 					case 'image':
-						$image = 'none';
+						$image = 'none'; 
+						if (get_option($tpl->name . '_og_default_image', '') != '')  {
+							$image = get_option($tpl->name . '_og_default_image'); 
+						}
 						echo '<span class="gavern_opengraph_default_image" style="display:none">'.$image.'</span>';
 						if ($meta) { 
 							$image = wp_get_attachment_image_src($meta, 'medium');	

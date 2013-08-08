@@ -603,7 +603,7 @@ function gk_condition($mode, $input, $users) {
 	}
 	
 	if($mode != 'all') {
-		$input = preg_replace('@[^a-zA-Z0-9\-_,;\:\s]@mis', '', $input);
+		$input = preg_replace('@[^a-zA-Z0-9\-_,;\:\.\s]@mis', '', $input); 
 		$input = substr($input, 1);
 		$input = explode(',', $input);
 
@@ -625,7 +625,7 @@ function gk_condition($mode, $input, $users) {
 			} else if(stripos($input[$i], 'archive') !== FALSE) {
 			    $output .= ' is_archive() ';
 			} else if(stripos($input[$i], 'author:') !== FALSE) {
-			    $output .= ' (is_author(\'' . substr($input[$i], 7) . '\') && is_single()) ';
+			    $output .= ' (is_author(\'' . substr($input[$i], 7) . '\')) ';
 		    } else if(stripos($input[$i], 'template:') !== FALSE) {
 		        if(substr($input[$i], 9) != '') {
 		       		$output .= ' (is_page_template(\'' . substr($input[$i], 9) . '.php\') && is_singular()) ';
@@ -643,11 +643,12 @@ function gk_condition($mode, $input, $users) {
 			    	$taxonomy = substr($input[$i], 9);
 			    	$taxonomy = explode(';', $taxonomy);
 			    	// check amount of taxonomies
+			    	
 			    	if(count($taxonomy) == 1) {
-			   			$output .= ' (is_tax(\'' . $taxonomy[0] . '\'))';
-			   		} else if(count($taxonomy) == 2) {
-			   			$output .= ' (is_tax(\'' . $taxonomy[0] . '\', \'' . $taxonomy[1] . '\')) ';
-			   		}
+			    	     $output .= ' (is_tax(\'' . $taxonomy[0] . '\'))';
+			    	} else if(count($taxonomy) == 2) {
+			    	     $output .= ' (has_term(\'' . $taxonomy[1] . '\', \'' . $taxonomy[0] . '\')) ';
+			    	}
 			   	}
 			} else if(stripos($input[$i], 'posttype:') !== FALSE) {
 			    if(substr($input[$i], 9) != '') {

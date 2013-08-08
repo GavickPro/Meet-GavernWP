@@ -8,6 +8,10 @@ defined('GAVERN_WP') or die('Access denied');
  * Built-in filters:
  * 
  * - gavern_social_api
+ * - gavern_social_api_fb
+ * - gavern_social_api_gplus
+ * - gavern_social_api_twitter
+ * - gavern_social_api_pinterest
  * - gavern_thumbnail_caption
  * - gavern_blog_name
  * - gavern_blog_desc

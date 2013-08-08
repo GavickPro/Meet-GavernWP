@@ -30,7 +30,8 @@ function gavern_init_customizer() {
 			array(
 		    	'default' => $template_style,
 		    	'type'	=> 'option',
-		    	'capability' => 'edit_theme_options'
+		    	'capability' => 'edit_theme_options',
+		    	'priority' => 1
 			) 
 		);
 		// create control
@@ -40,7 +41,8 @@ function gavern_init_customizer() {
 			    'label'   => $styles->family_desc,
 			    'section' => 'colors',
 			    'type'    => 'select',
-			    'choices' => $styles_array
+			    'choices' => $styles_array,
+			    'priority' => 2
 			) 
 		);
 	}	
@@ -108,7 +110,8 @@ function gavern_init_customizer() {
 		        "left" => __("Sidebar on the left", GKTPLNAME),
 		        "right"=> __("Sidebar on the right", GKTPLNAME),
 		        "none" => __("Sidebar disabled", GKTPLNAME)
-		    )
+		    ),
+		    'priority' => 1
 		) 
 	);
 	
@@ -117,16 +120,8 @@ function gavern_init_customizer() {
 		array(
 		    'label'   => __('Theme width', GKTPLNAME),
 		    'section' => $tpl->name . '_layout',
-		    'type'    => 'text'
-		) 
-	);
-	
-	$wp_customize->add_control( 
-		$tpl->name . '_sidebar_width', 
-		array(
-		    'label'   => __('Sidebar % width', GKTPLNAME),
-		    'section' => $tpl->name . '_layout',
-		    'type'    => 'text'
+		    'type'    => 'text',
+		    'priority' => 2
 		) 
 	);
 	
@@ -135,7 +130,8 @@ function gavern_init_customizer() {
 		array(
 		    'label'   => __('Tablet width', GKTPLNAME),
 		    'section' => $tpl->name . '_layout',
-		    'type'    => 'text'
+		    'type'    => 'text',
+		    'priority' => 3
 		) 
 	);
 	
@@ -144,7 +140,18 @@ function gavern_init_customizer() {
 		array(
 		    'label'   => __('Mobile width', GKTPLNAME),
 		    'section' => $tpl->name . '_layout',
-		    'type'    => 'text'
+		    'type'    => 'text',
+		    'priority' => 4
+		) 
+	);
+	
+	$wp_customize->add_control( 
+		$tpl->name . '_sidebar_width', 
+		array(
+		    'label'   => __('Sidebar % width', GKTPLNAME),
+		    'section' => $tpl->name . '_layout',
+		    'type'    => 'text',
+		    'priority' => 5
 		) 
 	);
 }

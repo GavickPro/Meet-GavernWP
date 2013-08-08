@@ -11,11 +11,11 @@ global $tpl;
 ?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'indexed' ); ?>>
 		<header class="video">
-			<?php include(gavern_file('layouts/content.post.header.php')); ?>
+			<?php get_template_part( 'layouts/content.post.header' ); ?>
 		</header>
 	
 		<?php if ( is_search() || is_archive() || is_tag() ) : ?>
-		<?php include(gavern_file('layouts/content.post.featured.php')); ?>
+		<?php get_template_part( 'layouts/content.post.featured' ); ?>
 		
 		<section class="summary">
 			<?php the_excerpt(); ?>
@@ -33,5 +33,5 @@ global $tpl;
 		</section>
 		<?php endif; ?>
 
-		<?php include(gavern_file('layouts/content.post.footer.php')); ?>
+		<?php get_template_part( 'layouts/content.post.footer' ); ?>
 	</article>

@@ -74,7 +74,7 @@ gk_load('before');
 		</section>
 		<?php endif; ?>
 		
-		<?php include(gavern_file('layouts/content.post.footer.php')); ?>
+		<?php get_template_part( 'layouts/content.post.footer' ); ?>
 	</article>
 	
 	<?php comments_template('', true); ?>

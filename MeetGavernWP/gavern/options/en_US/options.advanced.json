@@ -82,6 +82,20 @@
 				"default": "Y"
 			},
 			{
+				"name": "custom_rss_feed",
+				"type": "Text",
+				"label": "Custom RSS feed URL",
+				"tooltip": "Specify the custom RSS feed URL if you're using services like Feedburner",
+				"default": ""
+			},
+			{
+				"name": "cache_manifest",
+				"type": "Text",
+				"label": "Cache manifest filename",
+				"tooltip": "Please specify the cache manifest filename if you need. This file should be located in the root of your WordPress installation.",
+				"default": ""
+			},
+			{
 				"name": "comments_explained",
 				"type": "TextBlock",
 				"label": "Settings connected with comments"

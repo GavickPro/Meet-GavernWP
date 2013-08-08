@@ -70,10 +70,15 @@ add_action('gavernwp_doctype', 'gavernwp_doctype_hook');
  **/
 
 function gavernwp_html_attributes_hook() {
+	global $tpl;
 	// generate the <html> language attributes
 	language_attributes();
 	// generate the prefix attribute
 	echo ' prefix="og: http://ogp.me/ns#"';
+	// generate the cache manifest attribute
+	if(trim(get_option($tpl->name . '_cache_manifest', '')) != '') {
+		echo ' manifest="'.trim(get_option($tpl->name . '_cache_manifest', '')).'"';
+	}
  	// YOUR HOOK CODE HERE
 }
 
@@ -230,5 +235,41 @@ function gavernwp_ga_code_hook() {
 }
   
 add_action('gavernwp_ga_code', 'gavernwp_ga_code_hook');
+ 
+/**
+ * 
+ * 
+ * 
+ * 
+ * WP Core actions 
+ *
+ *
+ *
+ *
+ **/
+
+/**
+ *
+ * Function used to generate the custom RSS feed link
+ *
+ **/
+
+function gavernwp_custom_rss_feed_url( $output, $feed ) {
+    global $tpl;
+    // get the new RSS URL
+    $feed_link = get_option($tpl->name . '_custom_rss_feed', '');
+    // check the URL
+    if(trim($feed_link) !== '') {
+	    if (strpos($output, 'comments')) {
+	        return $output;
+	    }
+	
+	    return esc_url($feed_link);
+    } else {
+    	return $output;
+    }
+}
+
+add_action( 'feed_link', 'gavernwp_custom_rss_feed_url', 10, 2 ); 
  
 // EOF

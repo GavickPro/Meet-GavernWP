@@ -80,6 +80,21 @@ class GKFormInputFonts extends GKFormInput {
 			</select></p>';
 			// squirrel fonts selector
 			$squirrel_fonts = (glob(TEMPLATEPATH . '/fonts/*' , GLOB_ONLYDIR));
+			$squirrel_fonts_len = count($squirrel_fonts);
+			
+			for($i = 0; $i < $squirrel_fonts_len; $i++) {
+				
+				if(
+					substr($squirrel_fonts[$i], -7) === 'gk-font' || 
+					substr($squirrel_fonts[$i], -12) === 'font-awesome' ||
+					substr($squirrel_fonts[$i], -11) === 'woocommerce'
+				) {
+					$squirrel_fonts[$i] = false;
+				}
+			}
+			
+			$squirrel_fonts = array_filter($squirrel_fonts);
+			$squirrel_fonts = array_values($squirrel_fonts);
 			
 			$output .= '<p><label>'.__('Fonts Squirrel: ', GKTPLNAME).'</label><select id="'.($this->tpl->name).'_fonts_squirrel_'.($font_family->short_name).'" class="gkInput gkSelect" data-name="fonts_squirrel_'.($font_family->short_name).'" data-family="'.($font_family->short_name).'" data-type="squirrel"
 			'.($this->required).' 
