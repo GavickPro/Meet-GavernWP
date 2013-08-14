@@ -15,7 +15,7 @@
 	jQuery(window).load(function() {
 		if(jQuery('#gallery')) {
 			gkGalleryTimer = setTimeout(function() {
-				gkGalleryAutoanimation('next');
+				gkGalleryAutoanimation('next', null);
 			}, 5000);
 			// pagination
 			jQuery('#gallery').children('ol').find('li').each(function(i, btn) {
