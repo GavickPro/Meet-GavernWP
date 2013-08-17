@@ -1,0 +1,66 @@
+[
+	{
+		"groupname": "Configuração de Layout do Tema",
+		"groupdesc": "Configurar parametros de layout do tema.",
+		"fields": [
+			{
+				"name": "page_layout",
+				"type": "Select",
+				"label": "Layout da página",
+				"tooltip": "Definir o layout da página.",
+				"default": "right",
+				"class": "",
+				"visibility": "",
+				"other": {
+					"options": {
+						"left": "Sidebar à esquerda",
+						"right": "Sidebar à direita",
+						"none": "Sidebar desabilitada"
+					}
+				}
+			},
+			{
+				"name": "template_width",
+				"type": "Text",
+				"label": "Largura do Tema",
+				"tooltip": "Especifique a largura máxima para o tema a ser visível em computadores desktop.",
+				"default": "980"
+			},
+			{
+				"name": "sidebar_width",
+				"type": "Text",
+				"label": "Largura da Sidebar",
+				"tooltip": "Especifique a largura da barra lateral tema como uma porcentagem",
+				"default": "30"
+			},
+			{
+				"name": "tablet_width",
+				"type": "Text",
+				"label": "Largura para Tablet",
+				"tooltip": "Especifique a largura do navegador quando tablet.css é carregado. Recomendamos 800 pixels.",
+				"default": "800"
+			},
+			{
+				"name": "mobile_width",
+				"type": "Text",
+				"label": "Largula para Mobile",
+				"tooltip": "Especifique a largura do navegador quando mobile.css é carregado. Recomendamos 480 pixels",
+				"default": "480"
+			},
+			{
+				"name": "head_code",
+				"type": "Textarea",
+				"label": "Código para a seção HEAD",
+				"tooltip": "Você pode especificar o código que será adicionado ao final da seção de cabeça - é útil quando você precisa adicionar algumas metatags adicionais, scripts etc.",
+				"default": ""
+			},
+			{
+				"name": "footer_code",
+				"type": "Textarea",
+				"label": "Código para seção FOOTER",
+				"tooltip": "Você pode especificar o código que será adicionado antes de fechar marca do corpo - é útil quando você precisa adicionar alguns scripts adicionais, rastreadores etc.",
+				"default": ""
+			}
+		]
+	}
+]

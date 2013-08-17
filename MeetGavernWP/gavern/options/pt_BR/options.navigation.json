@@ -1,0 +1,12 @@
+[
+	{
+		"groupname": "Configuração de Navegação",
+		"groupdesc": "Configurar parametros de navegação.",
+		"fields": [
+			{
+				"name": "menu",
+				"type": "Menu"
+			}
+		]
+	}
+]

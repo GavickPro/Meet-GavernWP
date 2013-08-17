@@ -1,0 +1,141 @@
+[
+	{
+		"groupname": "Configurações básicas do tema",
+		"groupdesc": "Aqui são configurados os parametros básicos do tema.",
+		"fields": [
+			{
+				"name": "template_style",
+				"type": "ThemeStyle",
+				"label": "Estilo do tema",
+				"tooltip": " Selecione um estilo de tema padrão na lista fornecida.",
+				"default": "style1"
+			},
+			{
+				"name": "styleswitcher_state",
+				"type": "Switcher",
+				"label": "Style de apresentação Switcher",
+				"tooltip": "Permitir a visualização de styleswitcher no tema.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "breadcrumbs_state",
+				"type": "Select",
+				"label": "Apresentação Condicional Breadcrumbs",
+				"tooltip": "Ativar a exibição de breadcrumbs no tema.",
+				"default": "Y",
+				"class": "",
+				"visibility": "",
+				"other": {
+					"options": {
+						"Y": "Habilitar",
+						"N": "Desabilitar",
+						"rule": "Regra Condicional"
+					}
+				}
+			},
+			{
+				"name": "breadcrumbs_staterule",
+				"type": "Text",
+				"label": "Apresentar Breadcrumbs",
+				"tooltip": "Habilitar a apresentação de breadcrumbs em páginas específicas.",
+				"default": "",
+				"class": "",
+				"visibility": "breadcrumbs_state=rule"
+			},
+			{
+				"name": "social_icons_position",
+				"type": "Select",
+				"label": "Posição dos ícones de Rede Social",
+				"tooltip": "Você pode especificar a posição do bloco de ícones sociais.",
+				"default": "right",
+				"class": "",
+				"visibility": "",
+				"other": {
+					"options": {
+						"right": "Direita",
+						"left": "Esquerda"
+					}
+				}
+			},
+			{
+				"name": "template_homepage_mainbody",
+				"type": "Switcher",
+				"label": "Exibir Widgets na Página Principal",
+				"tooltip": "Ativar a exibição de widgets em posições 'widgets mainbody' em vez de posts na página inicial padrão.",
+				"default": "N",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "template_show_author_info",
+				"type": "Switcher",
+				"label": "Exibir Informações do Autor",
+				"tooltip": "Ativar a exibição do bloco de informações do autor para cada item de conteúdo.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "template_show_details_on_pages",
+				"type": "Switcher",
+				"label": "Exibir detalhes na página",
+				"tooltip": "Ativar a exibição do bloco de informações da página para cada item do conteúdo da página.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "template_show_author_info_on_pages",
+				"type": "Switcher",
+				"label": "Exibir informações nas páginas",
+				"tooltip": "Ativar a exibição do bloco de informação do autor para cada item o conteúdo da página.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "excluding_explained",
+				"type": "TextBlock",
+				"label": "Inclusão/Exclusão bloco do autor para páginas ou categorias específicas"
+			},
+			{
+				"name": "authorinfo_exclude_include",
+				"type": "Select",
+				"label": "modo Inclusão/Exclusão",
+				"tooltip": "Definir se os artigos especificados serão incluídos ou excluídos.",
+				"default": "exclude",
+				"visibility": "",
+				"other": {
+					"options": {
+						"none": "Desabilitar em todas as páginas",
+						"include": "Incluir apenas determinados artigos/categorias",
+						"exclude": "Excluir apenas determinados artigos/categorias"
+					}
+				}
+			},
+			{
+				"name": "authorinfo_articles",
+				"type": "Text",
+				"label": "Inclusão/Exclusão Artigos",
+				"tooltip": "Especificar uma lista artigos separados por vírgula de IDs/títulos/slugs (ex. 2,5,34,200 ou post-title1,post-title2)",
+				"default": ""
+			},
+			{
+				"name": "authorinfo_pages",
+				"type": "Text",
+				"label": "Inclusão/Exclusão de páginas",
+				"tooltip": "Especificar a lista de páginas separados por vírgula de IDs/títulos/slugs (ex. 2,5,34,200 ou page-title1,page-title2)",
+				"default": ""
+			},
+			{
+				"name": "authorinfo_categories",
+				"type": "Text",
+				"label": "Inclusão/Exclusão categorias",
+				"tooltip": "Especificar uma lista categorias separadas por vírgula de IDs/títulos/slugs (ex. 2,5,34,200 ou category-title1,category-title2)",
+				"default": ""
+			}
+		]
+	}
+]
