@@ -1,0 +1,52 @@
+[
+	{
+		"groupname": "Back-end branding",
+		"groupdesc": "Configurar opções associadas com denominação back-end.",
+		"fields": [
+			{
+				"name": "branding_login_page_image",
+				"type": "Media",
+				"label": "Logo da página de Login",
+				"tooltip": "Seleciono uma imagem para página de login.",
+				"default": "",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "branding_login_page_image_width_height",
+				"type": "WidthHeight",
+				"label": "Tamanho do Logo (opcional)",
+				"tooltip": "Definir dimensões para a o logo da página de login.",
+				"default": "",
+				"class": "",
+				"visibility": "",
+				"other": {
+					"size": "2",
+					"unit": "px"
+				}
+			},
+			{
+				"name": "branding_admin_page_image",
+				"type": "Media",
+				"label": "Logo do Painel Administrativo (16x16px).",
+				"tooltip": "Selecione uma imagem para o painel administrativo (preferencialmente 16x16 pixels).",
+				"default": "",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "branding_admin_page_image_width_height",
+				"type": "WidthHeight",
+				"label": "Tamanho da Logo (opcional)",
+				"tooltip": "Definir dimensões do logo para o painel administrativo.",
+				"default": "",
+				"class": "",
+				"visibility": "",
+				"other": {
+					"size": "2",
+					"unit": "px"
+				}
+			}
+		]
+	}
+]

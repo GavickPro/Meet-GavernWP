@@ -1,0 +1,14 @@
+[
+	{
+		"family": "color",
+		"family_desc": "Cor do Tema",
+		"family_tooltip": "Você pode selecionar uma das cores do tema",
+		"styles": [
+			{
+				"name": "Cor I",
+				"value": "color1",
+				"file": "style1.css"
+			}
+		]
+	}
+]

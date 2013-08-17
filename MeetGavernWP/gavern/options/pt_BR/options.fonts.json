@@ -1,0 +1,12 @@
+[
+	{
+		"groupname": "Configurações de Fonts",
+		"groupdesc": "Configurar parametros de fontes do tema.",
+		"fields": [
+			{
+				"name": "fonts",
+				"type": "Fonts"
+			}
+		]
+	}
+]

@@ -1,0 +1,32 @@
+[
+	{
+		"label": "Título",
+		"desc": "Título da página. Deixe em branco para usar o título de página padrão",
+		"id": "gavern_opengraph_title",
+		"type": "text"
+	},
+	{
+		"label": "Tipo",
+		"desc": "Tipo de conteúdo ex., livro, jogo",
+		"id": "gavern_opengraph_type",
+		"type": "text"
+	},
+	{
+		"label": "Imagem",
+		"desc": "Imagem para o conteúdo. Pelo menos 50x50 pixels e com 3:1 máxima.",
+		"id": "gavern_opengraph_image",
+		"type": "image"
+	},
+	{
+		"label": "Descrição",
+		"desc": "Descrição da página.",
+		"id": "gavern_opengraph_desc",
+		"type": "textarea"
+	},
+	{
+		"label": "Outro",
+		"desc": "Aqui você pode colocar outras metatags Open Graph usando seguinte formato: <strong>PROPRIEDADE=CONTEUDO</strong> ex. og:nome-pai=BRA",
+		"id": "gavern_opengraph_other",
+		"type": "textarea"
+	}
+]
