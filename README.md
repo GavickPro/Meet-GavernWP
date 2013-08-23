@@ -22,6 +22,10 @@ The theme's typography includes many solutions and ideas for enriching entry con
 
 This theme comes bundled with many features beyond what's mentioned here. So don't wait – check out the benefits of this new, no-cost WordPress theme now!
 
+Languages
+-------------------------
+pt_BR - Brazilian Portuguese
+
 More details you can find here:
 
 * [GavernWP framework](http://www.gavick.com/wordpress-features)

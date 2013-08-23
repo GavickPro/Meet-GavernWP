@@ -1,0 +1,308 @@
+[
+	{
+		"groupname": "Configurações da Social API",
+		"groupdesc": "Configurar parametros de redes sociais.",
+		"fields": [
+			{
+				"name": "fb_explained",
+				"type": "TextBlock",
+				"label": "Aplicar configurações para botão 'Curtir'."
+			},
+			{
+				"name": "fb_api_id",
+				"type": "Text",
+				"label": "ID Facebook App",
+				"tooltip": "Definir o ID App para habilitar o botão 'Curtir'."
+			},
+			{
+				"name": "fb_lang",
+				"type": "Text",
+				"label": "Linguagem Facebook",
+				"tooltip": "Definir uma linguagem de scripts no formato xx_YY (ex: en_US).",
+				"default": "en_US"
+			},
+			{
+				"name": "fb_like",
+				"type": "Switcher",
+				"label": "Botão 'Curtir' Facebook",
+				"tooltip": "Habilitar/Desabilitar o botão 'Curtir'.",
+				"default": "Y"
+			},
+			{
+				"name": "fb_like_send",
+				"type": "Switcher",
+				"label": "Botão 'Enviar' Facebook",
+				"tooltip": "Habilitar/Desabilitar o botyão 'Enviar'.",
+				"default": "Y"
+			},
+			{
+				"name": "fb_like_layout",
+				"type": "Select",
+				"label": "layout do botão 'Curtir'",
+				"tooltip": "Especificar layout do botão 'Curtir'.",
+				"default": "standard",
+				"visibility": "fb_like=Y",
+				"other": {
+					"options": {
+						"standard": "Padrão",
+						"button_count": "Botão contador",
+						"box_count": "Caixa contador"
+					}
+				}
+			},
+			{
+				"name": "fb_like_show_faces",
+				"type": "Select",
+				"label": "Exibir rostos sob o botão 'Curtir'",
+				"tooltip": "Habilitar/Desabilitar a exibição de rostos sob o botão gostar.",
+				"default": "true",
+				"visibility": "fb_like=Y",
+				"other": {
+					"options": {
+						"true": "verdadeiro",
+						"false": "false"
+					}
+				}
+			},
+			{
+				"name": "fb_like_width",
+				"type": "Text",
+				"label": "Largura do Button",
+				"tooltip": "Definir a largura da área do botão 'Curtir'.",
+				"default": "500",
+				"visibility": "fb_like=Y"
+			},
+			{
+				"name": "fb_like_action",
+				"type": "Select",
+				"label": "Ação do Botão",
+				"tooltip": "Definir a ação disparada pelo botão 'Curtir'.",
+				"default": "like",
+				"visibility": "fb_like=Y",
+				"other": {
+					"options": {
+						"like": "gostar",
+						"recommend": "recomendado"
+					}
+				}
+			},
+			{
+				"name": "fb_like_font",
+				"type": "Select",
+				"label": "Font do Botão",
+				"tooltip": "Definir o tipo de font usada no botão 'Curtir'.",
+				"default": "arial",
+				"visibility": "fb_like=Y",
+				"other": {
+					"options": {
+						"arial": "arial",
+						"lucida grande": "lucida grande",
+						"segoe ui": "segoe ui",
+						"tahoma": "tahoma",
+						"trebuchet ms": "trebuchet ms",
+						"verdana": "verdana"
+					}
+				}
+			},
+			{
+				"name": "fb_like_colorscheme",
+				"type": "Select",
+				"label": "Schema de cor do Botão",
+				"tooltip": "Definir o schema de cor que será aplicado no botão 'Curtir'.",
+				"default": "light",
+				"visibility": "fb_like=Y",
+				"other": {
+					"options": {
+						"light": "iluminado",
+						"dark": "escuro"
+					}
+				}
+			},
+			{
+				"name": "gplus_explained",
+				"type": "TextBlock",
+				"label": "configurações do botão '+1'"
+			},
+			{
+				"name": "google_plus",
+				"type": "Switcher",
+				"label": "Botão '+1'",
+				"tooltip": "Habilitar/Desabilitar o botão '+1'.",
+				"default": "Y"
+			},
+			{
+				"name": "google_plus_count",
+				"type": "Select",
+				"label": "Anotações '+1'",
+				"tooltip": "Definir anotações para botão '+1'.",
+				"default": "none",
+				"visibility": "google_plus=Y",
+				"other": {
+					"options": {
+						"none": "nenhuma",
+						"bubble": "bubble",
+						"inline": "inline"
+					}
+				}
+			},
+			{
+				"name": "google_plus_width",
+				"type": "Text",
+				"label": "largura do botão '+1'",
+				"tooltip": "Definir largura do botão '+1'.",
+				"default": "300"
+			},
+			{
+				"name": "google_plus_size",
+				"type": "Select",
+				"label": "tamanho do botão '+1'",
+				"tooltip": "Definir o tamanho do botão '+1'.",
+				"default": "standard",
+				"visibility": "google_plus=Y",
+				"other": {
+					"options": {
+						"tall": "alto",
+						"standard": "padrão",
+						"medium": "médio",
+						"small": "pequeno"
+					}
+				}
+			},
+			{
+				"name": "google_plus_lang",
+				"type": "Text",
+				"label": "linguagem do botão '+1' ",
+				"tooltip": "Especificar a linguagem do botão '+1' no formato xx-YY (por exemplo: en-GB).",
+				"default": "pt-BR",
+				"visibility": "google_plus=Y"
+			},
+			{
+				"name": "twitter_explained",
+				"type": "TextBlock",
+				"label": "Configurações do botão 'Tweet'"
+			},
+			{
+				"name": "tweet_btn",
+				"type": "Switcher",
+				"label": "Botão 'Tweet'",
+				"tooltip": "Habilitar/Desabilitar o botão 'Tweet'.",
+				"default": "Y"
+			},
+			{
+				"name": "tweet_btn_data_count",
+				"type": "Select",
+				"label": "Botão contador 'Tweet'",
+				"tooltip": "Especificar a posição do botão contador de 'Tweet'.",
+				"default": "vertical",
+				"visibility": "tweet_btn=Y",
+				"other": {
+					"options": {
+						"vertical": "vertical",
+						"horizontal": "horizontal",
+						"none": "nenhuma"
+					}
+				}
+			},
+			{
+				"name": "tweet_btn_data_via",
+				"type": "Text",
+				"label": "Botão 'Tweet' 'via' parametro",
+				"tooltip": "Definir o parametro 'via'.",
+				"default": "",
+				"visibility": "tweet_btn=Y"
+			},
+			{
+				"name": "tweet_btn_data_lang",
+				"type": "Select",
+				"label": "Linguagem do botão 'Tweet'",
+				"tooltip": "Definir a linguagem do botão 'Tweet' no fomato xx-YY (por exemplo: en-GB).",
+				"default": "en",
+				"visibility": "tweet_btn=Y",
+				"other": {
+					"options": {
+						"en": "English",
+						"fr": "French",
+						"de": "German",
+						"es": "Spanish",
+						"ja": "Japanese",
+						"nl": "Dutch",
+						"id": "Indonesian",
+						"it": "Italian",
+						"ko": "Korean",
+						"pt": "Português",
+						"ru": "Russian",
+						"tr": "Turkish"
+					}
+				}
+			},
+			{
+				"name": "pinterest_explained",
+				"type": "TextBlock",
+				"label": "Configurações do Botão 'Pin it'"
+			},
+			{
+				"name": "pinterest_btn",
+				"type": "Switcher",
+				"label": "Botão 'Pin it'",
+				"tooltip": "Habilitar/Desabilitar o botão 'Pin it'.",
+				"default": "Y"
+			},
+			{
+				"name": "pinterest_btn_style",
+				"type": "Select",
+				"label": "Layout do botão 'Pin it'",
+				"tooltip": "Definir o layout do botão 'Pin it'.",
+				"default": "horizontal",
+				"visibility": "pinterest_btn=Y",
+				"other": {
+					"options": {
+						"horizontal": "horizontal",
+						"vertical": "vertical",
+						"none": "nenhuma"
+					}
+				}
+			},
+			{
+				"name": "excluding_explained",
+				"type": "TextBlock",
+				"label": "Inclusão/Exclusão em página ou categorias específicas da 'Social API'"
+			},
+			{
+				"name": "social_api_exclude_include",
+				"type": "Select",
+				"label": "Inclusão/Exclusão em artigos específicas da Social API",
+				"tooltip": "Específicar se será incluído ou excluído nos artigos definidas.",
+				"default": "exclude",
+				"visibility": "",
+				"other": {
+					"options": {
+						"none": "Desabilitar em todas as páginas",
+						"include": "Incluído somente em artigos/categorias específicas",
+						"exclude": "Excluído somente em artigos/categorias específicas"
+					}
+				}
+			},
+			{
+				"name": "social_api_articles",
+				"type": "Text",
+				"label": "Artigos Incluído/Excluído",
+				"tooltip": "Definir uma lita de artigos separados por vírgura IDs/títulos/slugs (ex. 2,5,34,200 ou post-title1,post-title2)",
+				"default": ""
+			},
+			{
+				"name": "social_api_pages",
+				"type": "Text",
+				"label": "Páginas Incluída/Excluída",
+				"tooltip": "Definir uma lista de página separada por vírgula IDs/títulos/slugs (ex. 2,5,34,200 or page-title1,page-title2)",
+				"default": ""
+			},
+			{
+				"name": "social_api_categories",
+				"type": "Text",
+				"label": "Categorias Incluídas/Escluídas",
+				"tooltip": "Definir uma lista de categorias separadas por vírgula IDs/títulos/slugs (i.e. 2,5,34,200 ou category-title1,category-title2)",
+				"default": ""
+			}
+		]
+	}
+]

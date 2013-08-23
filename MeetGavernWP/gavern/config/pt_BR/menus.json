@@ -1,0 +1,14 @@
+[
+	{
+		"main": true,
+		"location": "mainmenu",
+		"name": "Menu principal",
+		"description": "Menu principal para o tema"
+	},
+	{
+		"main": false,
+		"location": "footermenu",
+		"name": "Menu de rodapé",
+		"description": "Menu usado para o rodapé do tema"
+	}
+]

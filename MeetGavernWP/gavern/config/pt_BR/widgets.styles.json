@@ -1,0 +1,82 @@
+[
+	{
+		"name": "Azul",
+		"css_class": "blue",
+		"exclude": "widget_gk_comments,widget_gk_nsp,widget_gk_tabs"
+	},
+	{
+		"name": "Vermelho",
+		"css_class": "red",
+		"exclude": "widget_gk_comments,widget_gk_nsp,widget_gk_tabs"
+	},
+	{
+		"name": "Verde",
+		"css_class": "green",
+		"exclude": "widget_gk_comments,widget_gk_nsp,widget_gk_tabs"
+	},
+	{
+		"name": "Amarelo",
+		"css_class": "yellow",
+		"exclude": "widget_gk_comments,widget_gk_nsp,widget_gk_tabs"
+	},
+	{
+		"name": "Cabeçano Azul",
+		"css_class": "blue-header",
+		"exclude": "widget_gk_tabs"
+	},
+	{
+		"name": "Cabeçano vermelho",
+		"css_class": "red-header",
+		"exclude": "widget_gk_tabs"
+	},
+	{
+		"name": "Cabeçano verde",
+		"css_class": "green-header",
+		"exclude": "widget_gk_tabs"
+	},
+	{
+		"name": "Cabeçano amarelo",
+		"css_class": "yellow-header",
+		"exclude": "widget_gk_tabs"
+	},
+	{
+		"name": "Borda I",
+		"css_class": "border1",
+		"exclude": "widget_gk_tabs"
+	},
+	{
+		"name": "Borda II",
+		"css_class": "border2",
+		"exclude": "widget_gk_tabs"
+	},
+	{
+		"name": "Borda III",
+		"css_class": "border3",
+		"exclude": "widget_gk_tabs"
+	},
+	{
+		"name": "Borda azul",
+		"css_class": "blue-border",
+		"exclude": "widget_gk_tabs"
+	},
+	{
+		"name": "Borda vermelha",
+		"css_class": "red-border",
+		"exclude": "widget_gk_tabs"
+	},
+	{
+		"name": "Borda verde",
+		"css_class": "green-border",
+		"exclude": "widget_gk_tabs"
+	},
+	{
+		"name": "Borda amarelo",
+		"css_class": "yellow-border",
+		"exclude": "widget_gk_tabs"
+	},
+	{
+		"name": "Estilo unificado",
+		"css_class": "tags",
+		"for_only": "tag_cloud"
+	}
+]
