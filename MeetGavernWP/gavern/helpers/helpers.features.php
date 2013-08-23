@@ -481,8 +481,8 @@ function gavern_widget_control() {
 				<label for="' . $tpl->name . '_widget_rules_'.$id.'">'.__('Visible at: ', GKTPLNAME).'</label>
 				<select name="' . $tpl->name . '_widget_rules_type_'.$id.'" id="' . $tpl->name . '_widget_rules_type_'.$id.'" class="gk_widget_rules_select">
 					<option value="all"'.(($value_type != "include" && $value_type != 'exclude') ? " selected=\"selected\"":"").'>'.__('All pages', GKTPLNAME).'</option>
-					<option value="exclude"'.selected($value_type, "exclude", false).'>'.__('All pages expecting:', GKTPLNAME).'</option>
-					<option value="include"'.selected($value_type, "include", false).'>'.__('No pages expecting:', GKTPLNAME).'</option>
+					<option value="exclude"'.selected($value_type, "exclude", false).'>'.__('All pages except:', GKTPLNAME).'</option>
+					<option value="include"'.selected($value_type, "include", false).'>'.__('No pages except:', GKTPLNAME).'</option>
 				</select>
 			</p>
 			<fieldset class="gk_widget_rules_form" id="gk_widget_rules_form_'.$unique_id.'" data-id="gk_widget_rules_form_'.$id.'">
