@@ -345,6 +345,10 @@ function gavern_widget_update($instance, $new_instance, $old_instance, $widget) 
 		if( !is_array($styles) ) {
 			$styles = array();
 		}
+		// if this styles is set at first time
+		if( !is_array($styles_css) ) {
+			$styles_css = array();
+		}
 		// if this responsive is set at first time
 		if( !is_array($responsive) ) {
 			$responsive = array();
