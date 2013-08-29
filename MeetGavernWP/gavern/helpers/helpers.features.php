@@ -345,6 +345,10 @@ function gavern_widget_update($instance, $new_instance, $old_instance, $widget) 
 		if( !is_array($styles) ) {
 			$styles = array();
 		}
+		// if this styles is set at first time
+		if( !is_array($styles_css) ) {
+			$styles_css = array();
+		}
 		// if this responsive is set at first time
 		if( !is_array($responsive) ) {
 			$responsive = array();
@@ -380,17 +384,34 @@ function gavern_widget_update($instance, $new_instance, $old_instance, $widget) 
 		// get the widget names from the exisitng settings
 		$widget_names = array_keys($options_type);
 		// check for the unexisting widgets
-		foreach($widget_names as $widget_name) {
-			// if widget doesn't exist - remove it from the options
-			if(in_array($widget_name, $all_widgets) !== TRUE) {
-				unset($options_type[$widget_name]);
-				unset($options[$widget_name]);
-				unset($styles[$widget_name]);
-				unset($styles_css[$widget_name]);
-				unset($responsive[$widget_name]);
-				unset($users[$widget_name]);
-			}
-		}
+        foreach($widget_names as $widget_name) {
+            // if widget doesn't exist - remove it from the options
+            if(in_array($widget_name, $all_widgets) !== TRUE) {
+                if(isset($options_type) && is_array($options_type) && isset($options_type[$widget_name])) {
+                    unset($options_type[$widget_name]);
+                }
+
+                if(isset($options) && is_array($options) && isset($options[$widget_name])) {
+                    unset($options[$widget_name]);
+                }
+
+                if(isset($styles) && is_array($styles) && isset($styles[$widget_name])) {
+                    unset($styles[$widget_name]);
+                }
+
+                if(isset($styles_css) && is_array($styles_css) && isset($styles_css[$widget_name])) {
+                    unset($styles_css[$widget_name]);
+                }
+
+                if(isset($responsive) && is_array($responsive) && isset($responsive[$widget_name])) {
+                    unset($responsive[$widget_name]);
+                }
+
+                if(isset($users) && is_array($users) && isset($users[$widget_name])) {
+                    unset($users[$widget_name]);
+                }
+            }
+        }
 		// update the settings
 		update_option($tpl->name . '_widget_rules_type', $options_type);
 		update_option($tpl->name . '_widget_rules', $options);
@@ -464,8 +485,8 @@ function gavern_widget_control() {
 				<label for="' . $tpl->name . '_widget_rules_'.$id.'">'.__('Visible at: ', GKTPLNAME).'</label>
 				<select name="' . $tpl->name . '_widget_rules_type_'.$id.'" id="' . $tpl->name . '_widget_rules_type_'.$id.'" class="gk_widget_rules_select">
 					<option value="all"'.(($value_type != "include" && $value_type != 'exclude') ? " selected=\"selected\"":"").'>'.__('All pages', GKTPLNAME).'</option>
-					<option value="exclude"'.selected($value_type, "exclude", false).'>'.__('All pages expecting:', GKTPLNAME).'</option>
-					<option value="include"'.selected($value_type, "include", false).'>'.__('No pages expecting:', GKTPLNAME).'</option>
+					<option value="exclude"'.selected($value_type, "exclude", false).'>'.__('All pages except:', GKTPLNAME).'</option>
+					<option value="include"'.selected($value_type, "include", false).'>'.__('No pages except:', GKTPLNAME).'</option>
 				</select>
 			</p>
 			<fieldset class="gk_widget_rules_form" id="gk_widget_rules_form_'.$unique_id.'" data-id="gk_widget_rules_form_'.$id.'">

@@ -91,6 +91,10 @@ class GK_NSP_Widget extends WP_Widget {
 		// let's save the global $post variable
 		global $post;
 		$tmp_post = $post;
+		
+		if(is_multisite() && $config['data_source_blog'] != '' && is_numeric($config['data_source_blog'])) {
+			switch_to_blog($config['data_source_blog']);
+		}
 		//
 		// other options for the query
 		//
@@ -100,25 +104,13 @@ class GK_NSP_Widget extends WP_Widget {
 		$results = array();
 		// data source
 		if($config['data_source_type'] == 'latest') {
-			if(is_multisite() && $config['data_source_blog'] != '' && is_numeric($config['data_source_blog'])) {
-				switch_to_blog($config['data_source_blog']);
-			}
-			
 			$results = get_posts(array(
 				'posts_per_page' => $amount_of_posts,
 				'offset' => $config['offset'], 
 				'orderby' => $config['orderby'],
 				'order' => $config['order']
 			));
-			
-			if(is_multisite()) {
-				restore_current_blog();
-			}
 		} else if($config['data_source_type'] == 'category') {
-			if(is_multisite() && $config['data_source_blog'] != '' && is_numeric($config['data_source_blog'])) {
-				switch_to_blog($config['data_source_blog']);
-			}
-			
 			$results = get_posts(array(
 				'category_name' => $config['data_source'],
 				'posts_per_page' => $amount_of_posts,
@@ -126,15 +118,7 @@ class GK_NSP_Widget extends WP_Widget {
 				'orderby' => $config['orderby'],
 				'order' => $config['order']
 			));
-			
-			if(is_multisite()) {
-				restore_current_blog();
-			}
 		} else if($config['data_source_type'] == 'tag') {
-			if(is_multisite() && $config['data_source_blog'] != '' && is_numeric($config['data_source_blog'])) {
-				switch_to_blog($config['data_source_blog']);
-			}
-			
 			$results = get_posts(array(
 				'tag' => $config['data_source'],
 				'posts_per_page' => $amount_of_posts,
@@ -142,35 +126,19 @@ class GK_NSP_Widget extends WP_Widget {
 				'orderby' => $config['orderby'],
 				'order' => $config['order']
 			));
-			
-			if(is_multisite()) {
-				restore_current_blog();
-			}
-		} else if($config['data_source_type'] == 'post') {
-			if(is_multisite() && $config['data_source_blog'] != '' && is_numeric($config['data_source_blog'])) {
-				switch_to_blog($config['data_source_blog']);
-			}
-			
+		} else if($config['data_source_type'] == 'post') {			
 			$post_slugs = explode(',', $config['data_source']);
 			foreach($post_slugs as $slug) {
 				$res = get_posts(array('name' => $slug));
 				array_push($results, $res[0]);
 			}
-			
-			if(is_multisite()) {
-				restore_current_blog();
-			}
 		} else if($config['data_source_type'] == 'custom') {
-			if(is_multisite() && $config['data_source_blog'] != '' && is_numeric($config['data_source_blog'])) {
-				switch_to_blog($config['data_source_blog']);
-			}
-			
 			$post_type = explode(',', $config['data_source']);
 			array_push($results, get_posts(array('post_type' => $post_type, 'numberposts' => $amount_of_posts)));
-			
-			if(is_multisite()) {
-				restore_current_blog();
-			}
+		}
+		
+		if(is_multisite()) {
+			restore_current_blog();
 		}
 		// restore the global $post variable
 		$post = $tmp_post;
@@ -199,6 +167,14 @@ class GK_NSP_Widget extends WP_Widget {
 		// iterate
 		$this->wdgt_config = $config;
 		$this->wdgt_results = $results;
+		$cache_uri = get_stylesheet_directory_uri() . '/gavern/cache_nsp/';
+		
+		$tmp_post = $post;
+		// change the source blog
+		if(is_multisite() && $this->wdgt_config['data_source_blog'] != '' && is_numeric($this->wdgt_config['data_source_blog'])) {
+			switch_to_blog($this->wdgt_config['data_source_blog']);
+		}
+		
 		
 		// wrap articles
 		echo '<div class="gk-nsp-arts">';
@@ -226,7 +202,7 @@ class GK_NSP_Widget extends WP_Widget {
 					}
 					
 					if($config['article_image_state'] == 'on') {
-						$art_image = $this->generate_art_image($i);
+						$art_image = $this->generate_art_image($i, $cache_uri);
 					}
 					
 					if($config['article_info_state'] == 'on') {
@@ -352,6 +328,14 @@ class GK_NSP_Widget extends WP_Widget {
 		}
 		// closing the widget wrapper
 		echo '</div>';
+		
+		// back to the current blog
+		if(is_multisite()) {
+			restore_current_blog();
+		}
+		// restore the global $post variable
+		$post = $tmp_post;
+		
 		// save the cache results
 		$cache_output = ob_get_flush();
 		$cache_time = ($this->wdgt_config['cache_time'] == '' || !is_numeric($this->wdgt_config['cache_time'])) ? 60 : (int) $this->wdgt_config['cache_time'];
@@ -966,7 +950,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	return apply_filters('gk_nsp_art_text', $output);
 	 }
 	 
-	 function generate_art_image($i) {
+	 function generate_art_image($i, $cache_uri) {
 	 	$art_ID = '';
 	 	
 	 	if($this->wdgt_config['data_source_type'] == 'custom') {
@@ -979,6 +963,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 
 	 	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $art_ID ), 'single-post-thumbnail' );
 	 	$image_path = $image[0];
+	 	
 	 	$upload_dir = wp_upload_dir();
 	 	$image_path = str_replace($upload_dir['baseurl'] . '/', '', $image_path);
 	 	
@@ -990,8 +975,7 @@ class GK_NSP_Widget extends WP_Widget {
 		 		$img_filename = $img_editor->generate_filename( $this->id, dirname(__FILE__) . '/' . 'cache_nsp');
 		 		$img_editor->save($img_filename);
 		 		
-		 		$new_path = basename($img_filename);  
-		 		$cache_uri = get_stylesheet_directory_uri() . '/gavern/cache_nsp/';
+		 		$new_path = basename($img_filename);
 		 		
 		 		if(is_string($new_path)) {
 			 		$new_path = $cache_uri . $new_path;

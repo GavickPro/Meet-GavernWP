@@ -110,7 +110,7 @@ function gavernwp_metatags_hook() {
 	
 	// only for IE
 	if(preg_match('/MSIE/i',$_SERVER['HTTP_USER_AGENT'])) {
-		echo '<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />' . "\n";
+		echo '<meta http-equiv="X-UA-Compatible" content="IE=Edge" />' . "\n";
 	}
 	echo '<meta charset="'.get_bloginfo('charset').'" />' . "\n";
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />' . "\n";
