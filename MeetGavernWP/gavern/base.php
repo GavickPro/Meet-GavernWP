@@ -390,7 +390,7 @@ class GavernWP {
 		if (defined('ICL_SITEPRESS_VERSION')) {
 			$lang = apply_filters('gavern-get-json',$dir,$lang);
 		}
-		$path = get_template_directory() . '/gavern/' . $dir . '/' . $lang . $filename . '.json';
+		$path = gavern_file('gavern/' . $dir . '/' . $lang . $filename . '.json');
 		// check if the specified file exists
 		if(file_exists($path)) {
 			// decode data from the JSON file
