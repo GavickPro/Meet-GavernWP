@@ -1,13 +1,13 @@
 [
-	["Basic", 				"options.basic",					"enabled"],
-	["Layout",	 			"options.layout",					"enabled"],
-	["Pages",	 			"options.pages",					"enabled"],
-	["Fonts", 				"options.fonts",					"enabled"],
-	["Navigation", 			"options.navigation",				"enabled"],
-	["Advanced", 			"options.advanced",					"enabled"],
-	["Shortcodes", 			"options.shortcodes",				"enabled"],
-	["Social API", 			"options.socialapi",				"enabled"],
-	["Theme Branding", 		"options.themebranding",			"enabled"],
-	["Back-End Branding", 	"options.backendbranding",			"enabled"],
-	["SEO", 				"options.seo",						"enabled"]
+	["Basic", 			"options.basic",		"enabled",	"Basic"],
+	["Layout",	 		"options.layout",		"enabled",	"Layout"],
+	["Pages",	 		"options.pages",                "enabled",      "Pages"],
+	["Fonts", 			"options.fonts",		"enabled",	"Fonts"],
+        ["Navigation", 			"options.navigation",		"enabled",	"Navigation"],
+	["Advanced", 			"options.advanced",		"enabled",	"Advanced"],
+	["Shortcodes", 			"options.shortcodes",		"enabled",	"Shortcodes"],
+	["Social API", 			"options.socialapi",		"enabled",	"Social API"],
+	["Theme Branding", 		"options.themebranding",	"enabled",	"Theme Branding"],
+	["Back-End Branding",           "options.backendbranding",	"enabled",	"Back-End Branding"],
+	["SEO", 			"options.seo",			"enabled",	"SEO"]
 ]
