@@ -74,7 +74,9 @@ function gavernwp_html_attributes_hook() {
 	// generate the <html> language attributes
 	language_attributes();
 	// generate the prefix attribute
-	echo ' prefix="og: http://ogp.me/ns#"';
+	if(get_option($tpl->name . '_opengraph_use_opengraph') == 'Y') {
+		echo ' prefix="og: http://ogp.me/ns#"';
+	}
 	// generate the cache manifest attribute
 	if(trim(get_option($tpl->name . '_cache_manifest', '')) != '') {
 		echo ' manifest="'.trim(get_option($tpl->name . '_cache_manifest', '')).'"';
