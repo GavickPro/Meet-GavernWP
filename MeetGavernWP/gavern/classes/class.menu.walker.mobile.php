@@ -27,7 +27,7 @@ class GKMenuWalkerMobile extends Walker {
 	 * @return null (use reference instead of returning values)
 	 * 
 	 **/
-	function start_lvl(&$output, $depth) {
+	function start_lvl(&$output, $depth = 0, $args = array()) {
 		// in the mobile menu we don't need the additional output
 		$output .= '';
 	}
@@ -42,7 +42,7 @@ class GKMenuWalkerMobile extends Walker {
 	 * @return null (use reference instead of returning values)
 	 * 
 	 **/
-	function end_lvl(&$output, $depth) {
+	function end_lvl(&$output, $depth = 0, $args = array()) {
 		// in the mobile menu we don't need the additional output
 		$output .= '';
 	}
@@ -59,7 +59,7 @@ class GKMenuWalkerMobile extends Walker {
 	 * @return null (use reference instead of returning values)
 	 * 
 	 **/
-	function start_el(&$output, $item, $depth, $args) {
+	function start_el(&$output, $item, $depth = 0, $args = array(),  $current_object_id = 0) {
 		// access to the WordPress Query
 		global $wp_query;
 		// generate the indent
@@ -93,7 +93,7 @@ class GKMenuWalkerMobile extends Walker {
 	 * @return null (use reference instead of returning values)
 	 * 
 	 **/
-	function end_el(&$output, $item, $depth) {
+	function end_el(&$output, $item, $depth = 0, $args = array()) {
 		// in the mobile menu we don't need the additional output
 		$output .= '';
 	}

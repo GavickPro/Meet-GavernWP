@@ -28,7 +28,7 @@ class GKMenuWalker extends Walker {
 	 * @return null (use reference instead of returning values)
 	 * 
 	 **/
-	function start_lvl(&$output, $depth) {
+	function start_lvl(&$output, $depth = 0, $args = array()) {
 		// generate the indent
 		$indent = str_repeat("\t", $depth);
 		// generate the opening tags
@@ -45,7 +45,7 @@ class GKMenuWalker extends Walker {
 	 * @return null (use reference instead of returning values)
 	 * 
 	 **/
-	function end_lvl(&$output, $depth) {
+	function end_lvl(&$output, $depth = 0, $args = array()) {
 		// generate the indent
 		$indent = str_repeat("\t", $depth);
 		// generate the closing tag
@@ -64,7 +64,7 @@ class GKMenuWalker extends Walker {
 	 * @return null (use reference instead of returning values)
 	 * 
 	 **/
-	function start_el(&$output, $item, $depth, $args) {
+	function start_el(&$output, $item, $depth = 0, $args = array(), $current_object_id = 0) {
 		// access to the WordPress query
 		global $wp_query;
 		// generate indent
@@ -115,7 +115,7 @@ class GKMenuWalker extends Walker {
 	 * @return null (use reference instead of returning values)
 	 * 
 	 **/
-	function end_el(&$output, $item, $depth) {
+	function end_el(&$output, $item, $depth = 0, $args = array()) {
 		// close the LI tag
 		$output .= "</li>\n";
 	}
