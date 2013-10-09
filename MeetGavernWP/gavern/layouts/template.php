@@ -6,7 +6,7 @@ defined('GAVERN_WP') or die('Access denied');
 // access to the template object
 global $tpl;
 // load the form parser
-include_once(TEMPLATEPATH . '/gavern/form.parser.php');
+include_once(gavern_file('gavern/form.parser.php'));
 // create a new instance of the form parser
 $parser = new GavernWPFormParser($tpl);
 // get the tabs list from the JSON file

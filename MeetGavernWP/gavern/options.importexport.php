@@ -16,7 +16,7 @@ function gavern_importexport_options() {
 	// getting access to the template and database global object. 
 	global $tpl;
 	global $wpdb;
-	wp_register_style('gk-import-export-css', get_template_directory_uri().'/css/back-end/importexport.css');
+	wp_register_style('gk-import-export-css', gavern_file_uri('css/back-end/importexport.css'));
 	wp_enqueue_style('gk-import-export-css');
 
 	// check permissions
