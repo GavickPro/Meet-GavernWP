@@ -17,7 +17,7 @@ function gavern_updates_options() {
 	    wp_die(__('You don\'t have sufficient permissions to access this page!', GKTPLNAME));  
 	} 
 
-	include_once(TEMPLATEPATH . '/gavern/layouts/updates.php');
+	include_once(gavern_file('gavern/layouts/updates.php'));
 }
 
 /**
@@ -33,7 +33,7 @@ function gavern_updates_options_js() {
 	global $pagenow;
 	// check the page
 	if($pagenow == 'admin.php' && isset($_GET['page']) && ($_GET['page'] == 'updates_options' || $_GET['page'] == 'updates_options')) {
-		wp_register_script('gk-updates-js', get_template_directory_uri().'/js/back-end/updates.options.js', array('jquery'));
+		wp_register_script('gk-updates-js', gavern_file_uri('js/back-end/updates.options.js'), array('jquery'));
 		wp_enqueue_script('gk-updates-js');	
 	}
 }
@@ -51,7 +51,7 @@ function gavern_updates_options_css() {
 	global $pagenow;
 	// check the page
 	if($pagenow == 'admin.php' && isset($_GET['page']) && ($_GET['page'] == 'updates_options' || $_GET['page'] == 'updates_options')) {
-		wp_register_style('gk-updates-css', get_template_directory_uri().'/css/back-end/updates.css');
+		wp_register_style('gk-updates-css', gavern_file_uri('css/back-end/updates.css'));
 		wp_enqueue_style('gk-updates-css');
 	}
 }
