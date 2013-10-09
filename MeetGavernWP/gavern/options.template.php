@@ -20,7 +20,7 @@ function gavern_template_options() {
 	    wp_die(__('You don\'t have sufficient permissions to access this page!', GKTPLNAME));  
 	} 
 	  
-	include_once(TEMPLATEPATH . '/gavern/layouts/template.php');
+	include_once(gavern_file('gavern/layouts/template.php'));
 }
 
 /**
