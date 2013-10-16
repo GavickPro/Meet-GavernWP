@@ -52,7 +52,7 @@ textarea {
 	width: 95%
 }
 .gkWrap > h1:first-child {
-	background: #3f4c6b;
+	background: #55a8e8;
 	border-radius: 3px 3px 0 0;
 	color: #fff;
 	font: normal 25px/48px Arial, Helvetica, sans-serif;
@@ -100,7 +100,7 @@ textarea {
 	-ms-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
 	-webkit-border-radius: 2px;
 	-webkit-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
-	background: #3f4c6b!important;
+	background: #55a8e8!important;
 	border: none!important;
 	border-radius: 2px!important;
 	color: #fff!important;

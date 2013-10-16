@@ -51,7 +51,7 @@ textarea {
 	width: 95%
 }
 .gkWrap > h1:first-child {
-	background: #3f4c6b;
+	background: #55a8e8;
 	border-radius: 3px 3px 0 0;
 	color: #fff;
 	font: normal 25px/48px Arial, Helvetica, sans-serif;
@@ -154,8 +154,8 @@ textarea {
 #gkTabs li.socialapi {
 	background-position: 20px -360px
 }
-#gkTabs li.templatebranding {
-	background-position: 20px -422px
+#gkTabs li.themebranding {
+	background-position: 20px 14px
 }
 #gkTabs li.back-endbranding {
 	background-position: 20px -485px
@@ -195,9 +195,9 @@ textarea {
 #gkTabs li.socialapi.active {
 	background-position: -291px -360px
 }
-#gkTabs li:hover.templatebranding,
-#gkTabs li.templatebranding.active {
-	background-position: -291px -422px
+#gkTabs li:hover.themebranding,
+#gkTabs li.themebranding.active {
+	background-position: -291px 14px
 }
 #gkTabs li:hover.back-endbranding,
 #gkTabs li.back-endbranding.active {
@@ -289,7 +289,7 @@ textarea {
 	-ms-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
 	-webkit-border-radius: 2px;
 	-webkit-text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
-	background: #3f4c6b!important;
+	background: #55a8e8!important;
 	border: none!important;
 	border-radius: 2px;
 	color: #fff;
@@ -366,7 +366,7 @@ p[data-visible="false"] {
 }
 
 #gk-message h2 button {
-	background: #3f4c6b;
+	background: #55a8e8;
 	border: none;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
