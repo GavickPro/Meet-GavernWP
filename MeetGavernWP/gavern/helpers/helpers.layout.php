@@ -361,6 +361,7 @@ function gk_show_breadcrumbs() {
  *
  **/
 function gk_breadcrumbs_output() {
+	global $post;
 	// open the breadcrumbs tag
 	$output = '<nav class="gk-breadcrumbs">';
 	// check if we are on the post or normal page
@@ -371,6 +372,10 @@ function gk_breadcrumbs_output() {
 		if (is_category() || is_singular()) {
 			// return the category link
 			$output .= get_the_category_list(' ');
+			// if it is a subpage
+			if (is_page() && $post->post_parent ) {
+			    $output .= '<a href="' . get_permalink($post->post_parent) . '">' . get_the_title($post->post_parent) . '</a>';	
+			}
 			// if it is a post page
 			if (is_singular()) {
 				// return link the name of current post
