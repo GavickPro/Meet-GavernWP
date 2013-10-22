@@ -260,8 +260,11 @@ function gavern_metaboxes_save( $post_id ) {
  **/
 
 function gavern_add_featured_video() {
-    add_meta_box( 'gavern_featured_video', __( 'Featured Video', GKTPLNAME ), 'gavern_add_featured_video_metabox', 'post', 'side' );
-    add_meta_box( 'gavern_featured_video', __( 'Featured Video', GKTPLNAME ), 'gavern_add_featured_video_metabox', 'page', 'side' );
+	global $tpl;
+	if(get_option($tpl->name . "_featured_video", 'Y') == 'Y') {
+	    add_meta_box( 'gavern_featured_video', __( 'Featured Video', GKTPLNAME ), 'gavern_add_featured_video_metabox', 'post', 'side' );
+	    add_meta_box( 'gavern_featured_video', __( 'Featured Video', GKTPLNAME ), 'gavern_add_featured_video_metabox', 'page', 'side' );
+	}
 }
 
 function gavern_add_featured_video_metabox() {

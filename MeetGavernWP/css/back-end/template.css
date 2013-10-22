@@ -139,6 +139,9 @@ textarea {
 #gkTabs li.pages {
 	background-position: 20px -690px
 }
+#gkTabs li.features {
+	background-position: 20px -753px
+}
 #gkTabs li.fonts {
 	background-position: 20px -112px
 }
@@ -174,6 +177,10 @@ textarea {
 #gkTabs li:hover.pages,
 #gkTabs li.pages.active {
 	background-position: -290px -690px
+}
+#gkTabs li:hover.features,
+#gkTabs li.features.active {
+	background-position: -291px -753px
 }
 #gkTabs li:hover.fonts,
 #gkTabs li.fonts.active {

@@ -11,15 +11,6 @@
 				"default": "style1"
 			},
 			{
-				"name": "styleswitcher_state",
-				"type": "Switcher",
-				"label": "Style Switcher Display",
-				"tooltip": "Enable display of the styleswitcher in the theme.",
-				"default": "Y",
-				"class": "",
-				"visibility": ""
-			},
-			{
 				"name": "post_aside_state",
 				"type": "Switcher",
 				"label": "Post sidebar informations",
