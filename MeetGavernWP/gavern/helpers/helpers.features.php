@@ -496,6 +496,7 @@ function gavern_widget_control() {
 				 	<option value="page:">'.__('Page', GKTPLNAME).'</option>
 				 	<option value="post:">'.__('Post', GKTPLNAME).'</option>
 				 	<option value="category:">'.__('Category', GKTPLNAME).'</option>
+				 	<option value="category_descendant:">'.__('Category with descendants', GKTPLNAME).'</option>
 				 	<option value="tag:">'.__('Tag', GKTPLNAME).'</option>
 				 	<option value="archive">'.__('Archive', GKTPLNAME).'</option>
 				 	<option value="author:">'.__('Author', GKTPLNAME).'</option>
@@ -508,6 +509,7 @@ function gavern_widget_control() {
 				 <p><label>'.__('Page ID/Title/slug:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_page" /></label></p>
 				 <p><label>'.__('Post ID/Title/slug:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_post" /></label></p>
 				 <p><label>'.__('Category ID/Name/slug:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_category" /></label></p>
+				 <p><label>'.__('Category ID:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_category_descendant" /></label></p>
 				 <p><label>'.__('Tag ID/Name:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_tag" /></label></p>
 				 <p><label>'.__('Author:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_author" /></label></p>
 				 <p><label>'.__('Template:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_template" /></label></p>
@@ -722,6 +724,7 @@ function gavern_add_og_meta_box() {
 if(get_option($tpl->name . '_opengraph_use_opengraph') == 'Y') {
     add_action('add_meta_boxes', 'gavern_add_og_meta_box');
 }
+
 // The Callback
 function gavern_show_og_meta_box() {
 	global $tpl, $post;
@@ -865,6 +868,30 @@ if(get_option($tpl->name . "_opensearch_use_opensearch", "Y") == "Y") {
 	add_action('wp_head', 'gavern_opensearch_head');
 	add_action('template_redirect', 'gavern_opensearch');
 	add_filter('query_vars', 'gavern_opensearch_query_vars');
+}
+
+/**
+ * Tests if any of a post's assigned categories are descendants of target categories
+ *
+ * @param int|array $cats The target categories. Integer ID or array of integer IDs
+ * @param int|object $_post The post. Omit to test the current post in the Loop or main query
+ * @return bool True if at least 1 of the post's categories is a descendant of any of the target categories
+ * @see get_term_by() You can get a category by name or slug, then pass ID to this function
+ * @uses get_term_children() Passes $cats
+ * @uses in_category() Passes $_post (can be empty)
+ * @version 2.7
+ * @link http://codex.wordpress.org/Function_Reference/in_category#Testing_if_a_post_is_in_a_descendant_category
+ */
+if ( ! function_exists( 'post_is_in_descendant_category' ) ) {
+	function post_is_in_descendant_category( $cats, $_post = null ) {
+		foreach ( (array) $cats as $cat ) {
+			// get_term_children() accepts integer ID only
+			$descendants = get_term_children( (int) $cat, 'category' );
+			if ( $descendants && in_category( $descendants, $_post ) )
+				return true;
+		}
+		return false;
+	}
 }
 
 /**

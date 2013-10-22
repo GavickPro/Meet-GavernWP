@@ -129,7 +129,7 @@ function gk_widget_control_init_events(id, inner) {
         var select = form.children('.gk_widget_rules_form_select');
         var btn = form.find('.gk_widget_rules_btn');
         var form_inputs = {};
-        var form_inputs_names = ['page', 'post', 'category', 'tag', 'template', 'taxonomy', 'taxonomy_term', 'posttype', 'author'];
+        var form_inputs_names = ['page', 'post', 'category', 'category_descendant', 'tag', 'template', 'taxonomy', 'taxonomy_term', 'posttype', 'author'];
         jQuery.each(form_inputs_names, function (i, el) {
             form_inputs[el] = form.find('.gk_widget_rules_form_input_' + el).parent();
         });
@@ -197,6 +197,7 @@ function gk_widget_control_init_events(id, inner) {
                 value === 'format:' ||
                 value === 'template:' ||
                 value === 'category:' ||
+                value === 'category_descendant:' ||
                 value === 'tag:' ||
                 value === 'author:'
             ) {
@@ -297,7 +298,7 @@ function gk_widget_control_refresh(form) {
             if (pages[i] !== '') {
                 pages_exist = true;
                 var type = 'homepage';
-                var types = ['page:', 'post:', 'category:', 'tag:', 'archive', 'author:', 'template:', 'taxonomy:', 'posttype:', 'page404', 'search'];
+                var types = ['page:', 'post:', 'category:', 'category_descendant:', 'tag:', 'archive', 'author:', 'template:', 'taxonomy:', 'posttype:', 'page404', 'search'];
 
                 jQuery.each(types, function (j, el) {
                     if (pages[i].substr(0, el.length) === el) {

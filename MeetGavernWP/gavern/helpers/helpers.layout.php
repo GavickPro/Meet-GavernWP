@@ -625,6 +625,8 @@ function gk_condition($mode, $input, $users) {
 			    $output .= ' is_single(\'' . substr($input[$i], 5) . '\') ';
 			} else if(stripos($input[$i], 'category:') !== FALSE) {
 			    $output .= ' (is_category(\'' . substr($input[$i], 9) . '\') || (in_category(\'' . substr($input[$i], 9) . '\') && is_single())) ';
+			} else if(stripos($input[$i], 'category_descendant:') !== FALSE) {
+				$output .= ' (is_category(\'' . substr($input[$i], 20) . '\') || (in_category(\'' . substr($input[$i], 20) . '\') || post_is_in_descendant_category( \'' . substr($input[$i], 20) . '\' ) && !is_home())) ';
 			} else if(stripos($input[$i], 'tag:') !== FALSE) {
 			    $output .= ' (is_tag(\'' . substr($input[$i], 4) . '\') || (has_tag(\'' . substr($input[$i], 4) . '\') && is_single())) ';
 			} else if(stripos($input[$i], 'archive') !== FALSE) {
@@ -686,8 +688,8 @@ function gk_condition($mode, $input, $users) {
 	if($output == '' || trim($output) == '()' || trim($output) == '!()') {
 		$output = ' TRUE';
 	}
-	
 	return $output;
+	
 }
 
 /**

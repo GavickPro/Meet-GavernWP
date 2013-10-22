@@ -119,6 +119,10 @@
 	background: #55a;
 }
 
+.gk_widget_rules_pages div span.category_descendant {
+	background-color: #aaa;
+}
+
 .gk_widget_rules_pages div span.tag {
 	background: #d33;
 }
@@ -150,6 +154,7 @@
 .gk_widget_rules_pages div span.posttype {
 	background-color:#a97;
 }
+
 
 /*.gk_widget_rules_pages div span.format {
 	background: #22aacc;
