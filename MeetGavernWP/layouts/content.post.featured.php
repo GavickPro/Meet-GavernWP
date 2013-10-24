@@ -16,7 +16,7 @@ $params_image = isset($params['gavern-post-params-image']) ? esc_attr( $params['
 
 ?>
 
-<?php if(is_single() && $params_image == 'Y') : ?>
+<?php if((is_single() || is_page()) && $params_image == 'Y') : ?>
 	<?php 
 		// if there is a Featured Video
 		if(get_post_meta(get_the_ID(), "_gavern-featured-video", true) != '') : 
@@ -28,12 +28,12 @@ $params_image = isset($params['gavern-post-params-image']) ? esc_attr( $params['
 	<figure class="featured-image">
 		<?php the_post_thumbnail(); ?>
 		
-		<?php if(is_single()) : ?>
+		<?php if(is_single() || is_page()) : ?>
 			<?php echo gk_post_thumbnail_caption(); ?>
 		<?php endif; ?>
 	</figure>
 	<?php endif; ?>
-<?php elseif(!is_single()) : ?>
+<?php elseif(!(is_single() || is_page())) : ?>
 	<?php 
 		// if there is a Featured Video
 		if(get_post_meta(get_the_ID(), "_gavern-featured-video", true) != '') : 
@@ -47,7 +47,7 @@ $params_image = isset($params['gavern-post-params-image']) ? esc_attr( $params['
 			<?php the_post_thumbnail(); ?>
 		</a>
 		
-		<?php if(is_single()) : ?>
+		<?php if(is_single() || is_page()) : ?>
 			<?php echo gk_post_thumbnail_caption(); ?>
 		<?php endif; ?>
 	</figure>
