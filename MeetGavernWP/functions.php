@@ -190,4 +190,7 @@ function gavern_enqueue_admin_js_and_css() {
 // http://wpdevel.wordpress.com/2011/12/12/use-wp_enqueue_scripts-not-wp_print_styles-to-enqueue-scripts-and-styles-for-the-frontend/
 add_action('admin_enqueue_scripts', 'gavern_enqueue_admin_js_and_css');
 
+// remove the generator metatag due security reasons
+remove_action('wp_head', 'wp_generator');
+
 // EOF
