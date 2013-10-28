@@ -121,6 +121,8 @@ function gavernwp_metatags_hook() {
 	gk_metatags();
 	// generates Gavern Open Graph metatags
 	gk_opengraph_metatags();
+	// generates Twitter Cards metatags
+	gk_twitter_metatags();
  	// YOUR HOOK CODE HERE
 }
 

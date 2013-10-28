@@ -236,6 +236,29 @@
 				}
 			},
 			{
+				"name": "twitter_cards",
+				"type": "Switcher",
+				"label": "Twitter Cards support",
+				"tooltip": "Enable/disable the Twitter Cards metatags.",
+				"default": "N"
+			},
+			{
+				"name": "twitter_site",
+				"type": "Text",
+				"label": "Twitter Cards 'site'",
+				"tooltip": "Specify the parameter of 'site' Twitter Cards i.e. @mysite",
+				"default": "",
+				"visibility": "twitter_cards=Y"
+			},
+			{
+				"name": "twitter_creator",
+				"type": "Text",
+				"label": "Twitter Cards 'creator'",
+				"tooltip": "Specify the parameter of 'creator' Twitter Cards i.e. @user",
+				"default": "",
+				"visibility": "twitter_cards=Y"
+			},
+			{
 				"name": "pinterest_explained",
 				"type": "TextBlock",
 				"label": "'Pin it' button settings"
@@ -265,8 +288,8 @@
 			{
 				"name": "og_default_image",
 				"type": "Media",
-				"label": "Open Graph default image",
-				"tooltip": "Select the image for the Open Graph metatags no images specified.",
+				"label": "Open Graph and Twitter Cards default image",
+				"tooltip": "Select the image for the Open Graph and Twitter Cards metatags 'no images specified.'",
 				"default": ""
 			},
 			{

@@ -264,6 +264,64 @@ function gk_opengraph_metatags() {
 
 /**
  *
+ * Function used to generate the TwitterCards tags
+ *
+ * @return null
+ *
+ **/
+function gk_twitter_metatags() {
+	// access to the template object
+	global $tpl;
+	// check if the Twitter Cards option is enabled
+	if(get_option($tpl->name . '_twitter_cards') == 'Y') {
+		if(is_single() || is_page()) {
+			global $wp_query;
+			//
+			$postID = $wp_query->post->ID;
+			//
+			$title = get_post_meta($postID, 'gavern_twitter_title', true);
+			$image = wp_get_attachment_url(get_post_meta($postID, 'gavern_twitter_image', true));
+			
+			if($image == '') {
+				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $postID ), 'single-post-thumbnail' );
+				$image = $image[0];
+			}
+			
+			$desc = get_post_meta($postID, 'gavern_twitter_desc', true);
+			
+			$site_default = get_option($tpl->name . '_twitter_site');
+			$creator_default = get_option($tpl->name . '_twitter_creator');
+			$site = get_post_meta($postID, 'gavern_twitter_site', true);
+			$creator = get_post_meta($postID, 'gavern_twitter_creator', true);
+			
+			if($site_default != '') {
+				$site = $site_default;
+			}
+			
+			if($creator_default != '') {
+				$creator = $creator_default;
+			}
+			
+			echo apply_filters('gavern_twitter_card', '<meta name="twitter:card" content="summary" />' . "\n");	
+			//
+			echo apply_filters('gavern_twitter_url', '<meta name="twitter:url" content="'.get_permalink($postID).'" />' . "\n");
+			//		
+			echo apply_filters('gavern_twitter_title', '<meta name="twitter:title" content="'.(($title == '') ? $wp_query->post->post_title : $title).'" />' . "\n");
+			//
+			if($image != '') {
+				echo apply_filters('gavern_twitter_image', '<meta name="twitter:image" content="'.$image.'" />' . "\n");
+			}
+			echo apply_filters('gavern_twitter_description', '<meta name="twitter:description" content="'.(($desc == '') ? substr(str_replace("\"", '', strip_tags($wp_query->post->post_content)), 0, 200) : $desc).'" />' . "\n");
+			//
+			echo apply_filters('gavern_twitter_site', '<meta name="twitter:site" content="' . $site . '" />' . "\n");
+			//
+			echo apply_filters('gavern_twitter_creator', '<meta name="twitter:creator" content="' . $creator . '" />' . "\n");
+		}
+	}
+}
+
+/**
+ *
  * Function used to check if menu should be displayed
  *
  * @param name - name of the menu to check
