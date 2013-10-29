@@ -19,6 +19,14 @@
 				"visibility": "custom_fields_state=Y"
 			},
 			{
+                "name": "post_fileds_label_mapping",
+                "type": "Textarea",
+                "label": "Custom Post Fields label mapping",
+                "tooltip": "You can change a default name of custom post field to your own. (this_is_label=My label name - each pair in new line)",
+                "default": "",
+                "visibility": "custom_fields_state=Y"
+            },
+			{
 				"name": "prefixfree_state",
 				"type": "Switcher",
 				"label": "Use Prefixfree script",
