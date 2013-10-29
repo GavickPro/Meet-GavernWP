@@ -155,7 +155,7 @@ function gavern_theme_setup(){
     // save the lowercase non-special characters template name				
     $template_name = strtolower(preg_replace("/[^A-Za-z0-9]/", "", $template_config->name));
     // load the template text_domain
-    load_theme_textdomain( $template_name, get_template_directory() . '/languages' );
+    load_theme_textdomain( $template_name, get_stylesheet_directory() . '/languages' );
 }
 // scripts enqueue function
 function gavern_enqueue_admin_js_and_css() {
