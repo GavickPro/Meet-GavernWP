@@ -383,12 +383,29 @@ function gavern_widget_update($instance, $new_instance, $old_instance, $widget) 
 		foreach($widget_names as $widget_name) {
 			// if widget doesn't exist - remove it from the options
 			if(in_array($widget_name, $all_widgets) !== TRUE) {
-				unset($options_type[$widget_name]);
-				unset($options[$widget_name]);
-				unset($styles[$widget_name]);
-				unset($styles_css[$widget_name]);
-				unset($responsive[$widget_name]);
-				unset($users[$widget_name]);
+				if(isset($options_type[$widget_name])) {
+					unset($options_type[$widget_name]);
+				}
+				
+				if(isset($options[$widget_name])) {
+					unset($options[$widget_name]);
+				}
+				
+				if(isset($styles[$widget_name])) {
+					unset($styles[$widget_name]);
+				}
+				
+				if(isset($styles_css[$widget_name])) {
+					unset($styles_css[$widget_name]);
+				}
+				
+				if(isset($responsive[$widget_name])) {
+					unset($responsive[$widget_name]);
+				}
+				
+				if(isset($users[$widget_name])) {
+					unset($users[$widget_name]);
+				}
 			}
 		}
 		// update the settings
