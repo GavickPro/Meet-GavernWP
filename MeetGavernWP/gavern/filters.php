@@ -65,7 +65,7 @@ function gk_title_icons($title) {
 		$icon = '';
 		//
 		if(count($icons) > 0) {
-			$icon = '<i class="'.$icons[0].'"></i>';
+			$icon = '<i class="fa '.str_replace('icon-', 'fa-', $icons[0]).'"></i>';
 		}
 		//
 		$title = preg_replace('@(\[icon([\-a-zA-Z0-9]){1,}\])@', '', $title);
