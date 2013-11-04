@@ -8,7 +8,7 @@
 				"type": "Switcher",
 				"label": "Custom fields",
 				"tooltip": "Enable custom fields used to display additional information in the post.",
-				"default": "Y"
+				"default": "N"
 			},
 			{
 				"name": "hidden_post_fields",
