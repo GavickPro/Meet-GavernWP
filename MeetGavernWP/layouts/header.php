@@ -95,7 +95,7 @@
 			
 			<?php if(gk_show_menu('mainmenu')) : ?>
 			<a href="#" id="gk-mainmenu-toggle">
-				<?php _e('Main menu', GKTPLNAME); ?>
+				<i class="fa fa-reorder"><?php _e('Main menu', GKTPLNAME); ?></i>
 			</a>
 			
 			<nav id="gk-mainmenu-collapse" class="menu-hidden" data-btn="gk-mainmenu-toggle">	

@@ -18,9 +18,9 @@
 
 /* Header elements */
 .gk-big-header {
-	color: #333;
+	color: #fff;
 	font-size: 112px;
-	font-weight: 700;
+	font-weight: 300;
 	line-height: 1.6;
 	margin: 0;
 	margin-top: 40px;
@@ -34,11 +34,7 @@
 }
 
 body.loaded .gk-big-header {
-	-webkit-filter: none;
-}
-
-.gk-big-header span {
-	color: #5990de;
+	-webkit-filter: blur(0px);
 }
 
 .gk-medium-header {
@@ -50,7 +46,7 @@ body.loaded .gk-big-header {
 }
 
 .gk-small-header {
-	color: #7c7c7c;
+	color: #fff;
 	font-size: 24px;
 	font-weight: 100;
 	line-height: 1.2;
@@ -76,19 +72,14 @@ body.loaded .gk-big-header {
 
 .gk-blue-button,
 .gk-yellow-button {
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	color: #fff;
 	display: inline-block;
-	font-family: 'Colaborate', Arial, sans-serif;
 	font-size: 30px;
 	font-weight: 300;
 	height: 60px;
 	line-height: 61px;
 	margin-left: 25px;
 	padding: 0 45px;
-	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.21);
 	-webkit-transition: all 0.3s ease-out;
 	-moz-transition: all 0.3s ease-out;
 	-ms-transition: all 0.3s ease-out;
@@ -97,11 +88,11 @@ body.loaded .gk-big-header {
 }
 
 .gk-blue-button {
-	background: #5990de;
+	background: #55a8e8;
 }
 
 .gk-yellow-button {
-	background: #fbb450;
+	background: #272727;
 }
 
 .gk-blue-button:first-child,
@@ -111,10 +102,28 @@ body.loaded .gk-big-header {
 
 .gk-blue-button:active,
 .gk-blue-button:focus,
-.gk-blue-button:hover,
+.gk-blue-button:hover {
+	background: #272727;
+	color: #fff;
+}
 .gk-yellow-button:active,
 .gk-yellow-button:focus,
 .gk-yellow-button:hover {
-	background: #333;
+	background: #55a8e8;
 	color: #fff;
+}
+
+/* Icons */
+.icon-big {
+	color: #152021;
+	display: block;
+	font-size: 96px;
+	margin: 40px 0 30px 0;
+	text-align: center;
+}
+.icon-color1 {
+	color: #9fc22a;
+}
+.icon-color2 {
+	color: #55a8e8;
 }

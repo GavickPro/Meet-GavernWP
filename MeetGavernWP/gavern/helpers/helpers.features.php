@@ -718,10 +718,7 @@ function gavern_add_og_meta_box() {
 		'high'
 	);
 }
-// check if the Open Graph is enabled
-if(get_option($tpl->name . '_opengraph_use_opengraph') == 'Y') {
-    add_action('add_meta_boxes', 'gavern_add_og_meta_box');
-}
+add_action('add_meta_boxes', 'gavern_add_og_meta_box');
 
 // The Callback
 function gavern_show_og_meta_box() {

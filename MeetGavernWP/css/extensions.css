@@ -23,19 +23,27 @@
 }
 
 .widget_gk_comments li > p {
-	background: url('../images/lc_comment.png') no-repeat 14px 100%;
 	line-height: 1.5;
 	padding-bottom: 10px;	
+	position: relative;
 }
-.widget_gk_comments li.gk-admin-comment > p {
-	background: url('../images/lc_comment_admin.png') no-repeat 14px 100%;
+.widget_gk_comments li > p:after {
+	border: 10px solid #f5f5f5;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	bottom: -10px;
+	content: "";
+	display: block;
+	left: 10px;
+	position: absolute;	
+	width: 1px;
 }
-
+.widget_gk_comments li.gk-admin-comment > p:after {
+	border-top-color: #fcf8e3;	
+}
 .widget_gk_comments li > p a { 
     background: #F5F5F5;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	color: #888;
     display: block;   
 	padding: 10px 15px;	
@@ -52,16 +60,20 @@
 }
 
 .widget_gk_comments li > img {
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
 	margin-right: 10px;
 }
 
 .widget_gk_comments li > strong,
 .widget_gk_comments li > small {
+	font-size: 13px;
 	line-height: 18px;
 	width: 65%;
+}
+.widget_gk_comments li > strong {
+	font-size: 15px;
+}
+.widget_gk_comments li > small {
+	color: #999;
 }
 
 /* 9.2. GK Social
@@ -71,9 +83,6 @@
 .gk-twitter-icon,
 .gk-gplus-icon,
 .gk-rss-icon {
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
 	display: inline-block;
 	float: none!important;
 	height: 22px;
@@ -114,10 +123,7 @@
 }
 
 #gk-social-icons {
-	background: #333;
-	-webkit-border-radius: 0 3px 3px 0;
-	-moz-border-radius: 0 3px 3px 0;
-	border-radius: 0 3px 3px 0;
+	background: #272727;
 	-webkit-box-shadow: 0 0 6px #939393;
 	-moz-box-shadow: 0 0 6px #939393;
 	-ms-box-shadow: 0 0 6px #939393;
@@ -133,9 +139,6 @@
 }
 
 #gk-social-icons.right {
-	-webkit-border-radius: 3px 0 0 3px;
-	   -moz-border-radius: 3px 0 0 3px;
-	        border-radius: 3px 0 0 3px;
 	left: auto;
 	right: 0;
 }
@@ -175,9 +178,6 @@
 }
 .gk-nsp-arts-nav ul li,
 .gk-nsp-links-nav ul li {
-	-webkit-border-radius: 50%;
-	   -moz-border-radius: 50%;
-	        border-radius: 50%;
 	float: left;
 	width: 10px;
 	height: 10px;
@@ -308,7 +308,7 @@ body[data-tablet="false"] .gk-nsp-art .gk-nsp-image:hover {
 .gk-nsp-art .gk-nsp-info a:active,
 .gk-nsp-art .gk-nsp-info a:focus,
 .gk-nsp-art .gk-nsp-info a:hover {
-	color: #333;
+	color: #272727;
 }
 .readon.left,
 .readon.right,

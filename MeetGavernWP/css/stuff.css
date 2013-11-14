@@ -73,9 +73,6 @@
 .contactpage .gk-contact-error,
 .contactpage .gk-contact-thanks {
 	background: #5eb95e;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
 	color: #fff;
 	font-size: 14px;
 	line-height: 18px;
@@ -140,38 +137,40 @@
 
 .archivepage .widget {
     float: left;
-    margin: 0 2%;
-    width: 29%;
+    margin: 0 2% 0 0;
+    padding: 0;
+    width: 48%;
 }
 
 .archivepage .widget.first {
     margin-left: 0;
-    width: 31%;
+    width: 100%;
 }
 
 .archivepage .widget.last {
-    margin-right: 0;
-    width: 31%;
+    margin: 0 0 0 2%;
+    width: 48%;
 }
 
 .archivepage .widget li:before {
     display: none;
 }
 
-.archivepage .widget.first li {
+.archivepage .widget li {
+	font-size: 18px;
     position: relative;
 }
 
 .archivepage .widget.first li a {
     display: block;
-    padding-left: 54px;
+    padding-left: 80px;
 }
 
 .archivepage .widget li small {
     color: #aaa;
     left: 0;
     position: absolute;
-    top: 7px;
+    top: 14px;
 }
 
 /* 7.5. Tag cloud template
@@ -209,6 +208,7 @@
 
 .loginpage .login-remember {
 	float: left;
+	margin-top: 18px;
 }
 
 .loginpage .login-submit {
@@ -242,7 +242,89 @@
 	display: none;
 }
 
-/* 7.7. Post formats header
+/* 7.7. Team template 
+==================================== */ 
+
+.team .gk-team-members {
+	overflow: hidden;
+	padding:  50px 0;
+}
+
+.team .gk-team-member {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	float: left;
+	margin: 0 0 24px 0;
+	padding: 0 10px;
+	width: 33.3%;
+}
+
+.team .gk-team-member:nth-child(3n+1) {
+	clear: both;
+}
+
+.team .gk-team-member h2 {
+	font-size: 24px;
+	text-align: center;
+}
+
+.team .gk-team-member h2 small {
+	color: #bbb;
+	display: block;
+	font-size: 16px;
+	line-height: 1.6;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.team .gk-team-member img {
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	display: block;
+	height: auto;
+	margin: 0 auto 20px auto;
+	max-width: 100%;
+	width: 128px;
+}
+
+/* 7.8. Team Member template 
+==================================== */ 
+
+.team-member .featured-image {
+	float: left;
+	margin: 16px 40px 0 0;
+}
+
+.team-member .featured-image img {
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	display: block;
+	height: auto;
+	overflow: hidden;
+	width: 100px;
+}
+
+.team-member h1 {
+	font-size: 32px;
+	padding-top: 14px;
+}
+
+.team-member h1 small {
+	color: #bbb;
+	display: block;
+	font-size: 20px;
+	text-transform: uppercase;
+}
+
+.team-member .content {
+	clear: both;
+	padding: 24px 0 0 0;
+}
+
+/* 7.9. Post formats header
 ==================================== */
 
 header hgroup h2 {
@@ -305,7 +387,7 @@ header hgroup h2 {
 	background: #fff url('../images/post_formats/format-video.png') no-repeat center center;
 }
 
-/* 7.8. Page navigation
+/* 7.10. Page navigation
 ==================================== */
 
 .pagenav {
@@ -321,7 +403,7 @@ header hgroup h2 {
 	float: right;
 }
 
-/* 7.9. Author info
+/* 7.11. Author info
 ==================================== */
 .author-info {
 	background: #fafafa;
@@ -345,9 +427,6 @@ header hgroup h2 {
 }
 
 .author-info img {
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	display: block;
 	margin-top: -5px;
 }
@@ -366,7 +445,7 @@ header hgroup h2 {
 	line-height: 17px;
 }
 
-/* 7.10. Post custom fields
+/* 7.12. Post custom fields
 ==================================== */
 
 .content dl.post-fields {
@@ -395,7 +474,7 @@ header hgroup h2 {
 	padding: 0;
 }
 
-/* 7.11. oEmbed support
+/* 7.13. oEmbed support
 ==================================== */
 
 /* YouTube, Vimeo - responsive support */
@@ -420,14 +499,14 @@ header hgroup h2 {
 	max-width: 100%!important;
 }
 
-/* 7.12. Widget title icons
+/* 7.14. Widget title icons
 ==================================== */
 
 .box-title > i {
 	font-size: 16px;
 }
  
-/* 7.13. Attachment page
+/* 7.15. Attachment page
 ==================================== */
 
 .attachment-page {
@@ -455,7 +534,7 @@ header hgroup h2 {
 	float: right;
 }
 
-/* 7.14. Tables
+/* 7.16. Tables
 ==================================== */
 
 article section table {
@@ -480,7 +559,7 @@ article section table td span.gk-table-label {
 	display: none;
 }
 
-/* 7.15. Demo content
+/* 7.17. Demo content
 ==================================== */
 .gk-demo-content {
 	-webkit-box-sizing: border-box;
@@ -494,11 +573,7 @@ article section table td span.gk-table-label {
 	width: 33.3%;
 }
 
-.gk-demo-content img {
-	display: block;
-	height: auto;
-	margin: 30px auto;
-	max-width: 100%;
+.gk-demo-content > i {
 	-webkit-transform: scale(1.0);
 	-moz-transform: scale(1.0);
 	-ms-transform: scale(1.0);
@@ -511,7 +586,7 @@ article section table td span.gk-table-label {
 	transition: transform 0.5s ease-out;
 }
 
-.gk-demo-content:hover img {
+.gk-demo-content:hover > i {
 	-webkit-animation-name: gkbounce;
 	-webkit-animation-duration: 0.75s;
 	-webkit-animation-iteration-count: infinite;

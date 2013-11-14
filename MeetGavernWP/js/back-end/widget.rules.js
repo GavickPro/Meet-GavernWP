@@ -243,7 +243,7 @@ function gk_widget_control_init_events(id, inner) {
                 //
                 if (text.indexOf(':') === text.length - 1) {
                     var startlen = output.val().length;
-                    output.val(output.val().replace("," + text, ""));
+                    output.val(output.val().replace("," + text + ",", ""));
                     // if previous regexp didn't changed the value
                     if (startlen === output.val().length) {
                         var regex = new RegExp(',' + text + '$', 'gmi');

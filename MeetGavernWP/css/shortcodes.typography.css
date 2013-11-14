@@ -23,9 +23,6 @@
 .gk-thanks { /* Common rules for all these types */
 	background-color: #FCF8E3;
 	border: 1px solid #FBEED5;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
 	color: #C09853;
 	margin-bottom: 18px;
 	padding: 8px 35px 8px 14px;
@@ -59,9 +56,6 @@
 .gk-badge[data-style="style1"],
 .gk-label[data-style="style1"] {
 	background-color: #999;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
 	color: #fff;
 	font-size: 11px;
 	font-weight: bold;
@@ -74,9 +68,6 @@
 
 .gk-badge,
 .gk-badge[data-style="style1"] {
-	-webkit-border-radius: 9px;
-	-moz-border-radius: 9px;
-	border-radius: 9px;
 	padding: 1px 9px 2px;
 }
 
@@ -117,22 +108,19 @@ pre.gk-code {
 
 pre.gk-code[data-style="style2"] {
 	border: none;
-	border-left: 4px solid #5990de;
+	border-left: 4px solid #55a8e8;
 }
 
 pre.gk-code[data-style="style3"] {
 	border: none;
-	border-bottom: 4px solid #5990de;
-	border-top: 4px solid #5990de;
+	border-bottom: 4px solid #55a8e8;
+	border-top: 4px solid #55a8e8;
 }
 
 /* Text blocks */
 .gk-textblock,
 .gk-textblock[data-style="style1"] {
-	background: #5990de;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
+	background: #55a8e8;
 	color: #fff;
 	margin: 10px 0;
 	padding: 10px 16px;
@@ -157,10 +145,7 @@ pre.gk-code[data-style="style3"] {
 
 .gk-numblock span,
 .gk-numblock[data-style="style1"] span {
-	background: #5990de;
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
+	background: #55a8e8;
 	color: #fff;
 	display: block;
 	float: left;
@@ -186,7 +171,7 @@ pre.gk-code[data-style="style3"] {
 }
 
 .gk-floated {
-	color: #5990de;
+	color: #55a8e8;
 	font-size: 125%;
 	font-style: italic;
 }
@@ -228,7 +213,7 @@ blockquote.gk-quote cite {
 }
 
 blockquote.gk-quote[data-style="style2"] {
-	border-left-color: #5990de;
+	border-left-color: #55a8e8;
 }
 
 blockquote.gk-quote[data-style="style3"] {
@@ -269,9 +254,6 @@ article ol li {
 
 article ul li:before {
 	background: #333;
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
 	content: "";
 	display: block;
 	float: left;
@@ -295,21 +277,15 @@ article ol[data-style="style4"] {
 }
 
 article ul[data-style="style2"] li:before {
-	background: #5990de!important;
+	background: #55a8e8!important;
 }
 
 article ul[data-style="style3"] li:before {
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
 	background: #333;
 }
 
 article ul[data-style="style4"] li:before {
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
-	background: #5990de!important;
+	background: #55a8e8!important;
 }
 
 /* buttons */
@@ -457,9 +433,6 @@ a.gk-button:hover {
 /* Legends */
 .gk-legend {
 	border: 1px solid #e5e5e5;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
 	margin: 12px 0;
 	padding: 10px 15px;
 	position: relative;
@@ -474,7 +447,7 @@ a.gk-button:hover {
 }
 
 .gk-legend[data-style="style2"] {
-	border-color: #5990de;
+	border-color: #55a8e8;
 }
 
 .gk-legend[data-style="style3"] {
@@ -552,9 +525,6 @@ a.gk-button:hover {
 .gk-raw {
 	background: #fafafa;
 	border: 1px solid #f0f0f0;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
 	color: #444;
 	margin: 10px 0;
 	padding: 10px 15px;

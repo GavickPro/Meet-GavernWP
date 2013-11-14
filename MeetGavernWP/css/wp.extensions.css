@@ -35,22 +35,21 @@
 .box .rsswidget {
 	clear: both;
 	display: block;
-	font-size: 12px;
+	font-size: 16px;
 }
 
 .box .rss-date {
 	clear: both;
+	color: #999;
 	display: block;
-	font-size: 9px;
-	font-style: italic;
-	margin-top: -10px;
-	text-align: right;
+	font-size: 12px;
+	font-style: normal;
+	margin: 5px 0;
 }
 
 .box .rssSummary {
 	clear: both;
 	color: #888;
-	font-size: 10px;
 	line-height: 1.5;
 	margin-bottom: 10px;
 }
@@ -146,15 +145,16 @@
 /* 8.13. Tag cloud widget
 ==================================== */
 
+.box .tagcloud a {
+	vertical-align: middle;
+}
+
 .box.tags .tagcloud {
 	overflow: hidden;
 }
 
 .box.tags .tagcloud a {
-	background: #5990de;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
+	background: #55a8e8;
 	color: #fff;
 	display: block;
 	float: left;
@@ -192,8 +192,8 @@
 }
 
 .box ul li {
-	line-height: 1.5;
-	padding: 5px 0;
+	line-height: 1.6;
+	padding: 10px 0;
 }
 
 .box .box-title {
@@ -218,22 +218,16 @@
 
 /* Suffix blue & blue-header */
 .box.blue-border > div {
-	border: 3px solid #5990de!important;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	border: 3px solid #55a8e8!important;
 	padding: 10px 15px;	
 }
 
 .box.blue-header .box-title {
-	color: #5990de;
+	color: #55a8e8;
 }
 
 .box.blue > div {
-	background: #5990de;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	background: #55a8e8;
 	color: #fff;
 	padding: 10px 15px;
 }
@@ -259,9 +253,6 @@
 /* Suffix red & red-header */
 .box.red-border > div {
 	border: 3px solid #dd514c!important;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	padding: 10px 15px;	
 }
 
@@ -285,9 +276,6 @@
 
 .box.red > div {
 	background: #dd514c;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	color: #fff;
 	padding: 10px 15px;
 }
@@ -313,9 +301,6 @@
 /* Suffix green & green-header */
 .box.green-border > div {
 	border: 3px solid #5eb95e!important;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	padding: 10px 15px;	
 }
 
@@ -339,9 +324,6 @@
 
 .box.green > div {
 	background: #5eb95e;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	color: #fff;
 	padding: 10px 15px;
 }
@@ -367,9 +349,6 @@
 /* Suffix yellow & yellow-header */
 .box.yellow-border > div {
 	border: 3px solid #fbb450!important;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	padding: 10px 15px;	
 }
 
@@ -393,9 +372,6 @@
 
 .box.yellow > div {
 	background: #fbb450;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	color: #fff;
 	padding: 10px 15px;
 }
@@ -421,26 +397,17 @@
 /* Suffix border1 */
 .box.border1 > div {
 	border: 1px solid #e5e5e5;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	padding: 10px 15px;
 }
 
 /* Suffix border2 */
 .box.border2 > div {
 	border: 3px solid #e5e5e5;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	padding: 10px 15px;
 }
 
 /* Suffix border3 */
 .box.border3 > div {
 	border: 2px dashed #e5e5e5;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	padding: 10px 15px;
 }

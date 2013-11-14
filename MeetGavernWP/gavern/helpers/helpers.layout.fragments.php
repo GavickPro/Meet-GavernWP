@@ -197,122 +197,76 @@ function gk_post_fields() {
  **/
 function gk_post_meta($attachment = false) {
  	global $tpl;
- 	$tag_list = get_the_tag_list( '', __( ', ', GKTPLNAME ) );
  	$params = get_post_custom();
  	$params_aside = isset($params['gavern-post-params-aside']) ? $params['gavern-post-params-aside'][0] : false;
  	
  	$param_aside = true;
- 	$param_date = true;
  	$param_author = true;
  	$param_category = true;
- 	$param_tags = true;
  	$param_comments = true;
  	
  	if($params_aside) {
  		$params_aside = unserialize(unserialize($params_aside));
  		$param_aside = $params_aside['aside'] == 'Y';
- 		$param_date = $params_aside['date'] == 'Y';
  		$param_author = $params_aside['author'] == 'Y';
  		$param_category = $params_aside['category'] == 'Y';
- 		$param_tags = $params_aside['tags'] == 'Y';
  		$param_comments = $params_aside['comments'] == 'Y';
  	}
  	
  	?>
  	
  	<?php if($param_aside) : ?>
- 	<aside class="meta">
-	 	<dl>
-	 		<?php if($param_date) : ?>
-	 		<dt class="date">
-	 			<?php _e('Post date:', GKTPLNAME); ?>
-	 		</dt>
-	 		
-	 		<dd>
-	 			<a href="<?php echo esc_url(get_permalink()); ?>" title="<?php echo esc_attr(get_the_time()); ?>" rel="bookmark">
-	 				<time class="entry-date" datetime="<?php echo esc_attr(get_the_date(DATE_W3C)); ?>">
-	 					<?php echo esc_html(get_the_date('d')); ?>	
-	 					<span><?php echo esc_html(get_the_date('M')); ?></span>
-	 				</time>
-	 			</a>
-	 		</dd>
-		 		
-	 		<?php if(get_post_format() != '') : ?>
-	 		<dd class="format gk-format-<?php echo get_post_format(); ?>">
-	 			<?php echo get_post_format(); ?>
-	 		</dd>
+ 	<dl class="meta">
+ 		<?php if(!(is_tag() || is_archive() || is_home() || is_search())) : ?>
+	 		<?php if(get_post_type() != 'page' && $param_category) : ?>
+	 		<li class="category">
+	 			<strong><?php _e('Published in: ', GKTPLNAME); ?></strong>
+	 			<?php echo get_the_category_list( __(', ', GKTPLNAME )); ?>
+	 		</li>
 	 		<?php endif; ?>
 	 		
+	 		<?php if($param_author) : ?>
+	 		<li class="author">
+	 			<strong><?php _e('Author: ', GKTPLNAME); ?></strong>
+	 			<a class="url fn n" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(sprintf(__('View all posts by %s', GKTPLNAME), get_the_author())); ?>" rel="author"><?php echo get_the_author(); ?></a>
+	 		</li>
 	 		<?php endif; ?>
 	 		
-	 		<?php if(!(is_tag() || is_archive() || is_home() || is_search())) : ?>
-		 		<?php if(get_post_type() != 'page' && $param_category) : ?>
-		 		<dt class="category">
-		 			<?php _e('Category:', GKTPLNAME); ?>
-		 		</dt>
-		 		<dd>
-		 			<?php echo get_the_category_list( __(', ', GKTPLNAME )); ?>
-		 		</dd>
-		 		<?php endif; ?>
-		 		
-		 		<?php if($param_author) : ?>
-		 		<dt class="author">
-		 			<?php _e('Author:', GKTPLNAME); ?>
-		 		</dt>
-		 		<dd>
-		 			<a class="url fn n" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="<?php echo esc_attr(sprintf(__('View all posts by %s', GKTPLNAME), get_the_author())); ?>" rel="author"><?php echo get_the_author(); ?></a>
-		 		</dd>
-		 		<?php endif; ?>
-		 		
-		 		<?php if ( comments_open() && ! post_password_required() && $param_comments) : ?>
-		 		<dt class="comments">
-		 			<?php _e('Comments:', GKTPLNAME); ?>
-		 		</dt>
-		 		<dd>
-		 			<?php 
-		 				comments_popup_link(
-		 					'<span class="leave-reply">' . __( 'Leave a reply', GKTPLNAME ) . '</span>', 
-		 					__( '<b>1</b> Reply', GKTPLNAME ), 
-		 					__( '<b>%</b> Replies', GKTPLNAME )
-		 				);
-		 			?>
-		 		</dd>
-		 		<?php endif; ?> 	
-		 			
-		 		<?php if($tag_list != '' && $param_tags) : ?>
-		 		<dt class="tags">
-		 			<?php _e('Tags:', GKTPLNAME); ?>
-		 		</dt>
-		 		<dd>
-		 			<?php echo $tag_list; ?>
-		 		</dd>
-		 		<?php endif; ?>
-		 		<?php if($attachment && wp_attachment_is_image()) : ?>
-		 		<dt class="size">
-		 			<?php _e('Attachment size:', GKTPLNAME); ?>
-		 		</dt>
-		 		<dd>	
-		 			<?php
-		 				$metadata = wp_get_attachment_metadata();
-		 				printf( __( 'Full size is %s pixels', GKTPLNAME),
-		 					sprintf( '<a href="%1$s" title="%2$s">%3$s &times; %4$s</a>',
-		 						wp_get_attachment_url(),
-		 						esc_attr( __('Link to full-size image', GKTPLNAME) ),
-		 						$metadata['width'],
-		 						$metadata['height']
-		 					)
-		 				);
-		 			?> 
-		 		</dd>	
-		 		<?php endif; ?>
-		 		<dd class="bookmark">
-		 			<a href="<?php echo esc_url(get_permalink()); ?>" title="<?php printf(__('Permalink to %1$s', GKTPLNAME), the_title_attribute('echo=0')); ?>" rel="bookmark"><?php _e('permalink', GKTPLNAME); ?></a>
-		 		</dd>
-		 		
-		 		<?php echo edit_post_link(__( 'Edit', GKTPLNAME ), '<dd class="edit">', '</dd>'); ?>
+	 		<?php if ( comments_open() && ! post_password_required() && $param_comments) : ?>
+	 		<li class="comments">
+	 			<?php 
+	 				comments_popup_link(
+	 					'<span class="leave-reply">' . __( 'Leave a reply', GKTPLNAME ) . '</span>', 
+	 					__( '<b>1</b> Reply', GKTPLNAME ), 
+	 					__( '<b>%</b> Replies', GKTPLNAME )
+	 				);
+	 			?>
+	 		</li>
+	 		<?php endif; ?> 	
+	 			
+	 		<?php if($attachment && wp_attachment_is_image()) : ?>
+	 		<li class="size">
+	 			<strong><?php _e('Attachment size:', GKTPLNAME); ?></strong>
+	 			<?php
+	 				$metadata = wp_get_attachment_metadata();
+	 				printf( __( 'Full size is %s pixels', GKTPLNAME),
+	 					sprintf( '<a href="%1$s" title="%2$s">%3$s &times; %4$s</a>',
+	 						wp_get_attachment_url(),
+	 						esc_attr( __('Link to full-size image', GKTPLNAME) ),
+	 						$metadata['width'],
+	 						$metadata['height']
+	 					)
+	 				);
+	 			?> 
+	 		</li>	
 	 		<?php endif; ?>
- 		</dl>
- 	</aside>
+	 		<li class="bookmark">
+	 			<a href="<?php echo esc_url(get_permalink()); ?>" title="<?php printf(__('Permalink to %1$s', GKTPLNAME), the_title_attribute('echo=0')); ?>" rel="bookmark"><i class="icon-link"></i></a>
+	 		</li>
+	 		
+	 		<?php echo edit_post_link('<i class="icon-pencil"></i>', '<li class="edit">', '</li>'); ?>
+ 		<?php endif; ?>
+		</dl>
  	<?php endif; ?>
  	
  	<?php

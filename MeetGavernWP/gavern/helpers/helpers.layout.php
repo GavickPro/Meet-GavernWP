@@ -678,7 +678,7 @@ function gk_condition($mode, $input, $users) {
 		}
 	}
 	
-	if($output == '' || trim($output) == '()' || trim($output) == '!()') {
+	if($output == '') {
 		$output = ' TRUE';
 	}
 	

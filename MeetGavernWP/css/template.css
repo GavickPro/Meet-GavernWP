@@ -58,7 +58,7 @@ a {
 
 article section.content a,
 article section.intro a {
-	color: #5990de;
+	color: #55a8e8;
 }
 
 article section.content a:active,
@@ -73,7 +73,7 @@ article section.intro a:hover {
 a:active,
 a:focus,
 a:hover {
-	color: #5990de;
+	color: #55a8e8;
 	cursor: pointer;
 }
 
@@ -168,35 +168,17 @@ a.gk-button,
 input[type="button"],
 input[type="submit"] {
 	display: inline-block;
-	padding: 4px 10px 4px;
+	padding: 10px 15px;
 	margin-bottom: 0;
 	font-size: 13px;
 	line-height: 18px;
-	color: #333333;
+	color: #fff;
 	text-align: center;
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	text-transform: uppercase;
 	vertical-align: middle;
 	cursor: pointer;
-	background-color: #f5f5f5;
-	background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
-	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
-	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
-	background-image: linear-gradient(top, #ffffff, #e6e6e6);
-	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
-	background-repeat: repeat-x;
-	border: 1px solid #cccccc;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
-	border-bottom-color: #b3b3b3;
-	-webkit-border-radius: 4px;
-	   -moz-border-radius: 4px;
-	        border-radius: 4px;
-	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
-	filter: progid:dximagetransform.microsoft.gradient(enabled=false);
-	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-	   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-	        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	background-color: #55a8e8;
+	border: none;
 }
 
 .btn:hover,
@@ -221,7 +203,7 @@ a.gk-button[disabled],
 .readon:hover,
 .readon:active,
 .readon:focus {
-  background-color: #e6e6e6;
+	background-color: #272727;
 }
 
 .btn:active,
@@ -231,7 +213,7 @@ a.gk-button:active,
 a.gk-button.active
 input[type="button"]:active,
 input[type="submit"]:active {
-  background-color: #cccccc;
+ 	background-color: #272727;
 }
 
 .btn:first-child,
@@ -239,7 +221,7 @@ button:first-child,
 a.gk-button:first-child,
 input[type="button"]:first-child,
 input[type="submit"]:first-child {
-  margin-left: 0;
+	margin-left: 0;
 }
 
 .btn:hover,
@@ -247,15 +229,13 @@ button:hover,
 a.gk-button:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover {
-  color: #333333;
-  text-decoration: none;
-  background-color: #e6e6e6;
-  background-position: 0 -15px;
-  -webkit-transition: background-position 0.1s linear;
-     -moz-transition: background-position 0.1s linear;
-      -ms-transition: background-position 0.1s linear;
-       -o-transition: background-position 0.1s linear;
-          transition: background-position 0.1s linear;
+	background-color: #272727;
+	color: #fff;
+	-webkit-transition: background 0.2s linear;
+	   -moz-transition: background 0.2s linear;
+	    -ms-transition: background 0.2s linear;
+	     -o-transition: background 0.2s linear;
+		    transition: background 0.2s linear;
 }
 
 .btn:focus,
@@ -263,9 +243,9 @@ button:focus,
 a.gk-button:focus,
 input[type="button"]:focus,
 input[type="submit"]:focus {
-  outline: thin dotted #333;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+	outline: thin dotted #333;
+	outline: 5px auto -webkit-focus-ring-color;
+ 	outline-offset: -2px;
 }
 
 .btn.active,
@@ -274,39 +254,13 @@ button:active,
 a.gk-button:active,
 input[type="button"]:active,
 input[type="submit"]:active {
-  background-color: #e6e6e6;
-  background-color: #d9d9d9;
-  background-image: none;
-  outline: 0;
-  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-     -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.btn.disabled,
-.btn[disabled],
-button.disabled,
-a.gk-button:disabled,
-a.gk-button[disabled],
-input[type="button"].disabled,
-input[type="submit"].disabled {
-  cursor: default;
-  background-color: #e6e6e6;
-  background-image: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-     -moz-box-shadow: none;
-          box-shadow: none;
+	background-color: #272727;
 }
 
 .btn-large {
   padding: 9px 14px;
   font-size: 15px;
   line-height: normal;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
 }
 
 /* input fields */
@@ -317,15 +271,12 @@ input[type="www"],
 input[type="tel"]  {
 	background: #fff;
 	border: 1px solid #e5e5e5;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-ms-box-sizing: border-box;
 	-o-box-sizing: border-box;
 	box-sizing: border-box;
-	color: #333;
+	color: #272727;
 	font: normal 12px Arial, Helvetica, sans-serif;
 	height: 32px;
 	line-height: 32px;
@@ -335,15 +286,12 @@ input[type="tel"]  {
 textarea {
 	background: #fff;
 	border: 1px solid #e5e5e5;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-ms-box-sizing: border-box;
 	-o-box-sizing: border-box;
 	box-sizing: border-box;
-	color: #333;
+	color: #272727;
 	font-family: Arial, Verdana, sans-serif;
 	font-size: 14px;
 	line-height: 23px;
@@ -480,7 +428,7 @@ article {
 }
 
 #gk-head a.textLogo {
-	color: #5990de;
+	color: #55a8e8;
 	display: block;
 	font-size: 18px;
 	line-height: 22px;
@@ -509,7 +457,10 @@ article {
 }
 
 #gk-header {
-	background: #f5f5f5;
+	background: 
+		url('../images/header_bg_pattern.png') repeat left top, 
+		url('../images/header_bg.jpg') no-repeat center center;
+	background-size: auto auto, cover;
 	margin: 0 -10px;
 	padding: 30px 0;
 }
@@ -591,7 +542,7 @@ section.content::after {
 #gk-footer a:active,
 #gk-footer a:focus,
 #gk-footer a:hover {
-	color: #5990DE;
+	color: #55a8e8;
 }
 
 #footer-menu {
