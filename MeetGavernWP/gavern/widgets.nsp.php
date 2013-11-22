@@ -987,9 +987,9 @@ class GK_NSP_Widget extends WP_Widget {
 		 			}
 		 		
 		 			if($this->wdgt_config['article_image_pos'] == 'left' && $this->wdgt_config['article_image_order'] == 1) {
-		 				return apply_filters('gk_nsp_art_image', '<div class="gk-nsp-image-wrap"><a href="'.$art_url.'" class="gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image" '.$style.' /></a></div>');
+		 				return apply_filters('gk_nsp_art_image', '<div class="gk-nsp-image-wrap"><a href="'.$art_url.'" class="gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image" '.$style.' height="'.$this->wdgt_config['article_image_h'].'" width="'.$this->wdgt_config['article_image_w'].'" /></a></div>');
 		 			} else {
-		 				return apply_filters('gk_nsp_art_image', '<a href="'.$art_url.'" class="gk-responsive gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image gk-responsive" '.$style.' /></a>');
+		 				return apply_filters('gk_nsp_art_image', '<a href="'.$art_url.'" class="gk-responsive gk-image-link"><img src="'.$new_path.'" alt="" class="gk-nsp-image gk-responsive" '.$style.' height="'.$this->wdgt_config['article_image_h'].'" width="'.$this->wdgt_config['article_image_w'].'" /></a>');
 		 			}
 	 			} else {
 	 				return __('An error occured during creating the thumbnail.', GKTPLNAME);
