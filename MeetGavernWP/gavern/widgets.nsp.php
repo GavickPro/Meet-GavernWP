@@ -28,7 +28,7 @@ class GK_NSP_Widget extends WP_Widget {
 				'description' => __( 'Use this widget to show recent items with images and additional elements like title, date etc.', GKTPLNAME) 
 			),
 			array(
-				'width' => 640, 
+				'width' => 670, 
 				'height' => 350
 			)
 		);

@@ -392,6 +392,16 @@ p[data-visible="false"] {
 	cursor: pointer;
 }
 
+/* WP 3.8 back-end adjustments */
+body.branch-3-8 .gkWrap {
+	background: #fff;
+	border-radius: 0;
+}
+
+body.branch-3-8 .gkWrap > h1:first-child {
+	border-radius: 0;
+}
+
 /* Social Media */
 #gkSocial {
 	float: right;

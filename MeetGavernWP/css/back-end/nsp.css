@@ -67,3 +67,28 @@ hr.clear {
 	border-top: none;
 	padding: 0 0 10px 0;
 }
+
+/* WP 3.8 back-end adjustments */
+body.branch-3-8 .gk-nsp-col,
+body.branch-3-8 .gk-nsp-col + .gk-nsp-col {
+	padding-top: 12px;
+}
+
+body.wp-admin.branch-3-8 .gk-nsp-col select {
+	font-size: 12px;
+}
+
+body.wp-admin.branch-3-8 .gk-nsp-col input.short {
+	width: 35px;
+}
+
+@media screen and (max-width: 782px) {
+	body.wp-admin.branch-3-8 #wpbody .gk-nsp-col select {
+		font-size: 11px;
+		height: 28px;
+	}
+	
+	body.wp-admin.branch-3-8 .gk-nsp-col input {
+		padding: 3px 5px;
+	}
+}

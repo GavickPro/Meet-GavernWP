@@ -163,3 +163,9 @@
 .gk_widget_rules_output {
 	display: none;
 }
+
+/* WP 3.8 back-end adjustments */
+body.branch-3-8 .gk_widget_rules_pages div span {
+	border-radius: 0;
+	height: 20px;
+}
