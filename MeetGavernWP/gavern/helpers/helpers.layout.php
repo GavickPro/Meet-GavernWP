@@ -186,7 +186,7 @@ function gk_metatags() {
 			}
 		}
 		
-		if(is_single()) {
+		if(is_singular()) {
 			global $wp_query;
 			$postID = $wp_query->post->ID;
 		
