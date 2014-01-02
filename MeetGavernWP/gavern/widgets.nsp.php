@@ -167,7 +167,7 @@ class GK_NSP_Widget extends WP_Widget {
 		// iterate
 		$this->wdgt_config = $config;
 		$this->wdgt_results = $results;
-		$cache_uri = get_stylesheet_directory_uri() . '/gavern/cache_nsp/';
+		$cache_uri = get_template_directory_uri() . '/gavern/cache_nsp/';
 		
 		$tmp_post = $post;
 		// change the source blog
