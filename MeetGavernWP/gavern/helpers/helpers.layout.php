@@ -69,7 +69,7 @@ function gk_title() {
 		$desc = get_option($tpl->name . '_seo_description');
 		// create the first part of the title
 		$prepared = str_replace_once(get_bloginfo( 'name', 'Display' ), '', wp_title('', false));
-		$title = is_home() ? $desc : $prepared;
+		$title = is_front_page() ? $desc : $prepared;
 		// return first part with site name without space characters at beginning
 		echo ltrim($title); 
 		// if showing blogname in title is enabled - show second part
