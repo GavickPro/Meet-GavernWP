@@ -103,6 +103,7 @@ function gavern_importexport_options() {
 					$key->option_name != $tpl->name . '_widget_rules' &&
 					$key->option_name != $tpl->name . '_widget_rules_type' &&
 					$key->option_name != $tpl->name . '_widget_style' && 
+					$key->option_name != $tpl->name . '_widget_style_css' && 
 					$key->option_name != $tpl->name . '_widget_users'
 				) {
 					$value[$key->option_name] = $key->option_value;
