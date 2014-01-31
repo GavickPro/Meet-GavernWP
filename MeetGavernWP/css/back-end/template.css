@@ -3,6 +3,49 @@
  * Styles for the template options page
  *
  **/
+ 
+/* Backend icons */
+@charset "UTF-8";
+
+@font-face {
+  font-family: "gavernwp";
+  src:url("../../fonts/gavernwp/gavernwp.eot");
+  src:url("../../fonts/gavernwp/gavernwp.eot?#iefix") format("embedded-opentype"),
+    url("../../fonts/gavernwp/gavernwp.woff") format("woff"),
+    url("../../fonts/gavernwp/gavernwp.ttf") format("truetype"),
+    url("../../fonts/gavernwp/gavernwp.svg#gavernwp") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "gavernwp" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="gavernwp-"]:before,
+[class*=" gavernwp-"]:before,
+#gkTabs li:before,
+.gkWrap > h1:first-child a:before {
+  font-family: "gavernwp" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 textarea,
 input,
 .wp-admin select {
@@ -76,13 +119,23 @@ textarea {
 	display: block;
 }
 .gkWrap > h1:first-child a {
-	background: url(../../images/back-end/icons.png) no-repeat 0 -640px;
 	display: block;
 	float: right;
 	height: 26px;
 	margin-top: 5px;
+	position: relative;
 	text-indent: -9999em;
-	width: 27px
+	width: 29px
+}
+.gkWrap > h1:first-child a:before {
+	content: "e";
+	color: #fff;
+	font-size: 33px;
+	font-weight: bold!important;
+	left: -3px;
+	position: absolute;
+	top: -2px;
+	text-indent: 0;
 }
 .gkWrap > h1:first-child a:active,
 .gkWrap > h1:first-child a:focus,
@@ -107,13 +160,13 @@ textarea {
 	-moz-transition: background-color .3s linear;
 	-ms-transition: background-color .3s linear;
 	-webkit-transition: background-color .3s linear;
-	background: url(../../images/back-end/icons.png) no-repeat 20px 14px;
 	border-bottom: 1px solid #e3e3e3;
 	color: #575b5c;
 	font: bold 12px/32px Arial, Helvetica, sans-serif;
 	height: 32px;
 	margin: 0;
 	padding: 6px 15px 6px 54px;
+	position: relative;
 	text-shadow: 0 0 0 1px #fff;
 	transition: background-color .3s linear
 }
@@ -125,6 +178,16 @@ textarea {
 	color: #222;
 	cursor: pointer;
 }
+#gkTabs li:before {
+	font-size: 18px;
+	left: 20px;
+	position: absolute;
+	top: 13px;
+}
+#gkTabs li:hover:before,
+#gkTabs li.active:before {
+	color: #55a8e8;
+}
 #gkTabs li:hover {
 	background-color: #fff;
 }
@@ -133,86 +196,41 @@ textarea {
 	border-right: 1px solid #fff;
 	margin-right: -1px;
 }
-#gkTabs li.layout {
-	background-position: 20px -49px
+#gkTabs li.basic:before {
+	content:"m";
 }
-#gkTabs li.pages {
-	background-position: 20px -690px
+#gkTabs li.layout:before {
+	content:"h";
 }
-#gkTabs li.features {
-	background-position: 20px -753px
+#gkTabs li.pages:before {
+	content:"i";
 }
-#gkTabs li.fonts {
-	background-position: 20px -112px
+#gkTabs li.features:before {
+	content:"k";
 }
-#gkTabs li.navigation {
-	background-position: 20px -173px
+#gkTabs li.fonts:before {
+	content:"c";
 }
-#gkTabs li.advanced {
-	background-position: 20px -238px
+#gkTabs li.navigation:before {
+	content:"d";
 }
-#gkTabs li.shortcodes {
-	background-position: 20px -299px
+#gkTabs li.advanced:before {
+	content:"e";
 }
-#gkTabs li.socialapi {
-	background-position: 20px -360px
+#gkTabs li.shortcodes:before {
+	content:"g";
 }
-#gkTabs li.themebranding {
-	background-position: 20px 14px
+#gkTabs li.socialapi:before {
+	content:"l";
 }
-#gkTabs li.back-endbranding {
-	background-position: 20px -485px
+#gkTabs li.themebranding:before {
+	content:"b";
 }
-#gkTabs li.seo {
-	background-position: 20px -549px
+#gkTabs li.back-endbranding:before {
+	content:"a";
 }
-#gkTabs li:hover.basic,
-#gkTabs li.basic.active {
-	background-position: -291px 14px
-}
-#gkTabs li:hover.layout,
-#gkTabs li.layout.active {
-	background-position: -291px -49px
-}
-#gkTabs li:hover.pages,
-#gkTabs li.pages.active {
-	background-position: -290px -690px
-}
-#gkTabs li:hover.features,
-#gkTabs li.features.active {
-	background-position: -291px -753px
-}
-#gkTabs li:hover.fonts,
-#gkTabs li.fonts.active {
-	background-position: -291px -112px
-}
-#gkTabs li:hover.navigation,
-#gkTabs li.navigation.active {
-	background-position: -291px -173px
-}
-#gkTabs li:hover.advanced,
-#gkTabs li.advanced.active {
-	background-position: -291px -238px
-}
-#gkTabs li:hover.shortcodes,
-#gkTabs li.shortcodes.active {
-	background-position: -291px -299px
-}
-#gkTabs li:hover.socialapi,
-#gkTabs li.socialapi.active {
-	background-position: -291px -360px
-}
-#gkTabs li:hover.themebranding,
-#gkTabs li.themebranding.active {
-	background-position: -291px 14px
-}
-#gkTabs li:hover.back-endbranding,
-#gkTabs li.back-endbranding.active {
-	background-position: -291px -485px
-}
-#gkTabs li:hover.seo,
-#gkTabs li.seo.active {
-	background-position: -291px -549px
+#gkTabs li.seo:before {
+	content:"f";
 }
 #gkTabsContent {
 	display: table-cell;
@@ -428,7 +446,7 @@ body.branch-3-8 .gkWrap > h1:first-child {
 }
 
 /* width <= 720px */ 
-@media only screen and (max-width: 900px), only screen and (max-device-width: 900px) and (-moz-max-device-pixel-ratio: 1.5), only screen and (max-device-width: 900px) and (-o-max-device-pixel-ratio: 1.5/1), only screen and (max-device-width: 900px) and (-webkit-max-device-pixel-ratio: 1.5), only screen and (max-device-width: 900px) and (max-device-pixel-ratio: 1.5), only screen and (max-device-width: 1800px) and (-moz-min-device-pixel-ratio: 2), only screen and (max-device-width: 1800px) and (-o-min-device-pixel-ratio: 2/1), only screen and (max-device-width: 1800px) and (-webkit-min-device-pixel-ratio: 2), only screen and (max-device-width: 1800px) and (min-device-pixel-ratio: 2) {
+@media screen and (max-width: 900px), only screen and (max-device-width: 900px) and (-moz-max-device-pixel-ratio: 1.5), only screen and (max-device-width: 900px) and (-o-max-device-pixel-ratio: 1.5/1), only screen and (max-device-width: 900px) and (-webkit-max-device-pixel-ratio: 1.5), only screen and (max-device-width: 900px) and (max-device-pixel-ratio: 1.5), only screen and (max-device-width: 1800px) and (-moz-min-device-pixel-ratio: 2), only screen and (max-device-width: 1800px) and (-o-min-device-pixel-ratio: 2/1), only screen and (max-device-width: 1800px) and (-webkit-min-device-pixel-ratio: 2), only screen and (max-device-width: 1800px) and (min-device-pixel-ratio: 2) {
 	#gkTabs {
 		width: 54px;
 	}
@@ -436,6 +454,9 @@ body.branch-3-8 .gkWrap > h1:first-child {
 		padding: 6px 0;
 		text-indent: -9999em;
 		width: 54px;
+	}
+	#gkTabs li:before {
+		text-indent: 0;
 	}
 	#gkTabsContent p label {
 		padding-bottom: 6px;
