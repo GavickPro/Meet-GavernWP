@@ -234,7 +234,7 @@ function gk_opengraph_metatags() {
 			$desc = get_post_meta($postID, 'gavern_opengraph_desc', true);
 			$other = get_post_meta($postID, 'gavern_opengraph_other', true);
 			//
-			echo apply_filters('gavern_og_title', '<meta name="og:title" content="'.(($title == '') ? $wp_query->post->post_title : $title).'" />' . "\n");
+			echo apply_filters('gavern_og_title', '<meta name="og:title" content="'.(($title == '') ? esc_html($wp_query->post->post_title) : $title).'" />' . "\n");
 			//
 			if($image != '') {
 				echo apply_filters('gavern_og_image', '<meta name="og:image" content="'.$image.'" />' . "\n");
