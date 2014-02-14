@@ -445,8 +445,7 @@ body.branch-3-8 .gkWrap > h1:first-child {
 	}
 }
 
-/* width <= 720px */ 
-@media screen and (max-width: 900px), only screen and (max-device-width: 900px) and (-moz-max-device-pixel-ratio: 1.5), only screen and (max-device-width: 900px) and (-o-max-device-pixel-ratio: 1.5/1), only screen and (max-device-width: 900px) and (-webkit-max-device-pixel-ratio: 1.5), only screen and (max-device-width: 900px) and (max-device-pixel-ratio: 1.5), only screen and (max-device-width: 1800px) and (-moz-min-device-pixel-ratio: 2), only screen and (max-device-width: 1800px) and (-o-min-device-pixel-ratio: 2/1), only screen and (max-device-width: 1800px) and (-webkit-min-device-pixel-ratio: 2), only screen and (max-device-width: 1800px) and (min-device-pixel-ratio: 2) {
+@media (max-width: 900px) {
 	#gkTabs {
 		width: 54px;
 	}
