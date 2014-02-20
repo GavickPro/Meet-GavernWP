@@ -23,7 +23,7 @@ function gk_load($part_name, $assets = null, $args = null) {
 	if($assets !== null) {
 		foreach($assets as $key => $value) {
 			if($key == 'css') {
-				wp_enqueue_style('gavern-gallery-template', $value, array('gavern-style'));
+				wp_enqueue_style('gavern-gallery-template', $value, array('gavern-stuff'));
 			} elseif($key == 'js') {
 				wp_enqueue_script('gavern-gallery-template', $value, array('jquery'));
 			}
