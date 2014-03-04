@@ -292,7 +292,7 @@ function gavern_save_featured_video(){
 	// user permissions
 	if(
 		($_POST['post_type'] == 'page' && !current_user_can('edit_page', $post->ID)) ||
-		($_POST['psot_type'] == 'post' && !current_user_can('edit_post', $post->ID))
+		($_POST['post_type'] == 'post' && !current_user_can('edit_post', $post->ID))
 	) {
 		return $post->ID;
 	}
