@@ -9,7 +9,7 @@ defined('GAVERN_WP') or die('Access denied');
  *
  **/
 
-include_once(TEMPLATEPATH . '/gavern/form_elements/standard.php');
+include_once(gavern_file('gavern/form_elements/standard.php'));
 
 /**
  *
@@ -114,7 +114,7 @@ class GavernWPFormParser {
 						// load these files only once time
 						if(!class_exists($file_config->class)) {
 							// load the main PHP class
-							include_once(TEMPLATEPATH . '/gavern/form_elements/'.($field->type).'/'.($file_config->php));
+							include_once(gavern_file('gavern/form_elements/').($field->type).'/'.($file_config->php));
 						}
 						// create the object
 						if(class_exists($file_config->class)) {

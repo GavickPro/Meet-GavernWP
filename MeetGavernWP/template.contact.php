@@ -147,10 +147,10 @@ if(isset($_POST['message-send'])) {
 			$headers = 'Content-type: text/html' . "\r\n";
 		}
 
-		mail($email, $subject, $body, $headers);
+		wp_mail($email, $subject, $body, $headers);
 		
 		if($params_copy && $params_email && isset($_POST['send_copy'])) {
-			mail($output['email'], $subject, $body, $headers);
+			wp_mail($output['email'], $subject, $body, $headers);
 		}
 		
 		$messageSent = true;

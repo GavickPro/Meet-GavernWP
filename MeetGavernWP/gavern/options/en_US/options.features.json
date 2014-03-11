@@ -1,0 +1,88 @@
+[
+	{
+		"groupname": "Features settings",
+		"groupdesc": "Parameters for theme features are configured here.",
+		"fields": [
+			{
+				"name": "widget_rules_state",
+				"type": "Switcher",
+				"label": "Widget rules",
+				"tooltip": "Enable widget rules used to disable specific widgets on selected pages or for specific groups of users.",
+				"default": "Y"
+			},
+			{
+				"name": "featured_video",
+				"type": "Switcher",
+				"label": "Featured Video",
+				"tooltip": "Enable featured video metabox on pages and posts.",
+				"default": "Y"
+			},
+			{
+				"name": "styleswitcher_state",
+				"type": "Switcher",
+				"label": "Style Switcher Display",
+				"tooltip": "Enable display of the styleswitcher in the theme.",
+				"default": "Y",
+				"class": "",
+				"visibility": ""
+			},
+			{
+				"name": "ga_ua_id",
+				"type": "Text",
+				"label": "Google Analytics tracking ID",
+				"tooltip": "Please specify the UA ID i.e. UA-XXXXXX-Y",
+				"default": ""
+			},
+			{
+				"name": "thickbox_state",
+				"type": "Switcher",
+				"label": "Use Thickbox",
+				"tooltip": "Enable use of Thickbox to display post images in the popup.",
+				"default": "Y"
+			},
+			{
+				"name": "comments_explained",
+				"type": "TextBlock",
+				"label": "Settings connected with comments"
+			},
+			{
+				"name": "comments_autoblank",
+				"type": "Switcher",
+				"label": "Add target blank to comments links",
+				"tooltip": "If this option is enabled then every link in the comments text will contain attribute target='_blank'.",
+				"default": "Y"
+			},
+			{
+				"name": "comments_autolinking",
+				"type": "Switcher",
+				"label": "Autolinking in comments",
+				"tooltip": "If this option is enabled then every link in the comments text will be automatically changed into hyperlink.",
+				"default": "Y"
+			},
+			{
+				"name": "opensearch_explained",
+				"type": "TextBlock",
+				"label": "Open Search is an open protocol used to easily integrate your page search with the browser search engines."
+			},
+			{
+				"name": "opensearch_use_opensearch",
+				"type": "Switcher",
+				"label": "Enable support for Open Search",
+				"tooltip": "Enable support for Open Search, which activates an implementation of custom search engines based upon your blog search engines.",
+				"default": "Y"
+			},
+			{
+				"name": "opengraph_explained",
+				"type": "TextBlock",
+				"label": "Open Graph is an open protocol used for better control over content displayed in Facebook."
+			},
+			{
+				"name": "opengraph_use_opengraph",
+				"type": "Switcher",
+				"label": "Enable support for Open Graph",
+				"tooltip": "Enable support for Open Graph, exposing additional options to make your content more readable to Facebook crawlers.",
+				"default": "Y"
+			}
+		]
+	}
+]

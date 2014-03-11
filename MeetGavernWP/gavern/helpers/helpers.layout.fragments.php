@@ -84,7 +84,7 @@ function gavern_comment_template( $comment, $args, $depth ) {
 	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 		<article id="comment-<?php comment_ID(); ?>">	
 			<aside>
-				<?php echo get_avatar( $comment, ($comment->comment_parent == '0') ? 40 : 32); ?>
+				<?php echo get_avatar( $comment, ($comment->comment_parent == '0') ? 64 : 48); ?>
 			</aside>
 					
 			<section class="content">				
@@ -173,6 +173,20 @@ function gk_post_fields() {
 				$values = array_map('trim', get_post_custom_values($key));
 				// extract the value
 				$value = implode($values,', ');
+				//custom post fields label mapping
+				$mapping = preg_split('/\r\n|\r|\n/', get_option($tpl->name . '_post_fileds_label_mapping'));
+				foreach($mapping as $item) {
+				     //
+				     if(strpos($item, '=') === false) continue;
+				     
+				     $item = explode('=', $item);
+				     
+				     if($key != $item[0]) continue;
+				     
+				     if($item[1] != '' && $item[0] == $key) {
+				      		$key = $item[1];
+				     }
+				} 
 				// generate the item
 				$output .= apply_filters('the_meta_key', '<dt>'.$key.':</dt>'."\n".'<dd>'.$value.'</dd>'."\n", $key, $value);
 			}

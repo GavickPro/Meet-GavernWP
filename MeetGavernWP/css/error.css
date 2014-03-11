@@ -1,28 +1,27 @@
 body {
 	color: #777;
-	font-family: Arial, Verdana, sans-serif; /* ToDo */
+	font-family: "Raleway", sans-serif;
 	font-size: 13px;
-	font-weight: 400;
+	font-weight: 300;
 	padding: 0 20px;
 	text-align: center;
 }
 a {
-	color: #5990de;
+	color: #55a8e8;
 	outline: none!important;
 	text-decoration: none;
 }
 a:active,
 a:focus,
 a:hover {
-	color: #7ae;
+	color: #111;
 	text-decoration: none;
 }
 h1 {
-	color: #5990de;
-	font-family: 'Colaborate', sans-serif;
-	font-size: 42px;
+	color: #55a8e8;
+	font-size: 54px;
 	font-weight: 500;
-	margin: 50px 0 0 0;
+	margin: 50px 0 30px 0;
 }
 a.cssLogo {
 	background: transparent url('../images/logo.png') no-repeat 0 0;
@@ -33,11 +32,13 @@ a.cssLogo {
 	text-indent: -9999px;
 }
 p {
+	font-size: 18px;
 	margin: 10px 0 24px 0;
 }
 p.errorinfo {
-	width: 300px;
+	border-top: 1px solid #e5e5e5;
+	font-size: 13px;
 	margin: 0 auto;
 	padding: 9px 0;
-	border-top: 1px solid #e5e5e5;
+	width: 300px;
 }

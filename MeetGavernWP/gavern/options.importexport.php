@@ -16,7 +16,7 @@ function gavern_importexport_options() {
 	// getting access to the template and database global object. 
 	global $tpl;
 	global $wpdb;
-	wp_register_style('gk-import-export-css', get_template_directory_uri().'/css/back-end/importexport.css');
+	wp_register_style('gk-import-export-css', gavern_file_uri('css/back-end/importexport.css'));
 	wp_enqueue_style('gk-import-export-css');
 
 	// check permissions
@@ -103,6 +103,7 @@ function gavern_importexport_options() {
 					$key->option_name != $tpl->name . '_widget_rules' &&
 					$key->option_name != $tpl->name . '_widget_rules_type' &&
 					$key->option_name != $tpl->name . '_widget_style' && 
+					$key->option_name != $tpl->name . '_widget_style_css' && 
 					$key->option_name != $tpl->name . '_widget_users'
 				) {
 					$value[$key->option_name] = $key->option_value;

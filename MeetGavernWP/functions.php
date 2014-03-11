@@ -95,9 +95,7 @@ require_once(gavern_file('gavern/user.functions.php'));
 require_once(gavern_file('gavern/filters.php'));
 // Including file with template widgets
 require_once(gavern_file('gavern/widgets.comments.php'));
-require_once(gavern_file('gavern/widgets.nsp.php'));
 require_once(gavern_file('gavern/widgets.social.php'));
-require_once(gavern_file('gavern/widgets.tabs.php'));
 // Including file with template admin features
 require_once(gavern_file('gavern/helpers/helpers.features.php'));
 // Including file with template shortcodes
@@ -155,7 +153,7 @@ function gavern_theme_setup(){
     // save the lowercase non-special characters template name				
     $template_name = strtolower(preg_replace("/[^A-Za-z0-9]/", "", $template_config->name));
     // load the template text_domain
-    load_theme_textdomain( $template_name, get_template_directory() . '/languages' );
+    load_theme_textdomain( $template_name, get_stylesheet_directory() . '/languages' );
 }
 // scripts enqueue function
 function gavern_enqueue_admin_js_and_css() {
@@ -170,9 +168,6 @@ function gavern_enqueue_admin_js_and_css() {
 	// metaboxes CSS
 	wp_register_style('gavern-metabox-css', gavern_file_uri('css/back-end/metabox.css'));
 	wp_enqueue_style('gavern-metabox-css');
-	// GK News Show Pro Widget back-end CSS
-	wp_register_style('nsp-admin-css', gavern_file_uri('css/back-end/nsp.css'));
-	wp_enqueue_style('nsp-admin-css');
 	// shortcodes database
 	if(
 		get_locale() != '' && 
@@ -189,5 +184,8 @@ function gavern_enqueue_admin_js_and_css() {
 // this action enqueues scripts and styles: 
 // http://wpdevel.wordpress.com/2011/12/12/use-wp_enqueue_scripts-not-wp_print_styles-to-enqueue-scripts-and-styles-for-the-frontend/
 add_action('admin_enqueue_scripts', 'gavern_enqueue_admin_js_and_css');
+
+// remove the generator metatag due security reasons
+remove_action('wp_head', 'wp_generator');
 
 // EOF

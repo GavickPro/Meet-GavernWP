@@ -8,7 +8,7 @@
 				"type": "Switcher",
 				"label": "Use Gavern SEO Settings",
 				"tooltip": "Enable use of Gavern SEO settings instead of standard WordPress settings.",
-				"default": "Y"
+				"default": "N"
 			},
 			{
 				"name": "seo_use_blogname_in_title",

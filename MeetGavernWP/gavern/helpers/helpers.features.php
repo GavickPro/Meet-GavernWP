@@ -260,8 +260,11 @@ function gavern_metaboxes_save( $post_id ) {
  **/
 
 function gavern_add_featured_video() {
-    add_meta_box( 'gavern_featured_video', __( 'Featured Video', GKTPLNAME ), 'gavern_add_featured_video_metabox', 'post', 'side' );
-    add_meta_box( 'gavern_featured_video', __( 'Featured Video', GKTPLNAME ), 'gavern_add_featured_video_metabox', 'page', 'side' );
+	global $tpl;
+	if(get_option($tpl->name . "_featured_video", 'Y') == 'Y') {
+	    add_meta_box( 'gavern_featured_video', __( 'Featured Video', GKTPLNAME ), 'gavern_add_featured_video_metabox', 'post', 'side' );
+	    add_meta_box( 'gavern_featured_video', __( 'Featured Video', GKTPLNAME ), 'gavern_add_featured_video_metabox', 'page', 'side' );
+	}
 }
 
 function gavern_add_featured_video_metabox() {
@@ -289,7 +292,7 @@ function gavern_save_featured_video(){
 	// user permissions
 	if(
 		($_POST['post_type'] == 'page' && !current_user_can('edit_page', $post->ID)) ||
-		($_POST['psot_type'] == 'post' && !current_user_can('edit_post', $post->ID))
+		($_POST['post_type'] == 'post' && !current_user_can('edit_post', $post->ID))
 	) {
 		return $post->ID;
 	}
@@ -496,6 +499,7 @@ function gavern_widget_control() {
 				 	<option value="page:">'.__('Page', GKTPLNAME).'</option>
 				 	<option value="post:">'.__('Post', GKTPLNAME).'</option>
 				 	<option value="category:">'.__('Category', GKTPLNAME).'</option>
+				 	<option value="category_descendant:">'.__('Category with descendants', GKTPLNAME).'</option>
 				 	<option value="tag:">'.__('Tag', GKTPLNAME).'</option>
 				 	<option value="archive">'.__('Archive', GKTPLNAME).'</option>
 				 	<option value="author:">'.__('Author', GKTPLNAME).'</option>
@@ -508,6 +512,7 @@ function gavern_widget_control() {
 				 <p><label>'.__('Page ID/Title/slug:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_page" /></label></p>
 				 <p><label>'.__('Post ID/Title/slug:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_post" /></label></p>
 				 <p><label>'.__('Category ID/Name/slug:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_category" /></label></p>
+				 <p><label>'.__('Category ID:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_category_descendant" /></label></p>
 				 <p><label>'.__('Tag ID/Name:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_tag" /></label></p>
 				 <p><label>'.__('Author:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_author" /></label></p>
 				 <p><label>'.__('Template:', GKTPLNAME).'<input type="text" class="gk_widget_rules_form_input_template" /></label></p>
@@ -718,7 +723,11 @@ function gavern_add_og_meta_box() {
 		'high'
 	);
 }
-add_action('add_meta_boxes', 'gavern_add_og_meta_box');
+
+// check if the Open Graph is enabled
+if(get_option($tpl->name . '_opengraph_use_opengraph') == 'Y') {
+    add_action('add_meta_boxes', 'gavern_add_og_meta_box');
+}
 
 // The Callback
 function gavern_show_og_meta_box() {
@@ -810,7 +819,124 @@ function gavern_save_custom_meta($post_id) {
 	}
 }
 
-add_action('save_post', 'gavern_save_custom_meta');  
+add_action('save_post', 'gavern_save_custom_meta'); 
+ 
+// Add the Meta Box for Twitter cards
+function gavern_add_twitter_meta_box() {
+    add_meta_box(
+		'gavern_twitter_meta_box',
+		'Twitter Cards metatags',
+		'gavern_show_twitter_meta_box',
+		'post',
+		'normal',
+		'high'
+	);
+	
+	add_meta_box(
+		'gavern_twitter_meta_box',
+		'Twitter Cards metatags',
+		'gavern_show_twitter_meta_box',
+		'page',
+		'normal',
+		'high'
+	);
+}
+
+if(get_option($tpl->name . '_twitter_cards') == 'Y') {
+	add_action('add_meta_boxes', 'gavern_add_twitter_meta_box');
+}
+
+// The Callback for Twiter metabox
+function gavern_show_twitter_meta_box() {
+	global $tpl, $post;
+	// load custom meta fields
+	$custom_meta_fields = $tpl->get_json('config', 'twitter');
+	// Use nonce for verification
+	echo '<input type="hidden" name="custom_meta_box_nonce2" value="'.wp_create_nonce(basename(__FILE__)).'" />';
+	// Begin the field table and loop
+	echo '<table class="form-table">';
+	foreach ($custom_meta_fields as $field) {
+		// get value of this field if it exists for this post
+		$meta = get_post_meta($post->ID, $field->id, true);
+		
+		// begin a table row with
+		echo '<tr>
+				<th><label for="'.$field->id.'">'.$field->label.'</label></th>
+				<td>';
+				switch($field->type) {
+					// case items will go here
+					// text
+					case 'text':
+						echo '<input type="text" name="'.$field->id.'" id="'.$field->id.'" value="'.$meta.'" size="30" />
+							<br /><span class="description">'.$field->desc.'</span>';
+					break;
+					
+					// textarea
+					case 'textarea':
+						echo '<textarea name="'.$field->id.'" id="'.$field->id.'" cols="60" rows="4">'.$meta.'</textarea>
+							<br /><span class="description">'.$field->desc.'</span>';
+					break;
+					
+					// image
+					case 'image':
+						$image = 'none';
+						if (get_option($tpl->name . '_og_default_image', '') != '')  {
+							$image = get_option($tpl->name . '_og_default_image'); 
+						}
+						echo '<span class="gavern_opengraph_default_image" style="display:none">'.$image.'</span>';
+						if ($meta) { 
+							$image = wp_get_attachment_image_src($meta, 'medium');	
+							$image = $image[0];
+						}
+						echo	'<input name="'.$field->id.'" type="hidden" class="gavern_opengraph_upload_image" value="'.$meta.'" />
+									<img src="'.$image.'" class="gavern_opengraph_preview_image" alt="" /><br />
+										<input class="gavern_opengraph_upload_image_button button" type="button" value="Choose Image" />
+										<small><a href="#" class="gavern_opengraph_clear_image">Remove Image</a></small>
+										<br clear="all" /><span class="description">'.$field->desc.'';
+					break;
+				} //end switch
+		echo '</td></tr>';
+	} // end foreach
+	echo '</table>'; // end table
+}
+
+function gavern_save_custom__twitter_meta($post_id) {
+    global $tpl;
+    
+    if(isset($post_id)) {
+		// load custom meta fields
+		$custom_meta_fields = $tpl->get_json('config', 'twitter');
+		// verify nonce
+		if (isset($_POST['custom_meta_box_nonce']) && !wp_verify_nonce($_POST['custom_meta_box_nonce'], basename(__FILE__)))
+			return $post_id;
+		// check autosave
+		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+			return $post_id;
+		// check permissions
+		if (isset($_POST['post_type']) && 'page' == $_POST['post_type']) {
+			if (!current_user_can('edit_page', $post_id))
+				return $post_id;
+			} elseif (!current_user_can('edit_post', $post_id)) {
+				return $post_id;
+		}
+	
+		// loop through fields and save the data
+		foreach ($custom_meta_fields as $field) {
+			$old = get_post_meta($post_id, $field->id, true);
+			
+			if(isset($_POST[$field->id])) {
+				$new = $_POST[$field->id];
+				if ($new && $new != $old) {
+					update_post_meta($post_id, $field->id, $new);
+				} elseif ('' == $new && $old) {
+					delete_post_meta($post_id, $field->id, $old);
+				}
+			}
+		} // end foreach
+	}
+}
+
+add_action('save_post', 'gavern_save_custom__twitter_meta');
 
 /**
  *
@@ -863,6 +989,30 @@ if(get_option($tpl->name . "_opensearch_use_opensearch", "Y") == "Y") {
 	add_action('wp_head', 'gavern_opensearch_head');
 	add_action('template_redirect', 'gavern_opensearch');
 	add_filter('query_vars', 'gavern_opensearch_query_vars');
+}
+
+/**
+ * Tests if any of a post's assigned categories are descendants of target categories
+ *
+ * @param int|array $cats The target categories. Integer ID or array of integer IDs
+ * @param int|object $_post The post. Omit to test the current post in the Loop or main query
+ * @return bool True if at least 1 of the post's categories is a descendant of any of the target categories
+ * @see get_term_by() You can get a category by name or slug, then pass ID to this function
+ * @uses get_term_children() Passes $cats
+ * @uses in_category() Passes $_post (can be empty)
+ * @version 2.7
+ * @link http://codex.wordpress.org/Function_Reference/in_category#Testing_if_a_post_is_in_a_descendant_category
+ */
+if ( ! function_exists( 'post_is_in_descendant_category' ) ) {
+	function post_is_in_descendant_category( $cats, $_post = null ) {
+		foreach ( (array) $cats as $cat ) {
+			// get_term_children() accepts integer ID only
+			$descendants = get_term_children( (int) $cat, 'category' );
+			if ( $descendants && in_category( $descendants, $_post ) )
+				return true;
+		}
+		return false;
+	}
 }
 
 /**

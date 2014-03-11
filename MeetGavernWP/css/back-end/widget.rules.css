@@ -119,6 +119,10 @@
 	background: #55a;
 }
 
+.gk_widget_rules_pages div span.category_descendant {
+	background-color: #aaa;
+}
+
 .gk_widget_rules_pages div span.tag {
 	background: #d33;
 }
@@ -151,10 +155,17 @@
 	background-color:#a97;
 }
 
+
 /*.gk_widget_rules_pages div span.format {
 	background: #22aacc;
 }*/
 
 .gk_widget_rules_output {
 	display: none;
+}
+
+/* WP 3.8 back-end adjustments */
+body.branch-3-8 .gk_widget_rules_pages div span {
+	border-radius: 0;
+	height: 20px;
 }

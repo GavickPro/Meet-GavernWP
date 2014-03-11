@@ -68,10 +68,10 @@ class GK_Social_Widget extends WP_Widget {
 			echo $title;
 			echo $after_title;
 			//
-			if($fb_link !== '') echo apply_filters('gk_social_fb_link', '<a href="'.str_replace('&', '&amp;', $fb_link).'" class="gk-facebook-icon">Facebook</a>');
-			if($twitter_link !== '') echo apply_filters('gk_social_twitter_link', '<a href="'.str_replace('&', '&amp;', $twitter_link).'" class="gk-twitter-icon">Twitter</a>');
-			if($gplus_link !== '') echo apply_filters('gk_social_gplus_link', '<a href="'.str_replace('&', '&amp;', $gplus_link).'" class="gk-gplus-icon">Google+</a>');
-			if($rss_link !== '') echo apply_filters('gk_social_rss_link', '<a href="'.str_replace('&', '&amp;', $rss_link).'" class="gk-rss-icon">RSS</a>');
+			if($fb_link !== '') echo apply_filters('gk_social_fb_link', '<a href="'.str_replace('&', '&amp;', $fb_link).'" class="gk-facebook-icon"><i class="fa fa-facebook"></i></a>');
+			if($twitter_link !== '') echo apply_filters('gk_social_twitter_link', '<a href="'.str_replace('&', '&amp;', $twitter_link).'" class="gk-twitter-icon"><i class="fa fa-twitter"></i></a>');
+			if($gplus_link !== '') echo apply_filters('gk_social_gplus_link', '<a href="'.str_replace('&', '&amp;', $gplus_link).'" class="gk-gplus-icon"><i class="fa fa-google-plus"></i></a>');
+			if($rss_link !== '') echo apply_filters('gk_social_rss_link', '<a href="'.str_replace('&', '&amp;', $rss_link).'" class="gk-rss-icon"><i class="fa fa-rss"></i></a>');
 			// 
 			echo $after_widget;
 		}

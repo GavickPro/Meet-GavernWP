@@ -341,50 +341,64 @@ header hgroup h2 {
 .gk-format-quote,
 .gk-format-status,
 .gk-format-video {
-	background: #fff url('../images/post_formats/format-aside.png') no-repeat center center;
-	border: 2px solid #fff;
-	display: block;
-	height: 28px;
-	left: 0;
-	padding: 0;
-	position: absolute;
-	text-align: left!important;
-	text-indent: -9999px!important;
-	top: -14px;
-	width: 28px;
-	z-index: 1;
+        display: block;
+        float: left;
+        height: 26px;
+        margin: -4px 10px 0 0!important;
+        overflow: hidden;
+        width: 16px;
 }
 
-.gk-format-audio { 
-	background: #fff url('../images/post_formats/format-audio.png') no-repeat center center;
+.gk-format-aside:before,
+.gk-format-audio:before,
+.gk-format-chat:before,
+.gk-format-gallery:before,
+.gk-format-image:before,
+.gk-format-link:before,
+.gk-format-quote:before,
+.gk-format-status:before,
+.gk-format-video:before {
+        color: #aaa;
+        display: block;
+        font-family: FontAwesome;
+        font-size: 15px;
+        line-height: 1.8;
 }
 
-.gk-format-chat { 
-	background: #fff url('../images/post_formats/format-chat.png') no-repeat center center;
+.gk-format-aside:before { 
+        content: "\f0f6";
 }
 
-.gk-format-gallery { 
-	background: #fff url('../images/post_formats/format-gallery.png') no-repeat center center;
+.gk-format-audio:before { 
+        content: "\f001";
 }
 
-.gk-format-image { 
-	background: #fff url('../images/post_formats/format-image.png') no-repeat center center;
+.gk-format-chat:before { 
+        content: "\f086";
 }
 
-.gk-format-link { 
-	background: #fff url('../images/post_formats/format-link.png') no-repeat center center;
+.gk-format-gallery:before { 
+        content: "\f00a";
 }
 
-.gk-format-quote { 
-	background: #fff url('../images/post_formats/format-quote.png') no-repeat center center;
+.gk-format-image:before { 
+        content: "\f03e";
 }
 
-.gk-format-status { 
-	background: #fff url('../images/post_formats/format-status.png') no-repeat center center;
+.gk-format-link:before { 
+        content: "\f0c1";
 }
 
-.gk-format-video { 
-	background: #fff url('../images/post_formats/format-video.png') no-repeat center center;
+.gk-format-quote:before { 
+        content: "\f10e";
+}
+
+.gk-format-status:before { 
+        content: "\f073";
+}
+
+.gk-format-video:before { 
+        content: "\f03d";
 }
 
 /* 7.10. Page navigation

@@ -1,0 +1,32 @@
+[
+	{
+		"label": "Title",
+		"desc": "Title of the page. Leave it empty to use the default page title",
+		"id": "gavern_twitter_title",
+		"type": "text"
+	},
+	{
+		"label": "Site",
+		"desc": "Twitter site",
+		"id": "gavern_twitter_site",
+		"type": "text"
+	},
+	{
+		"label": "Creator",
+		"desc": "Twitter Card creator",
+		"id": "gavern_twitter_creator",
+		"type": "text"
+	},
+	{
+		"label": "Description",
+		"desc": "Description of the page. Leave it empty to use default post excerpt",
+		"id": "gavern_twitter_desc",
+		"type": "textarea"
+	},
+	{
+		"label": "Image",
+		"desc": "Image for the content. Leave it empty to use a featured image or upload other image.",
+		"id": "gavern_twitter_image",
+		"type": "image"
+	}
+]

@@ -420,7 +420,7 @@ article {
 }
 
 #gk-head a.cssLogo {
-	background: transparent url('../images/logo.png') no-repeat 0 0;
+	background: transparent url('../images/logo.png') no-repeat 0 center;
 	display: block;
 	height: 67px;
 	width: 219px;
@@ -530,9 +530,9 @@ section.content::after {
 	border-top: 1px solid #e5e5e5;
 	clear: both;
 	color: #777;
-	font-size: 11px;
+	font-size: 14px;
 	margin: 20px auto 20px auto;
-	padding: 10px 0;
+	padding: 30px 0;
 }
 
 #gk-footer a {
@@ -553,6 +553,7 @@ section.content::after {
 
 #footer-menu li {
 	float: left;
+	line-height: 1.6;
 	margin-right: 10px;
 }
 
@@ -562,7 +563,7 @@ section.content::after {
 
 #gk-footer .gk-copyrights {
 	float: right;
-	line-height: 32px;
+	line-height: 1.6;
 }
 
 #gk-style-area {
@@ -584,6 +585,7 @@ section.content::after {
 
 .gk-disclaimer {
 	clear: both;
+	font-size: 11px;
 	margin: 0;
 	text-align: center;
 }

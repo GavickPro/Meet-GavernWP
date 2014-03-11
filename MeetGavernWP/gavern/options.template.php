@@ -20,7 +20,7 @@ function gavern_template_options() {
 	    wp_die(__('You don\'t have sufficient permissions to access this page!', GKTPLNAME));  
 	} 
 	  
-	include_once(TEMPLATEPATH . '/gavern/layouts/template.php');
+	include_once(gavern_file('gavern/layouts/template.php'));
 }
 
 /**
@@ -39,9 +39,9 @@ function gavern_template_options_js() {
 	// check the page
 	if($pagenow == 'admin.php' && isset($_GET['page']) && ($_GET['page'] == 'template_options' || $_GET['page'] == 'gavern-menu')) {
 		wp_enqueue_script('media-upload');
-		wp_enqueue_script('thickbox');
-		wp_register_script('gk-tips-js', get_template_directory_uri().'/js/back-end/libraries/miniTip/miniTip.min.js', array('jquery'));
-		wp_register_script('gk-upload', get_template_directory_uri().'/js/back-end/template.options.js', array('jquery','media-upload','thickbox', 'gk-tips-js'));
+		wp_enqueue_script('thickbox');		
+		wp_register_script('gk-tips-js', gavern_file_uri('js/back-end/libraries/miniTip/miniTip.min.js'), array('jquery'));
+		wp_register_script('gk-upload', gavern_file_uri('js/back-end/template.options.js'), array('jquery','media-upload','thickbox', 'gk-tips-js'));
 		wp_enqueue_script('gk-upload');
 		wp_enqueue_script('gk-tips-js');
 		// register and load external components scripts
@@ -64,8 +64,8 @@ function gavern_template_options_js() {
 								// check if the file is correct
 								if((is_array($file_config) && count($file_config) > 0) || is_object($file_config)) {
 									// load the JS file
-									if($file_config->js != '') {
-										wp_register_script('gk_'.strtolower($file_config->name).'.js', get_template_directory_uri().'/gavern/form_elements/'.($field->type).'/'.($file_config->js));
+									if($file_config->js != '') {										
+										wp_register_script('gk_'.strtolower($file_config->name).'.js', gavern_file_uri('gavern/form_elements/').($field->type).'/'.($file_config->js));
 										wp_enqueue_script('gk_'.strtolower($file_config->name).'.js');
 									}
 								}
@@ -94,8 +94,8 @@ function gavern_template_options_css() {
 	// check the page
 	if($pagenow == 'admin.php' && isset($_GET['page']) && ($_GET['page'] == 'template_options' || $_GET['page'] == 'gavern-menu')) {
 		wp_enqueue_style('thickbox');
-		wp_register_style('gk-tips-css', get_template_directory_uri().'/js/back-end/libraries/miniTip/miniTip.css');
-		wp_register_style('gk-template-css', get_template_directory_uri().'/css/back-end/template.css');
+		wp_register_style('gk-tips-css', gavern_file_uri('js/back-end/libraries/miniTip/miniTip.css'));
+		wp_register_style('gk-template-css', gavern_file_uri('css/back-end/template.css'));
 		wp_enqueue_style('gk-tips-css');
 		wp_enqueue_style('gk-template-css');
 		// register and load external components scripts
@@ -119,7 +119,7 @@ function gavern_template_options_css() {
 								if((is_array($file_config) && count($file_config) > 0) || is_object($file_config)) {
 									// load the CSS file
 									if($file_config->css != '') {
-										wp_register_style('gk_'.strtolower($file_config->name).'.css', get_template_directory_uri().'/gavern/form_elements/'.($field->type).'/'.($file_config->css));
+										wp_register_style('gk_'.strtolower($file_config->name).'.css', gavern_file_uri('gavern/form_elements/').($field->type).'/'.($file_config->css));
 										wp_enqueue_style('gk_'.strtolower($file_config->name).'.css');
 									}
 								}

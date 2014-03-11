@@ -23,7 +23,7 @@ function gk_load($part_name, $assets = null, $args = null) {
 	if($assets !== null) {
 		foreach($assets as $key => $value) {
 			if($key == 'css') {
-				wp_enqueue_style('gavern-gallery-template', $value, array('gavern-style'));
+				wp_enqueue_style('gavern-gallery-template', $value, array('gavern-stuff'));
 			} elseif($key == 'js') {
 				wp_enqueue_script('gavern-gallery-template', $value, array('jquery'));
 			}
@@ -69,7 +69,7 @@ function gk_title() {
 		$desc = get_option($tpl->name . '_seo_description');
 		// create the first part of the title
 		$prepared = str_replace_once(get_bloginfo( 'name', 'Display' ), '', wp_title('', false));
-		$title = is_home() ? $desc : $prepared;
+		$title = is_front_page() ? $desc : $prepared;
 		// return first part with site name without space characters at beginning
 		echo ltrim($title); 
 		// if showing blogname in title is enabled - show second part
@@ -186,7 +186,7 @@ function gk_metatags() {
 			}
 		}
 		
-		if(is_single()) {
+		if(is_singular()) {
 			global $wp_query;
 			$postID = $wp_query->post->ID;
 		
@@ -234,7 +234,7 @@ function gk_opengraph_metatags() {
 			$desc = get_post_meta($postID, 'gavern_opengraph_desc', true);
 			$other = get_post_meta($postID, 'gavern_opengraph_other', true);
 			//
-			echo apply_filters('gavern_og_title', '<meta name="og:title" content="'.(($title == '') ? $wp_query->post->post_title : $title).'" />' . "\n");
+			echo apply_filters('gavern_og_title', '<meta name="og:title" content="'.(($title == '') ? esc_html($wp_query->post->post_title) : $title).'" />' . "\n");
 			//
 			if($image != '') {
 				echo apply_filters('gavern_og_image', '<meta name="og:image" content="'.$image.'" />' . "\n");
@@ -258,6 +258,64 @@ function gk_opengraph_metatags() {
 					}
 				}
 			}
+		}
+	}
+}
+
+/**
+ *
+ * Function used to generate the TwitterCards tags
+ *
+ * @return null
+ *
+ **/
+function gk_twitter_metatags() {
+	// access to the template object
+	global $tpl;
+	// check if the Twitter Cards option is enabled
+	if(get_option($tpl->name . '_twitter_cards') == 'Y') {
+		if(is_single() || is_page()) {
+			global $wp_query;
+			//
+			$postID = $wp_query->post->ID;
+			//
+			$title = get_post_meta($postID, 'gavern_twitter_title', true);
+			$image = wp_get_attachment_url(get_post_meta($postID, 'gavern_twitter_image', true));
+			
+			if($image == '') {
+				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $postID ), 'single-post-thumbnail' );
+				$image = $image[0];
+			}
+			
+			$desc = get_post_meta($postID, 'gavern_twitter_desc', true);
+			
+			$site_default = get_option($tpl->name . '_twitter_site');
+			$creator_default = get_option($tpl->name . '_twitter_creator');
+			$site = get_post_meta($postID, 'gavern_twitter_site', true);
+			$creator = get_post_meta($postID, 'gavern_twitter_creator', true);
+			
+			if($site_default != '') {
+				$site = $site_default;
+			}
+			
+			if($creator_default != '') {
+				$creator = $creator_default;
+			}
+			
+			echo apply_filters('gavern_twitter_card', '<meta name="twitter:card" content="summary" />' . "\n");	
+			//
+			echo apply_filters('gavern_twitter_url', '<meta name="twitter:url" content="'.get_permalink($postID).'" />' . "\n");
+			//		
+			echo apply_filters('gavern_twitter_title', '<meta name="twitter:title" content="'.(($title == '') ? $wp_query->post->post_title : $title).'" />' . "\n");
+			//
+			if($image != '') {
+				echo apply_filters('gavern_twitter_image', '<meta name="twitter:image" content="'.$image.'" />' . "\n");
+			}
+			echo apply_filters('gavern_twitter_description', '<meta name="twitter:description" content="'.(($desc == '') ? substr(str_replace("\"", '', strip_tags($wp_query->post->post_content)), 0, 200) : $desc).'" />' . "\n");
+			//
+			echo apply_filters('gavern_twitter_site', '<meta name="twitter:site" content="' . $site . '" />' . "\n");
+			//
+			echo apply_filters('gavern_twitter_creator', '<meta name="twitter:creator" content="' . $creator . '" />' . "\n");
 		}
 	}
 }
@@ -361,6 +419,7 @@ function gk_show_breadcrumbs() {
  *
  **/
 function gk_breadcrumbs_output() {
+	global $post;
 	// open the breadcrumbs tag
 	$output = '<nav class="gk-breadcrumbs">';
 	// check if we are on the post or normal page
@@ -371,6 +430,10 @@ function gk_breadcrumbs_output() {
 		if (is_category() || is_singular()) {
 			// return the category link
 			$output .= get_the_category_list(' ');
+			// if it is a subpage
+			if (is_page() && $post->post_parent ) {
+			    $output .= '<a href="' . get_permalink($post->post_parent) . '">' . get_the_title($post->post_parent) . '</a>';	
+			}
 			// if it is a post page
 			if (is_singular()) {
 				// return link the name of current post
@@ -620,6 +683,8 @@ function gk_condition($mode, $input, $users) {
 			    $output .= ' is_single(\'' . substr($input[$i], 5) . '\') ';
 			} else if(stripos($input[$i], 'category:') !== FALSE) {
 			    $output .= ' (is_category(\'' . substr($input[$i], 9) . '\') || (in_category(\'' . substr($input[$i], 9) . '\') && is_single())) ';
+		    } else if(stripos($input[$i], 'category_descendant:') !== FALSE) {
+		    	$output .= ' (is_category(\'' . substr($input[$i], 20) . '\') || (in_category(\'' . substr($input[$i], 20) . '\') || post_is_in_descendant_category( \'' . substr($input[$i], 20) . '\' ) && !is_home())) ';
 			} else if(stripos($input[$i], 'tag:') !== FALSE) {
 			    $output .= ' (is_tag(\'' . substr($input[$i], 4) . '\') || (has_tag(\'' . substr($input[$i], 4) . '\') && is_single())) ';
 			} else if(stripos($input[$i], 'archive') !== FALSE) {
@@ -678,7 +743,7 @@ function gk_condition($mode, $input, $users) {
 		}
 	}
 	
-	if($output == '') {
+	if($output == '' || trim($output) == '()' || trim($output) == '!()') {
 		$output = ' TRUE';
 	}
 	

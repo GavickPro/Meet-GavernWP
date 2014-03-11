@@ -207,9 +207,6 @@
 
 #comments li article > aside {
 	border: 1px solid #eee;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
 	left: 0;
 	position: absolute;
 	top: 20px;
@@ -226,7 +223,7 @@
 	border-bottom: 1px solid #eee;
 	margin-left: 56px;
 	overflow: hidden;
-	padding: 2px 3% 12px 3%;
+	padding: 2px 3% 12px 6%;
 }
 
 #comments .children article > .content {
@@ -234,23 +231,20 @@
 }
 
 #comments article time {
-	color: #b3b6b7;
-	font-size: 11px;
+	color: #999;
 }
 
 #comments article .author {
-	font-size: 12px;
 	font-weight: bold;
 }
 
 #comments article .content > * {
-	font-size: 12px;
+	font-size: 15px;
 }
 
 #comments article footer .edit,
 #comments article footer .reply {
 	float: right;
-	font-size: 12px;
 	font-weight: bold;
 	margin-left: 10px;
 }
@@ -404,12 +398,13 @@ article > .summary {
 }
 .meta {
 	clear: both;
+	color: #999;
 	margin: 14px 0 32px 0;
 	overflow: hidden;
 	width: 100%;
 }
 .meta a {
-	color: #999;
+	color: #666;
 }
 .meta a:active,
 .meta a:focus,
@@ -435,10 +430,10 @@ article > .summary {
 	margin: 0 0 0 12px;
 }
 article .date {
-	color: #bbb;
+	color: #999;
 	font-size: 12px;
-	margin: 0 0 8px 0;
-	text-transform: uppercase;
+	margin: 0 0 4px 0;
+	text-transform: none;
 }
 article .tags {
 	margin: 20px 0;
@@ -468,23 +463,24 @@ article .tags a:hover {
 /* 5.4. Post additional features
 ==================================== */
 
+article header {
+	position: relative;
+}
 article header h1 sup,
 article.sticky header h1 sup,
 article header h2 sup,
 article.sticky header h2 sup {
-	background: #f41;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
+	background: #55a8e8;
 	color: #fff;
 	display: inline-block;
 	font-size: 12px;
 	font-weight: normal;
 	line-height: 12px;
-	padding: 2px 5px;
-	position: relative;
+	padding: 5px 8px;
+	position: absolute;
+	right: 0;
 	text-transform: uppercase;
-	top: -12px;
+	top: 0;
 }
 
 article figure.featured-image img {

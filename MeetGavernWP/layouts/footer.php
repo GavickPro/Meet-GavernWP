@@ -20,7 +20,7 @@
 		<div class="gk-copyrights">
 			<?php echo str_replace('\\', '', htmlspecialchars_decode(get_option($tpl->name . '_template_footer_content', ''))); ?>
 				
-			<a href="#top" id="gk-top-link"><?php _e('Back to top', GKTPLNAME); ?></a>
+			<a href="#top" id="gk-top-link" class="fa fa-arrow-up" title="<?php _e('Back to top', GKTPLNAME); ?>"></a>
 		</div>
 		
 		

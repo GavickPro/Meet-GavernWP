@@ -113,12 +113,63 @@ function gavern_google_profile( $methods ) {
 
 add_filter( 'user_contactmethods', 'gavern_google_profile', 10, 1);
 
+/**
+ *
+ * Functions used to generate post excerpt
+ *
+ * @return HTML output
+ *
+ **/
+
+function gavern_excerpt($text) {
+    return $text . '&hellip;';
+}
+
+add_filter( 'get_the_excerpt', 'gavern_excerpt', 999 );
+
+function gavern_excerpt_more($text) {
+    return '';
+}
+
+add_filter( 'excerpt_more', 'gavern_excerpt_more', 999 );
+
+// Change Excerpt length
 function gavern_excerpt_length($length) {
     global $tpl;
     return get_option($tpl->name . '_excerpt_len', 55);
 }
 
 add_filter( 'excerpt_length', 'gavern_excerpt_length', 999 );
+
+/**
+ *
+ * Function used to filter the post_class
+ *
+ * @return the modified list of the classes
+ *
+ **/
+
+function gavern_post_aside_class($classes) {
+	global $post;
+	global $tpl;
+	// get the post params
+	$params = get_post_custom();
+	$params_aside = isset($params['gavern-post-params-aside']) ? $params['gavern-post-params-aside'][0] : false;
+	$param_aside = true;
+	
+	if($params_aside) {
+		$params_aside = unserialize(unserialize($params_aside));
+		$param_aside = $params_aside['aside'] == 'Y';
+	}
+	// if the display of the aside is disabled
+	if(get_option($tpl->name . '_post_aside_state', 'Y') == 'N' || !$param_aside) {
+		$classes[] = 'no-sidebar';
+	}
+	//
+	return $classes;
+}
+
+add_filter('post_class', 'gavern_post_aside_class');
 
 /**
  *
@@ -246,6 +297,7 @@ function gavern_custom_die_handler( $message, $title = '', $args = array() ) {
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title><?php echo $title ?></title>
+	<link href="http://fonts.googleapis.com/css?family=Raleway:300,500" rel="stylesheet" type="text/css" />
 	<link href="<?php echo gavern_file_uri('fonts/Colaborate/stylesheet.css'); ?>" rel="stylesheet" type="text/css" />
 	<link href="<?php echo gavern_file_uri('css/error.css'); ?>" rel="stylesheet" type="text/css" />
 </head>

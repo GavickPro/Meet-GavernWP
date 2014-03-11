@@ -86,8 +86,9 @@
 	display: inline-block;
 	float: none!important;
 	height: 22px;
+	font-size: 18px;
+	line-height: 1;
 	margin: 2px 5px;
-	text-indent: -9999px;
 	-webkit-transition: all 0.3s ease-out;
 	-moz-transition: all 0.3s ease-out;
 	-ms-transition: all 0.3s ease-out;
@@ -100,35 +101,16 @@
 .gk-twitter-icon:hover,
 .gk-gplus-icon:hover,
 .gk-rss-icon:hover {
-	background-color: #fff;
-	height: 30px;
-	margin: 8px 5px;
-	width: 30px;
-}
-
-.gk-facebook-icon {
-	background: #727272 url('../images/fb_icon.png') no-repeat center center;
-}
-
-.gk-twitter-icon {
-	background: #727272 url('../images/twitter_icon.png') no-repeat center center;
-}
-
-.gk-gplus-icon {
-	background: #727272 url('../images/gplus_icon.png') no-repeat center center;
-}
-
-.gk-rss-icon {
-	background: #727272 url('../images/rss_icon.png') no-repeat center center;
+	color: #55a8e8;
 }
 
 #gk-social-icons {
-	background: #272727;
-	-webkit-box-shadow: 0 0 6px #939393;
-	-moz-box-shadow: 0 0 6px #939393;
-	-ms-box-shadow: 0 0 6px #939393;
-	-o-box-shadow: 0 0 6px #939393;
-	box-shadow: 0 0 6px #939393;
+	background: #fff;
+	-webkit-box-shadow: 0 0 3px #939393;
+	-moz-box-shadow: 0 0 3px #939393;
+	-ms-box-shadow: 0 0 3px #939393;
+	-o-box-shadow: 0 0 3px #939393;
+	box-shadow: 0 0 3px #939393;
 	left: 0;
 	padding: 10px 0;
 	position: fixed;

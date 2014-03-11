@@ -92,9 +92,12 @@ class GKFormInputFonts extends GKFormInput {
 					$squirrel_fonts[$i] = false;
 				}
 			}
-			
-			$squirrel_fonts = array_filter($squirrel_fonts);
-			$squirrel_fonts = array_values($squirrel_fonts);
+			if(is_array($squirrel_fonts)) {
+				$squirrel_fonts = array_filter($squirrel_fonts);
+   				$squirrel_fonts = array_values($squirrel_fonts);
+			} else {
+    			$squirrel_fonts = array();
+			}
 			
 			$output .= '<p><label>'.__('Fonts Squirrel: ', GKTPLNAME).'</label><select id="'.($this->tpl->name).'_fonts_squirrel_'.($font_family->short_name).'" class="gkInput gkSelect" data-name="fonts_squirrel_'.($font_family->short_name).'" data-family="'.($font_family->short_name).'" data-type="squirrel"
 			'.($this->required).' 
