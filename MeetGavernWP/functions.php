@@ -94,7 +94,6 @@ require_once(gavern_file('gavern/user.functions.php'));
 // Including file with template filters
 require_once(gavern_file('gavern/filters.php'));
 // Including file with template widgets
-require_once(gavern_file('gavern/widgets.comments.php'));
 require_once(gavern_file('gavern/widgets.social.php'));
 // Including file with template admin features
 require_once(gavern_file('gavern/helpers/helpers.features.php'));

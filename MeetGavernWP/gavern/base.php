@@ -285,7 +285,6 @@ class GavernWP {
 	 	// add Gavern Shortcode button to the TinyMCE editor
 	 	add_action('admin_init', 'add_gavern_shortcode_button');
 	 	// register template built-in widgets
-	 	register_widget('GK_Comments_Widget');
 	 	register_widget('GK_Social_Widget');
 	 }	
 	 
