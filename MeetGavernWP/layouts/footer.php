@@ -44,9 +44,9 @@
 		<p class="gk-disclaimer">Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p>
 	</footer>
 	
-	<?php if(gk_is_active_sidebar('social')) : ?>
+	<?php if(gk_show_menu('socialmenu')) : ?>
 	<div id="gk-social-icons" class="<?php echo get_option($tpl->name . '_social_icons_position', 'right'); ?>">
-		<?php gk_dynamic_sidebar('social'); ?>
+		<?php gavern_menu('socialmenu', 'gk-social-menu'); ?>
 	</div>
 	<?php endif; ?>
 	

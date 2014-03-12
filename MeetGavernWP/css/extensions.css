@@ -76,33 +76,8 @@
 	color: #999;
 }
 
-/* 9.2. GK Social
+/* 9.2. Social Links
 ==================================== */
-
-.gk-facebook-icon,
-.gk-twitter-icon,
-.gk-gplus-icon,
-.gk-rss-icon {
-	display: inline-block;
-	float: none!important;
-	height: 22px;
-	font-size: 18px;
-	line-height: 1;
-	margin: 2px 5px;
-	-webkit-transition: all 0.3s ease-out;
-	-moz-transition: all 0.3s ease-out;
-	-ms-transition: all 0.3s ease-out;
-	-o-transition: all 0.3s ease-out;
-	transition: all 0.3s ease-out;
-	width: 22px;
-}
-
-.gk-facebook-icon:hover,
-.gk-twitter-icon:hover,
-.gk-gplus-icon:hover,
-.gk-rss-icon:hover {
-	color: #55a8e8;
-}
 
 #gk-social-icons {
 	background: #fff;
@@ -119,10 +94,63 @@
 	width: 48px;
 	z-index: 1001;
 }
-
 #gk-social-icons.right {
 	left: auto;
 	right: 0;
+}
+#social-menu {
+	margin: 0;
+}
+#social-menu li a,
+#social-menu li a:before {
+	color: #212121;
+}
+#social-menu li a:hover,
+#social-menu li a:hover:before {
+	color: #55a8e8;
+}
+#social-menu li a {
+	display: block;
+	font-size: 22px;
+	height: 22px;
+	line-height: 22px;
+	margin: 3px auto;
+	overflow: hidden;
+	padding: 3px;
+	-webkit-transform: scale(.75);
+	-moz-transform: scale(.75);
+	-ms-transform: scale(.75);
+	-o-transform: scale(.75);
+	transform: scale(.75);
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+	width: 22px;
+}
+#social-menu li a:hover {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+}
+#social-menu li a:before {
+	display: block;
+	font-family: FontAwesome;
+}
+#social-menu li a[href*="twitter.com"]:before     { 
+	content: '\f099';
+}
+#social-menu li a[href*="facebook.com"]:before    { 
+	content: '\f09a';
+}
+#social-menu li a[href*="plus.google.com"]:before { 
+	content: '\f0d5';  
+}
+#social-menu li.rss a:before {
+	content: '\f09e';	
 }
 
 /* 9.3. GK NSP

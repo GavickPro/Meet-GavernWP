@@ -7,6 +7,12 @@
 	},
 	{
 		"main": false,
+		"location": "socialmenu",
+		"name": "Social menu",
+		"description": "Menu used in the social toolbar"
+	},
+	{
+		"main": false,
 		"location": "footermenu",
 		"name": "Footer menu",
 		"description": "Menu used in the footer of the theme"
