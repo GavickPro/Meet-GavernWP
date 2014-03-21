@@ -40,7 +40,7 @@
 		<img src="<?php echo gavern_file_uri('images/gavernwp.png'); ?>" class="gk-framework-logo" alt="GavernWP" />
 		<?php endif; ?>
 		
-		<p class="gk-disclaimer">Copyright &copy; 2012. Designed by <a href="http://www.gavick.com">GavickPro</a> - High quality free WordPress Themes</p>
+		<p class="gk-disclaimer">Copyright &copy; 2012. Designed by <a href="http://www.gavick.com">GavickPro</a> - High quality free <a href="http://www.gavick.com">WordPress Themes</a></p>
 		<p class="gk-disclaimer">Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p>
 	</footer>
 	
