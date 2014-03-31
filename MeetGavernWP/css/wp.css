@@ -380,6 +380,10 @@
 	display: block;
 }
 
+#respond input[type="checkbox"] {
+	display: inline-block;
+}
+
 #respond input[type="text"],
 #respond input[type="password"],
 #respond textarea {
@@ -448,7 +452,8 @@ article > footer {
 	padding: 16px 0;
 }
 
-article > footer::after {
+article > footer::after,
+#respond p.form-submit:after {
     clear: both;
     content: "";
     display: table;
