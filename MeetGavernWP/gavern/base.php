@@ -283,7 +283,7 @@ class GavernWP {
 	 	add_action('add_meta_boxes', 'add_gavern_metaboxes' );
 	 	add_action('save_post', 'gavern_metaboxes_save' ); 
 	 	// add Gavern Shortcode button to the TinyMCE editor
-	 	add_action('admin_init', 'add_gavern_shortcode_button');
+	 	add_action('admin_head', 'add_gavern_shortcode_button');
 	 	// register template built-in widgets
 	 	register_widget('GK_Comments_Widget');
 	 	register_widget('GK_Social_Widget');

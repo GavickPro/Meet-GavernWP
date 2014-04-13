@@ -5,88 +5,47 @@
  * -------------------------------------------
  *
  **/
-(function () {
+ 
+(function() {
     "use strict";
     
-    var icon_url = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAEhJREFUeNpi/P//PwM1ARMDlQELjNG26z66UxmhNFFeqHJTZKSJCwe/gSxYwowBR1gOvAspimWY+tFYHo3lYRnLjIO+xAYIMABySA8v3JaU8wAAAABJRU5ErkJggg==';
+    var icon_url = '" style="background-image: url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAEhJREFUeNpi/P//PwM1ARMDlQELjNG26z66UxmhNFFeqHJTZKSJCwe/gSxYwowBR1gOvAspimWY+tFYHo3lYRnLjIO+xAYIMABySA8v3JaU8wAAAABJRU5ErkJggg==\');';
 
-    tinymce.create(
-        "tinymce.plugins.GavernWPShortcodes", {
-            init: function () {
-                // initial code if necessary
-            },
-            createControl: function (controlName, controlManager) {
-                if (controlName === "gavern_shortcode_button") {
-                    controlName = controlManager.createMenuButton("gavern_shortcode_button", {
-                        title: "Insert Gavern Shortcode",
-                        image: icon_url,
-                        icons: false
-                    });
+    tinymce.PluginManager.add( 'gavern_shortcode_button', function( editor, url ) {
+        // generate the menu structure
+        var menu = generateItems($GAVERNWP_SHORTCODES, editor);
+        // Add a button that opens a window
+        editor.addButton( 'gavern_shortcode_button', {
+            type: 'menubutton',
+            title: 'Insert GavernWP Shortcode',
+            icon: icon_url,
+           	menu: menu
+        } );
+    } );
 
-                    var $this = this;
+    function generateItems(items, editor) {
+        var menu_items = [];
+        
+        for(var i = 0; i < items.length; i++) {
+            var item = {
+                text: items[i].title,
+                value: items[i].code
+            };
 
-                    controlName.onRenderMenu.add(function (menu, button) {
-                        for (var i = 0; i < $GAVERNWP_SHORTCODES.length; i++) {
-                            //
-                            if ($GAVERNWP_SHORTCODES[i].submenu !== null) {
-                                menu = button.addMenu({
-                                    title: $GAVERNWP_SHORTCODES[i].title,
-                                    onclick: gkClickEvent($GAVERNWP_SHORTCODES, num)
-                                });
-
-                                for (var j = 0; j < $GAVERNWP_SHORTCODES[i].submenu.length; j++) {
-                                    $this.addSubmenu(
-                                        menu,
-                                        $GAVERNWP_SHORTCODES[i].submenu[j].title,
-                                        $GAVERNWP_SHORTCODES[i].submenu[j].code + ' '
-                                    );
-                                }
-                            } else {
-                                var num = i;
-                                button.add({
-                                    title: $GAVERNWP_SHORTCODES[i].title,
-                                    onclick: gkClickEvent($GAVERNWP_SHORTCODES, num)
-                                });
-                            }
-                        }
-                    });
-
-                    return controlName;
-                }
-
-                return null;
-            },
-
-            addSubmenu: function (menu, label, code) {
-                menu.add({
-                    title: label,
-                    onclick: function () {
-                        tinyMCE.activeEditor.execCommand("mceInsertContent", false, code);
-                    }
-                });
-            },
-
-            getInfo: function () {
-                return {
-                    longname: "GavernWP Shortcodes",
-                    author: "GavickPro",
-                    authorurl: "http://www.gavick.com",
-                    infourl: "http://www.gavick.com",
-                    version: "1.0"
+            if(item.code !== '') {
+                item.onclick = function(e) {
+                    e.stopPropagation();
+                    editor.insertContent(this.value());
                 };
             }
-        }
-    );
 
-    function gkClickEvent(shortcodes, num) {
-        if (shortcodes[num] && shortcodes[num].code !== '') {
-            tinyMCE.activeEditor.execCommand(
-                "mceInsertContent",
-                false,
-                shortcodes[num].code + ' '
-            );
+            if(items[i].submenu) {
+                item.menu = generateItems(items[i].submenu, editor);
+            }
+
+            menu_items.push(item);
         }
+
+        return menu_items;
     }
-
-    tinymce.PluginManager.add("GavernWPShortcodes", tinymce.plugins.GavernWPShortcodes);
-})();
+} )();

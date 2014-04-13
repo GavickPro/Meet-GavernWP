@@ -16,12 +16,16 @@ defined('GAVERN_WP') or die('Access denied');
  * Code to create shortcodes button
  *
  **/
-
+ 
 function add_gavern_shortcode_button() {
+    global $typenow;
     // check if user can edit posts or pages
     if ( !current_user_can('edit_posts') && !current_user_can('edit_pages') ) {
    		return;
     }
+    // only on Post Type: post and page
+    if( ! in_array( $typenow, array( 'post', 'page' ) ) )
+        return ;
 	// check if the user enabled rich editing mode
 	if ( get_user_option('rich_editing') == 'true') {
 		add_filter("mce_external_plugins", "add_gavern_tinymce_plugin");
@@ -31,13 +35,13 @@ function add_gavern_shortcode_button() {
 // 
 function register_gavern_shortcode_button($buttons) {
    // add the shortcode button to the list
-   array_push($buttons, "|", "gavern_shortcode_button");
+   array_push($buttons, "gavern_shortcode_button");
    return $buttons;
 }
 // Load the plugin script
 function add_gavern_tinymce_plugin($plugin_array) {
 	// add the shortcode button script to the list
-   	$plugin_array['GavernWPShortcodes'] = gavern_file_uri('js/back-end/gavern.shortcode.button.js');
+   	$plugin_array['gavern_shortcode_button'] = gavern_file_uri('js/back-end/gavern.shortcode.button.js');
    	return $plugin_array;
 }
 
