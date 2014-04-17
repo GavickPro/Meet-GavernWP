@@ -273,6 +273,8 @@ class GavernWP {
 	 	add_theme_support( 'post-thumbnails' );
 	 	// add support for default posts and comments RSS feed links in the head
 	 	add_theme_support( 'automatic-feed-links' );
+	 	// add support for widgets in Theme Customizer
+	 	add_theme_support('widget-customizer');
 	 	// register menus
 	 	$this->register_menus();
 	 	// register styles

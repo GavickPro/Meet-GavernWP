@@ -128,12 +128,14 @@ textarea {
 .gkImport, 
 .gkExport { padding: 10px 30px;}
 
-/* WP 3.8 back-end adjustments */
-body.branch-3-8 .gkWrap {
+/* WP 3.8, 3.9 back-end adjustments */
+body.branch-3-8 .gkWrap,
+body.branch-3-9 .gkWrap {
 	background: #fff;
 	border-radius: 0;
 }
 
-body.branch-3-8 .gkWrap > h1:first-child {
+body.branch-3-8 .gkWrap > h1:first-child,
+body.branch-3-9 .gkWrap > h1:first-child {
 	border-radius: 0;
 }
