@@ -93,6 +93,17 @@
 				"class": "",
 				"visibility": "branding_logo_text_type=own,branding_logo_type=text"
 			},
+
+			{
+				"name": "branding_logo_alt_image",
+				"type": "Text",
+				"label": "Image logo alt text",
+				"tooltip": "Specify alternative text of the image logo.",
+				"default": "",
+				"class": "",
+				"visibility": "branding_logo_type=image,"
+			},
+
 			{
 				"name": "branding_favicon",
 				"type": "Media",

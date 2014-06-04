@@ -132,6 +132,33 @@ function gk_blog_desc() {
 
 /**
  *
+ * Function to get attachment id from image URL - it's used in the image logo settings.
+ *
+ * @return id 
+ *
+ **/
+function gavern_get_attachment_id( $attachment_url = '' ) {
+	global $wpdb;
+	$attachment_id = false;
+ 
+	if ( '' == $attachment_url )
+		return;
+	$upload_dir_paths = wp_upload_dir();
+	// Make sure the upload path base directory exists in the attachment URL
+	if ( false !== strpos( $attachment_url, $upload_dir_paths['baseurl'] ) ) {
+		// If this is the URL of an auto-generated thumbnail, get the URL of the original image
+		$attachment_url = preg_replace( '/-\d+x\d+(?=\.(jpg|jpeg|png|gif)$)/i', '', $attachment_url );
+		// Remove the upload path base directory from the attachment URL
+		$attachment_url = str_replace( $upload_dir_paths['baseurl'] . '/', '', $attachment_url );
+		// Finally, run a custom database query to get the attachment ID from the modified attachment URL
+		$attachment_id = $wpdb->get_var( $wpdb->prepare( "SELECT wposts.ID FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta WHERE wposts.ID = wpostmeta.post_id AND wpostmeta.meta_key = '_wp_attached_file' AND wpostmeta.meta_value = '%s' AND wposts.post_type = 'attachment'", $attachment_url ) );
+	}
+ 
+	return $attachment_id;
+}
+
+/**
+ *
  * Function used to generate a Logo image based on the branding options
  *
  * @return null
@@ -145,19 +172,28 @@ function gk_blog_logo() {
 	// check the logo image type:
 	if(get_option($tpl->name . "_branding_logo_type", 'css') == 'image') {
 		// check the logo text type
-		if(get_option($tpl->name . "_branding_logo_text_type", 'wp') == 'wp') {
-			$logo_text = gk_blog_name() . ' - ' . gk_blog_desc();	
+		if(get_option($tpl->name . "_branding_logo_alt_image") != '') {
+			$logo_text = (get_option($tpl->name . "_branding_logo_alt_image"));	
 		} else {
-			$logo_text = get_option($tpl->name . "_branding_logo_text_value", '') . ' - ' . get_option($tpl->name . "_branding_logo_slogan_value", '');
+			$image_src = get_option($tpl->name . "_branding_logo_image", '');
+			$image_id = gavern_get_attachment_id($image_src);
+			$logo_text = get_post_meta($image_id, '_wp_attachment_image_alt', true);
 		}
+
 		// return the logo output
 		echo '<img src="'.get_option($tpl->name . "_branding_logo_image", '').'" alt="' . $logo_text . '" width="'.get_option($tpl->name . "_branding_logo_image_width", 128).'" height="'.get_option($tpl->name . "_branding_logo_image_height", 128).'" />';
 	} else { // text logo
 		// get the logo text type
 		if(get_option($tpl->name . "_branding_logo_text_type", 'wp') == 'wp') {
-			$logo_text = gk_blog_name() . ' <small>' . gk_blog_desc() . '</small>';	
+			$logo_text = gk_blog_name();
+			if(trim(gk_blog_desc()) != '') {
+				$logo_text .= ' <small>' . gk_blog_desc() . '</small>';
+			}	
 		} else {
-			$logo_text = get_option($tpl->name . "_branding_logo_text_value", '') . '<small>' . get_option($tpl->name . "_branding_logo_slogan_value", '') . '</small>';
+			$logo_text = get_option($tpl->name . "_branding_logo_text_value", '');
+			if(trim(get_option($tpl->name . "_branding_logo_slogan_value", '')) != '') {
+				$logo_text .= '<small>' . get_option($tpl->name . "_branding_logo_slogan_value", '') . '</small>';
+			}
 		}
 		// return the logo output
 		echo apply_filters('gavern_logo_html', $logo_text);
