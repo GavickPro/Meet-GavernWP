@@ -342,7 +342,7 @@ function gk_twitter_metatags() {
 			//
 			echo apply_filters('gavern_twitter_url', '<meta name="twitter:url" content="'.get_permalink($postID).'" />' . "\n");
 			//		
-			echo apply_filters('gavern_twitter_title', '<meta name="twitter:title" content="'.(($title == '') ? $wp_query->post->post_title : $title).'" />' . "\n");
+			echo apply_filters('gavern_twitter_title', '<meta name="twitter:title" content="'.(($title == '') ? esc_html($wp_query->post->post_title) : $title).'" />' . "\n");
 			//
 			if($image != '') {
 				echo apply_filters('gavern_twitter_image', '<meta name="twitter:image" content="'.$image.'" />' . "\n");
