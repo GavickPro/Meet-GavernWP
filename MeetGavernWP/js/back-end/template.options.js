@@ -351,17 +351,40 @@
     }
     //
     function gkMediaInit() {
-        // image uploaders
+        //
         jQuery('.gkMediaInput').each(
             function (i, el) {
                 el = jQuery(el);
                 var btnid = el.attr('id') + '_button';
+                var file_frame;
 
-                jQuery('#' + btnid).click(function () {
-                    uploadID = jQuery(this).prev('input');
-                    tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
-
-                    return false;
+                jQuery('#' + btnid).click(function (event) {
+                    event.preventDefault();
+                    // If the media frame already exists, reopen it.
+                    if ( file_frame ) {
+                        file_frame.open();
+                        return;
+                    }
+                    // Create the media frame.
+                    file_frame = wp.media.frames.file_frame = wp.media({
+                        title: 'Choose Image',
+                        multiple: false,
+                        library: {
+                            type: 'image'
+                        },
+                        button: {
+                            text: 'Use This Image'
+                        }
+                    });
+                    // When an image is selected, run a callback.
+                    file_frame.on( 'select', function() {
+                        // We set multiple to false so only get one image from the uploader
+                        var attachment = file_frame.state().get('selection').first().toJSON();
+                        el.val(attachment.url);
+                        el.parent().find('.gkMediaPreview').html('<img src="' + el.val() + '" alt="Preview" />');   
+                    });
+                    // Finally, open the modal
+                    file_frame.open();
                 });
 
                 el.change(function () {
@@ -385,10 +408,4 @@
         );
     }
     //
-    window.send_to_editor = function (html) {
-        var imgurl = jQuery('img', html).attr('src');
-        uploadID.val(imgurl);
-        uploadID.parent().find('.gkMediaPreview').html('<img src="' + imgurl + '" alt="Preview" />');
-        tb_remove();
-    };
 })();

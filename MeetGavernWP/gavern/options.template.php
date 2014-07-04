@@ -44,6 +44,7 @@ function gavern_template_options_js() {
 		wp_register_script('gk-upload', gavern_file_uri('js/back-end/template.options.js'), array('jquery','media-upload','thickbox', 'gk-tips-js'));
 		wp_enqueue_script('gk-upload');
 		wp_enqueue_script('gk-tips-js');
+		wp_enqueue_media();
 		// register and load external components scripts
 		$tabs = $tpl->get_json('options','tabs');
 		// iterate through tabs
