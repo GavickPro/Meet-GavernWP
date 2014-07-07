@@ -197,7 +197,7 @@ gk_load('before');
 						<?php endif; ?>
 					</dt>
 					<dd>	
-						<input type="text" name="contact-name" id="contact-name" value="<?php echo $output['message'];?>" />
+						<input type="text" name="contact-name" id="contact-name" value="<?php echo $output['name'];?>" />
 					</dd>
 					<?php endif; ?>
 		
