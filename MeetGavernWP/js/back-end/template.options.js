@@ -303,7 +303,7 @@
                 for (var k = 0; k < visibilityRules.length; k++) {
                     visibilityRules[k] = visibilityRules[k].split('=');
                     var usedField = visibilityRules[k][0];
-                    var tempField = jQuery('*[data-name=' + usedField + ']');
+                    var tempField = jQuery('*[data-name="' + usedField + '"]');
                     var type = (tempField.hasClass('gkSwitcher') || tempField.hasClass('gkSelect')) ? 'select' : 'text';
 
                     visibilityRules[k] = {
@@ -337,7 +337,7 @@
 
                 for (var j = 0; j < dependsFrom.length; j++) {
                     var type = gkVisibility[dependsFrom[j].field].type;
-                    field = jQuery('*[data-name=' + dependsFrom[j].field + ']');
+                    field = jQuery('*[data-name="' + dependsFrom[j].field + '"]');
                     var value = (type === 'select') ? field.find('option:selected').val() : field.val();
 
                     if (value !== dependsFrom[j].value) {
