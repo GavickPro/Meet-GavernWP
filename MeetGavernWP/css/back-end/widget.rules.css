@@ -164,9 +164,8 @@
 	display: none;
 }
 
-/* WP 3.8, 3.9 back-end adjustments */
-body.branch-3-8 .gk_widget_rules_pages div span,
-body.branch-3-9 .gk_widget_rules_pages div span {
+/* WP 4.0 back-end adjustments */
+.gk_widget_rules_pages div span {
 	border-radius: 0;
 	height: 20px;
 }

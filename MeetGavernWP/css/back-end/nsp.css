@@ -68,33 +68,27 @@ hr.clear {
 	padding: 0 0 10px 0;
 }
 
-/* WP 3.8, 3.9 back-end adjustments */
-body.branch-3-8 .gk-nsp-col,
-body.branch-3-8 .gk-nsp-col + .gk-nsp-col,
-body.branch-3-9 .gk-nsp-col,
-body.branch-3-9 .gk-nsp-col + .gk-nsp-col {
+/* WP 4.0 back-end adjustments */
+.gk-nsp-col,
+.gk-nsp-col + .gk-nsp-col {
 	padding-top: 12px;
 }
 
-body.wp-admin.branch-3-8 .gk-nsp-col select,
-body.wp-admin.branch-3-9 .gk-nsp-col select {
+.gk-nsp-col select {
 	font-size: 12px;
 }
 
-body.wp-admin.branch-3-8 .gk-nsp-col input.short,
-body.wp-admin.branch-3-9 .gk-nsp-col input.short {
+.gk-nsp-col input.short {
 	width: 35px;
 }
 
 @media screen and (max-width: 782px) {
-	body.wp-admin.branch-3-8 #wpbody .gk-nsp-col select,
-	body.wp-admin.branch-3-9 #wpbody .gk-nsp-col select {
+	#wpbody .gk-nsp-col select{
 		font-size: 11px;
 		height: 28px;
 	}
 	
-	body.wp-admin.branch-3-8 .gk-nsp-col input,
-	body.wp-admin.branch-3-9 .gk-nsp-col input {
+	.gk-nsp-col input {
 		padding: 3px 5px;
 	}
 }

@@ -41,6 +41,8 @@ textarea {
 }
 
 .gkWrap {
+	background: #fff;
+	border-radius: 0;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	border: 1px solid #e5e5e5;
@@ -53,7 +55,7 @@ textarea {
 }
 .gkWrap > h1:first-child {
 	background: #55a8e8;
-	border-radius: 3px 3px 0 0;
+	border-radius: 0;
 	color: #fff;
 	font: normal 25px/48px Arial, Helvetica, sans-serif;
 	height: 48px;
@@ -127,15 +129,3 @@ textarea {
 }
 .gkImport, 
 .gkExport { padding: 10px 30px;}
-
-/* WP 3.8, 3.9 back-end adjustments */
-body.branch-3-8 .gkWrap,
-body.branch-3-9 .gkWrap {
-	background: #fff;
-	border-radius: 0;
-}
-
-body.branch-3-8 .gkWrap > h1:first-child,
-body.branch-3-9 .gkWrap > h1:first-child {
-	border-radius: 0;
-}
