@@ -27,6 +27,19 @@
 				"visibility": ""
 			},
 			{
+				"name": "ga_ua_type",
+				"type": "Select",
+				"label": "Google Analytics type",
+				"tooltip": "Please select old Google Analytics or new Universal Analytics",
+				"default": "ga",
+				"other": {
+					"options": {
+						"ga": "Google Analytics",
+						"ua": "Universal Analytics"
+					}
+				}
+			},
+			{
 				"name": "ga_ua_id",
 				"type": "Text",
 				"label": "Google Analytics tracking ID",
