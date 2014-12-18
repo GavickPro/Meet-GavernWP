@@ -75,6 +75,16 @@
 	?>
 	
 	<?php do_action('gavernwp_head'); ?>
+
+	<?php
+		if (is_page_template( 'template.contact.php' ) && 
+			get_option($tpl->name . '_recaptcha_state', 'N') == 'Y' && 
+			get_option($tpl->name . '_recaptcha_public_key', '') != '' &&
+			get_option($tpl->name . '_recaptcha_private_key', '') != ''
+		) {
+			wp_enqueue_script( 'gk-captcha-script', 'https://www.google.com/recaptcha/api.js', array( 'jquery' ), false, false);
+		}
+	?>
 	
 	<?php 
 		echo stripslashes(

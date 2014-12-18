@@ -7,9 +7,10 @@ Template Name: Contact Form
 global $tpl;
 
 // check if reCAPTCHA isn't loaded earlier by other plugin
-if(!function_exists('_recaptcha_qsencode')) {
+if (!class_exists('ReCaptcha')) {
 	include_once('gavern/classes/class.recaptchalib.php');
 }
+
 // get the params
 $params = get_post_custom();
 $params_templates = isset($params['gavern-post-params-templates']) ? $params['gavern-post-params-templates'][0] : false;
@@ -33,6 +34,9 @@ if(count($params_contact) == 3) {
 	$params_copy = $params_contact[2] == 'Y';
 }
 
+$publickey = get_option($tpl->name . '_recaptcha_public_key', '');
+// The response from reCAPTCHA
+$resp = null;
 // flag used to detect if the page is validated
 $validated = true;
 // flag to detect if e-mail was sent
@@ -83,16 +87,15 @@ if(isset($_POST['message-send'])) {
 		get_option($tpl->name . '_recaptcha_public_key', '') != '' &&
 		get_option($tpl->name . '_recaptcha_private_key', '') != ''
 	) {
-		$privatekey = get_option($tpl->name . '_recaptcha_private_key', '');
-		$resp = recaptcha_check_answer ($privatekey,
-		                            $_SERVER["REMOTE_ADDR"],
-		                            $_POST["recaptcha_challenge_field"],
-		                            $_POST["recaptcha_response_field"]);
-		
-		if (!$resp->is_valid) {
-			// What happens when the CAPTCHA was entered incorrectly
-			$validated = false;
-			$errors['recaptcha'] = __("The reCAPTCHA wasn't entered correctly. Go back and try it again.", GKTPLNAME);
+		$reCaptcha = new ReCaptcha("$publickey");
+		if ($_POST["g-recaptcha-response"]) {
+		$resp = $reCaptcha->verifyResponse(
+				        $_SERVER["REMOTE_ADDR"],
+				        $_POST["g-recaptcha-response"]
+				    );
+		} else {
+					$validated = false;
+				    $errors['recaptcha'] = __("The reCAPTCHA wasn't entered correctly. Go back and try it again.", GKTPLNAME);		
 		}
 	}
 	// if the all fields was correct
@@ -240,15 +243,12 @@ gk_load('before');
 						get_option($tpl->name . '_recaptcha_private_key', '') != ''
 					) : ?>
 				<p>
-					<script type="text/javascript">var RecaptchaOptions = { theme : 'clean' };</script>
-					<?php if($errors['recaptcha'] != '') : ?>
-					<span class="error"><?php echo $errors['recaptcha'];?></span>
-					<?php endif; ?>
-					<?php 
-						$publickey = get_option($tpl->name . '_recaptcha_public_key', ''); // you got this from the signup page
-						echo recaptcha_get_html($publickey); 
-					?>				
-				</p>
+						<?php if($errors['recaptcha'] != '') : ?>
+						<span class="error"><?php echo $errors['recaptcha'];?></span>
+						<?php endif; ?>			
+					</p>
+
+					<div class="g-recaptcha" data-sitekey="6LeRNv8SAAAAAId1_L7Ul4NPAI6tLZVEau5MNEjF"></div>
 				<?php endif; ?>
 				
 				<p>
