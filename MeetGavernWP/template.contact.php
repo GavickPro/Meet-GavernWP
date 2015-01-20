@@ -248,7 +248,7 @@ gk_load('before');
 						<?php endif; ?>			
 					</p>
 
-					<div class="g-recaptcha" data-sitekey="6LeRNv8SAAAAAId1_L7Ul4NPAI6tLZVEau5MNEjF"></div>
+					<div class="g-recaptcha" data-sitekey="<?php echo $publickey; ?>"></div>
 				<?php endif; ?>
 				
 				<p>
