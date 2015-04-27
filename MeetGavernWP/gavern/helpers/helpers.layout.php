@@ -479,9 +479,9 @@ function gk_breadcrumbs_output() {
 		} elseif (is_page()) { 
 			// output the page name
 			$output .= get_the_title('<span class="gk-current">', '</span>');
-		} elseif (is_tag() && isset($_GET['tag'])) {
-			// output the tag name
-			$output .= '<span class="gk-current">' . __('Tag: ', GKTPLNAME) . strip_tags($_GET['tag']) . '</span>';
+		} elseif (is_tag() ) {
+             // output the tag name
+             $output .= '<span class="gk-current">' . __('Tag: ', GKTPLNAME) . single_tag_title('', false) . '</span>';
 		} elseif (is_author() && isset($_GET['author'])) {
 			// get the author name
 			$id = strip_tags($_GET['author']);
