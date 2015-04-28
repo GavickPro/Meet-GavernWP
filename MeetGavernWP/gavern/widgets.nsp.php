@@ -956,6 +956,7 @@ class GK_NSP_Widget extends WP_Widget {
 	 	
 	 	$upload_dir = wp_upload_dir();
 	 	$image_path = str_replace($upload_dir['baseurl'] . '/', '', $image_path);
+	 	$image_path = str_replace(str_replace('http://', 'https://', $upload_dir['baseurl']) . '/', '', $image_path);
 	 	
 	 	if($image_path != '') {
 	 		$img_editor = wp_get_image_editor( $upload_dir['basedir'] . '/' . $image_path);
