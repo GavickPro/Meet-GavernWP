@@ -28,11 +28,11 @@ function gavern_importexport_options() {
 	<div class="gkWrap wrap">
 		<h1><big><?php echo $tpl->full_name; ?></big><small><?php _e('Based on the Gavern WP framework', GKTPLNAME); ?></small></h1>
 		<div class="gkImport">
-			<h2>Import Template Settings</h2>
+			<h2><?php _e('Import Template Settings', GKTPLNAME)?></h2>
 			<?php
 				if (isset($_FILES['import']) && check_admin_referer('gavern_importexport')) {
 					if ($_FILES['import']['error'] > 0) 
-						echo "<div class='error'><p>No file selected, please make sure to select a file.</p></div>";	
+						echo "<div class='error'><p><?php _e('No file selected, please make sure to select a file.', GKTPLNAME)?></p></div>";	
 					else {
 						$file_name = $_FILES['import']['name'];
 						$file_ext = strtolower(end(explode(".", $file_name)));
@@ -45,20 +45,20 @@ function gavern_importexport_options() {
 									update_option($key, esc_attr($value));
 								}
 							}
-							echo "<div class='updated'><p>All template options are restored successfully.</p></div>";
+							echo "<div class='updated'><p><?php _e('All template options are restored successfully.', GKTPLNAME)?></p></div>";
 						}	
 						else 
-							echo "<div class='error'><p>Invalid file or file size too big.</p></div>";
+							echo "<div class='error'><p><?php _e('Invalid file or file size too big.', GKTPLNAME)?></p></div>";
 					}
 				}
 		?>
-			<p>1. Click "Browse" button and choose a backup file that you backup before.</p>
-			<p>2. Click "Restore Template Settings" button to restore your template settings.</p>
+			<p><?php _e('1. Click "Browse" button and choose a backup file that you backup before.', GKTPLNAME)?></p>
+			<p><?php _e('2. Click "Restore Template Settings" button to restore your template settings.', GKTPLNAME)?></p>
 			<form method='post' enctype='multipart/form-data'>
 				<p class="submit">
 					<?php wp_nonce_field('gavern_importexport'); ?>
 					<input type='file' name='import' />
-					<input type='submit' name='submit' class="gkMedia" value='Restore Template Settings'/>
+					<input type='submit' name='submit' class="gkMedia" value='<?php _e('Restore Template Settings', GKTPLNAME)?>'/>
 				</p>
 			</form>
 		</div>
@@ -67,14 +67,14 @@ function gavern_importexport_options() {
 	if (!isset($_POST['export'])) { 
 ?>
 		<div class="gkExport">
-	        <h2>Export Template Settings</h2>
-	        <p>When you click "Backup Template Settings" button, system will generate a template backup file for you to save on your computer.</p>
-	        <p>This backup file contains your Gavern template configuration and setting options.</p>
-	        <p>After exporting, you can either use the backup file to restore your template settings on this site again or another Wordpress site when using same Gavern template.</p>
+	        <h2><?php _e('Export Template Settings', GKTPLNAME)?></h2>
+	        <p><?php _e('When you click "Backup Template Settings" button, system will generate a template backup file for you to save on your computer.', GKTPLNAME)?></p>
+	        <p><?php _e('This backup file contains your Gavern template configuration and setting options.', GKTPLNAME)?></p>
+	        <p><?php _e('After exporting, you can either use the backup file to restore your template settings on this site again or another Wordpress site when using same Gavern template.', GKTPLNAME)?></p>
             <form method='post'>
 	        <p class="submit">
             	<?php wp_nonce_field('gavern_importexport'); ?>
-	        	<input type='submit' name='export' class="gkMedia" value='Backup Template Settings'/>
+	        	<input type='submit' name='export' class="gkMedia" value='<?php _e('Backup Template Settings', GKTPLNAME)?>'/>
 	        </p>
             </form>
 	    </div>
