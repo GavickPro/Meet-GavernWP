@@ -53,8 +53,18 @@ msgstr  ""
 msgid   "1 Comment"
 msgstr  ""
 
+#: gavern/options.importexport.php:55
+msgid   "1. Click \"Browse\" button and choose a backup file that you backup "
+        "before."
+msgstr  ""
+
 #: comments.php:27
 msgid   "2 Comments"
+msgstr  ""
+
+#: gavern/options.importexport.php:56
+msgid   "2. Click \"Restore Template Settings\" button to restore your "
+        "template settings."
 msgstr  ""
 
 #: gavern/helpers/helpers.features.php:514
@@ -94,6 +104,12 @@ msgstr  ""
 msgid   "Adobe Edge Fonts URL: "
 msgstr  ""
 
+#: gavern/options.importexport.php:73
+msgid   "After exporting, you can either use the backup file to restore your "
+        "template settings on this site again or another Wordpress site when "
+        "using same Gavern template."
+msgstr  ""
+
 #: gavern/helpers/helpers.features.php:673
 msgid   "All devices"
 msgstr  ""
@@ -114,7 +130,7 @@ msgstr  ""
 msgid   "All users"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:985 gavern/widgets.nsp.php:988
+#: gavern/widgets.nsp.php:986 gavern/widgets.nsp.php:989
 msgid   "An error occured during creating the thumbnail."
 msgstr  ""
 
@@ -207,12 +223,16 @@ msgstr  ""
 msgid   "Avatar size:"
 msgstr  ""
 
-#: template.contact.php:183
+#: template.contact.php:186
 msgid   "Back to the homepage"
 msgstr  ""
 
 #: layouts/footer.php:23
 msgid   "Back to top"
+msgstr  ""
+
+#: gavern/options.importexport.php:77
+msgid   "Backup Template Settings"
 msgstr  ""
 
 #: gavern/layouts/template.php:28 gavern/options.importexport.php:29
@@ -289,7 +309,7 @@ msgstr  ""
 msgid   "Close"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:1041
+#: gavern/widgets.nsp.php:1042
 msgid   "Comments "
 msgstr  ""
 
@@ -388,7 +408,7 @@ msgstr  ""
 msgid   "Documentation"
 msgstr  ""
 
-#: template.contact.php:128
+#: template.contact.php:131
 msgid   "E-mail:"
 msgstr  ""
 
@@ -398,7 +418,7 @@ msgstr  ""
 msgid   "Edit"
 msgstr  ""
 
-#: template.contact.php:206
+#: template.contact.php:209
 msgid   "Email:"
 msgstr  ""
 
@@ -423,6 +443,10 @@ msgstr  ""
 
 #: gavern/form_elements/standard.php:274
 msgid   "Enter an URL or upload an image."
+msgstr  ""
+
+#: gavern/options.importexport.php:70
+msgid   "Export Template Settings"
 msgstr  ""
 
 #: gavern/widgets.social.php:144
@@ -462,7 +486,7 @@ msgstr  ""
 msgid   "Format:"
 msgstr  ""
 
-#: template.contact.php:108 template.contact.php:110 template.contact.php:112
+#: template.contact.php:111 template.contact.php:113 template.contact.php:115
 msgid   "From "
 msgstr  ""
 
@@ -535,6 +559,10 @@ msgstr  ""
 msgid   "Image"
 msgstr  ""
 
+#: gavern/options.importexport.php:31
+msgid   "Import Template Settings"
+msgstr  ""
+
 #: gavern/functions.php:71
 msgid   "Import/Export"
 msgstr  ""
@@ -603,7 +631,7 @@ msgstr  ""
 msgid   "Lost your password?"
 msgstr  ""
 
-#: layouts/header.php:98
+#: layouts/header.php:108
 msgid   "Main menu"
 msgstr  ""
 
@@ -615,11 +643,11 @@ msgstr  ""
 msgid   "Members only"
 msgstr  ""
 
-#: template.contact.php:117
+#: template.contact.php:120
 msgid   "Message from"
 msgstr  ""
 
-#: template.contact.php:134 template.contact.php:217
+#: template.contact.php:137 template.contact.php:220
 msgid   "Message:"
 msgstr  ""
 
@@ -644,7 +672,7 @@ msgstr  ""
 msgid   "Most Used Categories"
 msgstr  ""
 
-#: template.contact.php:121 template.contact.php:194
+#: template.contact.php:124 template.contact.php:197
 msgid   "Name:"
 msgstr  ""
 
@@ -664,7 +692,7 @@ msgstr  ""
 msgid   "No animation"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:1039
+#: gavern/widgets.nsp.php:1040
 msgid   "No comments"
 msgstr  ""
 
@@ -875,7 +903,7 @@ msgstr  ""
 msgid   "Random"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:821 gavern/widgets.nsp.php:1064
+#: gavern/widgets.nsp.php:821 gavern/widgets.nsp.php:1065
 msgid   "Read more"
 msgstr  ""
 
@@ -889,6 +917,10 @@ msgstr  ""
 
 #: gavern/helpers/helpers.layout.fragments.php:124
 msgid   "Reply"
+msgstr  ""
+
+#: gavern/options.importexport.php:61
+msgid   "Restore Template Settings"
 msgstr  ""
 
 #: attachment.php:28
@@ -938,7 +970,7 @@ msgstr  ""
 msgid   "Selectors:"
 msgstr  ""
 
-#: template.contact.php:231
+#: template.contact.php:234
 msgid   "Send copy of the message to yourself"
 msgstr  ""
 
@@ -1018,7 +1050,7 @@ msgstr  ""
 msgid   "Smartphones"
 msgstr  ""
 
-#: template.contact.php:187
+#: template.contact.php:190
 msgid   "Sorry, an error occured."
 msgstr  ""
 
@@ -1104,12 +1136,17 @@ msgstr  ""
 msgid   "Text"
 msgstr  ""
 
-#: template.contact.php:95
+#: template.contact.php:98
 msgid   "The reCAPTCHA wasn't entered correctly. Go back and try it again."
 msgstr  ""
 
 #: gavern/helpers/helpers.customizer.php:121
 msgid   "Theme width"
+msgstr  ""
+
+#: gavern/options.importexport.php:72
+msgid   "This backup file contains your Gavern template configuration and "
+        "setting options."
 msgstr  ""
 
 #: gavern/helpers/helpers.layout.php:1010
@@ -1206,6 +1243,15 @@ msgstr  ""
 msgid   "Website: "
 msgstr  ""
 
+#: gavern/options.importexport.php:71
+msgid   "When you click \"Backup Template Settings\" button, system will "
+        "generate a template backup file for you to save on your computer."
+msgstr  ""
+
+#: gavern/helpers/helpers.features.php:489
+msgid   "Widget rules"
+msgstr  ""
+
 #: gavern/helpers/helpers.features.php:666
 msgid   "Widget style: "
 msgstr  ""
@@ -1269,7 +1315,7 @@ msgstr  ""
 msgid   "Your comment is awaiting moderation."
 msgstr  ""
 
-#: template.contact.php:182
+#: template.contact.php:185
 msgid   "Your message was sent to us successfully."
 msgstr  ""
 
@@ -1300,15 +1346,15 @@ msgstr  ""
 msgid   "permalink"
 msgstr  ""
 
-#: template.contact.php:76
+#: template.contact.php:80
 msgid   "please enter a text of the message."
 msgstr  ""
 
-#: template.contact.php:68
+#: template.contact.php:72
 msgid   "please enter correct email address."
 msgstr  ""
 
-#: template.contact.php:59
+#: template.contact.php:63
 msgid   "please enter your name"
 msgstr  ""
 
