@@ -486,7 +486,7 @@ function gavern_widget_control() {
 		$usersMode = !empty($users[$id]) ? htmlspecialchars(stripslashes($users[$id]),ENT_QUOTES) : '';	
 		// 
 		echo '
-		<a class="gk_widget_rules_btn button">Widget rules</a>
+		<a class="gk_widget_rules_btn button">'.__('Widget rules', GKTPLNAME).'</a>
 		<div class="gk_widget_rules_wrapper'.((isset($_COOKIE['gk_last_opened_widget_rules_wrap']) && $_COOKIE['gk_last_opened_widget_rules_wrap'] == 'gk_widget_rules_form_'.$id) ? ' active' : '').'" data-id="gk_widget_rules_form_'.$id.'">
 			<p>
 				<label for="' . $tpl->name . '_widget_rules_'.$id.'">'.__('Visible at: ', GKTPLNAME).'</label>
