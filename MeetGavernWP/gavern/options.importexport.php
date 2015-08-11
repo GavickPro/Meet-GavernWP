@@ -45,10 +45,10 @@ function gavern_importexport_options() {
 									update_option($key, esc_attr($value));
 								}
 							}
-							echo "<div class='updated'><p><?php _e('All template options are restored successfully.', GKTPLNAME)?></p></div>";
+							echo "<div class='updated'><p>" .__('All template options are restored successfully.', GKTPLNAME) . "</p></div>";
 						}	
 						else 
-							echo "<div class='error'><p><?php _e('Invalid file or file size too big.', GKTPLNAME)?></p></div>";
+							echo "<div class='error'><p>" .__('Invalid file or file size too big.', GKTPLNAME)."</p></div>";
 					}
 				}
 		?>
