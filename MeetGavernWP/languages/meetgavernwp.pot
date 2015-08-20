@@ -9,7 +9,7 @@ msgstr  ""
 "Project-Id-Version: MeetGavernWP\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-02 10:14+0200\n"
-"PO-Revision-Date: 2014-09-09 12:03+1100\n"
+"PO-Revision-Date: 2015-08-20 12:03+1100\n"
 "Last-Translator: GavickPro <info@gavick.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr  ""
 msgid   "<span>&larr;</span> %s"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:543
+#: gavern/widgets.nsp.php:542
 msgid   "ASC"
 msgstr  ""
 
@@ -126,11 +126,15 @@ msgstr  ""
 msgid   "All pages except:"
 msgstr  ""
 
+#: gavern/options.importexport.php:48
+msgid   "All template options are restored successfully."
+msgstr  ""
+
 #: gavern/helpers/helpers.features.php:689
 msgid   "All users"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:986 gavern/widgets.nsp.php:989
+#: gavern/widgets.nsp.php:985 gavern/widgets.nsp.php:988
 msgid   "An error occured during creating the thumbnail."
 msgstr  ""
 
@@ -138,11 +142,11 @@ msgstr  ""
 msgid   "Animation for "
 msgstr  ""
 
-#: gavern/widgets.tabs.php:263
+#: gavern/widgets.tabs.php:261
 msgid   "Animation interval (ms):"
 msgstr  ""
 
-#: gavern/widgets.tabs.php:258
+#: gavern/widgets.tabs.php:256
 msgid   "Animation speed (ms):"
 msgstr  ""
 
@@ -164,19 +168,19 @@ msgstr  ""
 msgid   "Archives"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:592 gavern/widgets.nsp.php:608
+#: gavern/widgets.nsp.php:591 gavern/widgets.nsp.php:607
 msgid   "Arrows"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:649
+#: gavern/widgets.nsp.php:648
 msgid   "Article format"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:585
+#: gavern/widgets.nsp.php:584
 msgid   "Article pagination:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:564
+#: gavern/widgets.nsp.php:563
 msgid   "Articles amount"
 msgstr  ""
 
@@ -203,23 +207,23 @@ msgstr  ""
 msgid   "Author: %s "
 msgstr  ""
 
-#: gavern/widgets.tabs.php:245
+#: gavern/widgets.tabs.php:243
 msgid   "Auto animation:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:636
+#: gavern/widgets.nsp.php:635
 msgid   "Auto-animation stops on hover:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:619
+#: gavern/widgets.nsp.php:618
 msgid   "Auto-animation:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:616
+#: gavern/widgets.nsp.php:615
 msgid   "Autoanimation settings"
 msgstr  ""
 
-#: gavern/widgets.comments.php:200
+#: gavern/widgets.comments.php:201
 msgid   "Avatar size:"
 msgstr  ""
 
@@ -239,7 +243,7 @@ msgstr  ""
 msgid   "Based on the Gavern WP framework"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:483
+#: gavern/widgets.nsp.php:482
 msgid   "Basic settings"
 msgstr  ""
 
@@ -247,19 +251,19 @@ msgstr  ""
 msgid   "Blog Archives"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:558
+#: gavern/widgets.nsp.php:557
 msgid   "Blog ID (leave blank for current blog): "
 msgstr  ""
 
-#: gavern/widgets.nsp.php:595 gavern/widgets.nsp.php:611
+#: gavern/widgets.nsp.php:594 gavern/widgets.nsp.php:610
 msgid   "Both"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:899
+#: gavern/widgets.nsp.php:898
 msgid   "Cache settings"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:902
+#: gavern/widgets.nsp.php:901
 msgid   "Cache time (min):"
 msgstr  ""
 
@@ -267,7 +271,7 @@ msgstr  ""
 msgid   "Categories"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:500
+#: gavern/widgets.nsp.php:499
 msgid   "Categories slugs"
 msgstr  ""
 
@@ -296,12 +300,12 @@ msgstr  ""
 msgid   "Category:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:675 gavern/widgets.nsp.php:713
-#: gavern/widgets.nsp.php:865 gavern/widgets.nsp.php:891
+#: gavern/widgets.nsp.php:674 gavern/widgets.nsp.php:712
+#: gavern/widgets.nsp.php:864 gavern/widgets.nsp.php:890
 msgid   "Chars"
 msgstr  ""
 
-#: gavern/widgets.tabs.php:236
+#: gavern/widgets.tabs.php:234
 msgid   "Click"
 msgstr  ""
 
@@ -309,7 +313,7 @@ msgstr  ""
 msgid   "Close"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:1042
+#: gavern/widgets.nsp.php:1041
 msgid   "Comments "
 msgstr  ""
 
@@ -344,7 +348,7 @@ msgstr  ""
 msgid   "Custom CSS class: "
 msgstr  ""
 
-#: gavern/widgets.nsp.php:509
+#: gavern/widgets.nsp.php:508
 msgid   "Custom post types"
 msgstr  ""
 
@@ -352,7 +356,7 @@ msgstr  ""
 msgid   "Customize theme"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:546
+#: gavern/widgets.nsp.php:545
 msgid   "DESC"
 msgstr  ""
 
@@ -361,19 +365,19 @@ msgstr  ""
 msgid   "Daily Archives: %s"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:490
+#: gavern/widgets.nsp.php:489
 msgid   "Data source settings"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:493
+#: gavern/widgets.nsp.php:492
 msgid   "Data source:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:525
+#: gavern/widgets.nsp.php:524
 msgid   "Date"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:815
+#: gavern/widgets.nsp.php:814
 msgid   "Date format:"
 msgstr  ""
 
@@ -389,7 +393,7 @@ msgstr  ""
 msgid   "Desktop"
 msgstr  ""
 
-#: gavern/widgets.tabs.php:252 gavern/helpers/helpers.features.php:106
+#: gavern/widgets.tabs.php:250 gavern/helpers/helpers.features.php:106
 #: gavern/helpers/helpers.features.php:114
 #: gavern/helpers/helpers.features.php:122
 #: gavern/helpers/helpers.features.php:129
@@ -426,7 +430,7 @@ msgstr  ""
 msgid   "Enable"
 msgstr  ""
 
-#: gavern/widgets.tabs.php:249 gavern/helpers/helpers.features.php:105
+#: gavern/widgets.tabs.php:247 gavern/helpers/helpers.features.php:105
 #: gavern/helpers/helpers.features.php:113
 #: gavern/helpers/helpers.features.php:121
 #: gavern/helpers/helpers.features.php:128
@@ -449,7 +453,7 @@ msgstr  ""
 msgid   "Export Template Settings"
 msgstr  ""
 
-#: gavern/widgets.social.php:144
+#: gavern/widgets.social.php:142
 msgid   "Facebook link:"
 msgstr  ""
 
@@ -482,7 +486,7 @@ msgstr  ""
 msgid   "Fonts Squirrel: "
 msgstr  ""
 
-#: gavern/widgets.nsp.php:809
+#: gavern/widgets.nsp.php:808
 msgid   "Format:"
 msgstr  ""
 
@@ -495,19 +499,19 @@ msgstr  ""
 msgid   "Full size is %s pixels"
 msgstr  ""
 
-#: gavern/widgets.comments.php:20
+#: gavern/widgets.comments.php:23
 msgid   "GK Comments"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:25
+#: gavern/widgets.nsp.php:33
 msgid   "GK News Show Pro"
 msgstr  ""
 
-#: gavern/widgets.social.php:20
+#: gavern/widgets.social.php:23
 msgid   "GK Social Icons"
 msgstr  ""
 
-#: gavern/widgets.tabs.php:20
+#: gavern/widgets.tabs.php:23
 msgid   "GK Tabs"
 msgstr  ""
 
@@ -531,7 +535,7 @@ msgstr  ""
 msgid   "Google Web Fonts URL: "
 msgstr  ""
 
-#: gavern/widgets.social.php:154
+#: gavern/widgets.social.php:152
 msgid   "Google+ link:"
 msgstr  ""
 
@@ -547,15 +551,15 @@ msgstr  ""
 msgid   "Homepage"
 msgstr  ""
 
-#: gavern/widgets.tabs.php:239
+#: gavern/widgets.tabs.php:237
 msgid   "Hover"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:521
+#: gavern/widgets.nsp.php:520
 msgid   "ID"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:734 gavern/helpers/helpers.layout.php:1007
+#: gavern/widgets.nsp.php:733 gavern/helpers/helpers.layout.php:1007
 msgid   "Image"
 msgstr  ""
 
@@ -567,12 +571,16 @@ msgstr  ""
 msgid   "Import/Export"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:780
+#: gavern/widgets.nsp.php:779
 msgid   "Info block"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:631
+#: gavern/widgets.nsp.php:630
 msgid   "Interval (ms):"
+msgstr  ""
+
+#: gavern/options.importexport.php:51
+msgid   "Invalid file or file size too big."
 msgstr  ""
 
 #: 404.php:18
@@ -583,11 +591,11 @@ msgstr  ""
 msgid   "Keywords:"
 msgstr  ""
 
-#: gavern/widgets.comments.php:55
+#: gavern/widgets.comments.php:56
 msgid   "Latest Comments"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:497 template.archive.php:28
+#: gavern/widgets.nsp.php:496 template.archive.php:28
 msgid   "Latest posts"
 msgstr  ""
 
@@ -599,11 +607,11 @@ msgstr  ""
 msgid   "Leave a reply"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:775
+#: gavern/widgets.nsp.php:774
 msgid   "Left"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:845
+#: gavern/widgets.nsp.php:844
 msgid   "Link format"
 msgstr  ""
 
@@ -611,11 +619,11 @@ msgstr  ""
 msgid   "Link to full-size image"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:576
+#: gavern/widgets.nsp.php:575
 msgid   "Links amount"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:601
+#: gavern/widgets.nsp.php:600
 msgid   "Links pagination:"
 msgstr  ""
 
@@ -635,7 +643,7 @@ msgstr  ""
 msgid   "Main menu"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:765
+#: gavern/widgets.nsp.php:764
 msgid   "Margin:"
 msgstr  ""
 
@@ -655,7 +663,7 @@ msgstr  ""
 msgid   "Mobile width"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:533
+#: gavern/widgets.nsp.php:532
 msgid   "Modified"
 msgstr  ""
 
@@ -692,7 +700,7 @@ msgstr  ""
 msgid   "No animation"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:1040
+#: gavern/widgets.nsp.php:1039
 msgid   "No comments"
 msgstr  ""
 
@@ -716,7 +724,7 @@ msgstr  ""
 msgid   "No styles available"
 msgstr  ""
 
-#: gavern/widgets.tabs.php:130
+#: gavern/widgets.tabs.php:128
 msgid   "No title specified!"
 msgstr  ""
 
@@ -737,27 +745,27 @@ msgstr  ""
 msgid   "Nothing Found"
 msgstr  ""
 
-#: gavern/widgets.comments.php:210
+#: gavern/widgets.comments.php:211
 msgid   "Number of comments:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:625 gavern/widgets.nsp.php:642
-#: gavern/widgets.nsp.php:665 gavern/widgets.nsp.php:703
-#: gavern/widgets.nsp.php:741 gavern/widgets.nsp.php:787
-#: gavern/widgets.nsp.php:828 gavern/widgets.nsp.php:855
-#: gavern/widgets.nsp.php:881
+#: gavern/widgets.nsp.php:624 gavern/widgets.nsp.php:641
+#: gavern/widgets.nsp.php:664 gavern/widgets.nsp.php:702
+#: gavern/widgets.nsp.php:740 gavern/widgets.nsp.php:786
+#: gavern/widgets.nsp.php:827 gavern/widgets.nsp.php:854
+#: gavern/widgets.nsp.php:880
 msgid   "Off"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:552
+#: gavern/widgets.nsp.php:551
 msgid   "Offset:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:622 gavern/widgets.nsp.php:639
-#: gavern/widgets.nsp.php:662 gavern/widgets.nsp.php:700
-#: gavern/widgets.nsp.php:738 gavern/widgets.nsp.php:784
-#: gavern/widgets.nsp.php:825 gavern/widgets.nsp.php:852
-#: gavern/widgets.nsp.php:878
+#: gavern/widgets.nsp.php:621 gavern/widgets.nsp.php:638
+#: gavern/widgets.nsp.php:661 gavern/widgets.nsp.php:699
+#: gavern/widgets.nsp.php:737 gavern/widgets.nsp.php:783
+#: gavern/widgets.nsp.php:824 gavern/widgets.nsp.php:851
+#: gavern/widgets.nsp.php:877
 msgid   "On"
 msgstr  ""
 
@@ -777,11 +785,11 @@ msgstr  ""
 msgid   "Opacity"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:517
+#: gavern/widgets.nsp.php:516
 msgid   "Order by:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:652
+#: gavern/widgets.nsp.php:651
 msgid   "Padding:"
 msgstr  ""
 
@@ -822,7 +830,7 @@ msgstr  ""
 msgid   "Pages:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:589 gavern/widgets.nsp.php:605
+#: gavern/widgets.nsp.php:588 gavern/widgets.nsp.php:604
 msgid   "Pagination"
 msgstr  ""
 
@@ -855,7 +863,7 @@ msgstr  ""
 msgid   "Please check the form!"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:771
+#: gavern/widgets.nsp.php:770
 msgid   "Position:"
 msgstr  ""
 
@@ -887,7 +895,7 @@ msgstr  ""
 msgid   "Post type:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:506
+#: gavern/widgets.nsp.php:505
 msgid   "Posts slugs"
 msgstr  ""
 
@@ -895,15 +903,15 @@ msgstr  ""
 msgid   "Published by: "
 msgstr  ""
 
-#: gavern/widgets.social.php:159
+#: gavern/widgets.social.php:157
 msgid   "RSS link:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:537
+#: gavern/widgets.nsp.php:536
 msgid   "Random"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:821 gavern/widgets.nsp.php:1065
+#: gavern/widgets.nsp.php:820 gavern/widgets.nsp.php:1064
 msgid   "Read more"
 msgstr  ""
 
@@ -1075,11 +1083,11 @@ msgstr  ""
 msgid   "Tablets"
 msgstr  ""
 
-#: gavern/widgets.tabs.php:232
+#: gavern/widgets.tabs.php:230
 msgid   "Tabs activator event:"
 msgstr  ""
 
-#: gavern/widgets.tabs.php:220
+#: gavern/widgets.tabs.php:218
 msgid   "Tabs source:"
 msgstr  ""
 
@@ -1100,7 +1108,7 @@ msgstr  ""
 msgid   "Tag: "
 msgstr  ""
 
-#: gavern/widgets.nsp.php:503
+#: gavern/widgets.nsp.php:502
 msgid   "Tags"
 msgstr  ""
 
@@ -1132,7 +1140,7 @@ msgstr  ""
 msgid   "Template:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:696 gavern/widgets.nsp.php:874
+#: gavern/widgets.nsp.php:695 gavern/widgets.nsp.php:873
 msgid   "Text"
 msgstr  ""
 
@@ -1159,17 +1167,17 @@ msgid   "This post is password protected. Enter the password to view any "
         "comments."
 msgstr  ""
 
-#: gavern/widgets.nsp.php:529 gavern/widgets.nsp.php:658
-#: gavern/widgets.nsp.php:848
+#: gavern/widgets.nsp.php:528 gavern/widgets.nsp.php:657
+#: gavern/widgets.nsp.php:847
 msgid   "Title"
 msgstr  ""
 
-#: gavern/widgets.comments.php:195 gavern/widgets.tabs.php:215
-#: gavern/widgets.nsp.php:486 gavern/widgets.social.php:139
+#: gavern/widgets.comments.php:196 gavern/widgets.tabs.php:213
+#: gavern/widgets.nsp.php:485 gavern/widgets.social.php:137
 msgid   "Title:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:774
+#: gavern/widgets.nsp.php:773
 msgid   "Top"
 msgstr  ""
 
@@ -1181,7 +1189,7 @@ msgstr  ""
 msgid   "Tweet"
 msgstr  ""
 
-#: gavern/widgets.social.php:149
+#: gavern/widgets.social.php:147
 msgid   "Twitter link:"
 msgstr  ""
 
@@ -1193,20 +1201,20 @@ msgstr  ""
 msgid   "Upload Image"
 msgstr  ""
 
-#: gavern/widgets.comments.php:23
+#: gavern/widgets.comments.php:20
 msgid   "Use this widget to show recent comments with avatars"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:28
+#: gavern/widgets.nsp.php:25
 msgid   "Use this widget to show recent items with images and additional "
         "elements like title, date etc."
 msgstr  ""
 
-#: gavern/widgets.social.php:23
+#: gavern/widgets.social.php:20
 msgid   "Use this widget to show social links"
 msgstr  ""
 
-#: gavern/widgets.tabs.php:23
+#: gavern/widgets.tabs.php:20
 msgid   "Use this widget to show tabs created form the selected sidebar"
 msgstr  ""
 
@@ -1264,7 +1272,7 @@ msgstr  ""
 msgid   "Width, Height and Opacity"
 msgstr  ""
 
-#: gavern/widgets.comments.php:205
+#: gavern/widgets.comments.php:206
 msgid   "Word count:"
 msgstr  ""
 
@@ -1272,8 +1280,8 @@ msgstr  ""
 msgid   "WordPress &rsaquo; Error"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:678 gavern/widgets.nsp.php:716
-#: gavern/widgets.nsp.php:868 gavern/widgets.nsp.php:894
+#: gavern/widgets.nsp.php:677 gavern/widgets.nsp.php:715
+#: gavern/widgets.nsp.php:867 gavern/widgets.nsp.php:893
 msgid   "Words"
 msgstr  ""
 
@@ -1319,12 +1327,12 @@ msgstr  ""
 msgid   "Your message was sent to us successfully."
 msgstr  ""
 
-#: gavern/widgets.nsp.php:568
+#: gavern/widgets.nsp.php:567
 msgid   "columns:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:669 gavern/widgets.nsp.php:707
-#: gavern/widgets.nsp.php:859 gavern/widgets.nsp.php:885
+#: gavern/widgets.nsp.php:668 gavern/widgets.nsp.php:706
+#: gavern/widgets.nsp.php:858 gavern/widgets.nsp.php:884
 msgid   "length:"
 msgstr  ""
 
@@ -1332,13 +1340,13 @@ msgstr  ""
 msgid   "of"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:683 gavern/widgets.nsp.php:721
-#: gavern/widgets.nsp.php:752 gavern/widgets.nsp.php:792
-#: gavern/widgets.nsp.php:833
+#: gavern/widgets.nsp.php:682 gavern/widgets.nsp.php:720
+#: gavern/widgets.nsp.php:751 gavern/widgets.nsp.php:791
+#: gavern/widgets.nsp.php:832
 msgid   "order:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:565 gavern/widgets.nsp.php:577
+#: gavern/widgets.nsp.php:564 gavern/widgets.nsp.php:576
 msgid   "pages:"
 msgstr  ""
 
@@ -1358,10 +1366,10 @@ msgstr  ""
 msgid   "please enter your name"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:571 gavern/widgets.nsp.php:580
+#: gavern/widgets.nsp.php:570 gavern/widgets.nsp.php:579
 msgid   "rows:"
 msgstr  ""
 
-#: gavern/widgets.nsp.php:745
+#: gavern/widgets.nsp.php:744
 msgid   "size:"
 msgstr  ""
