@@ -14,15 +14,13 @@ class GK_Social_Widget extends WP_Widget {
 	 * @return void
 	 *
 	 **/
-	function GK_Social_Widget() {
-		$this->WP_Widget(
-			'widget_gk_social_icons', 
-			__( 'GK Social Icons', GKTPLNAME ), 
-			array( 
+	function __construct() {
+		$widget_ops = array(
 				'classname' => 'widget_gk_social_icons', 
-				'description' => __( 'Use this widget to show social links', GKTPLNAME) 
-			)
-		);
+				'description' =>  __( 'Use this widget to show social links', GKTPLNAME)
+			);
+
+		parent::__construct( 'widget_gk_social_icons', __( 'GK Social Icons', GKTPLNAME ), $widget_ops ); 
 		
 		$this->alt_option_name = 'widget_gk_social_icons';
 	}

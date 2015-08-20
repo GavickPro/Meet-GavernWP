@@ -19,19 +19,18 @@ class GK_NSP_Widget extends WP_Widget {
 	 * @return void
 	 *
 	 **/
-	function GK_NSP_Widget() {
-		$this->WP_Widget(
-			'widget_gk_nsp', 
-			__('GK News Show Pro', GKTPLNAME), 
-			array( 
+	function __construct() {
+		$widget_ops = array(
 				'classname' => 'widget_gk_nsp', 
 				'description' => __( 'Use this widget to show recent items with images and additional elements like title, date etc.', GKTPLNAME) 
-			),
-			array(
+			);
+		
+		$control_ops = array(
 				'width' => 670, 
 				'height' => 350
-			)
-		);
+			);
+
+		parent::__construct('widget_gk_nsp', __( 'GK News Show Pro', GKTPLNAME ), $widget_ops, $control_ops );
 		
 		$this->alt_option_name = 'widget_gk_nsp';
 		//

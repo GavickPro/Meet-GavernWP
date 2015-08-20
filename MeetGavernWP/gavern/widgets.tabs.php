@@ -14,15 +14,13 @@ class GK_Tabs_Widget extends WP_Widget {
 	 * @return void
 	 *
 	 **/
-	function GK_Tabs_Widget() {
-		$this->WP_Widget(
-			'widget_gk_tabs', 
-			__( 'GK Tabs', GKTPLNAME ), 
-			array( 
+	function __construct() {
+		$widget_ops = array(
 				'classname' => 'widget_gk_tabs', 
-				'description' => __( 'Use this widget to show tabs created form the selected sidebar', GKTPLNAME) 
-			)
-		);
+				'description' =>  __( 'Use this widget to show tabs created form the selected sidebar', GKTPLNAME)
+			);
+
+		parent::__construct( 'widget_gk_tabs', __( 'GK Tabs', GKTPLNAME ), $widget_ops );
 		
 		$this->alt_option_name = 'widget_gk_tabs';
 		//
