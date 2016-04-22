@@ -37,13 +37,14 @@ if(!function_exists('gavern_admin_menu')) {
 			$icon_path = get_option($tpl->name . "_branding_admin_page_image");
 		}
 		// creating main menu item for the template settings
-		$plugin_page = add_object_page(
+		$plugin_page = add_menu_page(
 			'GavernWP Framework', 
 			$tpl->config['template']->name, 
 			'manage_options',
 			'gavern-menu', 
 			'gavern_template_options', 
-			$icon_path );
+			$icon_path,
+			50 );
 		
 		// checking if showing template options is enabled
 		if($tpl->config['developer_config']->visibility->template_options == 'true') {
