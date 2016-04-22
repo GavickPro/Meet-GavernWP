@@ -2,8 +2,8 @@
 	"template": {
 		"name": "MeetGavernWP",
 		"update_name": "gk_meetgavern_wp",
-		"date": "21/08/2015",
-		"version": "1.15",
+		"date": "22/04/2016",
+		"version": "1.16",
 		"description": "Free GavickPro Wordpress theme based on the GavernWP framework"
 	},
 	"developer_config": {
