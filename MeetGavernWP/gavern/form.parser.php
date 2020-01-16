@@ -52,7 +52,7 @@ class GavernWPFormParser {
 			// load file
 			$this->loaded_data = $this->tpl->get_json('options', $filename);
 			// check the loaded JSON data
-			if($this->loaded_data != null && count($this->loaded_data != 0)) {
+			if($this->loaded_data != null && count($this->loaded_data) != 0) {
 				// generate output
 				return $this->output();
 			} else {
@@ -63,7 +63,7 @@ class GavernWPFormParser {
 			// load file
 			$this->loaded_data = json_decode($filename);
 			// check the loaded JSON data
-			if($this->loaded_data != null && count($this->loaded_data != 0)) {
+			if($this->loaded_data != null && count($this->loaded_data) != 0) {
 				// generate output
 				return $this->output();
 			} else {
