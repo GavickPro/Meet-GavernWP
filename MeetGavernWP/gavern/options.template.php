@@ -53,7 +53,7 @@ function gavern_template_options_js() {
 				// load file
 				$loaded_data = $tpl->get_json('options', $tab[1]);	
 				// check the loaded JSON data
-				if($loaded_data != null && count($loaded_data != 0)) {
+				if($loaded_data != null && count($loaded_data) != 0) {
 					$standard_fields = array('Text', 'Select', 'Switcher', 'Textarea', 'Media', 'WidthHeight', 'TextBlock');
 					// iterate through groups
 					foreach($loaded_data as $group) {
@@ -107,7 +107,7 @@ function gavern_template_options_css() {
 				// load file
 				$loaded_data = $tpl->get_json('options', $tab[1]);	
 				// check the loaded JSON data
-				if($loaded_data != null && count($loaded_data != 0)) {
+				if($loaded_data != null && count($loaded_data) != 0) {
 					$standard_fields = array('Text', 'Select', 'Switcher', 'Textarea', 'Media', 'WidthHeight', 'TextBlock');
 					// iterate through groups
 					foreach($loaded_data as $group) {
